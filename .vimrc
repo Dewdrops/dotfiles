@@ -62,7 +62,7 @@
         endif
 
     if !exists('g:dewdrops_bundle_groups')
-        let g:dewdrops_bundle_groups=['general', 'neocomplcache', 'programming', 'php', 'ruby', 'perl', 'python', 'go', 'twig', 'javascript', 'haskell', 'html', 'misc', 'scala']
+        let g:dewdrops_bundle_groups=['general', 'snipmate', 'programming', 'php', 'ruby', 'perl', 'python', 'go', 'twig', 'javascript', 'haskell', 'html', 'misc', 'scala']
     endif
 
     " General
@@ -161,7 +161,7 @@
             Bundle 'hail2u/vim-css3-syntax'
             Bundle 'cakebaker/scss-syntax.vim'
             Bundle 'groenewege/vim-less'
-            Bundle 'mattn/zencoding-vim'
+            Bundle 'mattn/emmet-vim'
             Bundle 'tpope/vim-haml'
         endif
 
@@ -729,7 +729,7 @@
     " }
 
     " zencoding {
-        let g:user_zen_mode = 'i'
+        let g:user_emmet_mode = 'i'
     " }
 
     " BufExplorer {
