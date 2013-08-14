@@ -109,7 +109,7 @@
         if count(g:dewdrops_bundle_groups, 'snipmate')
             Bundle 'garbas/vim-snipmate'
             Bundle 'honza/vim-snippets'
-            " Source support_function.vim to support vim-snippets.
+            " Source support_function.vim to support vim-snippets
             if filereadable(expand("~/.vim/bundle/vim-snippets/snippets/support_functions.vim"))
                 source ~/.vim/bundle/vim-snippets/snippets/support_functions.vim
             endif
@@ -586,8 +586,9 @@
         nnoremap <silent> <leader>gc :Gcommit<CR>
         nnoremap <silent> <leader>gb :Gblame<CR>
         nnoremap <silent> <leader>gl :Glog<CR>
-        nnoremap <silent> <leader>gp :Git push<CR>
+        nnoremap <leader>gp :Git push https://github.com/Dewdrops/
         nnoremap <silent> <leader>gw :Gwrite<CR>:GitGutter<CR>
+        nnoremap <silent> <leader>gr :Gwrite<CR>:GitGutter<CR>
         nnoremap <silent> <leader>gg :GitGutterToggle<CR>
     "}
 
@@ -717,10 +718,6 @@
 
     " haskellmode-vim {
         let g:haddock_browser="/usr/bin/opera"
-    " }
-
-    " fugitive {
-        nnoremap <leader>gr :Gwrite<cr>
     " }
 
     " Quickrun {
