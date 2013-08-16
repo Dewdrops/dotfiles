@@ -581,15 +581,15 @@
     " }
 
     " Fugitive {
-        nnoremap <silent> <leader>gs :Gstatus<CR>
-        nnoremap <silent> <leader>gd :Gdiff<CR>
-        nnoremap <silent> <leader>gc :Gcommit<CR>
-        nnoremap <silent> <leader>gb :Gblame<CR>
-        nnoremap <silent> <leader>gl :Glog<CR>
+        nnoremap <leader>gs :Gstatus<CR>
+        nnoremap <leader>gd :Gdiff<CR>
+        nnoremap <leader>gc :Gcommit<CR>
+        nnoremap <leader>gb :Gblame<CR>
+        nnoremap <leader>gl :Glog<CR>
         nnoremap <leader>gp :Git push https://github.com/Dewdrops/
-        nnoremap <silent> <leader>gw :Gwrite<CR>:GitGutter<CR>
-        nnoremap <silent> <leader>gr :Gwrite<CR>:GitGutter<CR>
-        nnoremap <silent> <leader>gg :GitGutterToggle<CR>
+        nnoremap <leader>gw :Gwrite<CR>:GitGutter<CR>
+        nnoremap <leader>gr :Gwrite<CR>:GitGutter<CR>
+        nnoremap <leader>gg :GitGutterToggle<CR>
     "}
 
     " neocomplcache {
