@@ -434,7 +434,7 @@
     nnoremap <leader>zm :set fdm=marker<cr>
     nnoremap <leader>zi :set fdm=indent<cr>
     nnoremap <leader>ze :set fdm=expr<cr>
-    nnoremap <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr> 
+    nnoremap <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
     nnoremap <leader>mk :make<cr>
     nnoremap <leader>sp :sp<cr>
     nnoremap <leader>vs :vs<cr>
