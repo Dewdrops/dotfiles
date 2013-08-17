@@ -1,9 +1,8 @@
 " Modeline and Notes {
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker:
 "
-"   This is the personal .vimrc file of Dewdrops and maintained
-"   by Dewdrops too. The structure and most code are stolen from
-"   spf13-vim (https://github.com/spf13/spf13-vim).
+"   This is the personal .vimrc file of Dewdrops. The structure and most code are
+"   stolen from spf13-vim (https://github.com/spf13/spf13-vim).
 " }
 
 " Environment {
@@ -536,6 +535,7 @@
     " }
 
     " ctrlp {
+        let g:ctrlp_map = '<c-p>'
         let g:ctrlp_working_path_mode = 'rc'
         let g:ctrlp_custom_ignore = {
             \ 'dir':  '\.git$\|\.hg$\|\.svn$',
@@ -788,6 +788,7 @@
             let directory = common_dir . dirname . '/'
             if exists("*mkdir")
                 if !isdirectory(directory)
+                    call mkdir(directory)
                     call mkdir(directory)
                 endif
             endif
