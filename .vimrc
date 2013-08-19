@@ -227,9 +227,7 @@
     set virtualedit=onemore             " Allow for cursor beyond last character
     set history=1000                    " Store a ton of history (default is 20)
     set hidden                          " Allow buffer switching without saving
-
-    set ttimeout
-    set ttimeoutlen=50
+    set notimeout
 
     " Setting up the directories {
         set backup                  " Backups are nice ...
@@ -724,7 +722,7 @@
     " }
 
     " zencoding {
-        let g:user_emmet_leader_key = '<c-g>'
+        let g:user_emmet_leader_key = '<c-g>'            " use C-g instead
         let g:user_emmet_mode = 'i'
     " }
 
