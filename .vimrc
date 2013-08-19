@@ -682,6 +682,10 @@
         let g:undotree_SetFocusWhenToggle=1
     " }
 
+    " airline {
+        let g:airline_enable_hunks = 0               "workaround to not break fugitive
+    " }
+
     " indent_guides {
         autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#212121 ctermbg=3
         autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#404040 ctermbg=4
@@ -733,7 +737,7 @@
         let g:bufExplorerSplitRight = 0                  " Split left.
         let g:bufExplorerSplitVertical = 1               " Split vertically.
         let g:bufExplorerSplitVertSize = 30              " Split width
-        let g:bufExplorerUseCurrentWindow = 1            " Open in new window.
+        let g:bufExplorerUseCurrentWindow = 1            " Open in new window
         autocmd BufWinEnter \[Buf\ List\] setl nonumber
     " }
 
