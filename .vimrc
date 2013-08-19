@@ -486,7 +486,7 @@
 
     " SnipMate {
         " Setting the author var
-        let g:snips_author = 'Steve Francia <steve.francia@gmail.com>'
+        let g:snips_author = 'Dewdrops <v_v_4474@126.com>'
     " }
 
     " NerdTree {
@@ -724,7 +724,7 @@
     " }
 
     " zencoding {
-        let g:user_emmet_leader_key = '<c-g>'            " Use C-g instead
+        let g:user_emmet_leader_key = '<c-g>'
         let g:user_emmet_mode = 'i'
     " }
 
