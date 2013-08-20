@@ -68,7 +68,9 @@
         if count(g:dewdrops_bundle_groups, 'general')
             Bundle 'scrooloose/nerdtree'
             Bundle 'Dewdrops/vim-tomorrow-theme'
+            Bundle 'tomasr/molokai'
             Bundle 'spf13/vim-colors'
+            Bundle 'mhinz/vim-startify'
             Bundle 'tpope/vim-surround'
             Bundle 'Dewdrops/vim-autoclose'
             Bundle 'kien/ctrlp.vim'
@@ -97,7 +99,7 @@
             Bundle 'scrooloose/syntastic'
             Bundle 'tpope/vim-fugitive'
             Bundle 'scrooloose/nerdcommenter'
-            Bundle 'godlygeek/tabular'
+            Bundle 'junegunn/vim-easy-align'
             Bundle 'thinca/vim-quickrun'
             if executable('ctags')
                 Bundle 'majutsushi/tagbar'
@@ -189,8 +191,8 @@
             Bundle 'tpope/vim-cucumber'
             Bundle 'quentindecock/vim-cucumber-align-pipes'
             Bundle 'Puppet-Syntax-Highlighting'
+            Bundle 'chrisbra/csv.vim'
         endif
-
 
     " Twig
         if count(g:dewdrops_bundle_groups, 'twig')
@@ -501,22 +503,23 @@
         let g:nerdtree_tabs_open_on_gui_startup=0
     " }
 
-    " Tabularize {
-        nmap <Leader>a& :Tabularize /&<CR>
-        vmap <Leader>a& :Tabularize /&<CR>
-        nmap <Leader>a= :Tabularize /=<CR>
-        vmap <Leader>a= :Tabularize /=<CR>
-        nmap <Leader>a: :Tabularize /:<CR>
-        vmap <Leader>a: :Tabularize /:<CR>
-        nmap <Leader>a:: :Tabularize /:\zs<CR>
-        vmap <Leader>a:: :Tabularize /:\zs<CR>
-        nmap <Leader>a, :Tabularize /,<CR>
-        vmap <Leader>a, :Tabularize /,<CR>
-        nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-        vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+    " easy align {
+        vnoremap <silent> <Enter> :EasyAlign<cr>
+        nmap <Leader>a, :EasyAlign <space><CR>
+        vmap <Leader>a, :EasyAlign <space><CR>
+        nmap <Leader>a= :EasyAlign =<CR>
+        vmap <Leader>a= :EasyAlign =<CR>
+        nmap <Leader>a: :EasyAlign :<CR>
+        vmap <Leader>a: :EasyAlign :<CR>
+        nmap <Leader>a, :EasyAlign ,<CR>
+        vmap <Leader>a, :EasyAlign ,<CR>
+        nmap <Leader>a, :EasyAlign .<CR>
+        vmap <Leader>a, :EasyAlign .<CR>
+        nmap <Leader>a<Bar> :EasyAlign <Bar><CR>
+        vmap <Leader>a<Bar> :EasyAlign <Bar><CR>
     " }
 
-    " Session List {
+    "  {
         set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
         nmap <leader>sl :SessionList<CR>
         nmap <leader>ss :SessionSave<CR>
