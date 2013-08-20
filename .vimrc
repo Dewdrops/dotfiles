@@ -61,7 +61,7 @@
         endif
 
     if !exists('g:dewdrops_bundle_groups')
-        let g:dewdrops_bundle_groups=['general', 'snipmate', 'programming', 'php', 'ruby', 'perl', 'python', 'go', 'twig', 'javascript', 'haskell', 'html', 'misc', 'scala']
+        let g:dewdrops_bundle_groups=['general', 'completion', 'programming', 'php', 'ruby', 'perl', 'python', 'go', 'twig', 'javascript', 'haskell', 'html', 'misc', 'scala']
     endif
 
     " General
@@ -114,8 +114,12 @@
             if filereadable(expand("~/.vim/bundle/vim-snippets/snippets/support_functions.vim"))
                 source ~/.vim/bundle/vim-snippets/snippets/support_functions.vim
             endif
-        elseif count(g:dewdrops_bundle_groups, 'neocomplcache')
-            Bundle 'Shougo/neocomplcache'
+        elseif count(g:dewdrops_bundle_groups, 'completion')
+            if has('lua') && (v:version > 703 || v:version == 703 && has('patch885'))
+                Bundle 'Shougo/neocomplete'
+            else
+                Bundle 'Shougo/neocomplcache'
+            endif
             Bundle 'Shougo/neosnippet'
             Bundle 'honza/vim-snippets'
         endif
@@ -503,7 +507,7 @@
         let g:nerdtree_tabs_open_on_gui_startup=0
     " }
 
-    " easy align {
+    " EasyAlign {
         vnoremap <silent> <Enter> :EasyAlign<cr>
         nmap <Leader>a, :EasyAlign <space><CR>
         vmap <Leader>a, :EasyAlign <space><CR>
@@ -592,15 +596,98 @@
     "}
 
     " neocomplcache {
-        if count(g:dewdrops_bundle_groups, 'neocomplcache')
+        if count(g:dewdrops_bundle_groups, 'completion')
             let g:acp_enableAtStartup = 0
-            let g:neocomplcache_enable_at_startup = 1
-            let g:neocomplcache_enable_camel_case_completion = 1
-            let g:neocomplcache_enable_smart_case = 1
-            let g:neocomplcache_enable_underbar_completion = 1
-            let g:neocomplcache_enable_auto_delimiter = 1
-            let g:neocomplcache_max_list = 15
-            let g:neocomplcache_force_overwrite_completefunc = 1
+
+            if !( has('lua') && (v:version > 703 || v:version == 703 && has('patch885')) )
+                let g:neocomplcache_enable_at_startup = 1
+                let g:neocomplcache_enable_camel_case_completion = 1
+                let g:neocomplcache_enable_smart_case = 1
+                let g:neocomplcache_enable_underbar_completion = 1
+                let g:neocomplcache_enable_auto_delimiter = 1
+                let g:neocomplcache_max_list = 15
+                let g:neocomplcache_force_overwrite_completefunc = 1
+
+                " Define dictionary.
+                let g:neocomplcache_dictionary_filetype_lists = {
+                            \ 'default' : '',
+                            \ 'vimshell' : $HOME.'/.vimshell_hist',
+                            \ 'scheme' : $HOME.'/.gosh_completions'
+                            \ }
+
+                " Define keyword.
+                if !exists('g:neocomplcache_keyword_patterns')
+                    let g:neocomplcache_keyword_patterns = {}
+                endif
+                let g:neocomplcache_keyword_patterns._ = '\h\w*'
+
+                inoremap <expr><C-g> neocomplcache#undo_completion()
+                inoremap <expr><C-l> neocomplcache#complete_common_string()
+                inoremap <expr><CR> neocomplcache#complete_common_string()
+
+                " <CR>: close popup
+                " <s-CR>: close popup and save indent.
+                inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<CR>" : "\<CR>"
+                inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+
+                " <C-h>, <BS>: close popup and delete backword char.
+                inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+                inoremap <expr><C-y> neocomplcache#close_popup()
+
+                " Enable heavy omni completion.
+                if !exists('g:neocomplcache_omni_patterns')
+                    let g:neocomplcache_omni_patterns = {}
+                endif
+                let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+                let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+                let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+                let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+                let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+            else
+                let g:neocomplete_enable_at_startup = 1
+                let g:neocomplete_enable_camel_case_completion = 1
+                let g:neocomplete_enable_smart_case = 1
+                let g:neocomplete_enable_underbar_completion = 1
+                let g:neocomplete_enable_auto_delimiter = 1
+                let g:neocomplete_max_list = 15
+                let g:neocomplete_force_overwrite_completefunc = 1
+
+                " Define dictionary.
+                let g:neocomplete_dictionary_filetype_lists = {
+                            \ 'default' : '',
+                            \ 'vimshell' : $HOME.'/.vimshell_hist',
+                            \ 'scheme' : $HOME.'/.gosh_completions'
+                            \ }
+
+                " Define keyword.
+                if !exists('g:neocomplete_keyword_patterns')
+                    let g:neocomplete_keyword_patterns = {}
+                endif
+                let g:neocomplete_keyword_patterns._ = '\h\w*'
+
+                inoremap <expr><C-g> neocomplete#undo_completion()
+                inoremap <expr><C-l> neocomplete#complete_common_string()
+                inoremap <expr><CR> neocomplete#complete_common_string()
+
+                " <CR>: close popup
+                " <s-CR>: close popup and save indent.
+                inoremap <expr><s-CR> pumvisible() ? neocomplete#close_popup()"\<CR>" : "\<CR>"
+                inoremap <expr><CR> pumvisible() ? neocomplete#close_popup() : "\<CR>"
+
+                " <C-h>, <BS>: close popup and delete backword char.
+                inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+                inoremap <expr><C-y> neocomplete#close_popup()
+
+                " Enable heavy omni completion.
+                if !exists('g:neocomplete_omni_patterns')
+                    let g:neocomplete_omni_patterns = {}
+                endif
+                let g:neocomplete_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+                let g:neocomplete_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+                let g:neocomplete_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+                let g:neocomplete_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+                let g:neocomplete_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+            endif
 
             " SuperTab like snippets behavior.
             imap <silent><expr><TAB> neosnippet#expandable() ?
@@ -608,40 +695,12 @@
                         \ "\<C-e>" : "\<TAB>")
             smap <TAB> <Right><Plug>(neosnippet_jump_or_expand)
 
-            " Define dictionary.
-            let g:neocomplcache_dictionary_filetype_lists = {
-                        \ 'default' : '',
-                        \ 'vimshell' : $HOME.'/.vimshell_hist',
-                        \ 'scheme' : $HOME.'/.gosh_completions'
-                        \ }
-
-            " Define keyword.
-            if !exists('g:neocomplcache_keyword_patterns')
-                let g:neocomplcache_keyword_patterns = {}
-            endif
-            let g:neocomplcache_keyword_patterns._ = '\h\w*'
-
-            " Plugin key-mappings.
-
             imap <C-k> <Plug>(neosnippet_expand_or_jump)
             smap <C-k> <Plug>(neosnippet_expand_or_jump)
-
-            inoremap <expr><C-g> neocomplcache#undo_completion()
-            inoremap <expr><C-l> neocomplcache#complete_common_string()
-            inoremap <expr><CR> neocomplcache#complete_common_string()
 
             " <TAB>: completion.
             inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
             inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
-
-            " <CR>: close popup
-            " <s-CR>: close popup and save indent.
-            inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<CR>" : "\<CR>"
-            inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
-
-            " <C-h>, <BS>: close popup and delete backword char.
-            inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-            inoremap <expr><C-y> neocomplcache#close_popup()
 
             " Enable omni completion.
             autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -650,16 +709,6 @@
             autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
             autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
             autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-
-            " Enable heavy omni completion.
-            if !exists('g:neocomplcache_omni_patterns')
-                let g:neocomplcache_omni_patterns = {}
-            endif
-            let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-            let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-            let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-            let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-            let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 
             " Use honza's snippets.
             let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
