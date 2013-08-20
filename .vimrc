@@ -61,15 +61,12 @@
         endif
 
     if !exists('g:dewdrops_bundle_groups')
-        let g:dewdrops_bundle_groups=['general', 'completion', 'programming', 'php', 'ruby', 'perl', 'python', 'go', 'twig', 'javascript', 'haskell', 'html', 'misc', 'scala']
+        let g:dewdrops_bundle_groups=['general', 'theme', 'completion', 'programming', 'php', 'ruby', 'perl', 'python', 'go', 'twig', 'javascript', 'haskell', 'html', 'misc', 'scala']
     endif
 
     " General
         if count(g:dewdrops_bundle_groups, 'general')
             Bundle 'scrooloose/nerdtree'
-            Bundle 'Dewdrops/vim-tomorrow-theme'
-            Bundle 'tomasr/molokai'
-            Bundle 'spf13/vim-colors'
             Bundle 'mhinz/vim-startify'
             Bundle 'tpope/vim-surround'
             Bundle 'Dewdrops/vim-autoclose'
@@ -82,7 +79,6 @@
             Bundle 'Lokaltog/vim-easymotion'
             Bundle 'godlygeek/csapprox'
             Bundle 'jistr/vim-nerdtree-tabs'
-            Bundle 'flazz/vim-colorschemes'
             Bundle 'mbbill/undotree'
             Bundle 'nathanaelkane/vim-indent-guides'
             Bundle 'vim-scripts/restore_view.vim'
@@ -91,6 +87,16 @@
             Bundle 'Dewdrops/vim-unimpaired'
             Bundle 'tpope/vim-repeat'
             Bundle 'terryma/vim-expand-region'
+        endif
+
+    " Color Themes
+        if count(g:dewdrops_bundle_groups, 'theme')
+            Bundle 'Dewdrops/vim-tomorrow-theme'
+            Bundle 'altercation/vim-colors-solarized'
+            Bundle 'jnurmine/Zenburn'
+            Bundle 'tomasr/molokai'
+            Bundle 'spf13/vim-colors'
+            Bundle 'flazz/vim-colorschemes'
         endif
 
     " General Programming
