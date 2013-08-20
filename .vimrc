@@ -742,7 +742,8 @@
     " }
 
     " airline {
-        "let g:airline_enable_hunks = 0
+        let g:airline_powerline_fonts = 1
+        let g:airline#extensions#hunks#non_zero_only = 1
     " }
 
     " indent_guides {
