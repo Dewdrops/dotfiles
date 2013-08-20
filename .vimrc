@@ -116,6 +116,7 @@
             endif
         elseif count(g:dewdrops_bundle_groups, 'completion')
             if has('lua') && (v:version > 703 || v:version == 703 && has('patch885'))
+                Bundle 'Shougo/unite.vim'
                 Bundle 'Shougo/neocomplete'
             else
                 Bundle 'Shougo/neocomplcache'
@@ -644,16 +645,16 @@
                 let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
                 let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
             else
-                let g:neocomplete_enable_at_startup = 1
-                let g:neocomplete_enable_camel_case_completion = 1
-                let g:neocomplete_enable_smart_case = 1
-                let g:neocomplete_enable_underbar_completion = 1
-                let g:neocomplete_enable_auto_delimiter = 1
-                let g:neocomplete_max_list = 15
-                let g:neocomplete_force_overwrite_completefunc = 1
+                let g:neocomplete#enable_at_startup = 1
+                let g:neocomplete#enable_camel_case_completion = 1
+                let g:neocomplete#enable_smart_case = 1
+                let g:neocomplete#enable_underbar_completion = 1
+                let g:neocomplete#enable_auto_delimiter = 1
+                let g:neocomplete#max_list = 15
+                let g:neocomplete#force_overwrite_completefunc = 1
 
                 " Define dictionary.
-                let g:neocomplete_dictionary_filetype_lists = {
+                let g:neocomplete#sources#dictionary#dictionaries = {
                             \ 'default' : '',
                             \ 'vimshell' : $HOME.'/.vimshell_hist',
                             \ 'scheme' : $HOME.'/.gosh_completions'
@@ -661,9 +662,9 @@
 
                 " Define keyword.
                 if !exists('g:neocomplete_keyword_patterns')
-                    let g:neocomplete_keyword_patterns = {}
+                    let g:neocomplete#keyword_patterns = {}
                 endif
-                let g:neocomplete_keyword_patterns._ = '\h\w*'
+                let g:neocomplete#keyword_patterns._ = '\h\w*'
 
                 inoremap <expr><C-g> neocomplete#undo_completion()
                 inoremap <expr><C-l> neocomplete#complete_common_string()
@@ -679,14 +680,14 @@
                 inoremap <expr><C-y> neocomplete#close_popup()
 
                 " Enable heavy omni completion.
-                if !exists('g:neocomplete_omni_patterns')
-                    let g:neocomplete_omni_patterns = {}
+                if !exists('g:neocomplete#sources#omni#input_patterns')
+                    let g:neocomplete#sources#omni#input_patterns = {}
                 endif
-                let g:neocomplete_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-                let g:neocomplete_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-                let g:neocomplete_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-                let g:neocomplete_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-                let g:neocomplete_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+                let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+                let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+                let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+                let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+                let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
             endif
 
             " SuperTab like snippets behavior.
