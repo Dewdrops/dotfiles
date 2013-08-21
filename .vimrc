@@ -61,7 +61,7 @@
         endif
 
     if !exists('g:dewdrops_bundle_groups')
-        let g:dewdrops_bundle_groups=['general', 'theme', 'completion', 'programming', 'php', 'ruby', 'perl', 'python', 'go', 'twig', 'javascript', 'haskell', 'html', 'misc', 'scala']
+        let g:dewdrops_bundle_groups = ['general', 'theme', 'completion', 'programming', 'ruby', 'perl', 'python', 'javascript', 'haskell', 'html', 'misc']
     endif
 
     " General
@@ -87,12 +87,12 @@
             Bundle 'Dewdrops/vim-unimpaired'
             Bundle 'tpope/vim-repeat'
             Bundle 'terryma/vim-expand-region'
+            Bundle 'vim-scripts/sudo.vim'
         endif
 
     " Color Themes
         if count(g:dewdrops_bundle_groups, 'theme')
             Bundle 'Dewdrops/vim-tomorrow-theme'
-            Bundle 'altercation/vim-colors-solarized'
             Bundle 'jnurmine/Zenburn'
             Bundle 'tomasr/molokai'
             Bundle 'spf13/vim-colors'
@@ -135,6 +135,7 @@
         if count(g:dewdrops_bundle_groups, 'php')
             Bundle 'spf13/PIV'
             Bundle 'arnaud-lb/vim-php-namespace'
+            Bundle 'beyondwords/vim-twig'
         endif
 
     " Python
@@ -154,7 +155,7 @@
             Bundle 'kchmck/vim-coffee-script'
         endif
 
-    " Java
+    " Scala
         if count(g:dewdrops_bundle_groups, 'scala')
             Bundle 'derekwyatt/vim-scala'
             Bundle 'derekwyatt/vim-sbt'
@@ -185,9 +186,15 @@
             "let g:rubycomplete_rails = 1
         endif
 
-    " perl
+    " Perl
         if count(g:dewdrops_bundle_groups, 'perl')
             Bundle 'vim-perl/vim-perl'
+        endif
+
+    " Lua
+        if count(g:dewdrops_bundle_groups, 'lua')
+            Bundle 'xolox/vim-misc'
+            Bundle 'xolox/vim-lua-ftplugin'
         endif
 
     " Go Lang
@@ -196,19 +203,23 @@
             Bundle 'spf13/vim-gocode'
         endif
 
+    " Cucumber
+        if count(g:dewdrops_bundle_groups, 'cucumber')
+            Bundle 'tpope/vim-cucumber'
+            Bundle 'quentindecock/vim-cucumber-align-pipes'
+        endif
+
+    " Puppet
+        if count(g:dewdrops_bundle_groups, 'puppet')
+            Bundle 'Puppet-Syntax-Highlighting'
+        endif
+
     " Misc
         if count(g:dewdrops_bundle_groups, 'misc')
             Bundle 'tpope/vim-markdown'
-            Bundle 'tpope/vim-cucumber'
-            Bundle 'quentindecock/vim-cucumber-align-pipes'
-            Bundle 'Puppet-Syntax-Highlighting'
             Bundle 'chrisbra/csv.vim'
         endif
 
-    " Twig
-        if count(g:dewdrops_bundle_groups, 'twig')
-            Bundle 'beyondwords/vim-twig'
-        endif
 " }
 
 " General {
