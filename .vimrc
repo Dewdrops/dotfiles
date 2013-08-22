@@ -470,16 +470,33 @@
         "let g:PIVAutoClose = 0
     " }
 
+    " Ack {
+        nnoremap <leader>ak :Ack<space>
+    " }
+
+    " Startify {
+    let g:startify_custom_header = [
+                \ '         ____                   _                     ',
+                \ '        |  _ \  _____      ____| |_ __ ___  _ __  ___ ',
+                \ '        | | | |/ _ \ \ /\ / / _` | ''__/ _ \| ''_ \/ __|',
+                \ '        | |_| |  __/\ V  V / (_| | | | (_) | |_) \__ \',
+                \ '        |____/ \___| \_/\_/ \__,_|_|  \___/| .__/|___/',
+                \ '                                           |_|        ',
+                \ '                                                      ',
+                \ '                                                      '
+                \ ]
+    " }
+
     " matchit {
         let b:match_ignorecase = 1
     " }
 
     " OmniComplete {
-        if has("au") && exists("+omnifunc")
+        if has("autocmd") && exists("+omnifunc")
             au Filetype *
-                \if &omnifunc == "" |
-                \setlocal omnifunc=syntaxcomplete#Complete |
-                \endif
+                        \if &omnifunc == "" |
+                        \setlocal omnifunc=syntaxcomplete#Complete |
+                        \endif
         endif
 
         hi Pmenu  guifg=#000000 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
