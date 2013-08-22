@@ -56,8 +56,8 @@
         elseif executable('ack')
             Bundle 'mileszs/ack.vim'
         elseif executable('ag')
-            Bundle 'mileszs/ack.vim'
             let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
+            Bundle 'mileszs/ack.vim'
         endif
 
     if !exists('g:dewdrops_bundle_groups')
@@ -241,7 +241,7 @@
     endif
 
     " automatically switch to the current file directory when a new buffer is opened
-    autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+    au BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
     " Always switch to the current file directory
 
     set autowrite                       " Automatically write a file when leaving a modified buffer
@@ -303,7 +303,7 @@
     set backspace=indent,eol,start  " Backspace for dummies
     set linespace=0                 " No extra spaces between rows
     set nu                          " Line numbers on
-    autocmd BufEnter * set relativenumber      " relative line number for fast motion
+    au BufEnter * set relativenumber      " relative line number for fast motion
     set showmatch                   " Show matching brackets/parenthesis
     set incsearch                   " Find as you type search
     set hlsearch                    " Highlight search terms
@@ -337,9 +337,9 @@
 
     "set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
     " Remove trailing whitespaces and ^M chars
-    autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-    autocmd FileType go autocmd BufWritePre <buffer> Fmt
-    autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
+    au FileType c,cpp,java,go,php,javascript,python,twig,xml,yml au BufWritePre <buffer> call StripTrailingWhitespace()
+    au FileType go au BufWritePre <buffer> Fmt
+    au BufNewFile,BufRead *.html.twig set filetype=html.twig
 
 " }
 
@@ -386,16 +386,16 @@
     nnoremap ^ 0
 
     " Code folding options
-    nmap <leader>f0 :set foldlevel=0<CR>
-    nmap <leader>f1 :set foldlevel=1<CR>
-    nmap <leader>f2 :set foldlevel=2<CR>
-    nmap <leader>f3 :set foldlevel=3<CR>
-    nmap <leader>f4 :set foldlevel=4<CR>
-    nmap <leader>f5 :set foldlevel=5<CR>
-    nmap <leader>f6 :set foldlevel=6<CR>
-    nmap <leader>f7 :set foldlevel=7<CR>
-    nmap <leader>f8 :set foldlevel=8<CR>
-    nmap <leader>f9 :set foldlevel=9<CR>
+    nmap <leader>f0 :set foldlevel=0<cr>
+    nmap <leader>f1 :set foldlevel=1<cr>
+    nmap <leader>f2 :set foldlevel=2<cr>
+    nmap <leader>f3 :set foldlevel=3<cr>
+    nmap <leader>f4 :set foldlevel=4<cr>
+    nmap <leader>f5 :set foldlevel=5<cr>
+    nmap <leader>f6 :set foldlevel=6<cr>
+    nmap <leader>f7 :set foldlevel=7<cr>
+    nmap <leader>f8 :set foldlevel=8<cr>
+    nmap <leader>f9 :set foldlevel=9<cr>
 
     " Toggle search highlighting
     nmap <silent> <leader>/ :nohlsearch<cr>
@@ -431,7 +431,7 @@
 
     " Map <Leader>ff to display all lines with keyword under cursor
     " and ask which one to jump to
-    nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+    nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<cr>
 
     " Easier horizontal scrolling
     map zl zL
@@ -475,8 +475,8 @@
     " }
 
     " OmniComplete {
-        if has("autocmd") && exists("+omnifunc")
-            autocmd Filetype *
+        if has("au") && exists("+omnifunc")
+            au Filetype *
                 \if &omnifunc == "" |
                 \setlocal omnifunc=syntaxcomplete#Complete |
                 \endif
@@ -488,7 +488,7 @@
 
         " Some convenient mappings
         inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
-        inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+        inoremap <expr> <cr>       pumvisible() ? "\<C-y>" : "\<cr>"
         inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
         inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
 
@@ -512,8 +512,8 @@
     " }
 
     " NerdTree {
-        map <Leader>nt :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-        map <leader>nf :NERDTreeFind<CR>
+        map <Leader>nt :NERDTreeToggle<cr>:NERDTreeMirror<cr>
+        map <leader>nf :NERDTreeFind<cr>
 
         let NERDTreeShowBookmarks=1
         let NERDTreeIgnore=['\.pyc', '\.elc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
@@ -527,28 +527,28 @@
 
     " EasyAlign {
         vnoremap <silent> <Enter> :EasyAlign<cr>
-        nmap <Leader>a, :EasyAlign <space><CR>
-        vmap <Leader>a, :EasyAlign <space><CR>
-        nmap <Leader>a= :EasyAlign =<CR>
-        vmap <Leader>a= :EasyAlign =<CR>
-        nmap <Leader>a: :EasyAlign :<CR>
-        vmap <Leader>a: :EasyAlign :<CR>
-        nmap <Leader>a, :EasyAlign ,<CR>
-        vmap <Leader>a, :EasyAlign ,<CR>
-        nmap <Leader>a, :EasyAlign .<CR>
-        vmap <Leader>a, :EasyAlign .<CR>
-        nmap <Leader>a<Bar> :EasyAlign <Bar><CR>
-        vmap <Leader>a<Bar> :EasyAlign <Bar><CR>
+        nmap <Leader>a, :EasyAlign <space><cr>
+        vmap <Leader>a, :EasyAlign <space><cr>
+        nmap <Leader>a= :EasyAlign =<cr>
+        vmap <Leader>a= :EasyAlign =<cr>
+        nmap <Leader>a: :EasyAlign :<cr>
+        vmap <Leader>a: :EasyAlign :<cr>
+        nmap <Leader>a, :EasyAlign ,<cr>
+        vmap <Leader>a, :EasyAlign ,<cr>
+        nmap <Leader>a, :EasyAlign .<cr>
+        vmap <Leader>a, :EasyAlign .<cr>
+        nmap <Leader>a<Bar> :EasyAlign <Bar><cr>
+        vmap <Leader>a<Bar> :EasyAlign <Bar><cr>
     " }
 
-    "  {
+    " Session Manager {
         set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
-        nmap <leader>sl :SessionList<CR>
-        nmap <leader>ss :SessionSave<CR>
+        nmap <leader>sl :SessionList<cr>
+        nmap <leader>ss :SessionSave<cr>
     " }
 
     " JSON {
-        nmap <leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
+        nmap <leader>jt <Esc>:%!python -m json.tool<cr><Esc>:set filetype=json<cr>
     " }
 
     " PyMode {
@@ -595,25 +595,25 @@
     "}
 
     " PythonMode {
-    " Disable if python support not present
+        " Disable if python support not present
         if !has('python')
             let g:pymode = 1
         endif
     " }
 
     " Fugitive {
-        nnoremap <leader>gs :Gstatus<CR>
-        nnoremap <leader>gd :Gdiff<CR>
-        nnoremap <leader>gc :Gcommit<CR>
-        nnoremap <leader>gb :Gblame<CR>
-        nnoremap <leader>gl :Glog<CR>
+        nnoremap <leader>gs :Gstatus<cr>
+        nnoremap <leader>gd :Gdiff<cr>
+        nnoremap <leader>gc :Gcommit<cr>
+        nnoremap <leader>gb :Gblame<cr>
+        nnoremap <leader>gl :Glog<cr>
         nnoremap <leader>gp :Git push https://github.com/Dewdrops/
-        nnoremap <leader>gw :Gwrite<CR>:GitGutter<CR>
-        nnoremap <leader>gr :Gwrite<CR>:GitGutter<CR>
-        nnoremap <leader>gg :GitGutterToggle<CR>
+        nnoremap <leader>gw :Gwrite<cr>:GitGutter<cr>
+        nnoremap <leader>gr :Gwrite<cr>:GitGutter<cr>
+        nnoremap <leader>gg :GitGutterToggle<cr>
     "}
 
-    " neocomplcache {
+    " neocomplcache and neocomple {
         if count(g:dewdrops_bundle_groups, 'completion')
             let g:acp_enableAtStartup = 0
 
@@ -641,12 +641,12 @@
 
                 inoremap <expr><C-g> neocomplcache#undo_completion()
                 inoremap <expr><C-l> neocomplcache#complete_common_string()
-                inoremap <expr><CR> neocomplcache#complete_common_string()
+                inoremap <expr><cr> neocomplcache#complete_common_string()
 
-                " <CR>: close popup
+                " <cr>: close popup
                 " <s-CR>: close popup and save indent.
-                inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<CR>" : "\<CR>"
-                inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+                inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<cr>" : "\<cr>"
+                inoremap <expr><cr> pumvisible() ? neocomplcache#close_popup() : "\<cr>"
 
                 " <C-h>, <BS>: close popup and delete backword char.
                 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
@@ -685,12 +685,12 @@
 
                 inoremap <expr><C-g> neocomplete#undo_completion()
                 inoremap <expr><C-l> neocomplete#complete_common_string()
-                inoremap <expr><CR> neocomplete#complete_common_string()
+                inoremap <expr><cr> neocomplete#complete_common_string()
 
-                " <CR>: close popup
+                " <cr>: close popup
                 " <s-CR>: close popup and save indent.
-                inoremap <expr><s-CR> pumvisible() ? neocomplete#close_popup()"\<CR>" : "\<CR>"
-                inoremap <expr><CR> pumvisible() ? neocomplete#close_popup() : "\<CR>"
+                inoremap <expr><s-CR> pumvisible() ? neocomplete#close_popup()"\<cr>" : "\<cr>"
+                inoremap <expr><cr> pumvisible() ? neocomplete#close_popup() : "\<cr>"
 
                 " <C-h>, <BS>: close popup and delete backword char.
                 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
@@ -721,12 +721,12 @@
             inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 
             " Enable omni completion.
-            autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-            autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-            autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-            autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-            autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-            autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+            au FileType css setlocal omnifunc=csscomplete#CompleteCSS
+            au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+            au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+            au FileType python setlocal omnifunc=pythoncomplete#Complete
+            au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+            au FileType ruby setlocal omnifunc=rubycomplete#Complete
 
             " Use honza's snippets.
             let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
@@ -747,7 +747,7 @@
     " }
 
     " UndoTree {
-        nnoremap <Leader>ut :UndotreeToggle<CR>
+        nnoremap <Leader>ut :UndotreeToggle<cr>
         " If undotree is opened, it is likely one wants to interact with it.
         let g:undotree_SetFocusWhenToggle=1
     " }
@@ -758,8 +758,8 @@
     " }
 
     " indent_guides {
-        autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#212121 ctermbg=3
-        autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#404040 ctermbg=4
+        au VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#212121 ctermbg=3
+        au VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#404040 ctermbg=4
 
         let g:indent_guides_start_level = 2
         let g:indent_guides_guide_size = 1
@@ -809,7 +809,7 @@
         let g:bufExplorerSplitVertical = 1               " Split vertically.
         let g:bufExplorerSplitVertSize = 30              " Split width
         let g:bufExplorerUseCurrentWindow = 1            " Open in new window
-        autocmd BufWinEnter \[Buf\ List\] setl nonumber
+        au BufWinEnter \[Buf\ List\] setl nonumber
     " }
 
 " }
