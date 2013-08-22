@@ -775,8 +775,11 @@
     " }
 
     " indent_guides {
-        au VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#212121 ctermbg=3
-        au VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#404040 ctermbg=4
+        if !has('gui_running')
+            let g:indent_guides_auto_colors = 0
+            hi IndentGuidesOdd  ctermbg=black
+            hi IndentGuidesEven ctermbg=darkgrey
+        endif
 
         let g:indent_guides_start_level = 2
         let g:indent_guides_guide_size = 1
