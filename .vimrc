@@ -779,6 +779,8 @@
             let g:indent_guides_auto_colors = 0
             hi IndentGuidesOdd  ctermbg=black
             hi IndentGuidesEven ctermbg=darkgrey
+            " not enable indent guide in special buffers
+            let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'startify']
         endif
 
         let g:indent_guides_start_level = 2
