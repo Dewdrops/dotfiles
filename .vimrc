@@ -36,8 +36,7 @@
     " }
 
     " Setup Bundle Support {
-        " The next four lines ensure that the ~/.vim/bundle/ system works
-        filetype on
+        " The next three lines ensure that the ~/.vim/bundle/ system works
         filetype off
         set rtp+=~/.vim/bundle/vundle
         call vundle#rc()
@@ -152,7 +151,7 @@
         if count(g:dewdrops_bundle_groups, 'python')
             " Pick either python-mode or pyflakes & pydoc
             Bundle 'klen/python-mode'
-            Bundle 'python.vim'
+            Bundle 'hdima/python-syntax'
             Bundle 'python_match.vim'
         endif
 
@@ -238,9 +237,6 @@
 " General {
 
     set background=dark         " Assume a dark background
-    if !has('gui')
-        "set term=$TERM          " Make arrow and other keys work
-    endif
     filetype plugin indent on   " Automatically detect file types.
     syntax on                   " Syntax highlighting
     set mouse=a                 " Automatically enable mouse usage
@@ -773,6 +769,13 @@
         let g:undotree_SetFocusWhenToggle=1
     " }
 
+    " unimpaired {
+        nmap <c-up> [e
+        nmap <c-down> ]e
+        vmap <c-up> [e
+        vmap <c-down> ]e
+    " }
+
     " airline {
         let g:airline_powerline_fonts = 1
         let g:airline#extensions#hunks#non_zero_only = 1
@@ -819,8 +822,8 @@
     " }
 
     " Quickrun {
+        " let g:quickrun_config = {'outputter/buffer/into': 1}
         nnoremap <leader>kr :QuickRun -outputter/buffer/into 1<cr>
-        let g:quickrun_config = {'outputter/buffer/into': 1}
     " }
 
     " zencoding {
