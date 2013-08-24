@@ -36,7 +36,7 @@
     " }
 
     " Setup Bundle Support {
-        " The next three lines ensure that the ~/.vim/bundle/ system works
+        " The next four lines ensure that the ~/.vim/bundle/ system works
         filetype on
         filetype off
         set rtp+=~/.vim/bundle/vundle
@@ -50,18 +50,9 @@
         Bundle 'gmarik/vundle'
         Bundle 'MarcWeber/vim-addon-mw-utils'
         Bundle 'tomtom/tlib_vim'
-        if executable('ack-grep')
-            let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-            Bundle 'mileszs/ack.vim'
-        elseif executable('ack')
-            Bundle 'mileszs/ack.vim'
-        elseif executable('ag')
-            let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
-            Bundle 'mileszs/ack.vim'
-        endif
 
     if !exists('g:dewdrops_bundle_groups')
-        let g:dewdrops_bundle_groups = ['general', 'theme', 'completion', 'programming', 'ruby', 'perl', 'python', 'javascript', 'haskell', 'html', 'misc']
+        let g:dewdrops_bundle_groups = ['general', 'theme', 'git', 'completion', 'programming', 'ruby', 'perl', 'python', 'javascript', 'haskell', 'html', 'misc']
     endif
 
     " General
@@ -82,11 +73,14 @@
             Bundle 'mbbill/undotree'
             Bundle 'nathanaelkane/vim-indent-guides'
             Bundle 'vim-scripts/restore_view.vim'
-            Bundle 'airblade/vim-gitgutter'
             Bundle 'tpope/vim-abolish.git'
             Bundle 'Dewdrops/vim-unimpaired'
             Bundle 'tpope/vim-repeat'
             Bundle 'terryma/vim-expand-region'
+            Bundle 'thinca/vim-visualstar'
+            Bundle 'chrisbra/NrrwRgn'
+            Bundle 'tpope/vim-speeddating'
+            Bundle 'dahu/vim-fanfingtastic'
             Bundle 'vim-scripts/sudo.vim'
         endif
 
@@ -101,15 +95,31 @@
 
     " General Programming
         if count(g:dewdrops_bundle_groups, 'programming')
-            " Pick one of the checksyntax, jslint, or syntastic
             Bundle 'scrooloose/syntastic'
-            Bundle 'tpope/vim-fugitive'
             Bundle 'scrooloose/nerdcommenter'
+            Bundle 'tomtom/tcomment_vim'
+            Bundle 'tpope/vim-endwise'
             Bundle 'junegunn/vim-easy-align'
             Bundle 'thinca/vim-quickrun'
+            if executable('ack-grep')
+                let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+                Bundle 'mileszs/ack.vim'
+            elseif executable('ack')
+                Bundle 'mileszs/ack.vim'
+            elseif executable('ag')
+                let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
+                Bundle 'mileszs/ack.vim'
+            endif
             if executable('ctags')
                 Bundle 'majutsushi/tagbar'
             endif
+        endif
+
+    " Git
+        if count(g:dewdrops_bundle_groups, 'git')
+            Bundle 'airblade/vim-gitgutter'
+            Bundle 'tpope/vim-fugitive'
+            Bundle 'gregsexton/gitv'
         endif
 
     " Snippets & AutoComplete
@@ -144,7 +154,6 @@
             Bundle 'klen/python-mode'
             Bundle 'python.vim'
             Bundle 'python_match.vim'
-            Bundle 'pythoncomplete'
         endif
 
     " Javascript
@@ -180,15 +189,18 @@
 
     " Ruby
         if count(g:dewdrops_bundle_groups, 'ruby')
+            Bundle 'vim-ruby/vim-ruby'
             Bundle 'tpope/vim-rails'
-            let g:rubycomplete_buffer_loading = 1
-            "let g:rubycomplete_classes_in_global = 1
-            "let g:rubycomplete_rails = 1
         endif
 
     " Perl
         if count(g:dewdrops_bundle_groups, 'perl')
             Bundle 'vim-perl/vim-perl'
+        endif
+
+    " CSharp
+        if count(g:dewdrops_bundle_groups, 'csharp')
+            Bundle 'nosami/Omnisharp'
         endif
 
     " Lua
@@ -218,6 +230,7 @@
         if count(g:dewdrops_bundle_groups, 'misc')
             Bundle 'tpope/vim-markdown'
             Bundle 'chrisbra/csv.vim'
+            Bundle 'xml.vim'
         endif
 
 " }
@@ -251,7 +264,6 @@
     set virtualedit=onemore             " Allow for cursor beyond last character
     set history=1000                    " Store a ton of history (default is 20)
     set hidden                          " Allow buffer switching without saving
-    set notimeout
 
     " Setting up the directories {
         set backup                  " Backups are nice ...
@@ -405,13 +417,6 @@
     cmap cwd lcd %:p:h
     cmap cd. lcd %:p:h
 
-    " Fix home and end keybindings for screen, particularly on mac
-    " - for some reason this fixes the arrow keys too. huh.
-    map [F $
-    imap [F $
-    map [H g0
-    imap [H g0
-
     " For when you forget to sudo.. Really Write the file.
     cmap w!! w !sudo tee % >/dev/null
     nnoremap <leader>wf :w !sudo tee % >/dev/null<cr>
@@ -520,7 +525,7 @@
 
     " AutoCloseTag {
         " Make it so AutoCloseTag works for xml and xhtml files as well
-        au FileType xhtml,xml ru ftplugin/html/autoclosetag.vim
+        au FileType xhtml ru ftplugin/html/autoclosetag.vim
     " }
 
     " SnipMate {
@@ -630,6 +635,10 @@
         nnoremap <leader>gg :GitGutterToggle<cr>
     "}
 
+    " Gitv {
+        nnoremap <leader>gv :Gitv<cr>
+    "}
+
     " neocomplcache and neocomple {
         if count(g:dewdrops_bundle_groups, 'completion')
             let g:acp_enableAtStartup = 0
@@ -646,7 +655,6 @@
                 " Define dictionary.
                 let g:neocomplcache_dictionary_filetype_lists = {
                             \ 'default' : '',
-                            \ 'vimshell' : $HOME.'/.vimshell_hist',
                             \ 'scheme' : $HOME.'/.gosh_completions'
                             \ }
 
@@ -659,11 +667,6 @@
                 inoremap <expr><C-g> neocomplcache#undo_completion()
                 inoremap <expr><C-l> neocomplcache#complete_common_string()
                 inoremap <expr><cr> neocomplcache#complete_common_string()
-
-                " <cr>: close popup
-                " <s-CR>: close popup and save indent.
-                inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<cr>" : "\<cr>"
-                inoremap <expr><cr> pumvisible() ? neocomplcache#close_popup() : "\<cr>"
 
                 " <C-h>, <BS>: close popup and delete backword char.
                 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
@@ -690,7 +693,6 @@
                 " Define dictionary.
                 let g:neocomplete#sources#dictionary#dictionaries = {
                             \ 'default' : '',
-                            \ 'vimshell' : $HOME.'/.vimshell_hist',
                             \ 'scheme' : $HOME.'/.gosh_completions'
                             \ }
 
@@ -700,18 +702,13 @@
                 endif
                 let g:neocomplete#keyword_patterns._ = '\h\w*'
 
-                inoremap <expr><C-g> neocomplete#undo_completion()
-                inoremap <expr><C-l> neocomplete#complete_common_string()
+                inoremap <expr><c-g> neocomplete#undo_completion()
+                inoremap <expr><c-l> neocomplete#complete_common_string()
                 inoremap <expr><cr> neocomplete#complete_common_string()
 
-                " <cr>: close popup
-                " <s-CR>: close popup and save indent.
-                inoremap <expr><s-CR> pumvisible() ? neocomplete#close_popup()"\<cr>" : "\<cr>"
-                inoremap <expr><cr> pumvisible() ? neocomplete#close_popup() : "\<cr>"
-
                 " <C-h>, <BS>: close popup and delete backword char.
-                inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-                inoremap <expr><C-y> neocomplete#close_popup()
+                inoremap <expr><bs> neocomplete#smart_close_popup()."\<C-h>"
+                inoremap <expr><c-y> neocomplete#close_popup()
 
                 " Enable heavy omni completion.
                 if !exists('g:neocomplete#sources#omni#input_patterns')
@@ -743,7 +740,8 @@
             au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
             au FileType python setlocal omnifunc=pythoncomplete#Complete
             au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-            au FileType ruby setlocal omnifunc=rubycomplete#Complete
+            " TODO: errors in ruby buffer, can't find rubycomplete#Complete
+            au FileType ruby,eruby setlocal omnifunc=rubycomplete#Complete
 
             " Use honza's snippets.
             let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
@@ -758,9 +756,15 @@
 
             " Disable the neosnippet preview candidate window
             " When enabled, there can be too much visual noise
-            " especially when splits are used.
+            " especially when splits are used
             set completeopt-=preview
         endif
+    " }
+
+    " Ruby {
+        autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+        autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+        autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
     " }
 
     " UndoTree {
@@ -785,17 +789,17 @@
         let g:indent_guides_guide_size = 1
         let g:indent_guides_enable_on_vim_startup = 1
         " not enable indent guide in special buffers
-        let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'startify']
+        let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'startify', 'vundle']
     " }
 
     " EasyMotion {
-        let EasyMotion_leader_key = "em"
+        let EasyMotion_leader_key = "<leader>em"
         let g:EasyMotion_mapping_f = '<space>'
         let g:EasyMotion_mapping_F = 'g<space>'
     " }
 
     " NERDcommenter {
-        let NERDCreateDefaultMappings=0
+        let NERDCreateDefaultMappings = 0
         function! s:CreateNERDCommeterMaps(target, combo)
             if !hasmapto(a:target, 'n')
                 exec 'nmap ' . a:combo . ' ' . a:target
@@ -807,6 +811,7 @@
         call s:CreateNERDCommeterMaps('<plug>NERDCommenterSexy',       '<leader>cs')
         call s:CreateNERDCommeterMaps('<plug>NERDCommenterToggle',     '<leader>ci')
         call s:CreateNERDCommeterMaps('<plug>NERDCommenterYank',       '<leader>cy')
+        nmap <silent><leader>cc <leader>cyp
     " }
 
     " haskellmode-vim {
