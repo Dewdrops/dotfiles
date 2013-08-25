@@ -116,7 +116,7 @@
 
     " Git
         if count(g:dewdrops_bundle_groups, 'git')
-            Bundle 'mhinz/vim-signify'
+            Bundle 'airblade/vim-gitgutter'
             Bundle 'tpope/vim-fugitive'
             Bundle 'gregsexton/gitv'
         endif
@@ -628,7 +628,8 @@
         nnoremap <leader>gb :Gblame<cr>
         nnoremap <leader>gl :Glog<cr>
         nnoremap <leader>gp :Git push https://github.com/Dewdrops/
-        nnoremap <leader>gr :Gwrite<cr>:w<cr>    " add :w to trigger signify
+        " add :w to trigger signify
+        nnoremap <leader>gr :Gwrite<cr>:w<cr>
     "}
 
     " Gitv {
@@ -721,18 +722,15 @@
                 let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
             endif
 
-            " SuperTab like snippets behavior.
-            imap <silent><expr><TAB> neosnippet#expandable() ?
-                        \ "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ?
-                        \ "\<C-e>" : "\<TAB>")
-            smap <TAB> <Right><Plug>(neosnippet_jump_or_expand)
-
             imap <C-k> <Plug>(neosnippet_expand_or_jump)
             smap <C-k> <Plug>(neosnippet_expand_or_jump)
 
-            " <TAB>: completion.
-            inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-            inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+            " <TAB>: expand snippets or navigate in list
+            " TODO: this doesn't work properly
+            inoremap <TAB> <Plug>(neosnippet_expand_or_jump)
+            inoremap <S-TAB> <Plug>(neosnippet_expand_or_jump)
+            imap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+            imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 
             " Enable omni completion.
             au FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -842,7 +840,7 @@
         let g:bufExplorerSplitVertical = 1               " Split vertically.
         let g:bufExplorerSplitVertSize = 30              " Split width
         let g:bufExplorerUseCurrentWindow = 1            " Open in new window
-        au BufWinEnter \[Buf\ List\] setl nonumber
+        au BufWinEnter \[Buf\ List\] setlocal nonumber
     " }
 
 " }
