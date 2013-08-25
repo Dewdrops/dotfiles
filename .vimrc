@@ -51,7 +51,7 @@
         Bundle 'tomtom/tlib_vim'
 
     if !exists('g:dewdrops_bundle_groups')
-        let g:dewdrops_bundle_groups = ['general', 'theme', 'git', 'completion', 'programming', 'ruby', 'perl', 'python', 'javascript', 'haskell', 'html', 'misc']
+        let g:dewdrops_bundle_groups = ['general', 'theme', 'git', 'neocomplete', 'programming', 'ruby', 'perl', 'python', 'javascript', 'haskell', 'html', 'misc']
     endif
 
     " General
@@ -116,7 +116,7 @@
 
     " Git
         if count(g:dewdrops_bundle_groups, 'git')
-            Bundle 'airblade/vim-gitgutter'
+            Bundle 'mhinz/vim-signify'
             Bundle 'tpope/vim-fugitive'
             Bundle 'gregsexton/gitv'
         endif
@@ -129,7 +129,7 @@
             if filereadable(expand("~/.vim/bundle/vim-snippets/snippets/support_functions.vim"))
                 source ~/.vim/bundle/vim-snippets/snippets/support_functions.vim
             endif
-        elseif count(g:dewdrops_bundle_groups, 'completion')
+        elseif count(g:dewdrops_bundle_groups, 'neocomplete')
             if has('lua') && (v:version > 703 || v:version == 703 && has('patch885'))
                 Bundle 'Shougo/unite.vim'
                 Bundle 'Shougo/neocomplete'
@@ -343,10 +343,12 @@
 
     set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 
-    "set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
+    set foldlevel=99
+
     " Remove trailing whitespaces and ^M chars
     au FileType c,cpp,java,go,php,javascript,python,twig,xml,yml au BufWritePre <buffer> call StripTrailingWhitespace()
     au FileType go au BufWritePre <buffer> Fmt
+    au FileType python setlocal fdm=indent
     au BufNewFile,BufRead *.html.twig set filetype=html.twig
 
 " }
@@ -626,17 +628,19 @@
         nnoremap <leader>gb :Gblame<cr>
         nnoremap <leader>gl :Glog<cr>
         nnoremap <leader>gp :Git push https://github.com/Dewdrops/
-        nnoremap <leader>gw :Gwrite<cr>:GitGutter<cr>
-        nnoremap <leader>gr :Gwrite<cr>:GitGutter<cr>
-        nnoremap <leader>gg :GitGutterToggle<cr>
+        nnoremap <leader>gr :Gwrite<cr>:w<cr>    " add :w to trigger signify
     "}
 
     " Gitv {
         nnoremap <leader>gv :Gitv<cr>
     "}
 
+    " Signify {
+        let g:signify_vcs_list = [ 'git' ]
+    "}
+
     " neocomplcache and neocomple {
-        if count(g:dewdrops_bundle_groups, 'completion')
+        if count(g:dewdrops_bundle_groups, 'neocomplete')
             let g:acp_enableAtStartup = 0
 
             if !( has('lua') && (v:version > 703 || v:version == 703 && has('patch885')) )
@@ -736,7 +740,6 @@
             au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
             au FileType python setlocal omnifunc=pythoncomplete#Complete
             au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-            " TODO: errors in ruby buffer, can't find rubycomplete#Complete
             au FileType ruby,eruby setlocal omnifunc=rubycomplete#Complete
 
             " Use honza's snippets.
