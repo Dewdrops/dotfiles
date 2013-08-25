@@ -59,7 +59,7 @@
             Bundle 'scrooloose/nerdtree'
             Bundle 'mhinz/vim-startify'
             Bundle 'tpope/vim-surround'
-            Bundle 'Dewdrops/vim-autoclose'
+            Bundle 'jiangmiao/auto-pairs'
             Bundle 'kien/ctrlp.vim'
             Bundle 'vim-scripts/sessionman.vim'
             Bundle 'matchit.zip'
@@ -101,16 +101,16 @@
             Bundle 'junegunn/vim-easy-align'
             Bundle 'thinca/vim-quickrun'
             if executable('ack-grep')
-                let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-                Bundle 'mileszs/ack.vim'
+               let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+               Bundle 'mileszs/ack.vim'
             elseif executable('ack')
-                Bundle 'mileszs/ack.vim'
+               Bundle 'mileszs/ack.vim'
             elseif executable('ag')
-                let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
-                Bundle 'mileszs/ack.vim'
+               let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
+               Bundle 'mileszs/ack.vim'
             endif
             if executable('ctags')
-                Bundle 'majutsushi/tagbar'
+               Bundle 'majutsushi/tagbar'
             endif
         endif
 
@@ -628,7 +628,7 @@
         nnoremap <leader>gb :Gblame<cr>
         nnoremap <leader>gl :Glog<cr>
         nnoremap <leader>gp :Git push https://github.com/Dewdrops/
-        " add :w to trigger signify
+        " add :w to trigger gitgutter
         nnoremap <leader>gr :Gwrite<cr>:w<cr>
     "}
 
@@ -636,11 +636,7 @@
         nnoremap <leader>gv :Gitv<cr>
     "}
 
-    " Signify {
-        let g:signify_vcs_list = [ 'git' ]
-    "}
-
-    " neocomplcache and neocomple {
+    " neocomplcache and neocomplete {
         if count(g:dewdrops_bundle_groups, 'neocomplete')
             let g:acp_enableAtStartup = 0
 
