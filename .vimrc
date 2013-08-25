@@ -100,6 +100,7 @@
             Bundle 'tpope/vim-endwise'
             Bundle 'junegunn/vim-easy-align'
             Bundle 'thinca/vim-quickrun'
+            Bundle 'tpope/vim-dispatch'
             if executable('ack-grep')
                let g:ackprg="ack-grep -H --nocolor --nogroup --column"
                Bundle 'mileszs/ack.vim'
@@ -506,12 +507,6 @@
         hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
         hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
 
-        " Some convenient mappings
-        inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
-        inoremap <expr> <cr>       pumvisible() ? "\<C-y>" : "\<cr>"
-        inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-        inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-
         " Automatically open and close the popup menu / preview window
         au CursorMovedI,InsertLeave * if pumvisible() == 0 | silent! pclose | endif
         set completeopt=menu,preview,longest
@@ -522,7 +517,7 @@
     " }
 
     " AutoCloseTag {
-        " Make it so AutoCloseTag works for xml and xhtml files as well
+        " Make it so AutoCloseTag works for xhtml files as well
         au FileType xhtml ru ftplugin/html/autoclosetag.vim
     " }
 
