@@ -63,7 +63,6 @@
             Bundle 'bling/vim-airline'
             Bundle 'bling/vim-bufferline'
             Bundle 'Lokaltog/vim-easymotion'
-            Bundle 'godlygeek/csapprox'
             Bundle 'jistr/vim-nerdtree-tabs'
             Bundle 'mbbill/undotree'
             Bundle 'nathanaelkane/vim-indent-guides'
@@ -77,6 +76,11 @@
             Bundle 'tpope/vim-speeddating'
             Bundle 'dahu/vim-fanfingtastic'
             Bundle 'vim-scripts/sudo.vim'
+            Bundle 'kana/vim-textobj-user'
+            Bundle 'kana/vim-textobj-indent'
+            Bundle 'kana/vim-textobj-entire'
+            Bundle 'kana/vim-textobj-line'
+            Bundle 'Dewdrops/vim-textobj-underscore'
         endif
 
     " Color Themes
@@ -86,6 +90,7 @@
             Bundle 'tomasr/molokai'
             Bundle 'spf13/vim-colors'
             Bundle 'flazz/vim-colorschemes'
+            Bundle 'godlygeek/csapprox'
         endif
 
     " General Programming
@@ -335,7 +340,7 @@
     set tabstop=4                   " An indentation every four columns
     set softtabstop=4               " Let backspace delete indent
 
-    set smartindent                     " smart autoindent for C programs
+    set smartindent                 " smart autoindent for C programs
     set cindent
     set cinoptions={0,t0,p2s,(03s,>1s,=1s,:1s
 
@@ -569,7 +574,7 @@
         let g:pymode_options = 0
     " }
 
-    " ctrlp {
+    " CtrlP {
         let g:ctrlp_custom_ignore       = {
             \ 'dir':  '\.git$\|\.hg$\|\.svn$',
             \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc|\.elc$'
@@ -583,6 +588,7 @@
             \ 'fallback': 'find %s -type f'
         \ }
 
+        let g:ctrlp_cmd                 = 'CtrlPMixed'
         let g:ctrlp_working_path_mode   = 'rc'
         let g:ctrlp_clear_cache_on_exit = 1
         let g:ctrlp_max_height          = 40
