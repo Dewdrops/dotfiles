@@ -66,6 +66,7 @@
             Bundle 'bufexplorer.zip'
             Bundle 'terryma/vim-multiple-cursors'
             Bundle 'bling/vim-airline'
+            Bundle 'bling/vim-bufferline'
             Bundle 'Lokaltog/vim-easymotion'
             Bundle 'godlygeek/csapprox'
             Bundle 'jistr/vim-nerdtree-tabs'
@@ -146,6 +147,7 @@
             Bundle 'spf13/PIV'
             Bundle 'arnaud-lb/vim-php-namespace'
             Bundle 'beyondwords/vim-twig'
+            Bundle 'shawncplus/phpcomplete.vim'
         endif
 
     " Python
@@ -625,6 +627,13 @@
         nnoremap <leader>gp :Git push https://github.com/Dewdrops/
         " add :w to trigger gitgutter
         nnoremap <leader>gr :Gwrite<cr>:w<cr>
+    "}
+
+    " GitGutter {
+        nnoremap <leader>gj :GitGutterNextHunk<cr>
+        nnoremap <leader>gk :GitGutterPrevHunk<cr>
+        nnoremap ]c :GitGutterNextHunk<cr>
+        nnoremap [c :GitGutterPrevHunk<cr>
     "}
 
     " Gitv {
