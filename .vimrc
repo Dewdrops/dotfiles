@@ -1,5 +1,5 @@
 " Modeline and Notes {
-" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker:
+" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker
 "
 "   This is the personal .vimrc file of Dewdrops. The structure and most code are
 "   stolen from spf13-vim (https://github.com/spf13/spf13-vim).
@@ -17,8 +17,6 @@
         if has('win32') || has('win64')
           set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
 
-          " Be nice and check for multi_byte even if the config requires
-          " multi_byte support most of the time
           if has("multi_byte")
             " Windows cmd.exe still uses cp850. If Windows ever moved to
             " Powershell as the primary terminal, this would be utf-8
@@ -26,11 +24,7 @@
             " Let Vim use utf-8 internally, because many scripts require this
             set encoding=utf-8
             setglobal fileencoding=utf-8
-            " Windows has traditionally used cp1252, so it's probably wise to
-            " fallback into cp1252 instead of eg. iso-8859-15.
-            " Newer Windows files might contain utf-8 or utf-16 LE so we might
-            " want to try them first.
-            set fileencodings=ucs-bom,utf-8,utf-16le,cp1252,iso-8859-15
+            set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
           endif
         endif
     " }
@@ -61,6 +55,7 @@
             Bundle 'tpope/vim-surround'
             Bundle 'jiangmiao/auto-pairs'
             Bundle 'kien/ctrlp.vim'
+            Bundle 'tacahiroy/ctrlp-funky'
             Bundle 'vim-scripts/sessionman.vim'
             Bundle 'matchit.zip'
             Bundle 'bufexplorer.zip'
@@ -575,19 +570,35 @@
     " }
 
     " ctrlp {
-        let g:ctrlp_map = '<c-p>'
-        let g:ctrlp_working_path_mode = 'rc'
-        let g:ctrlp_custom_ignore = {
+        let g:ctrlp_custom_ignore       = {
             \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-            \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc|\.elc$' }
+            \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc|\.elc$'
+            \ }
 
-        let g:ctrlp_user_command = {
+        let g:ctrlp_user_command        = {
             \ 'types': {
                 \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
                 \ 2: ['.hg', 'hg --cwd %s locate -I .'],
             \ },
             \ 'fallback': 'find %s -type f'
         \ }
+
+        let g:ctrlp_working_path_mode   = 'rc'
+        let g:ctrlp_clear_cache_on_exit = 1
+        let g:ctrlp_max_height          = 40
+        let g:ctrlp_follow_symlinks     = 1
+        let g:ctrlp_max_files           = 20000
+        let g:ctrlp_cache_dir           = '~/.vim/.cache/ctrlp'
+        let g:ctrlp_reuse_window        = 'startify'
+        let g:ctrlp_extensions          = ['funky']
+
+        nmap \ [ctrlp]
+        nnoremap [ctrlp] <nop>
+        nnoremap [ctrlp]t :CtrlPBufTag<cr>
+        nnoremap [ctrlp]T :CtrlPTag<cr>
+        nnoremap [ctrlp]l :CtrlPLine<cr>
+        nnoremap [ctrlp]o :CtrlPFunky<cr>
+        nnoremap [ctrlp]b :CtrlPBuffer<cr>
     "}
 
     " TagBar {
@@ -752,7 +763,7 @@
             endif
 
             " Disable the neosnippet preview candidate window
-            " When enabled, there can be too much visual noise
+            " when enabled, or there can be too much visual noise
             " especially when splits are used
             set completeopt-=preview
         endif
@@ -780,6 +791,10 @@
     " airline {
         let g:airline_powerline_fonts = 1
         let g:airline#extensions#hunks#non_zero_only = 1
+    " }
+
+    " bufferline {
+        let g:bufferline_echo = 0
     " }
 
     " indent_guides {
@@ -894,7 +909,6 @@
             if exists("*mkdir")
                 if !isdirectory(directory)
                     call mkdir(directory)
-                    call mkdir(directory)
                 endif
             endif
             if !isdirectory(directory)
@@ -925,13 +939,13 @@
     " Strip whitespace {
     function! StripTrailingWhitespace()
         " Preparation: save last search, and cursor position.
-        let _s=@/
-        let l = line(".")
-        let c = col(".")
+        let _s = @/
+        let l  = line(".")
+        let c  = col(".")
         " do the business:
         %s/\s\+$//e
         " clean up: restore previous search history, and cursor position
-        let @/=_s
+        let @/ = _s
         call cursor(l, c)
     endfunction
     " }
