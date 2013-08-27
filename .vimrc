@@ -95,7 +95,6 @@
     " General Programming
         if count(g:dewdrops_bundle_groups, 'programming')
             Bundle 'scrooloose/syntastic'
-            Bundle 'scrooloose/nerdcommenter'
             Bundle 'tomtom/tcomment_vim'
             Bundle 'tpope/vim-endwise'
             Bundle 'junegunn/vim-easy-align'
@@ -822,20 +821,13 @@
         let g:EasyMotion_mapping_F = 'g<space>'
     " }
 
-    " NERDcommenter {
-        let NERDCreateDefaultMappings = 0
-        function! s:CreateNERDCommeterMaps(target, combo)
-            if !hasmapto(a:target, 'n')
-                exec 'nmap ' . a:combo . ' ' . a:target
-            endif
-            if !hasmapto(a:target, 'v')
-                exec 'vmap ' . a:combo . ' ' . a:target
-            endif
-        endfunction
-        call s:CreateNERDCommeterMaps('<plug>NERDCommenterSexy',       '<leader>cs')
-        call s:CreateNERDCommeterMaps('<plug>NERDCommenterToggle',     '<leader>ci')
-        call s:CreateNERDCommeterMaps('<plug>NERDCommenterYank',       '<leader>cy')
-        nmap <silent><leader>cc <leader>cyp
+    " tcomment {
+        nmap <silent><leader>ci gcc
+        vmap <silent><leader>ci gc
+        nmap <silent><leader>cc yygccP
+        vmap <silent><leader>cc ygvgcP
+        nmap <silent><leader>cy yygcc
+        vmap <silent><leader>cy ygvgc
     " }
 
     " haskellmode-vim {
