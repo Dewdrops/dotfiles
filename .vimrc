@@ -80,7 +80,6 @@
             Bundle 'kana/vim-textobj-indent'
             Bundle 'kana/vim-textobj-entire'
             Bundle 'kana/vim-textobj-line'
-            Bundle 'Dewdrops/vim-textobj-underscore'
         endif
 
     " Color Themes
