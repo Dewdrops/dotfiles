@@ -743,9 +743,9 @@
             xmap <C-k> <Plug>(neosnippet_expand_target)
 
             " <TAB>: expand snippets or navigate in list
-            imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-                        \ "\<Plug>(neosnippet_expand_or_jump)"
-                        \: pumvisible() ? "\<C-n>" : "\<TAB>"
+            imap <expr><TAB> pumvisible() ? "\<C-n>" :
+                        \ neosnippet#expandable_or_jumpable() ?
+                        \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
             " Enable omni completion.
             au FileType css setlocal omnifunc=csscomplete#CompleteCSS
