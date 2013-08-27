@@ -408,6 +408,8 @@
     nmap <leader>f8 :set foldlevel=8<cr>
     nmap <leader>f9 :set foldlevel=9<cr>
 
+    nmap <leader>sw :call striptrailingwhitespace()<cr>
+
     " Toggle search highlighting
     nmap <silent> <leader>/ :nohlsearch<cr>
 
@@ -418,7 +420,6 @@
 
     " For when you forget to sudo.. Really Write the file.
     cmap w!! w !sudo tee % >/dev/null
-    nnoremap <leader>wf :w !sudo tee % >/dev/null<cr>
 
     " Some helpers to edit mode
     " http://vimcasts.org/e/14
