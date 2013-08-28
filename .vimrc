@@ -138,6 +138,9 @@
             endif
             Bundle 'Shougo/neosnippet'
             Bundle 'honza/vim-snippets'
+        elseif count(g:dewdrops_bundle_groups, 'ycm')
+            Bundle 'Valloric/YouCompleteMe'
+            Bundle 'SirVer/ultisnips'
         endif
 
     " PHP
@@ -451,7 +454,6 @@
     inoremap <c-b> <left>
     "inoremap <c-d> <del>
 
-    nnoremap <s-tab> :bp<cr>
     nnoremap <leader>bd :bd<cr>
     nnoremap <leader>q :q<cr>
     nnoremap <leader>wq :wq<cr>
@@ -746,9 +748,12 @@
             xmap <C-k> <Plug>(neosnippet_expand_target)
 
             " <TAB>: expand snippets or navigate in list
-            imap <expr><TAB> pumvisible() ? "\<C-n>" :
+            imap <expr><tab> pumvisible() ? "\<C-n>" :
                         \ neosnippet#expandable_or_jumpable() ?
-                        \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+                        \ "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
+            imap <expr><s-tab> pumvisible() ? "\<C-p>" :
+                        \ neosnippet#expandable_or_jumpable() ?
+                        \ "\<Plug>(neosnippet_expand_or_jump)" : "\<s-tab>"
 
             " Enable omni completion.
             au FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -775,6 +780,19 @@
             set completeopt-=preview
         endif
     " }
+
+    " YouCompleteMe {
+        let g:ycm_complete_in_comments_and_strings = 1
+        let g:ycm_key_list_select_completion       = ['<C-n>', '<Down>']
+        let g:ycm_key_list_previous_completion     = ['<C-p>', '<Up>']
+        let g:ycm_filetype_blacklist               = {'unite': 1}
+
+        " configuration of UltiSnips
+        let g:UltiSnipsExpandTrigger               = "<tab>"
+        let g:UltiSnipsJumpForwardTrigger          = "<tab>"
+        let g:UltiSnipsJumpBackwardTrigger         = "<s-tab>"
+        let g:UltiSnipsSnippetsDir                 = '~/.vim/snippets'
+    "}
 
     " Ruby {
         autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
