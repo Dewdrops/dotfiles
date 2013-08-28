@@ -443,8 +443,8 @@
     map zh zH
 
     " use gy and gp to work with system's clipboard
-    nnoremap gy "+y
-    nnoremap gp "+p
+    noremap gy "+y
+    noremap gp "+p
 
     " emacs-like motion command in insert mode
     inoremap <c-f> <right>
@@ -651,10 +651,10 @@
     "}
 
     " GitGutter {
-        nnoremap <leader>gj :GitGutterNextHunk<cr>
-        nnoremap <leader>gk :GitGutterPrevHunk<cr>
-        nnoremap ]c :GitGutterNextHunk<cr>
-        nnoremap [c :GitGutterPrevHunk<cr>
+        nnoremap <silent><leader>gj :GitGutterNextHunk<cr>
+        nnoremap <silent><leader>gk :GitGutterPrevHunk<cr>
+        nnoremap <silent>]c :GitGutterNextHunk<cr>
+        nnoremap <silent>[c :GitGutterPrevHunk<cr>
     "}
 
     " Gitv {
@@ -796,7 +796,9 @@
     " }
 
     " airline {
-        let g:airline_powerline_fonts = 1
+        if !has("gui_running")
+            let g:airline_powerline_fonts = 1
+        endif
         let g:airline#extensions#hunks#non_zero_only = 1
     " }
 
@@ -880,7 +882,6 @@
         if &term == 'xterm' || &term == 'screen'
             set t_Co=256            " Enable 256 colors to stop the CSApprox warning and make xterm vim shine
         endif
-        "set term=builtin_ansi       " Make arrow and other keys work
     endif
 
 " }
