@@ -442,6 +442,11 @@
     map zl zL
     map zh zH
 
+    " use gy and gp to work with system's clipboard
+    nnoremap gy "+y
+    nnoremap gp "+p
+
+    " emacs-like motion command in insert mode
     inoremap <c-f> <right>
     inoremap <c-b> <left>
     "inoremap <c-d> <del>
@@ -672,7 +677,6 @@
                 " Define dictionary.
                 let g:neocomplcache_dictionary_filetype_lists = {
                             \ 'default' : '',
-                            \ 'scheme' : $HOME.'/.gosh_completions'
                             \ }
 
                 " Define keyword.
@@ -710,7 +714,6 @@
                 " Define dictionary.
                 let g:neocomplete#sources#dictionary#dictionaries = {
                             \ 'default' : '',
-                            \ 'scheme' : $HOME.'/.gosh_completions'
                             \ }
 
                 " Define keyword.
