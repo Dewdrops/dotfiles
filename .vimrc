@@ -45,7 +45,7 @@
         Bundle 'tomtom/tlib_vim'
 
     if !exists('g:dewdrops_bundle_groups')
-        let g:dewdrops_bundle_groups = ['general', 'theme', 'git', 'neocomplete', 'programming', 'ruby', 'perl', 'python', 'javascript', 'haskell', 'html', 'misc']
+        let g:dewdrops_bundle_groups = ['general', 'theme', 'git', 'ycm', 'programming', 'ruby', 'perl', 'python', 'javascript', 'haskell', 'html', 'misc']
     endif
 
     " General
@@ -79,7 +79,6 @@
             Bundle 'kana/vim-textobj-user'
             Bundle 'kana/vim-textobj-indent'
             Bundle 'kana/vim-textobj-entire'
-            Bundle 'kana/vim-textobj-line'
         endif
 
     " Color Themes
