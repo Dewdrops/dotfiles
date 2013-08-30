@@ -51,6 +51,7 @@
     " General
         if count(g:dewdrops_bundle_groups, 'general')
             Bundle 'scrooloose/nerdtree'
+            Bundle 'mattn/calendar-vim'
             Bundle 'mhinz/vim-startify'
             Bundle 'tpope/vim-surround'
             Bundle 'jiangmiao/auto-pairs'
