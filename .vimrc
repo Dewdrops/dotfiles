@@ -30,7 +30,8 @@
     " }
 
     " Setup Bundle Support {
-        " The next three lines ensure that the ~/.vim/bundle/ system works
+        " The next four lines ensure that the ~/.vim/bundle/ system works
+        let $GIT_SSL_NO_VERIFY = 'true'
         filetype off
         set rtp+=~/.vim/bundle/vundle
         call vundle#rc()
@@ -56,7 +57,6 @@
             Bundle 'tpope/vim-surround'
             Bundle 'jiangmiao/auto-pairs'
             Bundle 'kien/ctrlp.vim'
-            Bundle 'tacahiroy/ctrlp-funky'
             Bundle 'vim-scripts/sessionman.vim'
             Bundle 'matchit.zip'
             Bundle 'bufexplorer.zip'
@@ -86,7 +86,6 @@
         if count(g:dewdrops_bundle_groups, 'theme')
             Bundle 'Dewdrops/vim-tomorrow-theme'
             Bundle 'jnurmine/Zenburn'
-            Bundle 'tomasr/molokai'
             Bundle 'spf13/vim-colors'
             Bundle 'flazz/vim-colorschemes'
             Bundle 'godlygeek/csapprox'
@@ -99,7 +98,10 @@
             Bundle 'tpope/vim-endwise'
             Bundle 'junegunn/vim-easy-align'
             Bundle 'thinca/vim-quickrun'
+            Bundle 'tacahiroy/ctrlp-funky'
             Bundle 'tpope/vim-dispatch'
+            Bundle 'mutewinter/swap-parameters'
+            Bundle 'AndrewRadev/splitjoin.vim'
             if executable('ack-grep')
                let g:ackprg="ack-grep -H --nocolor --nogroup --column"
                Bundle 'mileszs/ack.vim'
@@ -811,6 +813,11 @@
         nmap <c-down> ]e
         vmap <c-up> [e
         vmap <c-down> ]e
+    " }
+
+    " SplitJoin {
+        let g:splitjoin_split_mapping = 'cS'
+        let g:splitjoin_join_mapping  = 'cJ'
     " }
 
     " airline {
