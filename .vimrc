@@ -94,6 +94,8 @@
 
     " General Programming
         if count(g:dewdrops_bundle_groups, 'programming')
+            Bundle 'xolox/vim-misc'
+            Bundle 'xolox/vim-easytags'
             Bundle 'scrooloose/syntastic'
             Bundle 'tomtom/tcomment_vim'
             Bundle 'tpope/vim-endwise'
@@ -211,7 +213,6 @@
 
     " Lua
         if count(g:dewdrops_bundle_groups, 'lua')
-            Bundle 'xolox/vim-misc'
             Bundle 'xolox/vim-lua-ftplugin'
         endif
 
@@ -267,6 +268,7 @@
     set virtualedit=onemore             " Allow for cursor beyond last character
     set history=1000                    " Store a ton of history (default is 20)
     set hidden                          " Allow buffer switching without saving
+    set ttimeoutlen=50                  " dimish the pause when leaving insert mode
 
     " Setting up the directories {
         set backup                  " Backups are nice ...
