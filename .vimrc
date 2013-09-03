@@ -65,7 +65,7 @@
             Bundle 'bling/vim-bufferline'
             Bundle 'Lokaltog/vim-easymotion'
             Bundle 'jistr/vim-nerdtree-tabs'
-            Bundle 'mbbill/undotree'
+            Bundle 'sjl/gundo.vim'
             Bundle 'nathanaelkane/vim-indent-guides'
             Bundle 'vim-scripts/restore_view.vim'
             Bundle 'tpope/vim-abolish.git'
@@ -365,10 +365,10 @@
     let mapleader = ','
 
     " Easier moving in tabs and windows
-    map <C-J> <C-W>j<C-W>_
-    map <C-K> <C-W>k<C-W>_
-    map <C-L> <C-W>l<C-W>_
-    map <C-H> <C-W>h<C-W>_
+    map <C-J> <C-W>j
+    map <C-K> <C-W>k
+    map <C-L> <C-W>l
+    map <C-H> <C-W>h
 
     " Wrapped lines goes down/up to next row, rather than next line in file.
     nnoremap j gj
@@ -803,10 +803,8 @@
         autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
     " }
 
-    " UndoTree {
-        nnoremap <Leader>ut :UndotreeToggle<cr>
-        " If undotree is opened, it is likely one wants to interact with it.
-        let g:undotree_SetFocusWhenToggle=1
+    " Gundo {
+        nnoremap <Leader>ut :GundoToggle<cr>
     " }
 
     " unimpaired {
