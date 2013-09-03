@@ -150,8 +150,8 @@
         if count(g:dewdrops_bundle_groups, 'php')
             Bundle 'spf13/PIV'
             Bundle 'arnaud-lb/vim-php-namespace'
-            Bundle 'beyondwords/vim-twig'
             Bundle 'shawncplus/phpcomplete.vim'
+            Bundle 'beyondwords/vim-twig'
         endif
 
     " Python
@@ -447,6 +447,13 @@
     " Easier horizontal scrolling
     map zl zL
     map zh zH
+
+    " show foldlevel in fold commands
+    nnoremap zr zr:echo &foldlevel<cr>
+    nnoremap zm zm:echo &foldlevel<cr>
+    nnoremap zR zR:echo &foldlevel<cr>
+    nnoremap zM zM:echo &foldlevel<cr>
+    nnoremap za za:echo &foldlevel<cr>
 
     " use gy and gp to work with system's clipboard
     noremap gy "+y
