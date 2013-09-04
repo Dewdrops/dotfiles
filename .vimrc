@@ -646,6 +646,10 @@
             \ }
     "}
 
+    " TagBar {
+        let g:easytags_updatetime_warn = 0
+    "}
+
     " PythonMode {
         " Disable if python support not present
         if !has('python')
