@@ -56,6 +56,7 @@
             Bundle 'mhinz/vim-startify'
             Bundle 'tpope/vim-surround'
             Bundle 'jiangmiao/auto-pairs'
+            " TODO: confict of mappings of ctrlp, multi-cursor and yankring
             Bundle 'kien/ctrlp.vim'
             Bundle 'vim-scripts/sessionman.vim'
             Bundle 'matchit.zip'
@@ -608,12 +609,14 @@
             \ 'fallback': 'find %s -type f'
         \ }
 
+        let g:ctrlp_map                 = 'gh'
         let g:ctrlp_cmd                 = 'CtrlPMixed'
         let g:ctrlp_working_path_mode   = 'rc'
         let g:ctrlp_clear_cache_on_exit = 1
         let g:ctrlp_max_height          = 40
         let g:ctrlp_follow_symlinks     = 1
         let g:ctrlp_max_files           = 20000
+        let g:ctrlp_mruf_max            = 20
         let g:ctrlp_cache_dir           = '~/.vim/.cache/ctrlp'
         let g:ctrlp_reuse_window        = 'startify'
         let g:ctrlp_extensions          = ['funky']
@@ -829,6 +832,7 @@
     " }
 
     " YankRing {
+        let g:yankring_replace_n_nkey = ''
         nnoremap <Leader>yr :YRShow<cr>
     " }
 
