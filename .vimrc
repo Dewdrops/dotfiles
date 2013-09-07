@@ -60,6 +60,7 @@
             Bundle 'vim-scripts/sessionman.vim'
             Bundle 'matchit.zip'
             Bundle 'bufexplorer.zip'
+            Bundle 'tyru/open-browser.vim'
             Bundle 'terryma/vim-multiple-cursors'
             Bundle 'bling/vim-airline'
             Bundle 'bling/vim-bufferline'
@@ -95,7 +96,6 @@
     " General Programming
         if count(g:dewdrops_bundle_groups, 'programming')
             Bundle 'xolox/vim-misc'
-            Bundle 'xolox/vim-easytags'
             Bundle 'scrooloose/syntastic'
             Bundle 'tomtom/tcomment_vim'
             Bundle 'tpope/vim-endwise'
@@ -106,16 +106,17 @@
             Bundle 'mutewinter/swap-parameters'
             Bundle 'AndrewRadev/splitjoin.vim'
             if executable('ack-grep')
-               let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-               Bundle 'mileszs/ack.vim'
+                let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+                Bundle 'mileszs/ack.vim'
             elseif executable('ack')
-               Bundle 'mileszs/ack.vim'
+                Bundle 'mileszs/ack.vim'
             elseif executable('ag')
-               let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
-               Bundle 'mileszs/ack.vim'
+                let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
+                Bundle 'mileszs/ack.vim'
             endif
             if executable('ctags')
-               Bundle 'majutsushi/tagbar'
+                Bundle 'xolox/vim-easytags'
+                Bundle 'majutsushi/tagbar'
             endif
         endif
 
@@ -646,8 +647,14 @@
             \ }
     "}
 
-    " TagBar {
+    " EasyTags {
         let g:easytags_updatetime_warn = 0
+    "}
+
+    " OpenBrowser {
+        nmap <Leader>fu <Plug>(openbrowser-open)
+        vmap <Leader>fu <Plug>(openbrowser-open)
+        nnoremap <Leader>fs :<C-u>OpenBrowserSearch<Space><C-r><C-w><Enter>
     "}
 
     " PythonMode {
