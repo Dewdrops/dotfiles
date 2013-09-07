@@ -67,6 +67,7 @@
             Bundle 'Lokaltog/vim-easymotion'
             Bundle 'jistr/vim-nerdtree-tabs'
             Bundle 'sjl/gundo.vim'
+            Bundle 'vim-scripts/YankRing.vim'
             Bundle 'nathanaelkane/vim-indent-guides'
             Bundle 'vim-scripts/restore_view.vim'
             Bundle 'tpope/vim-abolish.git'
@@ -825,6 +826,10 @@
 
     " Gundo {
         nnoremap <Leader>ut :GundoToggle<cr>
+    " }
+
+    " YankRing {
+        nnoremap <Leader>yr :YRShow<cr>
     " }
 
     " unimpaired {
