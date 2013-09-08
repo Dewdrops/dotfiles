@@ -832,7 +832,7 @@
     " }
 
     " YankRing {
-        let g:yankring_replace_n_nkey = ''
+        let g:yankring_replace_n_nkey = '<leader>;'
         nnoremap <Leader>yr :YRShow<cr>
     " }
 
