@@ -56,7 +56,6 @@
             Bundle 'mhinz/vim-startify'
             Bundle 'tpope/vim-surround'
             Bundle 'jiangmiao/auto-pairs'
-            " TODO: confict of mappings of ctrlp, multi-cursor and yankring
             Bundle 'kien/ctrlp.vim'
             Bundle 'vim-scripts/sessionman.vim'
             Bundle 'matchit.zip'
