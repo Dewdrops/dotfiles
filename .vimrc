@@ -239,6 +239,7 @@
         if count(g:dewdrops_bundle_groups, 'misc')
             Bundle 'tpope/vim-markdown'
             Bundle 'chrisbra/csv.vim'
+            Bundle 'LaTeX-Box-Team/LaTeX-Box'
             Bundle 'xml.vim'
         endif
 
