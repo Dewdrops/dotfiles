@@ -827,6 +827,10 @@
         autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
     " }
 
+    " Latex-Box {
+        let g:LatexBox_Folding = 1
+    " }
+
     " Gundo {
         nnoremap <Leader>ut :GundoToggle<cr>
     " }
