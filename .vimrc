@@ -241,6 +241,7 @@
             Bundle 'chrisbra/csv.vim'
             Bundle 'LaTeX-Box-Team/LaTeX-Box'
             Bundle 'xml.vim'
+            Bundle 'vim-scripts/vimwiki'
         endif
 
 " }
@@ -274,7 +275,7 @@
     set ttimeoutlen=50                  " dimish the pause when leaving insert mode
 
     " Setting up the directories {
-        set backup                  " Backups are nice ...
+        set backup                      " Backups are nice ...
         if has('persistent_undo')
             set undofile                " So is persistent undo ...
             set undolevels=1000         " Maximum number of changes that can be undone
@@ -314,7 +315,6 @@
         " Broken down into easily includeable segments
         set statusline=%<%f\                     " Filename
         set statusline+=%w%h%m%r                 " Options
-        "set statusline+=%{fugitive#statusline()} " Git Hotness
         set statusline+=\ [%{&ff}/%Y]            " Filetype
         set statusline+=\ [%{getcwd()}]          " Current directory
         set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
@@ -590,9 +590,9 @@
     " }
 
     " PyMode {
-        let g:pymode_lint_checker = "pyflakes"
+        let g:pymode_lint_checker      = "pyflakes"
         let g:pymode_utils_whitespaces = 0
-        let g:pymode_options = 0
+        let g:pymode_options           = 0
     " }
 
     " CtrlP {
@@ -878,7 +878,7 @@
     " }
 
     " EasyMotion {
-        let EasyMotion_leader_key  = "<leader>em"
+        let EasyMotion_leader_key  = '<leader>em'
         let g:EasyMotion_mapping_f = '<space>'
         let g:EasyMotion_mapping_F = 'g<space>'
     " }
@@ -906,13 +906,18 @@
         let g:user_emmet_mode       = 'i'
     " }
 
+    " VimWiki {
+        " keep from conflicts
+        nmap <Leader>vr <Plug>VimwikiRenameLink
+    " }
+
     " BufExplorer {
-        let g:bufExplorerDefaultHelp      = 0                 " Do not show default help.
+        let g:bufExplorerDefaultHelp      = 0            " Do not show default help.
         let g:bufExplorerShowRelativePath = 1            " Show relative paths.
-        let g:bufExplorerSortBy           = 'mru'                  " Sort by most recently used.
-        let g:bufExplorerSplitRight       = 0                  " Split left.
-        let g:bufExplorerSplitVertical    = 1               " Split vertically.
-        let g:bufExplorerSplitVertSize    = 30              " Split width
+        let g:bufExplorerSortBy           = 'mru'        " Sort by most recently used.
+        let g:bufExplorerSplitRight       = 0            " Split left.
+        let g:bufExplorerSplitVertical    = 1            " Split vertically.
+        let g:bufExplorerSplitVertSize    = 30           " Split width
         let g:bufExplorerUseCurrentWindow = 1            " Open in new window
         au BufWinEnter \[Buf\ List\] setlocal nonumber
     " }
