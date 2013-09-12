@@ -695,12 +695,12 @@
             let g:acp_enableAtStartup = 0
 
             if !( has('lua') && (v:version > 703 || v:version == 703 && has('patch885')) )
-                let g:neocomplcache_enable_at_startup = 1
+                let g:neocomplcache_enable_at_startup            = 1
                 let g:neocomplcache_enable_camel_case_completion = 1
-                let g:neocomplcache_enable_smart_case = 1
-                let g:neocomplcache_enable_underbar_completion = 1
-                let g:neocomplcache_enable_auto_delimiter = 1
-                let g:neocomplcache_max_list = 15
+                let g:neocomplcache_enable_smart_case            = 1
+                let g:neocomplcache_enable_underbar_completion   = 1
+                let g:neocomplcache_enable_auto_delimiter        = 1
+                let g:neocomplcache_max_list                     = 15
                 let g:neocomplcache_force_overwrite_completefunc = 1
 
                 " Define dictionary.
@@ -726,18 +726,18 @@
                 if !exists('g:neocomplcache_omni_patterns')
                     let g:neocomplcache_omni_patterns = {}
                 endif
-                let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+                let g:neocomplcache_omni_patterns.php  = '[^. \t]->\h\w*\|\h\w*::'
                 let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-                let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-                let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+                let g:neocomplcache_omni_patterns.c    = '[^.[:digit:] *\t]\%(\.\|->\)'
+                let g:neocomplcache_omni_patterns.cpp  = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
                 let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
             else
-                let g:neocomplete#enable_at_startup = 1
+                let g:neocomplete#enable_at_startup            = 1
                 let g:neocomplete#enable_camel_case_completion = 1
-                let g:neocomplete#enable_smart_case = 1
-                let g:neocomplete#enable_underbar_completion = 1
-                let g:neocomplete#enable_auto_delimiter = 1
-                let g:neocomplete#max_list = 15
+                let g:neocomplete#enable_smart_case            = 1
+                let g:neocomplete#enable_underbar_completion   = 1
+                let g:neocomplete#enable_auto_delimiter        = 1
+                let g:neocomplete#max_list                     = 15
                 let g:neocomplete#force_overwrite_completefunc = 1
 
                 " Define dictionary.
@@ -763,9 +763,9 @@
                 if !exists('g:neocomplete#sources#omni#input_patterns')
                     let g:neocomplete#sources#omni#input_patterns = {}
                 endif
-                let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-                let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-                let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+                let g:neocomplete#sources#omni#input_patterns.php  = '[^. \t]->\h\w*\|\h\w*::'
+                let g:neocomplete#sources#omni#input_patterns.c    = '[^.[:digit:] *\t]\%(\.\|->\)'
+                let g:neocomplete#sources#omni#input_patterns.cpp  = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
                 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
                 let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
             endif
@@ -822,9 +822,9 @@
     "}
 
     " Ruby {
-        autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+        autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading    = 1
         autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-        autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+        autocmd FileType ruby,eruby let g:rubycomplete_rails             = 1
     " }
 
     " Latex-Box {
@@ -870,15 +870,15 @@
             hi IndentGuidesEven ctermbg=darkgrey
         endif
 
-        let g:indent_guides_start_level = 2
-        let g:indent_guides_guide_size = 1
+        let g:indent_guides_start_level           = 2
+        let g:indent_guides_guide_size            = 1
         let g:indent_guides_enable_on_vim_startup = 1
         " not enable indent guide in special buffers
-        let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'startify', 'vundle']
+        let g:indent_guides_exclude_filetypes     = ['help', 'nerdtree', 'startify', 'vundle']
     " }
 
     " EasyMotion {
-        let EasyMotion_leader_key = "<leader>em"
+        let EasyMotion_leader_key  = "<leader>em"
         let g:EasyMotion_mapping_f = '<space>'
         let g:EasyMotion_mapping_F = 'g<space>'
     " }
@@ -893,7 +893,7 @@
     " }
 
     " haskellmode-vim {
-        let g:haddock_browser="/usr/bin/opera"
+        let g:haddock_browser = "/usr/bin/opera"
     " }
 
     " Quickrun {
@@ -903,16 +903,16 @@
 
     " zencoding {
         let g:user_emmet_leader_key = '<c-g>'            " use C-g instead
-        let g:user_emmet_mode = 'i'
+        let g:user_emmet_mode       = 'i'
     " }
 
     " BufExplorer {
-        let g:bufExplorerDefaultHelp = 0                 " Do not show default help.
+        let g:bufExplorerDefaultHelp      = 0                 " Do not show default help.
         let g:bufExplorerShowRelativePath = 1            " Show relative paths.
-        let g:bufExplorerSortBy = 'mru'                  " Sort by most recently used.
-        let g:bufExplorerSplitRight = 0                  " Split left.
-        let g:bufExplorerSplitVertical = 1               " Split vertically.
-        let g:bufExplorerSplitVertSize = 30              " Split width
+        let g:bufExplorerSortBy           = 'mru'                  " Sort by most recently used.
+        let g:bufExplorerSplitRight       = 0                  " Split left.
+        let g:bufExplorerSplitVertical    = 1               " Split vertically.
+        let g:bufExplorerSplitVertSize    = 30              " Split width
         let g:bufExplorerUseCurrentWindow = 1            " Open in new window
         au BufWinEnter \[Buf\ List\] setlocal nonumber
     " }
