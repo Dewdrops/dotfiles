@@ -553,17 +553,41 @@
         map <Leader>nt :NERDTreeToggle<cr>:NERDTreeMirror<cr>
         map <leader>nf :NERDTreeFind<cr>
 
-        let NERDTreeShowBookmarks=1
-        let NERDTreeIgnore=['\.pyc', '\.elc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
-        let NERDTreeChDirMode=0
-        let NERDTreeQuitOnOpen=1
-        let NERDTreeMouseMode=2
-        let NERDTreeShowHidden=1
-        let NERDTreeKeepTreeInNewTab=1
-        let g:nerdtree_tabs_open_on_gui_startup=0
+        let NERDTreeShowBookmarks               = 1
+        let NERDTreeIgnore                      = ['\.pyc', '\.elc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+        let NERDTreeChDirMode                   = 0
+        let NERDTreeQuitOnOpen                  = 1
+        let NERDTreeMouseMode                   = 2
+        let NERDTreeShowHidden                  = 1
+        let NERDTreeKeepTreeInNewTab            = 1
+        let g:nerdtree_tabs_open_on_gui_startup = 0
     " }
 
     " EasyAlign {
+    let g:easy_align_delimiters = {
+                \ '>': { 'pattern': '>>\|=>\|>' },
+                \ '"': { 'pattern': '"', 'ignore_groups': [] },
+                \ '/': { 'pattern': '//\+\|/\*\|\*/', 'ignore_groups': ['String'] },
+                \ '#': { 'pattern': '#\+', 'ignore_groups': ['String'], 'delimiter_align': 'l' },
+                \ ']': {
+                \     'pattern':       '[[\]]',
+                \     'left_margin':   0,
+                \     'right_margin':  0,
+                \     'stick_to_left': 0
+                \   },
+                \ ')': {
+                \     'pattern':       '[()]',
+                \     'left_margin':   0,
+                \     'right_margin':  0,
+                \     'stick_to_left': 0
+                \   },
+                \ 'd': {
+                \     'pattern': ' \(\S\+\s*[;=]\)\@=',
+                \     'left_margin': 0,
+                \     'right_margin': 0
+                \   }
+                \ }
+
         vnoremap <silent> <Enter> :EasyAlign<cr>
         nmap <Leader>a, :EasyAlign <space><cr>
         vmap <Leader>a, :EasyAlign <space><cr>
