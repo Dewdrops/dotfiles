@@ -281,11 +281,6 @@
             set undolevels=1000         " Maximum number of changes that can be undone
             set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
         endif
-
-        " Add exclusions to mkview and loadview
-        " eg: *.*, svn-commit.tmp
-        let g:skipview_files = [
-            \ ]
     " }
 
 " }
@@ -516,6 +511,10 @@
 
     " matchit {
         let b:match_ignorecase = 1
+    " }
+
+    " restore_view {
+        let g:skipview_files = ['*\.wiki']
     " }
 
     " OmniComplete {
@@ -932,7 +931,7 @@
 
     " VimWiki {
         " keep from conflicts
-        nmap <Leader>vr <Plug>VimwikiRenameLink
+        nmap <Leader>rr <Plug>VimwikiRenameLink
     " }
 
     " BufExplorer {
