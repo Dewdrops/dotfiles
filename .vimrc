@@ -45,9 +45,19 @@
         Bundle 'MarcWeber/vim-addon-mw-utils'
         Bundle 'tomtom/tlib_vim'
 
-    if !exists('g:dewdrops_bundle_groups')
-        let g:dewdrops_bundle_groups = ['general', 'theme', 'git', 'ycm', 'programming', 'ruby', 'perl', 'python', 'javascript', 'haskell', 'html', 'misc']
-    endif
+        if !exists('g:dewdrops_bundle_groups')
+            let g:dewdrops_bundle_groups = [
+                        \     'general',
+                        \     'theme',
+                        \     'neocomplete',
+                        \     'programming',
+                        \     'ruby',
+                        \     'perl',
+                        \     'python',
+                        \     'haskell',
+                        \     'misc'
+                        \ ]
+        endif
 
     " General
         if count(g:dewdrops_bundle_groups, 'general')
@@ -88,10 +98,10 @@
     " Color Themes
         if count(g:dewdrops_bundle_groups, 'theme')
             Bundle 'Dewdrops/vim-tomorrow-theme'
-            Bundle 'jnurmine/Zenburn'
-            Bundle 'spf13/vim-colors'
-            Bundle 'flazz/vim-colorschemes'
-            Bundle 'godlygeek/csapprox'
+            " Bundle 'jnurmine/Zenburn'
+            " Bundle 'spf13/vim-colors'
+            " Bundle 'flazz/vim-colorschemes'
+            " Bundle 'godlygeek/csapprox'
         endif
 
     " General Programming
@@ -116,7 +126,7 @@
                 Bundle 'mileszs/ack.vim'
             endif
             if executable('ctags')
-                Bundle 'xolox/vim-easytags'
+                " Bundle 'xolox/vim-easytags'
                 Bundle 'majutsushi/tagbar'
             endif
         endif
@@ -414,7 +424,7 @@
     nmap <leader>f8 :set foldlevel=8<cr>
     nmap <leader>f9 :set foldlevel=9<cr>
 
-    nmap <leader>sw :call striptrailingwhitespace()<cr>
+    nmap <leader>sw :call StripTrailingWhitespace()<cr>
 
     " Toggle search highlighting
     nmap <silent> <leader>/ :nohlsearch<cr>
@@ -481,6 +491,7 @@
     nnoremap <leader>mk :make<cr>
     nnoremap <leader>sp :sp<cr>
     nnoremap <leader>vs :vs<cr>
+    nnoremap <leader>; mMA;<esc>`M
     nnoremap <f5> :%TOhtml<cr>
 
 " }
@@ -535,7 +546,7 @@
     " }
 
     " Ctags {
-        set tags=./tags;/,~/.vimtags;../tags
+        set tags=./tags;/,~/.vimtags;../tags;.../tags
     " }
 
     " AutoCloseTag {
@@ -836,6 +847,9 @@
         let g:ycm_key_list_select_completion       = ['<tab>', '<C-n>', '<Down>']
         let g:ycm_key_list_previous_completion     = ['<s-tab>', '<C-p>', '<Up>']
         let g:ycm_filetype_blacklist               = {'unite': 1}
+        let g:ycm_register_as_syntastic_checker    = 0
+        let g:ycm_global_ycm_extra_conf            = '~/.ycm_extra_conf.py'
+        let g:ycm_confirm_extra_conf               = 0
 
         " configuration of UltiSnips
         let g:UltiSnipsExpandTrigger               = "<c-k>"
@@ -859,7 +873,7 @@
     " }
 
     " YankRing {
-        let g:yankring_replace_n_nkey = '<leader>;'
+        let g:yankring_replace_n_nkey = '<leader>.'
         nnoremap <Leader>yr :YRShow<cr>
     " }
 
@@ -877,7 +891,7 @@
 
     " airline {
         if !has("gui_running")
-            let g:airline_powerline_fonts = 1
+            " let g:airline_powerline_fonts = 1
         endif
         let g:airline#extensions#hunks#non_zero_only = 1
     " }
