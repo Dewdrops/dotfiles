@@ -1,7 +1,7 @@
 " Modeline and Notes {
-" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker
+" vim: sw=4 ts=4 sts=4 et tw=80 foldmarker={,} foldlevel=0 foldmethod=marker
 "
-"   This is the personal .vimrc file of Dewdrops. The structure and most code are
+"   This is the personal .vimrc file of Dewdrops (v_v_4474@126.com). File structure and most code are
 "   stolen from spf13-vim (https://github.com/spf13/spf13-vim).
 " }
 
@@ -49,9 +49,8 @@
             let g:dewdrops_bundle_groups = [
                         \     'general',
                         \     'theme',
-                        \     'neocomplete',
+                        \     'ycm',
                         \     'programming',
-                        \     'ruby',
                         \     'perl',
                         \     'python',
                         \     'haskell',
@@ -507,6 +506,10 @@
         nnoremap <leader>ak :Ack<space>
     " }
 
+    " fanfingtastic {
+        let g:fanfingtastic_map_over_leader = 1
+    " }
+
     " Startify {
     let g:startify_custom_header = [
                 \ '         ____                   _                     ',
@@ -856,6 +859,8 @@
         let g:UltiSnipsJumpForwardTrigger          = "<c-k>"
         let g:UltiSnipsJumpBackwardTrigger         = "<c-j>"
         let g:UltiSnipsSnippetsDir                 = '~/.vim/snippets'
+
+        nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<cr>
     "}
 
     " Ruby {
