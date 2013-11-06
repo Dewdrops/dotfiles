@@ -1,0 +1,6 @@
+"3.4 (created: 2012/04/02 20:07:29)
+
+set hintchars=hjklasdfgyuiopqwertnmzxcvb
+source! /home/para/.vimperatorrc.local
+
+" vim: set ft=vimperator:
