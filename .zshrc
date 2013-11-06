@@ -2,13 +2,6 @@
 # Zsh configuration of Dewdrops (v_v_4474@126.com)
 # vim: sw=4 ts=4 sts=4 et tw=80 foldmarker={{{,}}} foldlevel=0 foldmethod=marker
 
-export EDITOR=vim
-
-export PAGER=less
-export LESS=-R
-
-setopt multios
-
 # history {{{
 
 HISTFILE=~/.histfile
@@ -86,32 +79,6 @@ zle -N self-insert url-quote-magic
 
 ## file rename magick
 bindkey "^[m" copy-prev-shell-word
-
-# }}}
-
-## jobs
-setopt long_list_jobs
-
-setopt extended_glob
-
-# convenient alias and exports {{{
-
-alias vzr='vim ~/.zshrc'
-alias vvr='vim ~/.vimrc'
-
-export GREP_OPTIONS='--color=auto'
-export GREP_COLOR='1;32'
-
-alias ls='ls --color=auto'
-alias ll='ls -AlF --color=auto'
-alias la='ls -A --color=auto'
-
-alias sdn='sudo shutdown -h now'
-
-alias rb='R CMD BATCH'
-
-alias e='emacs'
-alias ec='emacsclient'
 
 # }}}
 
@@ -329,7 +296,7 @@ function spectrum_ls() {
 
 # }}}
 
-# application settings {{{
+# aliases and exports for applications {{{
 
 export CCL_DEFAULT_DIRECTORY='/home/dewdrops/site/ccl'
 
@@ -337,4 +304,40 @@ export JAVA_HOME='~/site/jdk1.7.0_45'
 export CLASS_PATH=".:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:"
 export PATH="~/site/jdk1.7.0_45/bin:$PATH"
 
+export LESS=-R
+
+export GREP_OPTIONS='--color=auto'
+export GREP_COLOR='1;32'
+
+alias vzr='vim ~/.zshrc'
+alias vvr='vim ~/.vimrc'
+
+alias ls='ls --color=auto'
+alias ll='ls -AlF --color=auto'
+alias la='ls -A --color=auto'
+
+alias sdn='sudo shutdown -h now'
+
+alias sgem='sudo gem install'
+
+alias rb='R CMD BATCH'
+
+alias e='emacs'
+alias ec='emacsclient'
+
 # }}}
+
+# misc {{{
+
+export EDITOR=vim
+
+export PAGER=less
+
+setopt multios
+
+setopt long_list_jobs
+
+setopt extended_glob
+
+# }}}
+
