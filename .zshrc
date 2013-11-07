@@ -300,9 +300,9 @@ function spectrum_ls() {
 
 export CCL_DEFAULT_DIRECTORY='/home/dewdrops/site/ccl'
 
-export JAVA_HOME='~/site/jdk1.7.0_45'
+export JAVA_HOME='/home/dewdrops/site/jdk1.7.0_45'
 export CLASS_PATH=".:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:"
-export PATH="~/site/jdk1.7.0_45/bin:$PATH"
+export PATH="/home/dewdrops/site/jdk1.7.0_45/bin:$PATH"
 
 export LESS=-R
 
@@ -311,6 +311,7 @@ export GREP_COLOR='1;32'
 
 alias vzr='vim ~/.zshrc'
 alias vvr='vim ~/.vimrc'
+alias vmk='vim Makefile'
 
 alias ls='ls --color=auto'
 alias ll='ls -AlF --color=auto'
