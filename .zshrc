@@ -14,12 +14,13 @@ setopt inc_append_history
 setopt extended_history
 
 setopt hist_expire_dups_first
-setopt hist_ignore_dups # ignore duplication command history list
+setopt hist_ignore_dups
 setopt hist_ignore_space
 
 setopt hist_verify
 
-setopt share_history # share command history data
+# share command history data
+setopt share_history
 
 function zsh_stats() {
     history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a; }' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl | head -n20
