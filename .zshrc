@@ -162,6 +162,12 @@ if [ "x$COMPLETION_WAITING_DOTS" = "xtrue" ]; then
   bindkey "^I" expand-or-complete-with-dots
 fi
 
+# for rake tasks
+_rake () {
+    compadd $(rake --silent --tasks -A | cut -d " " -f 2)
+}
+compdef _rake rake
+
 # }}}
 
 # correction {{{
@@ -317,6 +323,7 @@ export GREP_COLOR='1;32'
 alias vzr='vim ~/.zshrc'
 alias vvr='vim ~/.vimrc'
 alias vmk='vim Makefile'
+alias vrk='vim Rakefile'
 
 alias ls='ls --color=auto'
 alias ll='ls -AlF --color=auto'
