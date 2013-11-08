@@ -329,6 +329,8 @@ alias ls='ls --color=auto'
 alias ll='ls -AlF --color=auto'
 alias la='ls -A --color=auto'
 
+alias rr='rm -rf'
+
 alias sdn='sudo shutdown -h now'
 
 alias sgem='sudo gem install'
