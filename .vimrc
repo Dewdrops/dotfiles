@@ -409,7 +409,9 @@
     cmap Tabe tabe
 
     " Yank from the cursor to the end of the line, to be consistent with C and D.
-    nnoremap Y y$
+    " this conflicts with Yankring
+    " see plugin section for working settings
+    " nnoremap Y y$
 
     " swap 0 and ^ in normal mode
     nnoremap 0 ^
@@ -888,6 +890,11 @@
     " YankRing {
         let g:yankring_replace_n_nkey = '<leader>.'
         nnoremap <Leader>yr :YRShow<cr>
+
+        " make Y consistent with D and C
+        function! YRRunAfterMaps()
+            nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
+        endfunction
     " }
 
     " unimpaired {
