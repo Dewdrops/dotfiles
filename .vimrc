@@ -109,6 +109,7 @@
             Bundle 'scrooloose/syntastic'
             Bundle 'tomtom/tcomment_vim'
             Bundle 'tpope/vim-endwise'
+            Bundle 'mattboehm/vim-unstack'
             Bundle 'junegunn/vim-easy-align'
             Bundle 'thinca/vim-quickrun'
             Bundle 'tacahiroy/ctrlp-funky'
@@ -283,6 +284,9 @@
     set hidden                          " Allow buffer switching without saving
     set ttimeoutlen=50                  " dimish the pause when leaving insert mode
 
+    " spell check when writing commit logs
+    au filetype svn,*commit* setlocal spell
+
     " Setting up the directories {
         set backup                      " Backups are nice ...
         if has('persistent_undo')
@@ -324,22 +328,22 @@
         set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
     endif
 
-    set backspace=indent,eol,start  " Backspace for dummies
-    set linespace=0                 " No extra spaces between rows
-    set nu                          " Line numbers on
-    au BufEnter * set relativenumber      " relative line number for fast motion
-    set showmatch                   " Show matching brackets/parenthesis
-    set incsearch                   " Find as you type search
-    set hlsearch                    " Highlight search terms
-    set winminheight=0              " Windows can be 0 line high
-    set ignorecase                  " Case insensitive search
-    set smartcase                   " Case sensitive when uc present
-    set wildmenu                    " Show list instead of just completing
-    set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all
-    set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
-    set scrolljump=1                " Lines to scroll when cursor leaves screen
-    set scrolloff=3                 " Minimum lines to keep above and below cursor
-    set foldenable                  " Auto fold code
+    set backspace=indent,eol,start     " Backspace for dummies
+    set linespace=0                    " No extra spaces between rows
+    set nu                             " Line numbers on
+    au BufEnter * set relativenumber   " relative line number for fast motion
+    set showmatch                      " Show matching brackets/parenthesis
+    set incsearch                      " Find as you type search
+    set hlsearch                       " Highlight search terms
+    set winminheight=0                 " Windows can be 0 line high
+    set ignorecase                     " Case insensitive search
+    set smartcase                      " Case sensitive when uc present
+    set wildmenu                       " Show list instead of just completing
+    set wildmode=list:longest,full     " Command <Tab> completion, list matches, then longest common part, then all
+    set whichwrap=b,s,h,l,<,>,[,]      " Backspace and cursor keys wrap too
+    set scrolljump=1                   " Lines to scroll when cursor leaves screen
+    set scrolloff=3                    " Minimum lines to keep above and below cursor
+    set foldenable                     " Auto fold code
     set list
     set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 
@@ -550,6 +554,10 @@
 
     " Ctags {
         set tags=./tags;/,~/.vimtags;../tags;.../tags
+    " }
+
+    " unstack {
+        let g:unstack_mapkey='<leader>us'
     " }
 
     " AutoCloseTag {
