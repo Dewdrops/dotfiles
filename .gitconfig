@@ -7,7 +7,7 @@
 	conflictstyle = diff3
 [alias]
 	st = status -sb
-	ci = commit -a
+	ci = commit -a -m
 	cs = commit -a -m s
 	co = checkout
 [http]
