@@ -301,9 +301,13 @@ function spectrum_ls() {
 
 export CCL_DEFAULT_DIRECTORY='/home/dewdrops/site/ccl'
 
-export JAVA_HOME='/home/dewdrops/site/jdk1.7.0_45'
+export JAVA_HOME="$HOME/site/jdk1.7.0_45"
 export CLASS_PATH=".:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:"
-export PATH="/home/dewdrops/site/jdk1.7.0_45/bin:$PATH"
+export PATH="$JAVA_HOME/bin:$PATH"
+
+export GOROOT="$HOME/site/go"
+export GOPATH="$HOME/site/go-path"
+export PATH="$PATH:$GOROOT/bin"
 
 export LESS=-R
 
@@ -321,6 +325,9 @@ alias la='ls -A --color=auto'
 alias sdn='sudo shutdown -h now'
 
 alias sgem='sudo gem install'
+alias spip='sudo pip install'
+alias scpm='sudo cpanm'
+alias sapt='sudo apt-get install'
 
 alias rb='R CMD BATCH'
 
@@ -339,7 +346,7 @@ setopt multios
 
 setopt long_list_jobs
 
-setopt extended_glob
+# setopt extended_glob
 
 # }}}
 
