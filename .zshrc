@@ -358,4 +358,3 @@ setopt long_list_jobs
 # setopt extended_glob
 
 # }}}
-
