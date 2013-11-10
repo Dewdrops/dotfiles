@@ -87,7 +87,6 @@
             Bundle 'chrisbra/NrrwRgn'
             Bundle 'tpope/vim-speeddating'
             Bundle 'dahu/vim-fanfingtastic'
-            Bundle 'vim-scripts/sudo.vim'
             Bundle 'vim-scripts/EasyGrep'
             Bundle 'kana/vim-textobj-user'
             Bundle 'kana/vim-textobj-indent'

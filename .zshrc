@@ -184,6 +184,7 @@ alias ebuild='nocorrect ebuild'
 alias hpodder='nocorrect hpodder'
 alias sudo='nocorrect sudo'
 alias command='nocorrect command'
+alias rake='nocorrect rake'
 
 # }}}
 
@@ -356,5 +357,9 @@ setopt multios
 setopt long_list_jobs
 
 # setopt extended_glob
+
+function bu {
+    mv $1 ~/.recycle
+}
 
 # }}}
