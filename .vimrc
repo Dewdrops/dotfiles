@@ -74,6 +74,7 @@
             Bundle 'bling/vim-airline'
             Bundle 'bling/vim-bufferline'
             Bundle 'Lokaltog/vim-easymotion'
+            Bundle 'osyo-manga/vim-over'
             Bundle 'jistr/vim-nerdtree-tabs'
             Bundle 'sjl/gundo.vim'
             Bundle 'vim-scripts/YankRing.vim'
@@ -433,6 +434,9 @@
     " Toggle search highlighting
     nmap <silent> <leader>/ :nohlsearch<cr>
 
+    "Remove the Windows ^M
+    noremap <leader>tr :%s//r//g<CR>
+
     " Shortcuts in command line
     " Change Working Directory to that of the current file
     cmap cwd lcd %:p:h
@@ -530,6 +534,10 @@
 
     " matchit {
         let b:match_ignorecase = 1
+    " }
+
+    " over {
+        nnoremap <leader>ov :OverCommandLine<cr>:%s
     " }
 
     " restore_view {
