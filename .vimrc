@@ -62,6 +62,7 @@
         if count(g:dewdrops_bundle_groups, 'general')
             Bundle 'scrooloose/nerdtree'
             Bundle 'mattn/calendar-vim'
+            Bundle 'arecarn/crunch'
             Bundle 'mhinz/vim-startify'
             Bundle 'tpope/vim-surround'
             Bundle 'jiangmiao/auto-pairs'
@@ -517,6 +518,10 @@
 
     " fanfingtastic {
         let g:fanfingtastic_map_over_leader = 1
+    " }
+
+    " Crunch {
+        nnoremap <leader>cr :Crunch<space>
     " }
 
     " Startify {
