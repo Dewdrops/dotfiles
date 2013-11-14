@@ -253,6 +253,7 @@
             Bundle 'LaTeX-Box-Team/LaTeX-Box'
             Bundle 'xml.vim'
             Bundle 'vim-scripts/vimwiki'
+            Bundle 'jceb/vim-orgmode'
         endif
 
 " }
@@ -370,6 +371,7 @@
     au FileType c,cpp,java,go,php,javascript,python,twig,xml,yml au BufWritePre <buffer> call StripTrailingWhitespace()
     au FileType go au BufWritePre <buffer> Fmt
     au FileType python setlocal fdm=indent
+    au FileType org setlocal fdm=expr
     au BufNewFile,BufRead *.html.twig set filetype=html.twig
 
 " }
