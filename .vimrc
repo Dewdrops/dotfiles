@@ -544,7 +544,7 @@
     " }
 
     " over {
-        nnoremap <leader>ov :OverCommandLine<cr>:%s
+        nnoremap <leader>ov :OverCommandLine<cr>:%s/
     " }
 
     " restore_view {
