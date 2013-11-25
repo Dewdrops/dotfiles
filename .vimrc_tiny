@@ -1,7 +1,7 @@
 " Modeline and Notes {
 " vim: sw=4 ts=4 sts=4 et tw=80 foldmarker={,} foldlevel=0 foldmethod=marker
 "
-"   This is the tiny version of my .vimrc. It doesn't depended on any plugin.
+"   This is the tiny version of my .vimrc. It doesn't depend on any plugin.
 " }
 
 " Environment {
@@ -68,6 +68,10 @@
     else
         set wildignore+=.git\*,.hg\*,.svn\*
     endif
+
+    " Autosave & Load Views.
+    autocmd BufWritePost,WinLeave,BufWinLeave ?* if MakeViewCheck() | mkview | endif
+    autocmd BufWinEnter ?* if MakeViewCheck() | silent! loadview | endif
 
     " Setting up the directories {
         set backup                      " Backups are nice ...
@@ -198,6 +202,14 @@
     " swap 0 and ^ in normal mode
     nnoremap 0 ^
     nnoremap ^ 0
+
+    " unimpaired-like binding
+    nnoremap [b :bp<cr>
+    nnoremap ]b :bn<cr>
+    nnoremap [s i<space><esc>l
+    nnoremap ]s a<space><esc>h
+    nnoremap [<space> mMO<esc>0d$`M
+    nnoremap ]<space> mMo<esc>0d$`M
 
     " Code folding options
     nmap <leader>f0 :set foldlevel=0<cr>
@@ -384,6 +396,18 @@ function! <SID>BufcloseCloseIt()
     if buflisted(l:currentBufNum)
         execute("bdelete! ".l:currentBufNum)
     endif
+endfunction
+" }
+
+" Check whether to load/restore view {
+function! MakeViewCheck()
+    if has('quickfix') && &buftype =~ 'nofile' | return 0 | endif
+    if expand('%') =~ '\[.*\]' | return 0 | endif
+    if empty(glob(expand('%:p'))) | return 0 | endif
+    if &modifiable == 0 | return 0 | endif
+    if len($TEMP) && expand('%:p:h') == $TEMP | return 0 | endif
+    if len($TMP) && expand('%:p:h') == $TMP | return 0 | endif
+    return 1
 endfunction
 " }
 
