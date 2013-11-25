@@ -50,6 +50,7 @@
                         \     'general',
                         \     'theme',
                         \     'ycm',
+                        \     'git',
                         \     'programming',
                         \     'perl',
                         \     'python',
@@ -316,8 +317,6 @@
     set tabpagemax=15               " Only show 15 tabs
     set showmode                    " Display the current mode
 
-    set cursorline                  " Highlight current line
-
     set lazyredraw                  " Don't redraw while executing macros
 
     highlight clear SignColumn      " SignColumn should match background for
@@ -348,6 +347,7 @@
     set showmatch                      " Show matching brackets/parenthesis
     set incsearch                      " Find as you type search
     set hlsearch                       " Highlight search terms
+    set cursorline                     " Highlight current line
     set winminheight=0                 " Windows can be 0 line high
     set ignorecase                     " Case insensitive search
     set smartcase                      " Case sensitive when uc present
@@ -358,6 +358,7 @@
     set scrolloff=3                    " Minimum lines to keep above and below cursor
     set foldenable                     " Auto fold code
     set list
+    set switchbuf=useopen,usetab
     set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 
 " }
@@ -491,10 +492,16 @@
     noremap gy "+y
     noremap gp "+p
 
+    " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
+    nmap <M-j> mz:m+<cr>`z
+    nmap <M-k> mz:m-2<cr>`z
+    vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+    vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
     " emacs-like motion command in insert mode
     inoremap <c-f> <right>
     inoremap <c-b> <left>
-    "inoremap <c-d> <del>
+    inoremap <c-d> <del>
 
     nnoremap <leader>q :q<cr>
     nnoremap <leader>wq :wq<cr>
@@ -512,6 +519,7 @@
     nnoremap <leader>mk :make<cr>
     nnoremap <leader>sp :sp<cr>
     nnoremap <leader>vs :vs<cr>
+    nnoremap <leader>st :setlocal spell!<cr>
     nnoremap <leader>; mMA;<esc>`M
     nnoremap <f5> :%TOhtml<cr>
 
@@ -670,7 +678,7 @@
         let g:pymode_options           = 0
     " }
 
-    " CtrlP {
+    " Ctrlp {
         let g:ctrlp_custom_ignore       = {
             \ 'dir':  '\.git$\|\.hg$\|\.svn$',
             \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc|\.elc$'

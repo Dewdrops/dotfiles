@@ -184,7 +184,6 @@ alias ebuild='nocorrect ebuild'
 alias hpodder='nocorrect hpodder'
 alias sudo='nocorrect sudo'
 alias command='nocorrect command'
-alias rake='nocorrect rake'
 
 # }}}
 
@@ -316,6 +315,8 @@ export GOROOT="$HOME/site/go"
 export GOPATH="$HOME/site/go-path"
 export PATH="$PATH:$GOROOT/bin"
 
+export PATH="$HOME/.cabal/bin:$PATH"
+
 export LESS=-R
 
 export GREP_OPTIONS='--color=auto'
@@ -325,6 +326,10 @@ alias vzr='vim ~/.zshrc'
 alias vvr='vim ~/.vimrc'
 alias vmk='vim Makefile'
 alias vrk='vim Rakefile'
+
+# allows square brackts for rake task invocation
+alias rake="nocorrect noglob rake"
+alias srake='nocorrect noglob sudo rake'
 
 alias ls='ls --color=auto'
 alias ll='ls -AlF --color=auto'
@@ -338,6 +343,8 @@ alias sgem='sudo gem install'
 alias spip='sudo pip install'
 alias scpm='sudo cpanm'
 alias sapt='sudo apt-get install'
+
+alias sshh='ssh zhouchenggang@124.16.136.227'
 
 alias rb='R CMD BATCH'
 
@@ -359,7 +366,7 @@ setopt long_list_jobs
 # setopt extended_glob
 
 function bu {
-    mv $1 ~/.recycle
+    mv $@ ~/.recycle
 }
 
 # }}}
