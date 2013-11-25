@@ -344,8 +344,6 @@ alias spip='sudo pip install'
 alias scpm='sudo cpanm'
 alias sapt='sudo apt-get install'
 
-alias sshh='ssh zhouchenggang@124.16.136.227'
-
 alias rb='R CMD BATCH'
 
 alias e='emacs'
@@ -368,5 +366,8 @@ setopt long_list_jobs
 function bu {
     mv $@ ~/.recycle
 }
+
+# load customized configuration
+source .zshrc.customized
 
 # }}}
