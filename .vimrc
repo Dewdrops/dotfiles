@@ -72,6 +72,7 @@
             Bundle 'bufexplorer.zip'
             Bundle 'tyru/open-browser.vim'
             Bundle 'terryma/vim-multiple-cursors'
+            Bundle 'rbgrouleff/bclose.vim'
             Bundle 'bling/vim-airline'
             Bundle 'bling/vim-bufferline'
             Bundle 'Lokaltog/vim-easymotion'
@@ -79,7 +80,6 @@
             Bundle 'jistr/vim-nerdtree-tabs'
             Bundle 'sjl/gundo.vim'
             Bundle 'vim-scripts/YankRing.vim'
-            Bundle 'nathanaelkane/vim-indent-guides'
             Bundle 'vim-scripts/restore_view.vim'
             Bundle 'tpope/vim-abolish.git'
             Bundle 'Dewdrops/vim-unimpaired'
@@ -117,6 +117,7 @@
             Bundle 'tpope/vim-dispatch'
             Bundle 'mutewinter/swap-parameters'
             Bundle 'AndrewRadev/splitjoin.vim'
+            Bundle 'nathanaelkane/vim-indent-guides'
             if executable('ack-grep')
                 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
                 Bundle 'mileszs/ack.vim'
@@ -289,6 +290,14 @@
     " spell check when writing commit logs
     au filetype svn,*commit* setlocal spell
 
+    " ignore compiled files
+    set wildignore=*.o,*.obj,*.pyc,*.elc,*~
+    if has("win16") || has("win32")
+        set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+    else
+        set wildignore+=.git\*,.hg\*,.svn\*
+    endif
+
     " Setting up the directories {
         set backup                      " Backups are nice ...
         if has('persistent_undo')
@@ -308,6 +317,8 @@
     set showmode                    " Display the current mode
 
     set cursorline                  " Highlight current line
+
+    set lazyredraw                  " Don't redraw while executing macros
 
     highlight clear SignColumn      " SignColumn should match background for
                                     " things like vim-gitgutter
@@ -485,7 +496,6 @@
     inoremap <c-b> <left>
     "inoremap <c-d> <del>
 
-    nnoremap <leader>bd :bd<cr>
     nnoremap <leader>q :q<cr>
     nnoremap <leader>wq :wq<cr>
     nnoremap <leader>wr :w<cr>
@@ -516,6 +526,10 @@
 
     " Ack {
         nnoremap <leader>ak :Ack<space>
+    " }
+
+    " bclose {
+        nnoremap <leader>bd :Bclose<cr>
     " }
 
     " fanfingtastic {
