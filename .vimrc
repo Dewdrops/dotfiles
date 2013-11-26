@@ -81,7 +81,6 @@
             Bundle 'jistr/vim-nerdtree-tabs'
             Bundle 'sjl/gundo.vim'
             Bundle 'vim-scripts/YankRing.vim'
-            Bundle 'vim-scripts/restore_view.vim'
             Bundle 'tpope/vim-abolish.git'
             Bundle 'Dewdrops/vim-unimpaired'
             Bundle 'tpope/vim-repeat'
@@ -94,6 +93,7 @@
             Bundle 'kana/vim-textobj-user'
             Bundle 'kana/vim-textobj-indent'
             Bundle 'kana/vim-textobj-entire'
+            Bundle 'thinca/vim-textobj-between'
         endif
 
     " Color Themes
@@ -298,6 +298,10 @@
     else
         set wildignore+=.git\*,.hg\*,.svn\*
     endif
+
+    " Autosave & Load Views.
+    autocmd BufWritePost,WinLeave,BufWinLeave ?* if MakeViewCheck() | mkview | endif
+    autocmd BufWinEnter ?* if MakeViewCheck() | silent! loadview | endif
 
     " Setting up the directories {
         set backup                      " Backups are nice ...
@@ -567,10 +571,6 @@
 
     " over {
         nnoremap <leader>ov :OverCommandLine<cr>:%s/
-    " }
-
-    " restore_view {
-        let g:skipview_files = ['*\.wiki']
     " }
 
     " OmniComplete {
@@ -1105,6 +1105,18 @@
         call cursor(l, c)
     endfunction
     " }
+
+" Check whether to load/restore view {
+function! MakeViewCheck()
+    if has('quickfix') && &buftype =~ 'nofile' | return 0 | endif
+    if expand('%') =~ '\[.*\]' | return 0 | endif
+    if empty(glob(expand('%:p'))) | return 0 | endif
+    if &modifiable == 0 | return 0 | endif
+    if len($TEMP) && expand('%:p:h') == $TEMP | return 0 | endif
+    if len($TMP) && expand('%:p:h') == $TMP | return 0 | endif
+    return 1
+endfunction
+" }
 
 " }
 
