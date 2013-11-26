@@ -346,6 +346,8 @@ alias sapt='sudo apt-get install'
 
 alias rb='R CMD BATCH'
 
+alias dstat='dstat -cdlmnpsy'
+
 alias e='emacs'
 alias ec='emacsclient'
 
