@@ -370,6 +370,6 @@ function bu {
 }
 
 # load customized configuration
-source .zshrc.customized
+[ -f .zshrc.customized ] && source .zshrc.customized
 
 # }}}
