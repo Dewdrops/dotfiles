@@ -26,7 +26,6 @@ alias ..='cd ..'
 alias cd..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias cd/='cd /'
 
 alias 1='cd -'
 
