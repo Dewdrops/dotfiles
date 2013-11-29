@@ -148,7 +148,8 @@
         if count(g:dewdrops_bundle_groups, 'git')
             NeoBundle 'airblade/vim-gitgutter'
             NeoBundle 'tpope/vim-fugitive'
-            NeoBundle 'gregsexton/gitv'
+            NeoBundleLazy 'gregsexton/gitv',
+                        \ {'depends': ['tpope/vim-fugitive'], 'autoload': {'commands': 'Gitv'}}
         endif
     " }}}
 
@@ -324,8 +325,8 @@
     endif
 
     " Autosave & Load Views.
-    " autocmd BufWritePost,WinLeave,BufWinLeave ?* if MakeViewCheck() | mkview | endif
-    " autocmd BufWinEnter ?* if MakeViewCheck() | silent! loadview | endif
+    autocmd BufWritePost,WinLeave,BufWinLeave ?* if MakeViewCheck() | mkview | endif
+    autocmd BufWinEnter ?* if MakeViewCheck() | silent! loadview | endif
 
     " Setting up the directories
     set backup                      " Backups are nice ...
