@@ -36,6 +36,7 @@
 " }}}
 
 " Bundles {{{
+
     " Deps {{{
         NeoBundle 'gmarik/vundle'
         NeoBundle 'MarcWeber/vim-addon-mw-utils'
@@ -124,6 +125,8 @@
             NeoBundle 'thinca/vim-quickrun'
             NeoBundle 'tacahiroy/ctrlp-funky'
             NeoBundle 'tpope/vim-dispatch'
+            NeoBundleLazy 'a.vim',
+                        \ {'autoload' :{'filetypes' :['c', 'c++']}}
             NeoBundle 'mutewinter/swap-parameters'
             NeoBundle 'AndrewRadev/splitjoin.vim'
             NeoBundle 'nathanaelkane/vim-indent-guides'
