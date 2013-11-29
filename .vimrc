@@ -1,21 +1,21 @@
-" Modeline and Notes {
+" Modeline and Notes {{{
 " vim: sw=4 ts=4 sts=4 et tw=80 foldmarker={{{,}}} foldlevel=0 foldmethod=marker
 "
 "   This is the personal .vimrc file of Dewdrops (v_v_4474@126.com). File structure and most code are
 "   stolen from spf13-vim (https://github.com/spf13/spf13-vim).
-" }
+" }}}
 
 " Environment {{{
 
     set nocompatible        " Must be first line
 
     " Windows Compatible {{{
-        " On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
-        " across (heterogeneous) systems easier
-        if has('win32') || has('win64')
-          set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+    " On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
+    " across (heterogeneous) systems easier
+    if has('win32') || has('win64')
+        set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
 
-          if has("multi_byte")
+        if has("multi_byte")
             " Windows cmd.exe still uses cp850. If Windows ever moved to
             " Powershell as the primary terminal, this would be utf-8
             set termencoding=cp850
@@ -23,9 +23,9 @@
             set encoding=utf-8
             setglobal fileencoding=utf-8
             set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
-          endif
         endif
-    " }}}
+    endif
+" }}}
 
     " Setup NeoBundle Support {{{
         set rtp+=~/.vim/bundle/neobundle.vim
@@ -35,12 +35,14 @@
 
 " }}}
 
-" NeoBundles {{{
-    " Deps
+" Bundles {{{
+    " Deps {{{
         NeoBundle 'gmarik/vundle'
         NeoBundle 'MarcWeber/vim-addon-mw-utils'
         NeoBundle 'tomtom/tlib_vim'
+    " }}}
 
+    " Bundle group configuration {{{
         if !exists('g:dewdrops_bundle_groups')
             let g:dewdrops_bundle_groups = [
                         \     'general',
@@ -50,16 +52,21 @@
                         \     'programming',
                         \     'perl',
                         \     'python',
+                        \     'ruby',
                         \     'haskell',
                         \     'misc'
                         \ ]
         endif
+    " }}}
 
-    " General
+    " General {{{
         if count(g:dewdrops_bundle_groups, 'general')
-            NeoBundle 'scrooloose/nerdtree'
-            NeoBundle 'mattn/calendar-vim'
-            NeoBundle 'arecarn/crunch'
+            NeoBundleLazy 'scrooloose/nerdtree',
+                        \ {'autoload': {'commands': ['NERDTreeToggle', 'NERDTreeFind']}}
+            NeoBundleLazy 'mattn/calendar-vim',
+                        \ {'autoload': {'commands': ['Calendar', 'CalendarH']}}
+            NeoBundleLazy 'arecarn/crunch',
+                        \ {'autoload': {'commands': ['Crunch', 'CrunchBlock', 'CrunchLine']}}
             NeoBundle 'mhinz/vim-startify'
             NeoBundle 'tpope/vim-surround'
             NeoBundle 'jiangmiao/auto-pairs'
@@ -69,13 +76,15 @@
             NeoBundle 'bufexplorer.zip'
             NeoBundle 'tyru/open-browser.vim'
             NeoBundle 'terryma/vim-multiple-cursors'
-            NeoBundle 'rbgrouleff/bclose.vim'
+            NeoBundleLazy 'rbgrouleff/bclose.vim',
+                        \ {'autoload': {'commands': ['Bclose']}}
             NeoBundle 'bling/vim-airline'
             NeoBundle 'bling/vim-bufferline'
             NeoBundle 'Lokaltog/vim-easymotion'
             NeoBundle 'osyo-manga/vim-over'
             NeoBundle 'jistr/vim-nerdtree-tabs'
-            NeoBundleLazy 'sjl/gundo.vim', {'autoload': {'commands': 'GundoToggle'}}
+            NeoBundleLazy 'sjl/gundo.vim',
+                        \ {'autoload': {'commands': 'GundoToggle'}}
             NeoBundle 'vim-scripts/YankRing.vim'
             NeoBundle 'tpope/vim-abolish.git'
             NeoBundle 'Dewdrops/vim-unimpaired'
@@ -85,14 +94,16 @@
             NeoBundle 'chrisbra/NrrwRgn'
             NeoBundle 'tpope/vim-speeddating'
             NeoBundle 'dahu/vim-fanfingtastic'
-            NeoBundle 'vim-scripts/EasyGrep'
+            NeoBundleLazy 'vim-scripts/EasyGrep',
+                        \ {'autoload': {'commands': 'GrepOptions'}}
             NeoBundle 'kana/vim-textobj-user'
             NeoBundle 'kana/vim-textobj-indent'
             NeoBundle 'kana/vim-textobj-entire'
             NeoBundle 'thinca/vim-textobj-between'
         endif
+    " }}}
 
-    " Color Themes
+    " Color Themes {{{
         if count(g:dewdrops_bundle_groups, 'theme')
             NeoBundle 'Dewdrops/vim-tomorrow-theme'
             " NeoBundle 'jnurmine/Zenburn'
@@ -100,8 +111,9 @@
             " NeoBundle 'flazz/vim-colorschemes'
             " NeoBundle 'godlygeek/csapprox'
         endif
+    "}}}
 
-    " General Programming
+    " General Programming {{{
         if count(g:dewdrops_bundle_groups, 'programming')
             NeoBundle 'xolox/vim-misc'
             NeoBundle 'scrooloose/syntastic'
@@ -126,18 +138,21 @@
             endif
             if executable('ctags')
                 " NeoBundle 'xolox/vim-easytags'
-                NeoBundle 'majutsushi/tagbar'
+                NeoBundleLazy 'majutsushi/tagbar',
+                            \ {'autoload': {'commands': 'TagbarToggle'}}
             endif
         endif
+    " }}}
 
-    " Git
+    " Git {{{
         if count(g:dewdrops_bundle_groups, 'git')
             NeoBundle 'airblade/vim-gitgutter'
             NeoBundle 'tpope/vim-fugitive'
             NeoBundle 'gregsexton/gitv'
         endif
+    " }}}
 
-    " Snippets & AutoComplete
+    " Snippets & AutoComplete {{{
         if count(g:dewdrops_bundle_groups, 'snipmate')
             NeoBundle 'garbas/vim-snipmate'
             NeoBundle 'honza/vim-snippets'
@@ -158,45 +173,51 @@
             NeoBundle 'Valloric/YouCompleteMe'
             NeoBundle 'SirVer/ultisnips'
         endif
+    " }}}
 
-    " PHP
+    " PHP {{{
         if count(g:dewdrops_bundle_groups, 'php')
             NeoBundle 'spf13/PIV'
             NeoBundle 'arnaud-lb/vim-php-namespace'
             NeoBundle 'shawncplus/phpcomplete.vim'
             NeoBundle 'beyondwords/vim-twig'
         endif
+    " }}}
 
-    " Python
+    " Python {{{
         if count(g:dewdrops_bundle_groups, 'python')
             " Pick either python-mode or pyflakes & pydoc
             NeoBundle 'klen/python-mode'
             NeoBundle 'hdima/python-syntax'
             NeoBundle 'python_match.vim'
         endif
+    " }}}
 
-    " Javascript
+    " Javascript {{{
         if count(g:dewdrops_bundle_groups, 'javascript')
             NeoBundle 'elzr/vim-json'
             NeoBundle 'pangloss/vim-javascript'
             NeoBundle 'briancollins/vim-jst'
             NeoBundle 'kchmck/vim-coffee-script'
         endif
+    " }}}
 
-    " Scala
+    " Scala {{{
         if count(g:dewdrops_bundle_groups, 'scala')
             NeoBundle 'derekwyatt/vim-scala'
             NeoBundle 'derekwyatt/vim-sbt'
         endif
+    " }}}
 
-    " Haskell
+    " Haskell {{{
         if count(g:dewdrops_bundle_groups, 'haskell')
             NeoBundle 'travitch/hasksyn'
             NeoBundle 'dag/vim2hs'
             NeoBundle 'lukerandall/haskellmode-vim'
         endif
+    " }}}
 
-    " HTML
+    " HTML {{{
         if count(g:dewdrops_bundle_groups, 'html')
             NeoBundle 'amirh/HTML-AutoCloseTag'
             NeoBundle 'hail2u/vim-css3-syntax'
@@ -205,54 +226,63 @@
             NeoBundle 'mattn/emmet-vim'
             NeoBundle 'tpope/vim-haml'
         endif
+    " }}}
 
-    " Ruby
+    " Ruby {{{
         if count(g:dewdrops_bundle_groups, 'ruby')
             NeoBundle 'vim-ruby/vim-ruby'
             NeoBundle 'tpope/vim-rails'
         endif
+    " }}}
 
-    " Perl
+    " Perl {{{
         if count(g:dewdrops_bundle_groups, 'perl')
             NeoBundle 'vim-perl/vim-perl'
         endif
+    " }}}
 
-    " CSharp
+    " CSharp {{{
         if count(g:dewdrops_bundle_groups, 'csharp')
             NeoBundle 'nosami/Omnisharp'
         endif
+    " }}}
 
-    " Lua
+    " Lua {{{
         if count(g:dewdrops_bundle_groups, 'lua')
             NeoBundle 'xolox/vim-lua-ftplugin'
         endif
+    " }}}
 
-    " Go Lang
+    " Go Lang {{{
         if count(g:dewdrops_bundle_groups, 'go')
             NeoBundle 'jnwhiteh/vim-golang'
             NeoBundle 'spf13/vim-gocode'
         endif
+    " }}}
 
-    " Cucumber
+    " Cucumber {{{
         if count(g:dewdrops_bundle_groups, 'cucumber')
             NeoBundle 'tpope/vim-cucumber'
             NeoBundle 'quentindecock/vim-cucumber-align-pipes'
         endif
+    " }}}
 
-    " Puppet
+    " Puppet {{{
         if count(g:dewdrops_bundle_groups, 'puppet')
             NeoBundle 'Puppet-Syntax-Highlighting'
         endif
+    " }}}
 
-    " Misc
+    " Misc {{{
         if count(g:dewdrops_bundle_groups, 'misc')
-            NeoBundle 'tpope/vim-markdown'
+            NeoBundle 'tpope/vim-markdown',
             NeoBundle 'chrisbra/csv.vim'
             NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
             NeoBundle 'xml.vim'
             NeoBundle 'vim-scripts/vimwiki'
             NeoBundle 'jceb/vim-orgmode'
         endif
+    " }}}
 
 " }}}
 
@@ -294,17 +324,16 @@
     endif
 
     " Autosave & Load Views.
-    autocmd BufWritePost,WinLeave,BufWinLeave ?* if MakeViewCheck() | mkview | endif
-    autocmd BufWinEnter ?* if MakeViewCheck() | silent! loadview | endif
+    " autocmd BufWritePost,WinLeave,BufWinLeave ?* if MakeViewCheck() | mkview | endif
+    " autocmd BufWinEnter ?* if MakeViewCheck() | silent! loadview | endif
 
-    " Setting up the directories {{{
-        set backup                      " Backups are nice ...
-        if has('persistent_undo')
-            set undofile                " So is persistent undo ...
-            set undolevels=1000         " Maximum number of changes that can be undone
-            set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
-        endif
-    " }}}
+    " Setting up the directories
+    set backup                      " Backups are nice ...
+    if has('persistent_undo')
+        set undofile                " So is persistent undo ...
+        set undolevels=1000         " Maximum number of changes that can be undone
+        set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
+    endif
 
 " }}}
 
@@ -534,6 +563,11 @@
         nnoremap <leader>ak :Ack<space>
     " }}}
 
+    " Calendar {{{
+        nnoremap <leader>cal :Calendar<cr>
+        nnoremap <leader>caL :CalendarH<cr>
+    " }}}
+
     " bclose {{{
         nnoremap <leader>bd :Bclose<cr>
     " }}}
@@ -754,6 +788,9 @@
         nnoremap <leader>gp :Git push https://github.com/Dewdrops/
         " add :w to trigger gitgutter
         nnoremap <leader>gr :Gwrite<cr>:w<cr>
+
+        autocmd FileType gitcommit nmap <buffer> U :Git checkout -- <C-r><C-g><CR>
+        autocmd BufReadPost fugitive://* set bufhidden=delete
     "}}}
 
     " GitGutter {{{
