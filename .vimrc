@@ -37,12 +37,6 @@
 
 " Bundles {{{
 
-    " Deps {{{
-        NeoBundle 'gmarik/vundle'
-        NeoBundle 'MarcWeber/vim-addon-mw-utils'
-        NeoBundle 'tomtom/tlib_vim'
-    " }}}
-
     " Bundle group configuration {{{
         if !exists('g:dewdrops_bundle_groups')
             let g:dewdrops_bundle_groups = [
@@ -62,6 +56,8 @@
 
     " General {{{
         if count(g:dewdrops_bundle_groups, 'general')
+            NeoBundle 'MarcWeber/vim-addon-mw-utils'
+            NeoBundle 'tomtom/tlib_vim'
             NeoBundleLazy 'scrooloose/nerdtree',
                         \ {'autoload': {'commands': ['NERDTreeToggle', 'NERDTreeFind']}}
             NeoBundleLazy 'mattn/calendar-vim',
