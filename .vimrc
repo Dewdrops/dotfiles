@@ -172,7 +172,7 @@
             NeoBundle 'honza/vim-snippets'
         elseif count(g:dewdrops_bundle_groups, 'ycm')
             NeoBundle 'Valloric/YouCompleteMe'
-            NeoBundle 'SirVer/ultisnips'
+            " NeoBundle 'SirVer/ultisnips'
         endif
     " }}}
 
