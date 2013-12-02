@@ -461,10 +461,11 @@
             NeoBundle 'mutewinter/swap-parameters'
 
             NeoBundleLazy 'a.vim',
-                        \ {'autoload' :{'filetypes' :['c', 'c++']}}
+                        \ {'autoload': {'filetypes': ['c', 'c++']}}
             nnoremap <leader>ac :A<cr>
 
-            NeoBundle 'thinca/vim-quickrun'
+            NeoBundleLazy 'thinca/vim-quickrun',
+                        \ {'autoload': {'commands': ['QuickRun']}}
             nnoremap <leader>kr :QuickRun -outputter/buffer/into 1<cr>
 
             NeoBundle 'mattboehm/vim-unstack'

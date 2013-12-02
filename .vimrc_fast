@@ -259,8 +259,6 @@
 
     " General {{{
         if count(g:dewdrops_bundle_groups, 'general')
-            NeoBundle 'MarcWeber/vim-addon-mw-utils'
-            NeoBundle 'tomtom/tlib_vim'
 
             " NerdTree {{{
                 NeoBundleLazy 'scrooloose/nerdtree',
