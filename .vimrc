@@ -349,7 +349,9 @@
                 let NERDTreeKeepTreeInNewTab            = 1
                 let g:nerdtree_tabs_open_on_gui_startup = 0
 
-                NeoBundle 'jistr/vim-nerdtree-tabs'
+                NeoBundleLazy 'jistr/vim-nerdtree-tabs',
+                            \ {'depends': ['scrooloose/nerdtree'],
+                            \ 'autoload': {'commands': ['NERDTreeToggle', 'NERDTreeFind']}}
             " }}}
 
             " Bufexplorer {{{

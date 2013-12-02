@@ -275,7 +275,9 @@
                 let NERDTreeKeepTreeInNewTab            = 1
                 let g:nerdtree_tabs_open_on_gui_startup = 0
 
-                NeoBundle 'jistr/vim-nerdtree-tabs'
+                NeoBundleLazy 'jistr/vim-nerdtree-tabs',
+                            \ {'depends': ['scrooloose/nerdtree'],
+                            \ 'autoload': {'commands': ['NERDTreeToggle', 'NERDTreeFind']}}
             " }}}
 
             " Bufexplorer {{{
@@ -372,7 +374,8 @@
                         \ {'autoload' :{'filetypes' :['c', 'c++']}}
             nnoremap <leader>ac :A<cr>
 
-            NeoBundle 'thinca/vim-quickrun'
+            NeoBundleLazy 'thinca/vim-quickrun',
+                        \ {'autoload': {'commands': ['QuickRun']}}
             nnoremap <leader>kr :QuickRun -outputter/buffer/into 1<cr>
 
             NeoBundle 'mattboehm/vim-unstack'
@@ -593,13 +596,6 @@
     " Lua {{{
         if count(g:dewdrops_bundle_groups, 'lua')
             NeoBundle 'xolox/vim-lua-ftplugin'
-        endif
-    " }}}
-
-    " Cucumber {{{
-        if count(g:dewdrops_bundle_groups, 'cucumber')
-            NeoBundle 'tpope/vim-cucumber'
-            NeoBundle 'quentindecock/vim-cucumber-align-pipes'
         endif
     " }}}
 
