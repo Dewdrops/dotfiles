@@ -1,7 +1,7 @@
 " Modeline and Notes {{{
 " vim: sw=4 ts=4 sts=4 et tw=80 foldmarker={{{,}}} foldlevel=0 foldmethod=marker
 "
-"   This is the personal .vimrc file of Dewdrops (v_v_4474@126.com). File structure and most code are
+"   This is the personal .vimrc file of Dewdrops (v_v_4474@126.com). some code are
 "   stolen from spf13-vim (https://github.com/spf13/spf13-vim).
 " }}}
 
