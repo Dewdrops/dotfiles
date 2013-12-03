@@ -374,6 +374,7 @@
                 NeoBundle 'tpope/vim-repeat'
                 NeoBundle 'tpope/vim-abolish.git'
                 NeoBundle 'chrisbra/NrrwRgn'
+                NeoBundle 'tommcdo/vim-lion'
 
                 NeoBundle 'Dewdrops/vim-unimpaired'
                 nmap <c-up> [e
