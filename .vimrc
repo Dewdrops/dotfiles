@@ -88,7 +88,7 @@
 
 " Vim UI {{{
 
-    " this is set in bundle.colorscheme section, for it may depend on bundles
+    " This is set in bundle.colorscheme section now, for it may depend on bundles
     " colo desert
 
     set tabpagemax=15               " Only show 15 tabs
@@ -315,7 +315,6 @@
                         \     'perl',
                         \     'python',
                         \     'ruby',
-                        \     'haskell',
                         \     'misc'
                         \ ]
         endif
