@@ -86,6 +86,60 @@
 
 " }}}
 
+" Vim UI {{{
+
+    " this is set in bundle.colorscheme section, for it may depend on bundles
+    " colo desert
+
+    set tabpagemax=15               " Only show 15 tabs
+    set showmode                    " Display the current mode
+
+    set lazyredraw                  " Don't redraw while executing macros
+
+    highlight clear SignColumn      " SignColumn should match background for
+                                    " things like vim-gitgutter
+
+    if has('cmdline_info')
+        set ruler                   " Show the ruler
+        set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
+        set showcmd                 " Show partial commands in status line and
+                                    " Selected characters/lines in visual mode
+    endif
+
+    if has('statusline')
+        set laststatus=2
+
+        " Broken down into easily includeable segments
+        set statusline=%<%f\                     " Filename
+        set statusline+=%w%h%m%r                 " Options
+        set statusline+=\ [%{&ff}/%Y]            " Filetype
+        set statusline+=\ [%{getcwd()}]          " Current directory
+        set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+    endif
+
+    set backspace=indent,eol,start     " Backspace for dummies
+    set linespace=0                    " No extra spaces between rows
+    set nu                             " Line numbers on
+    au BufEnter * set relativenumber   " relative line number for fast motion
+    set showmatch                      " Show matching brackets/parenthesis
+    set incsearch                      " Find as you type search
+    set hlsearch                       " Highlight search terms
+    set cursorline                     " Highlight current line
+    set winminheight=0                 " Windows can be 0 line high
+    set ignorecase                     " Case insensitive search
+    set smartcase                      " Case sensitive when uc present
+    set wildmenu                       " Show list instead of just completing
+    set wildmode=list:longest,full     " Command <Tab> completion, list matches, then longest common part, then all
+    set whichwrap=b,s,h,l,<,>,[,]      " Backspace and cursor keys wrap too
+    set scrolljump=1                   " Lines to scroll when cursor leaves screen
+    set scrolloff=3                    " Minimum lines to keep above and below cursor
+    set foldenable                     " Auto fold code
+    set list
+    set switchbuf=useopen,usetab
+    set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
+
+" }}}
+
 " Formatting {{{
 
     set autoindent                  " Indent at the same level of the previous line
@@ -269,11 +323,13 @@
 
     " Color Themes {{{
         if count(g:dewdrops_bundle_groups, 'theme')
-            NeoBundle 'Dewdrops/vim-tomorrow-theme'
             " NeoBundle 'jnurmine/Zenburn'
             " NeoBundle 'spf13/vim-colors'
             " NeoBundle 'flazz/vim-colorschemes'
             " NeoBundle 'godlygeek/csapprox'
+
+            NeoBundle 'Dewdrops/vim-tomorrow-theme'
+            colo Tomorrow-Night-Eighties
         endif
     "}}}
 
@@ -937,59 +993,6 @@
             let g:LatexBox_Folding = 1
         endif
     " }}}
-
-" }}}
-
-" Vim UI {{{
-
-    colo Tomorrow-Night-Eighties
-
-    set tabpagemax=15               " Only show 15 tabs
-    set showmode                    " Display the current mode
-
-    set lazyredraw                  " Don't redraw while executing macros
-
-    highlight clear SignColumn      " SignColumn should match background for
-                                    " things like vim-gitgutter
-
-    if has('cmdline_info')
-        set ruler                   " Show the ruler
-        set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
-        set showcmd                 " Show partial commands in status line and
-                                    " Selected characters/lines in visual mode
-    endif
-
-    if has('statusline')
-        set laststatus=2
-
-        " Broken down into easily includeable segments
-        set statusline=%<%f\                     " Filename
-        set statusline+=%w%h%m%r                 " Options
-        set statusline+=\ [%{&ff}/%Y]            " Filetype
-        set statusline+=\ [%{getcwd()}]          " Current directory
-        set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
-    endif
-
-    set backspace=indent,eol,start     " Backspace for dummies
-    set linespace=0                    " No extra spaces between rows
-    set nu                             " Line numbers on
-    au BufEnter * set relativenumber   " relative line number for fast motion
-    set showmatch                      " Show matching brackets/parenthesis
-    set incsearch                      " Find as you type search
-    set hlsearch                       " Highlight search terms
-    set cursorline                     " Highlight current line
-    set winminheight=0                 " Windows can be 0 line high
-    set ignorecase                     " Case insensitive search
-    set smartcase                      " Case sensitive when uc present
-    set wildmenu                       " Show list instead of just completing
-    set wildmode=list:longest,full     " Command <Tab> completion, list matches, then longest common part, then all
-    set whichwrap=b,s,h,l,<,>,[,]      " Backspace and cursor keys wrap too
-    set scrolljump=1                   " Lines to scroll when cursor leaves screen
-    set scrolloff=3                    " Minimum lines to keep above and below cursor
-    set foldenable                     " Auto fold code
-    set list
-    set switchbuf=useopen,usetab
-    set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 
 " }}}
 
