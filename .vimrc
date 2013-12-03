@@ -451,6 +451,7 @@
 
             " Motion {{{
                 NeoBundle 'thinca/vim-visualstar'
+                NeoBundle 'bruno-/vim-vertical-move'
                 NeoBundle 'terryma/vim-expand-region'
                 NeoBundle 'kana/vim-textobj-user'
                 NeoBundle 'kana/vim-textobj-indent'
