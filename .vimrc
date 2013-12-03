@@ -986,7 +986,7 @@
             NeoBundle 'xml.vim'
             NeoBundle 'jceb/vim-orgmode'
 
-            NeoBundle 'vim-scripts/vimwiki'
+            " NeoBundle 'vim-scripts/vimwiki'
             nmap <Leader>rr <Plug>VimwikiRenameLink
 
             NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
