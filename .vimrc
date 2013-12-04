@@ -206,8 +206,8 @@
     " nnoremap Y y$
 
     " swap 0 and ^ in normal mode
-    nnoremap 0 ^
-    nnoremap ^ 0
+    noremap 0 ^
+    noremap ^ 0
 
     " Code folding options
     nmap <leader>f0 :set foldlevel=0<cr>
@@ -986,9 +986,6 @@
             NeoBundle 'chrisbra/csv.vim'
             NeoBundle 'xml.vim'
             NeoBundle 'jceb/vim-orgmode'
-
-            " NeoBundle 'vim-scripts/vimwiki'
-            nmap <Leader>rr <Plug>VimwikiRenameLink
 
             NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
             let g:LatexBox_Folding = 1
