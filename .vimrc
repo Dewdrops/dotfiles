@@ -455,7 +455,6 @@
                 NeoBundle 'terryma/vim-expand-region'
                 NeoBundle 'kana/vim-textobj-user'
                 NeoBundle 'kana/vim-textobj-indent'
-                NeoBundle 'kana/vim-textobj-entire'
                 NeoBundle 'thinca/vim-textobj-between'
 
                 NeoBundle 'dahu/vim-fanfingtastic'
@@ -468,6 +467,8 @@
             " }}}
 
             " Misc {{{
+                NeoBundle 'vim-scripts/DrawIt'
+
                 NeoBundleLazy 'vim-scripts/EasyGrep',
                             \ {'autoload': {'commands': 'GrepOptions'}}
 
