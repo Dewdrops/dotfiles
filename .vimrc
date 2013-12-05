@@ -201,9 +201,7 @@
     cmap Tabe tabe
 
     " Yank from the cursor to the end of the line, to be consistent with C and D.
-    " this conflicts with Yankring
-    " see plugin section for working settings
-    " nnoremap Y y$
+    nnoremap Y y$
 
     " swap 0 and ^ in normal mode
     noremap 0 ^
@@ -439,14 +437,6 @@
 
                 NeoBundle 'osyo-manga/vim-over'
                 nnoremap <leader>ov :OverCommandLine<cr>:%s/
-
-                NeoBundle 'vim-scripts/YankRing.vim'
-                let g:yankring_replace_n_nkey = '<leader>.'
-                nnoremap <Leader>yr :YRShow<cr>
-                " make Y consistent with D and C
-                function! YRRunAfterMaps()
-                    nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
-                endfunction
             " }}}
 
             " Motion {{{

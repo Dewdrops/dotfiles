@@ -202,8 +202,8 @@
     " nnoremap Y y$
 
     " swap 0 and ^ in normal mode
-    nnoremap 0 ^
-    nnoremap ^ 0
+    noremap 0 ^
+    noremap ^ 0
 
     " Code folding options
     nmap <leader>f0 :set foldlevel=0<cr>
@@ -359,14 +359,6 @@
 
                 NeoBundle 'osyo-manga/vim-over'
                 nnoremap <leader>ov :OverCommandLine<cr>:%s/
-
-                NeoBundle 'vim-scripts/YankRing.vim'
-                let g:yankring_replace_n_nkey = '<leader>.'
-                nnoremap <Leader>yr :YRShow<cr>
-                " make Y consistent with D and C
-                function! YRRunAfterMaps()
-                    nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
-                endfunction
             " }}}
 
             " Motion {{{

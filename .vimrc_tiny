@@ -200,8 +200,8 @@
     nnoremap Y y$
 
     " swap 0 and ^ in normal mode
-    nnoremap 0 ^
-    nnoremap ^ 0
+    noremap 0 ^
+    noremap ^ 0
 
     " unimpaired-like binding
     nnoremap [b :bp<cr>
