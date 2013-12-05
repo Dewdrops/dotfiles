@@ -514,7 +514,6 @@
 
     " General Programming {{{
         if count(g:dewdrops_bundle_groups, 'programming')
-            NeoBundle 'xolox/vim-misc'
             NeoBundle 'scrooloose/syntastic'
             NeoBundle 'tpope/vim-endwise'
             NeoBundle 'tpope/vim-dispatch'
@@ -956,6 +955,7 @@
 
     " Lua {{{
         if count(g:dewdrops_bundle_groups, 'lua')
+            NeoBundle 'xolox/vim-misc'
             NeoBundle 'xolox/vim-lua-ftplugin'
         endif
     " }}}
