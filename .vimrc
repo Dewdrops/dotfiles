@@ -50,7 +50,6 @@
 
     " automatically switch to the current file directory when a new buffer is opened
     au BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
-    " Always switch to the current file directory
 
     set autowrite                       " Automatically write a file when leaving a modified buffer
     set autoread                        " reload automatically when file is changed outside
