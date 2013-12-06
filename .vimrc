@@ -509,7 +509,7 @@
             NeoBundle 'mutewinter/swap-parameters'
 
             NeoBundleLazy 'a.vim',
-                        \ {'autoload': {'filetypes': ['c', 'c++']}}
+                        \ {'autoload': {'commands': ['A']}}
             nnoremap <leader>ac :A<cr>
 
             NeoBundleLazy 'thinca/vim-quickrun',
