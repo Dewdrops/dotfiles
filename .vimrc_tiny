@@ -114,7 +114,9 @@
     set backspace=indent,eol,start     " Backspace for dummies
     set linespace=0                    " No extra spaces between rows
     set nu                             " Line numbers on
-    au BufEnter * set relativenumber   " relative line number for fast motion
+    if v:version >= 703
+        au BufEnter * set relativenumber   " relative line number for fast motion
+    endif
     set showmatch                      " Show matching brackets/parenthesis
     set incsearch                      " Find as you type search
     set hlsearch                       " Highlight search terms
