@@ -175,7 +175,7 @@
     map <C-L> <C-W>l
     map <C-H> <C-W>h
 
-    " Wrapped lines goes down/up to next row, rather than next line in file.
+    " Wrapped lines goes down/up to next row, rather than next line in file
     nnoremap j gj
     nnoremap k gk
     nnoremap gj j
@@ -448,7 +448,7 @@
                 NeoBundle 'thinca/vim-textobj-between'
 
                 NeoBundle 'dahu/vim-fanfingtastic'
-                let g:fanfingtastic_map_over_leader = 1
+                map <unique><silent> <leader><leader> <Plug>fanfingtastic_,
 
                 NeoBundle 'Lokaltog/vim-easymotion'
                 let EasyMotion_leader_key  = '<leader>em'

@@ -365,7 +365,7 @@
                 NeoBundle 'thinca/vim-visualstar'
 
                 NeoBundle 'dahu/vim-fanfingtastic'
-                let g:fanfingtastic_map_over_leader = 1
+                map <unique><silent> <leader><leader> <Plug>fanfingtastic_,
 
                 NeoBundle 'Lokaltog/vim-easymotion'
                 let EasyMotion_leader_key  = '<leader>em'
