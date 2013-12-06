@@ -364,7 +364,6 @@
                     \ 'fallback': 'find %s -type f'
                 \ }
 
-                let g:ctrlp_map                 = 'gh'
                 let g:ctrlp_cmd                 = 'CtrlPMixed'
                 let g:ctrlp_working_path_mode   = 'rc'
                 let g:ctrlp_clear_cache_on_exit = 1
