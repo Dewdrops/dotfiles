@@ -6,9 +6,7 @@
 
 " Environment {
 
-    " Basics {
-        set nocompatible        " Must be first line
-    " }
+    set nocompatible        " Must be first line
 
     " Windows Compatible {
         " On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
@@ -310,6 +308,8 @@
     " GVIM- (here instead of .gvimrc)
     if has('gui_running')
         set guioptions-=T           " Remove the toolbar
+        set guioptions-=m           " Remove the menubar
+        set guioptions-=r           " Remove the scrollbar
         set lines=40                " 40 lines of text instead of 24
         if has("gui_gtk2")
             set guifont=Andale\ Mono\ Regular\ 16,Menlo\ Regular\ 15,Consolas\ Regular\ 16,Courier\ New\ Regular\ 18
