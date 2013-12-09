@@ -458,6 +458,7 @@
 
             " Misc {{{
                 NeoBundle 'vim-scripts/DrawIt'
+                NeoBundle 'szw/vim-maximizer'
 
                 NeoBundleLazy 'vim-scripts/EasyGrep',
                             \ {'autoload': {'commands': 'GrepOptions'}}
