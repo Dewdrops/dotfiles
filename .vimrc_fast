@@ -306,7 +306,7 @@
             let g:dewdrops_bundle_groups = [
                         \     'general',
                         \     'programming',
-                        \     'misc'
+                        \     'git'
                         \ ]
         endif
     " }}}
@@ -412,7 +412,6 @@
 
     " General Programming {{{
         if count(g:dewdrops_bundle_groups, 'programming')
-            NeoBundle 'xolox/vim-misc'
             NeoBundle 'tpope/vim-endwise'
             NeoBundle 'mutewinter/swap-parameters'
 
@@ -423,9 +422,6 @@
             NeoBundleLazy 'thinca/vim-quickrun',
                         \ {'autoload': {'commands': ['QuickRun']}}
             nnoremap <leader>kr :QuickRun -outputter/buffer/into 1<cr>
-
-            NeoBundle 'mattboehm/vim-unstack'
-            let g:unstack_mapkey='<leader>us'
 
             NeoBundle 'AndrewRadev/splitjoin.vim'
             let g:splitjoin_split_mapping = 'cS'
@@ -509,21 +505,6 @@
                     nnoremap <silent><leader>tt :TagbarToggle<cr>
                     nnoremap <silent><f8> :TagbarToggle<cr>
                     inoremap <silent><f8> <esc>:TagbarToggle<cr>a
-
-                    " If using go please install the gotags program using the following
-                    " go install github.com/jstemmer/gotags
-                    " And make sure gotags is in your path
-                    let g:tagbar_type_go = {
-                        \ 'ctagstype' : 'go',
-                        \ 'kinds'     : [  'p:package', 'i:imports:1', 'c:constants', 'v:variables',
-                            \ 't:types',  'n:interfaces', 'w:fields', 'e:embedded', 'm:methods',
-                            \ 'r:constructor', 'f:functions' ],
-                        \ 'sro' : '.',
-                        \ 'kind2scope' : { 't' : 'ctype', 'n' : 'ntype' },
-                        \ 'scope2kind' : { 'ctype' : 't', 'ntype' : 'n' },
-                        \ 'ctagsbin'  : 'gotags',
-                        \ 'ctagsargs' : '-sort -silent'
-                        \ }
                 endif
             " }}}
 
@@ -641,6 +622,7 @@
 
     " Lua {{{
         if count(g:dewdrops_bundle_groups, 'lua')
+            NeoBundle 'xolox/vim-misc'
             NeoBundle 'xolox/vim-lua-ftplugin'
         endif
     " }}}
