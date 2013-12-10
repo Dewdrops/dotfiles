@@ -641,6 +641,10 @@
 
     " Git {{{
         if count(g:dewdrops_bundle_groups, 'git')
+            NeoBundleLazy 'rhysd/git-messenger.vim',
+                        \ {'autoload': {'commands': 'GitMessengerToggle'}}
+            nnoremap <leader>gm :Gstatus<cr>
+
             NeoBundle 'tpope/vim-fugitive'
             nnoremap <leader>gs :Gstatus<cr>
             nnoremap <leader>gd :Gdiff<cr>
