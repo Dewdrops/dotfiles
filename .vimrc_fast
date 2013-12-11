@@ -263,8 +263,10 @@
     nnoremap za za:echo &foldlevel<cr>
 
     " use gy and gp to work with system's clipboard
-    noremap gy "+y
-    noremap gp "+p
+    nnoremap gy "+y
+    nnoremap gp "+p
+    vnoremap gy "+y
+    vnoremap gp "+p
 
     " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
     nmap <M-j> mz:m+<cr>`z
