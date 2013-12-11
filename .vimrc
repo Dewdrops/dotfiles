@@ -428,6 +428,7 @@
                 NeoBundle 'tpope/vim-abolish.git'
                 NeoBundle 'chrisbra/NrrwRgn'
                 NeoBundle 'tommcdo/vim-lion'
+                NeoBundle 'tommcdo/vim-exchange'
 
                 NeoBundle 'Dewdrops/vim-unimpaired'
                 nmap <c-up> [e
