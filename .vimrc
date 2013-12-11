@@ -421,6 +421,22 @@
                 au BufWinEnter \[Buf\ List\] setlocal nonumber
             " }}}
 
+            " Seek {{{
+                NeoBundle 'goldfeld/vim-seek'
+                let g:SeekKey = 'S'
+                let g:SeekBackKey = '<leader>S'
+                let g:seekJumpPresentialInnerKey = 'gp'
+                let g:seekBackJumpPresentialInnerKey = 'gP'
+                let g:seekJumpRemoteInnerKey = 'gu'
+                let g:seekBackJumpRemoteInnerKey = 'gU'
+                let g:seekJumpPresentialAroundKey = 'p'
+                let g:seekBackJumpPresentialAroundKey = 'P'
+                let g:seekJumpRemoteAroundKey = 'u'
+                let g:seekBackJumpRemoteAroundKey = 'U'
+                let g:seek_enable_jumps = 1
+                let g:seek_enable_jumps_in_diff = 1
+            " }}}
+
             " Edit {{{
                 NeoBundle 'jiangmiao/auto-pairs'
                 NeoBundle 'tpope/vim-surround'
