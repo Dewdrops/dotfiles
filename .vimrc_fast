@@ -368,7 +368,6 @@
                 NeoBundle 'jiangmiao/auto-pairs'
                 NeoBundle 'tpope/vim-surround'
                 NeoBundle 'tpope/vim-repeat'
-                NeoBundle 'chrisbra/NrrwRgn'
                 NeoBundle 'tommcdo/vim-exchange'
 
                 NeoBundle 'Dewdrops/vim-unimpaired'
