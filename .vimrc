@@ -461,10 +461,16 @@
             " Motion {{{
                 NeoBundle 'thinca/vim-visualstar'
                 NeoBundle 'bruno-/vim-vertical-move'
-                NeoBundle 'terryma/vim-expand-region'
                 NeoBundle 'kana/vim-textobj-user'
                 NeoBundle 'kana/vim-textobj-indent'
                 NeoBundle 'thinca/vim-textobj-between'
+
+                NeoBundle 'terryma/vim-expand-region'
+                nmap + <Plug>(expand_region_expand)
+                vmap + <Plug>(expand_region_expand)
+                vmap x <Plug>(expand_region_expand)
+                vmap _ <Plug>(expand_region_shrink)
+                vmap X <Plug>(expand_region_shrink)
 
                 NeoBundle 'dahu/vim-fanfingtastic'
                 map <unique><silent> <leader><leader> <Plug>fanfingtastic_,
