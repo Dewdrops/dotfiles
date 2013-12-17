@@ -694,12 +694,10 @@
     " Snippets & AutoComplete {{{
 
         if count(g:dewdrops_bundle_groups, 'snipmate')
-            NeoBundle 'garbas/vim-snipmate'
             NeoBundle 'honza/vim-snippets'
-            " Source support_function.vim to support vim-snippets
-            if filereadable(expand("~/.vim/bundle/vim-snippets/snippets/support_functions.vim"))
-                source ~/.vim/bundle/vim-snippets/snippets/support_functions.vim
-            endif
+
+            NeoBundle 'garbas/vim-snipmate'
+            let g:snips_author = 'Dewdrops <v_v_4474@126.com>'
         elseif count(g:dewdrops_bundle_groups, 'neocomplete')
             if has('lua') && (v:version > 703 || v:version == 703 && has('patch885'))
                 NeoBundle 'Shougo/unite.vim'
@@ -849,11 +847,6 @@
             endif
         " }}}
 
-        " SnipMate {{{
-            " Setting the author var
-            let g:snips_author = 'Dewdrops <v_v_4474@126.com>'
-        " }}}
-
         " YouCompleteMe {{{
             let g:ycm_complete_in_comments_and_strings = 1
             let g:ycm_key_list_select_completion       = ['<tab>', '<C-n>', '<Down>']
@@ -892,7 +885,7 @@
             NeoBundle 'python_match.vim'
 
             NeoBundle 'klen/python-mode'
-            let g:pymode_doc = 1
+            let g:pymode_doc      = 1
             let g:pymode_doc_bind = 'K'
             " Disable if python support not present
             if !has('python')
