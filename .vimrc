@@ -892,6 +892,8 @@
             NeoBundle 'python_match.vim'
 
             NeoBundle 'klen/python-mode'
+            let g:pymode_doc = 1
+            let g:pymode_doc_bind = 'K'
             " Disable if python support not present
             if !has('python')
                 let g:pymode = 1
