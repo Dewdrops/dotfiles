@@ -456,6 +456,10 @@
 
                 NeoBundle 'osyo-manga/vim-over'
                 nnoremap <leader>ov :OverCommandLine<cr>:%s/
+
+                NeoBundleLazy 'bilalq/lite-dfm',
+                            \ {'autoload': {'commands': 'LiteDFMToggle'}}
+                nnoremap <silent><leader>ld :LiteDFMToggle<cr>
             " }}}
 
             " Motion {{{
