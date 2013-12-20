@@ -446,7 +446,6 @@
                 NeoBundle 'tpope/vim-abolish.git'
                 NeoBundle 'chrisbra/NrrwRgn'
                 NeoBundle 'tommcdo/vim-lion'
-                NeoBundle 'tommcdo/vim-exchange'
 
                 NeoBundle 'Dewdrops/vim-unimpaired'
                 nmap <c-up> [e
@@ -454,8 +453,17 @@
                 vmap <c-up> [e
                 vmap <c-down> ]e
 
-                NeoBundle 'osyo-manga/vim-over'
+                NeoBundleLazy 'osyo-manga/vim-over',
+                            \ {'autoload': {'commands': 'OverCommandLine'}}
                 nnoremap <leader>ov :OverCommandLine<cr>:%s/
+
+                NeoBundleLazy 'tommcdo/vim-exchange',
+                            \ {'autoload': {'mappings': ['<Plug>Exchange', '<Plug>ExchangeLine']}}
+                let g:exchange_no_mappings = 1
+                nmap gx <Plug>Exchange
+                vmap gx <Plug>Exchange
+                nmap gxc <Plug>ExchangeClear
+                nmap gxx <Plug>ExchangeLine
 
                 NeoBundleLazy 'bilalq/lite-dfm',
                             \ {'autoload': {'commands': 'LiteDFMToggle'}}
