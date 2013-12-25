@@ -548,6 +548,10 @@
             NeoBundle 'tpope/vim-dispatch'
             NeoBundle 'mutewinter/swap-parameters'
 
+            NeoBundleLazy 'Chiel92/vim-autoformat',
+                        \ {'autoload': {'commands': 'Autoformat'}}
+            nnoremap <leader>gq :Autoformat<cr>
+
             NeoBundleLazy 'a.vim',
                         \ {'autoload': {'commands': ['A']}}
             nnoremap <leader>ac :A<cr>
