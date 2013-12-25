@@ -436,15 +436,34 @@
                 let g:seek_enable_jumps = 1
             " }}}
 
+            " vim-lion {{{
+                NeoBundleLazy 'tommcdo/vim-lion',
+                            \ {'autoload': {'mappings':
+                            \ ['<Plug>LionRight', '<Plug>VLionRight',
+                            \ '<Plug>LionLeft', '<Plug>VLionLeft',
+                            \ '<Plug>LionEqual', '<Plug>VLionEqual',
+                            \ '<Plug>LionColon', '<Plug>VLionColon']}}
+                let g:lion_create_maps = 0
+                nmap <silent> gl <Plug>LionRight
+                vmap <silent> gl <Plug>VLionRight
+                nmap <silent> gL <Plug>LionLeft
+                vmap <silent> gL <Plug>VLionLeft
+                nmap <silent> g= <Plug>LionEqual
+                vmap <silent> g= <Plug>VLionEqual
+                nmap <silent> g: <Plug>LionColon
+                vmap <silent> g: <Plug>VLionColon
+            " }}}
+
             " Edit {{{
                 NeoBundle 'jiangmiao/auto-pairs'
                 NeoBundle 'tpope/vim-surround'
                 NeoBundle 'terryma/vim-multiple-cursors'
                 NeoBundle 'tpope/vim-speeddating'
                 NeoBundle 'tpope/vim-repeat'
-                NeoBundle 'tpope/vim-abolish.git'
                 NeoBundle 'chrisbra/NrrwRgn'
-                NeoBundle 'tommcdo/vim-lion'
+
+                NeoBundle 'tpope/vim-abolish.git'
+                nnoremap <leader>sv :%Subvert/
 
                 NeoBundle 'Dewdrops/vim-unimpaired'
                 nmap <c-up> [e
@@ -548,6 +567,13 @@
             NeoBundle 'tpope/vim-dispatch'
             NeoBundle 'mutewinter/swap-parameters'
 
+            NeoBundle 'AndrewRadev/splitjoin.vim'
+            let g:splitjoin_split_mapping = 'cS'
+            let g:splitjoin_join_mapping  = 'cJ'
+
+            NeoBundle 'matchit.zip'
+            let b:match_ignorecase = 1
+
             NeoBundleLazy 'Chiel92/vim-autoformat',
                         \ {'autoload': {'commands': 'Autoformat'}}
             nnoremap <leader>gq :Autoformat<cr>
@@ -559,16 +585,6 @@
             NeoBundleLazy 'thinca/vim-quickrun',
                         \ {'autoload': {'commands': ['QuickRun']}}
             nnoremap <leader>kr :QuickRun -outputter/buffer/into 1<cr>
-
-            NeoBundle 'mattboehm/vim-unstack'
-            let g:unstack_mapkey='<leader>us'
-
-            NeoBundle 'AndrewRadev/splitjoin.vim'
-            let g:splitjoin_split_mapping = 'cS'
-            let g:splitjoin_join_mapping  = 'cJ'
-
-            NeoBundle 'matchit.zip'
-            let b:match_ignorecase = 1
 
             " tcomment {{{
                 NeoBundle 'tomtom/tcomment_vim'
