@@ -435,6 +435,7 @@
                 NeoBundle 'szw/vim-maximizer'
                 NeoBundle 'goldfeld/ctrlr.vim'
                 NeoBundle 'justinmk/vim-gtfo'
+                NeoBundle 'szw/vim-kompleter'
 
                 NeoBundleLazy 'vim-scripts/EasyGrep',
                             \ {'autoload': {'commands': 'GrepOptions'}}
