@@ -425,16 +425,15 @@
                 NeoBundle 'goldfeld/vim-seek'
                 let g:SeekKey = 'S'
                 let g:SeekBackKey = '<leader>S'
-                let g:seekJumpPresentialInnerKey = 'gp'
-                let g:seekBackJumpPresentialInnerKey = 'gP'
+                let g:seekJumpPresentialInnerKey = 'gz'
+                let g:seekBackJumpPresentialInnerKey = 'gZ'
                 let g:seekJumpRemoteInnerKey = 'gu'
                 let g:seekBackJumpRemoteInnerKey = 'gU'
-                let g:seekJumpPresentialAroundKey = 'p'
-                let g:seekBackJumpPresentialAroundKey = 'P'
+                let g:seekJumpPresentialAroundKey = 'z'
+                let g:seekBackJumpPresentialAroundKey = 'Z'
                 let g:seekJumpRemoteAroundKey = 'u'
                 let g:seekBackJumpRemoteAroundKey = 'U'
                 let g:seek_enable_jumps = 1
-                let g:seek_enable_jumps_in_diff = 1
             " }}}
 
             " Edit {{{

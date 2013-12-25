@@ -156,6 +156,8 @@
     set foldlevel=99
 
     " Remove trailing whitespaces and ^M chars
+    au FileType c,cpp,java,go,php,javascript,python,twig,xml,yml au BufWritePre <buffer> call StripTrailingWhitespace()
+    au FileType go au BufWritePre <buffer> Fmt
     au FileType python setlocal fdm=indent
     au FileType org setlocal fdm=expr
     au BufNewFile,BufRead *.html.twig set filetype=html.twig
@@ -172,7 +174,7 @@
     map <C-L> <C-W>l
     map <C-H> <C-W>h
 
-    " Wrapped lines goes down/up to next row, rather than next line in file.
+    " Wrapped lines goes down/up to next row, rather than next line in file
     nnoremap j gj
     nnoremap k gk
     nnoremap gj j
@@ -352,23 +354,26 @@
                 NeoBundle 'goldfeld/vim-seek'
                 let g:SeekKey = 'S'
                 let g:SeekBackKey = '<leader>S'
-                let g:seekJumpPresentialInnerKey = 'gp'
-                let g:seekBackJumpPresentialInnerKey = 'gP'
+                let g:seekJumpPresentialInnerKey = 'gz'
+                let g:seekBackJumpPresentialInnerKey = 'gZ'
                 let g:seekJumpRemoteInnerKey = 'gu'
                 let g:seekBackJumpRemoteInnerKey = 'gU'
-                let g:seekJumpPresentialAroundKey = 'p'
-                let g:seekBackJumpPresentialAroundKey = 'P'
+                let g:seekJumpPresentialAroundKey = 'z'
+                let g:seekBackJumpPresentialAroundKey = 'Z'
                 let g:seekJumpRemoteAroundKey = 'u'
                 let g:seekBackJumpRemoteAroundKey = 'U'
                 let g:seek_enable_jumps = 1
-                let g:seek_enable_jumps_in_diff = 1
             " }}}
 
             " Edit {{{
                 NeoBundle 'jiangmiao/auto-pairs'
                 NeoBundle 'tpope/vim-surround'
+                NeoBundle 'terryma/vim-multiple-cursors'
+                NeoBundle 'tpope/vim-speeddating'
                 NeoBundle 'tpope/vim-repeat'
-                NeoBundle 'tommcdo/vim-exchange'
+                NeoBundle 'tpope/vim-abolish.git'
+                NeoBundle 'chrisbra/NrrwRgn'
+                NeoBundle 'tommcdo/vim-lion'
 
                 NeoBundle 'Dewdrops/vim-unimpaired'
                 nmap <c-up> [e
@@ -376,12 +381,26 @@
                 vmap <c-up> [e
                 vmap <c-down> ]e
 
-                NeoBundle 'osyo-manga/vim-over'
+                NeoBundleLazy 'osyo-manga/vim-over',
+                            \ {'autoload': {'commands': 'OverCommandLine'}}
                 nnoremap <leader>ov :OverCommandLine<cr>:%s/
+
+                NeoBundleLazy 'tommcdo/vim-exchange',
+                            \ {'autoload': {'mappings': ['<Plug>Exchange', '<Plug>ExchangeLine']}}
+                let g:exchange_no_mappings = 1
+                nmap gx <Plug>Exchange
+                vmap gx <Plug>Exchange
+                nmap gxc <Plug>ExchangeClear
+                nmap gxx <Plug>ExchangeLine
+
+                NeoBundleLazy 'bilalq/lite-dfm',
+                            \ {'autoload': {'commands': 'LiteDFMToggle'}}
+                nnoremap <silent><leader>ld :LiteDFMToggle<cr>
             " }}}
 
             " Motion {{{
                 NeoBundle 'thinca/vim-visualstar'
+                NeoBundle 'bruno-/vim-vertical-move'
 
                 NeoBundle 'dahu/vim-fanfingtastic'
                 map <unique><silent> <leader><leader> <Plug>fanfingtastic_,
@@ -393,6 +412,11 @@
             " }}}
 
             " Misc {{{
+                NeoBundle 'vim-scripts/DrawIt'
+                NeoBundle 'szw/vim-maximizer'
+                NeoBundle 'goldfeld/ctrlr.vim'
+                NeoBundle 'justinmk/vim-gtfo'
+
                 NeoBundleLazy 'vim-scripts/EasyGrep',
                             \ {'autoload': {'commands': 'GrepOptions'}}
 
@@ -400,6 +424,11 @@
                             \ {'autoload': {'commands': ['Calendar', 'CalendarH']}}
                 nnoremap <leader>cal :Calendar<cr>
                 nnoremap <leader>caL :CalendarH<cr>
+
+                NeoBundle 'vim-scripts/sessionman.vim'
+                set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
+                nmap <leader>sl :SessionList<cr>
+                nmap <leader>ss :SessionSave<cr>
 
                 NeoBundleLazy 'rbgrouleff/bclose.vim',
                             \ {'autoload': {'commands': ['Bclose']}}
@@ -431,7 +460,12 @@
     " General Programming {{{
         if count(g:dewdrops_bundle_groups, 'programming')
             NeoBundle 'tpope/vim-endwise'
+            NeoBundle 'tpope/vim-dispatch'
             NeoBundle 'mutewinter/swap-parameters'
+
+            NeoBundleLazy 'Chiel92/vim-autoformat',
+                        \ {'autoload': {'commands': 'Autoformat'}}
+            nnoremap <leader>gq :Autoformat<cr>
 
             NeoBundleLazy 'a.vim',
                         \ {'autoload': {'commands': ['A']}}
@@ -533,10 +567,15 @@
         if count(g:dewdrops_bundle_groups, 'git')
             NeoBundle 'mhinz/vim-signify'
 
+            NeoBundleLazy 'rhysd/git-messenger.vim',
+                        \ {'autoload': {'commands': 'GitMessengerToggle'}}
+            nnoremap <leader>gm :Gstatus<cr>
+
             NeoBundle 'tpope/vim-fugitive'
             nnoremap <leader>gs :Gstatus<cr>
             nnoremap <leader>gd :Gdiff<cr>
             nnoremap <leader>gc :Gcommit<cr>
+            nnoremap <leader>ga :Gcommit --amend<cr>
             nnoremap <leader>gb :Gblame<cr>
             nnoremap <leader>gl :Glog<cr>
             nnoremap <leader>gp :Git push https://github.com/Dewdrops/
@@ -569,6 +608,8 @@
             NeoBundle 'python_match.vim'
 
             NeoBundle 'klen/python-mode'
+            let g:pymode_doc      = 1
+            let g:pymode_doc_bind = 'K'
             " Disable if python support not present
             if !has('python')
                 let g:pymode = 1
@@ -587,6 +628,13 @@
 
             NeoBundle 'elzr/vim-json'
             nmap <leader>jt <Esc>:%!python -m json.tool<cr><Esc>:set filetype=json<cr>
+        endif
+    " }}}
+
+    " Scala {{{
+        if count(g:dewdrops_bundle_groups, 'scala')
+            NeoBundle 'derekwyatt/vim-scala'
+            NeoBundle 'derekwyatt/vim-sbt'
         endif
     " }}}
 
@@ -634,10 +682,36 @@
         endif
     " }}}
 
+    " CSharp {{{
+        if count(g:dewdrops_bundle_groups, 'csharp')
+            NeoBundle 'nosami/Omnisharp'
+        endif
+    " }}}
+
     " Lua {{{
         if count(g:dewdrops_bundle_groups, 'lua')
             NeoBundle 'xolox/vim-misc'
             NeoBundle 'xolox/vim-lua-ftplugin'
+        endif
+    " }}}
+
+    " Go Lang {{{
+        if count(g:dewdrops_bundle_groups, 'go')
+            NeoBundle 'jnwhiteh/vim-golang'
+            NeoBundle 'spf13/vim-gocode'
+        endif
+    " }}}
+
+    " Cucumber {{{
+        if count(g:dewdrops_bundle_groups, 'cucumber')
+            NeoBundle 'tpope/vim-cucumber'
+            NeoBundle 'quentindecock/vim-cucumber-align-pipes'
+        endif
+    " }}}
+
+    " Puppet {{{
+        if count(g:dewdrops_bundle_groups, 'puppet')
+            NeoBundle 'Puppet-Syntax-Highlighting'
         endif
     " }}}
 
