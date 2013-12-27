@@ -1,20 +1,20 @@
-" Modeline and Notes {
-" vim: sw=4 ts=4 sts=4 et tw=80 foldmarker={,} foldlevel=0 foldmethod=marker
+" Modeline and Notes {{{
+" vim: sw=4 ts=4 sts=4 et tw=80 foldmarker={{{,}}} foldlevel=0 foldmethod=marker
 "
 "   This is the tiny version of my .vimrc. It doesn't depend on any plugin.
-" }
+" }}}
 
-" Environment {
+" Environment {{{
 
     set nocompatible        " Must be first line
 
-    " Windows Compatible {
-        " On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
-        " across (heterogeneous) systems easier
-        if has('win32') || has('win64')
-          set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+    " Windows Compatible {{{
+    " On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
+    " across (heterogeneous) systems easier
+    if has('win32') || has('win64')
+        set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
 
-          if has("multi_byte")
+        if has("multi_byte")
             " Windows cmd.exe still uses cp850. If Windows ever moved to
             " Powershell as the primary terminal, this would be utf-8
             set termencoding=cp850
@@ -24,11 +24,12 @@
             set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
           endif
         endif
-    " }
+    endif
+    " }}}
 
-" }
+" }}}
 
-" General {
+" General {{{
 
     set background=dark         " Assume a dark background
     filetype plugin indent on   " Automatically detect file types
@@ -70,18 +71,17 @@
     autocmd BufWritePost,WinLeave,BufWinLeave ?* if MakeViewCheck() | mkview | endif
     autocmd BufWinEnter ?* if MakeViewCheck() | silent! loadview | endif
 
-    " Setting up the directories {
-        set backup                      " Backups are nice ...
-        if has('persistent_undo')
-            set undofile                " So is persistent undo ...
-            set undolevels=1000         " Maximum number of changes that can be undone
-            set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
-        endif
-    " }
+    " Setting up the directories
+    set backup                      " Backups are nice ...
+    if has('persistent_undo')
+        set undofile                " So is persistent undo ...
+        set undolevels=1000         " Maximum number of changes that can be undone
+        set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
+    endif
 
-" }
+" }}}
 
-" Vim UI {
+" Vim UI {{{
 
     colo ron
 
@@ -89,6 +89,9 @@
     set showmode                    " Display the current mode
 
     set lazyredraw                  " Don't redraw while executing macros
+
+    highlight clear SignColumn      " SignColumn should match background for
+                                    " things like vim-gitgutter
 
     if has('cmdline_info')
         set ruler                   " Show the ruler
@@ -131,9 +134,9 @@
     set switchbuf=useopen,usetab
     set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 
-" }
+" }}}
 
-" Formatting {
+" Formatting {{{
 
     set autoindent                  " Indent at the same level of the previous line
     set shiftwidth=4                " Use indents of 4 spaces
@@ -153,9 +156,9 @@
     au FileType c,cpp,java,go,php,javascript,python,xml,yml au BufWritePre <buffer> call StripTrailingWhitespace()
     au FileType python setlocal fdm=indent
 
-" }
+" }}}
 
-" Key (re)Mappings {
+" Key (re)Mappings {{{
 
     let mapleader = ','
 
@@ -165,7 +168,7 @@
     map <C-L> <C-W>l
     map <C-H> <C-W>h
 
-    " Wrapped lines goes down/up to next row, rather than next line in file.
+    " Wrapped lines goes down/up to next row, rather than next line in file
     nnoremap j gj
     nnoremap k gk
     nnoremap gj j
@@ -299,9 +302,9 @@
     nnoremap <leader>; mMA;<esc>`M
     nnoremap <f5> :%TOhtml<cr>
 
-" }
+" }}}
 
-" GUI Settings {
+" GUI Settings {{{
 
     " GVIM- (here instead of .gvimrc)
     if has('gui_running')
@@ -325,11 +328,11 @@
         endif
     endif
 
-" }
+" }}}
 
-" Functions {
+" Functions {{{
 
-    " Initialize directories {
+    " Initialize directories {{{
     function! InitializeDirectories()
         let parent = $HOME
         let prefix = 'vim'
@@ -362,9 +365,9 @@
             endif
         endfor
     endfunction
-    " }
+    " }}}
 
-    " Strip whitespace {
+    " Strip whitespace {{{
     function! StripTrailingWhitespace()
         " Preparation: save last search, and cursor position.
         let _s = @/
@@ -376,41 +379,41 @@
         let @/ = _s
         call cursor(l, c)
     endfunction
-    " }
+    " }}}
 
-" Don't close window, when deleting a buffer {
-command! Bclose call <SID>BufcloseCloseIt()
-function! <SID>BufcloseCloseIt()
-    let l:currentBufNum = bufnr("%")
-    let l:alternateBufNum = bufnr("#")
-    if buflisted(l:alternateBufNum)
-        buffer #
-    else
-        bnext
-    endif
-    if bufnr("%") == l:currentBufNum
-        new
-    endif
-    if buflisted(l:currentBufNum)
-        execute("bdelete! ".l:currentBufNum)
-    endif
-endfunction
-" }
+    " Don't close window, when deleting a buffer {{{
+    command! Bclose call <SID>BufcloseCloseIt()
+    function! <SID>BufcloseCloseIt()
+        let l:currentBufNum = bufnr("%")
+        let l:alternateBufNum = bufnr("#")
+        if buflisted(l:alternateBufNum)
+            buffer #
+        else
+            bnext
+        endif
+        if bufnr("%") == l:currentBufNum
+            new
+        endif
+        if buflisted(l:currentBufNum)
+            execute("bdelete! ".l:currentBufNum)
+        endif
+    endfunction
+    " }}}
 
-" Check whether to load/restore view {
-function! MakeViewCheck()
-    if has('quickfix') && &buftype =~ 'nofile' | return 0 | endif
-    if expand('%') =~ '\[.*\]' | return 0 | endif
-    if empty(glob(expand('%:p'))) | return 0 | endif
-    if &modifiable == 0 | return 0 | endif
-    if len($TEMP) && expand('%:p:h') == $TEMP | return 0 | endif
-    if len($TMP) && expand('%:p:h') == $TMP | return 0 | endif
-    return 1
-endfunction
-" }
+    " Check whether to load/restore view {{{
+    function! MakeViewCheck()
+        if has('quickfix') && &buftype =~ 'nofile' | return 0 | endif
+        if expand('%') =~ '\[.*\]' | return 0 | endif
+        if empty(glob(expand('%:p'))) | return 0 | endif
+        if &modifiable == 0 | return 0 | endif
+        if len($TEMP) && expand('%:p:h') == $TEMP | return 0 | endif
+        if len($TMP) && expand('%:p:h') == $TMP | return 0 | endif
+        return 1
+    endfunction
+    " }}}
 
-" }
+" }}}
 
-" Finish local initializations {
+" Finish local initializations {{{
     call InitializeDirectories()
-" }
+" }}}
