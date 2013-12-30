@@ -22,7 +22,6 @@
             set encoding=utf-8
             setglobal fileencoding=utf-8
             set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
-          endif
         endif
     endif
     " }}}
@@ -47,14 +46,15 @@
     " automatically switch to the current file directory when a new buffer is opened
     au BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 
-    set autowrite                       " Automatically write a file when leaving a modified buffer
-    set autoread                        " reload automatically when file is changed outside
-    set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
+    set autowrite                           " Automatically write a file when leaving a modified buffer
+    set autoread                            " reload automatically when file is changed outside
+    set shortmess+=filmnrxoOtT              " Abbrev. of messages (avoids 'hit enter')
     set viewoptions=folds,cursor,unix,slash " Better Unix / Windows compatibility
-    set virtualedit=onemore             " Allow for cursor beyond last character
-    set history=1000                    " Store a ton of history (default is 20)
-    set hidden                          " Allow buffer switching without saving
-    set ttimeoutlen=50                  " dimish the pause when leaving insert mode
+    set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
+    set virtualedit=onemore                 " Allow for cursor beyond last character
+    set history=1000                        " Store a ton of history (default is 20)
+    set hidden                              " Allow buffer switching without saving
+    set ttimeoutlen=50                      " dimish the pause when leaving insert mode
 
     " spell check when writing commit logs
     au filetype svn,*commit* setlocal spell

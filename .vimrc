@@ -77,9 +77,9 @@
     autocmd BufWinEnter ?* if MakeViewCheck() | silent! loadview | endif
 
     " Setting up the directories
-    set backup                      " Backups are nice ...
+    set backup
     if has('persistent_undo')
-        set undofile                " So is persistent undo ...
+        set undofile
         set undolevels=1000         " Maximum number of changes that can be undone
         set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
     endif
@@ -495,14 +495,12 @@
                 NeoBundle 'kien/tabman.vim'
 
                 NeoBundle 'bling/vim-airline'
-                if !has("gui_running")
-                    " let g:airline_powerline_fonts = 1
-                endif
                 let g:airline#extensions#hunks#non_zero_only = 1
 
-                if has('gui_running')
-                    NeoBundle 'spolu/dwm.vim'
-                endif
+                NeoBundle 'spolu/dwm.vim'
+                nmap <leader>/ <Plug>DWMFocus
+                nmap g. <Plug>DWMRotateClockwise
+                nmap g/ <Plug>DWMRotateCounterclockwise
 
                 if count(g:dewdrops_bundle_groups, 'extra')
                     NeoBundle 'Dewdrops/vim-tomorrow-theme'
@@ -747,9 +745,6 @@
             NeoBundle 'Valloric/YouCompleteMe'
             " NeoBundle 'SirVer/ultisnips'
         endif
-
-        " NeoBundle 'szw/vim-kompleter'
-        " let g:kompleter_case_sensitive = 0
 
         " OmniComplete {{{
             if has("autocmd") && exists("+omnifunc")
