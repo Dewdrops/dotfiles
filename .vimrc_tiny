@@ -8,6 +8,11 @@
 
     set nocompatible        " Must be first line
 
+    redir => output
+    silent execute 'scriptnames'
+    redir END
+    let g:dewdrops_invoked_as_dotvimrc = len(split(output, '\n')) == 1 ? 1 : 0
+
     " Windows Compatible {{{
     " On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
     " across (heterogeneous) systems easier
@@ -72,9 +77,9 @@
     autocmd BufWinEnter ?* if MakeViewCheck() | silent! loadview | endif
 
     " Setting up the directories
-    set backup                      " Backups are nice ...
+    set backup
     if has('persistent_undo')
-        set undofile                " So is persistent undo ...
+        set undofile
         set undolevels=1000         " Maximum number of changes that can be undone
         set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
     endif
@@ -237,7 +242,6 @@
     cmap w!! w !sudo tee % >/dev/null
 
     " Some helpers to edit mode
-    " http://vimcasts.org/e/14
     cnoremap %% <C-R>=expand('%:p:h').'/'<cr>
     map <leader>ew :e %%
     map <leader>es :sp %%
