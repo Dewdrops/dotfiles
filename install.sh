@@ -4,7 +4,7 @@ set +e
 
 scriptdir=$(dirname $(readlink -e $0))
 
-for f in .vimrc .vimperator .vimperatorrc .bashrc .zshrc .gitconfig .wgetrc .inputrc
+for f in .vimrc .vimrc_tiny .vimperator .vimperatorrc .bashrc .zshrc .gitconfig .wgetrc .inputrc
 do
     CMD="rm -rf $HOME/$f"
     echo $CMD

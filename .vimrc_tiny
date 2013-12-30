@@ -35,9 +35,12 @@
 
 " General {{{
 
+    if g:dewdrops_invoked_as_dotvimrc
+        filetype plugin indent on   " Automatically detect file types
+        syntax on                   " Syntax highlighting
+    endif
+
     set background=dark         " Assume a dark background
-    filetype plugin indent on   " Automatically detect file types
-    syntax on                   " Syntax highlighting
     set mouse=a                 " Automatically enable mouse usage
     set mousehide               " Hide the mouse cursor while typing
     scriptencoding utf-8
@@ -205,14 +208,6 @@
     noremap 0 ^
     noremap ^ 0
 
-    " unimpaired-like binding
-    nnoremap [b :bp<cr>
-    nnoremap ]b :bn<cr>
-    nnoremap [s i<space><esc>l
-    nnoremap ]s a<space><esc>h
-    nnoremap [<space> mMO<esc>0d$`M
-    nnoremap ]<space> mMo<esc>0d$`M
-
     " Code folding options
     nmap <leader>f0 :set foldlevel=0<cr>
     nmap <leader>f1 :set foldlevel=1<cr>
@@ -305,6 +300,16 @@
     nnoremap <leader>st :setlocal spell!<cr>
     nnoremap <leader>; mMA;<esc>`M
     nnoremap <f5> :%TOhtml<cr>
+
+    " unimpaired-like binding
+    if g:dewdrops_invoked_as_dotvimrc
+        nnoremap [b :bp<cr>
+        nnoremap ]b :bn<cr>
+        nnoremap [s i<space><esc>l
+        nnoremap ]s a<space><esc>h
+        nnoremap [<space> mMO<esc>0d$`M
+        nnoremap ]<space> mMo<esc>0d$`M
+    endif
 
 " }}}
 
