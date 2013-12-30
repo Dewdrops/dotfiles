@@ -158,10 +158,8 @@
     set foldlevel=99
 
     " Remove trailing whitespaces and ^M chars
-    au FileType c,cpp,java,go,php,javascript,python,twig,xml,yml au BufWritePre <buffer> call StripTrailingWhitespace()
+    au FileType c,cpp,java,go,php,javascript,python,xml,yml au BufWritePre <buffer> call StripTrailingWhitespace()
     au FileType python setlocal fdm=indent
-    au FileType org setlocal fdm=expr
-    au BufNewFile,BufRead *.html.twig set filetype=html.twig
 
 " }}}
 
@@ -310,7 +308,6 @@
                         \     'general',
                         \     'programming',
                         \     'git',
-                        \     'extra',
                         \     'misc'
                         \ ]
         endif
@@ -359,8 +356,8 @@
             " NerdTree {{{
                 NeoBundleLazy 'scrooloose/nerdtree',
                             \ {'autoload': {'commands': ['NERDTreeToggle', 'NERDTreeFind']}}
-                map <Leader>nt :NERDTreeToggle<cr>:NERDTreeMirror<cr>
-                map <leader>nf :NERDTreeFind<cr>
+                map <Leader>nt :NERDTreeToggle<cr>
+                map <Leader>nf :NERDTreeFind<cr>
 
                 let NERDTreeShowBookmarks               = 1
                 let NERDTreeIgnore                      = ['\.pyc', '\.elc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
@@ -370,10 +367,6 @@
                 let NERDTreeShowHidden                  = 1
                 let NERDTreeKeepTreeInNewTab            = 1
                 let g:nerdtree_tabs_open_on_gui_startup = 0
-
-                NeoBundleLazy 'jistr/vim-nerdtree-tabs',
-                            \ {'depends': ['scrooloose/nerdtree'],
-                            \ 'autoload': {'commands': ['NERDTreeToggle', 'NERDTreeFind']}}
             " }}}
 
             " Bufexplorer {{{
@@ -419,6 +412,20 @@
                 vmap <silent> g= <Plug>VLionEqual
                 nmap <silent> g: <Plug>LionColon
                 vmap <silent> g: <Plug>VLionColon
+            " }}}
+
+            " Startify {{{
+                NeoBundle 'mhinz/vim-startify'
+                let g:startify_custom_header = [
+                            \ '         ____                   _                     ',
+                            \ '        |  _ \  _____      ____| |_ __ ___  _ __  ___ ',
+                            \ '        | | | |/ _ \ \ /\ / / _` | ''__/ _ \| ''_ \/ __|',
+                            \ '        | |_| |  __/\ V  V / (_| | | | (_) | |_) \__ \',
+                            \ '        |____/ \___| \_/\_/ \__,_|_|  \___/| .__/|___/',
+                            \ '                                           |_|        ',
+                            \ '                                                      ',
+                            \ '                                                      '
+                            \ ]
             " }}}
 
             " Edit {{{
@@ -475,12 +482,17 @@
                 vmap x <Plug>(expand_region_expand)
                 vmap _ <Plug>(expand_region_shrink)
                 vmap X <Plug>(expand_region_shrink)
+
+                if count(g:dewdrops_bundle_groups, 'extra')
+                    NeoBundle 'kana/vim-textobj-user'
+                    NeoBundle 'kana/vim-textobj-indent'
+                    NeoBundle 'thinca/vim-textobj-between'
+                endif
             " }}}
 
-            " Misc {{{
-                NeoBundle 'goldfeld/ctrlr.vim'
-                NeoBundle 'justinmk/vim-gtfo'
+            " UI {{{
                 NeoBundle 'szw/vim-maximizer'
+                NeoBundle 'kien/tabman.vim'
 
                 NeoBundle 'bling/vim-airline'
                 if !has("gui_running")
@@ -488,11 +500,22 @@
                 endif
                 let g:airline#extensions#hunks#non_zero_only = 1
 
+                if has('gui_running')
+                    NeoBundle 'spolu/dwm.vim'
+                endif
+
+                if count(g:dewdrops_bundle_groups, 'extra')
+                    NeoBundle 'Dewdrops/vim-tomorrow-theme'
+                    colo Tomorrow-Night-Eighties
+                endif
+            " }}}
+
+            " Misc {{{
+                NeoBundle 'goldfeld/ctrlr.vim'
+                NeoBundle 'justinmk/vim-gtfo'
+
                 NeoBundle 'bling/vim-bufferline'
                 let g:bufferline_echo = 0
-
-                " NeoBundle 'szw/vim-kompleter'
-                let g:kompleter_case_sensitive = 0
 
                 NeoBundleLazy 'vim-scripts/sessionman.vim',
                             \ {'autoload': {'commands': ['SessionList', 'SessionSave']}}
@@ -536,6 +559,7 @@
             NeoBundle 'tpope/vim-endwise'
             NeoBundle 'tpope/vim-dispatch'
             NeoBundle 'mutewinter/swap-parameters'
+            NeoBundle 'amdt/vim-niji'
 
             NeoBundle 'AndrewRadev/splitjoin.vim'
             let g:splitjoin_split_mapping = 'cS'
@@ -653,6 +677,26 @@
                 endif
             " }}}
 
+            " Extra {{{
+                if count(g:dewdrops_bundle_groups, 'extra')
+                    NeoBundle 'scrooloose/syntastic'
+
+                    " indent guides {{{
+                        NeoBundle 'nathanaelkane/vim-indent-guides'
+                        let g:indent_guides_start_level           = 2
+                        let g:indent_guides_guide_size            = 1
+                        let g:indent_guides_enable_on_vim_startup = 1
+                        let g:indent_guides_exclude_filetypes     = ['help', 'nerdtree', 'startify', 'vundle']
+
+                        if !has('gui_running')
+                            let g:indent_guides_auto_colors = 0
+                            hi IndentGuidesOdd  ctermbg=black
+                            hi IndentGuidesEven ctermbg=darkgrey
+                        endif
+                    " }}}
+                endif
+            " }}}
+
         endif
     " }}}
 
@@ -683,49 +727,6 @@
         endif
     " }}}
 
-    " Extra {{{
-        if count(g:dewdrops_bundle_groups, 'extra')
-            NeoBundle 'MarcWeber/vim-addon-mw-utils'
-            NeoBundle 'tomtom/tlib_vim'
-            NeoBundle 'kana/vim-textobj-user'
-            NeoBundle 'kana/vim-textobj-indent'
-            NeoBundle 'thinca/vim-textobj-between'
-            NeoBundle 'scrooloose/syntastic'
-
-            NeoBundle 'Dewdrops/vim-tomorrow-theme'
-            colo Tomorrow-Night-Eighties
-
-            " indent guides {{{
-                NeoBundle 'nathanaelkane/vim-indent-guides'
-                let g:indent_guides_start_level           = 2
-                let g:indent_guides_guide_size            = 1
-                let g:indent_guides_enable_on_vim_startup = 1
-                " not enable indent guide in special buffers
-                let g:indent_guides_exclude_filetypes     = ['help', 'nerdtree', 'startify', 'vundle']
-
-                if !has('gui_running')
-                    let g:indent_guides_auto_colors = 0
-                    hi IndentGuidesOdd  ctermbg=black
-                    hi IndentGuidesEven ctermbg=darkgrey
-                endif
-            " }}}
-
-            " Startify {{{
-                NeoBundle 'mhinz/vim-startify'
-                let g:startify_custom_header = [
-                            \ '         ____                   _                     ',
-                            \ '        |  _ \  _____      ____| |_ __ ___  _ __  ___ ',
-                            \ '        | | | |/ _ \ \ /\ / / _` | ''__/ _ \| ''_ \/ __|',
-                            \ '        | |_| |  __/\ V  V / (_| | | | (_) | |_) \__ \',
-                            \ '        |____/ \___| \_/\_/ \__,_|_|  \___/| .__/|___/',
-                            \ '                                           |_|        ',
-                            \ '                                                      ',
-                            \ '                                                      '
-                            \ ]
-            " }}}
-        endif
-    " }}}
-
     " Snippets & AutoComplete {{{
 
         if count(g:dewdrops_bundle_groups, 'snipmate')
@@ -746,6 +747,9 @@
             NeoBundle 'Valloric/YouCompleteMe'
             " NeoBundle 'SirVer/ultisnips'
         endif
+
+        " NeoBundle 'szw/vim-kompleter'
+        " let g:kompleter_case_sensitive = 0
 
         " OmniComplete {{{
             if has("autocmd") && exists("+omnifunc")
@@ -908,9 +912,12 @@
             let g:DisableAutoPHPFolding = 0
             "let g:PIVAutoClose = 0
 
+            NeoBundle 'beyondwords/vim-twig'
+            au FileType twig au BufWritePre <buffer> call StripTrailingWhitespace()
+            au BufNewFile,BufRead *.html.twig set filetype=html.twig
+
             NeoBundle 'arnaud-lb/vim-php-namespace'
             NeoBundle 'shawncplus/phpcomplete.vim'
-            NeoBundle 'beyondwords/vim-twig'
         endif
     " }}}
 
@@ -1034,7 +1041,9 @@
             NeoBundle 'tpope/vim-markdown',
             NeoBundle 'chrisbra/csv.vim'
             NeoBundle 'xml.vim'
+
             NeoBundle 'jceb/vim-orgmode'
+            au FileType org setlocal fdm=expr
 
             NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
             let g:LatexBox_Folding = 1
@@ -1103,20 +1112,6 @@
                 exec "set " . settingname . "=" . directory
             endif
         endfor
-    endfunction
-    " }}}
-
-    " Initialize NERDTree as needed {{{
-    function! NERDTreeInitAsNeeded()
-        redir => bufoutput
-        buffers!
-        redir END
-        let idx = stridx(bufoutput, "NERD_tree")
-        if idx > -1
-            NERDTreeMirror
-            NERDTreeFind
-            wincmd l
-        endif
     endfunction
     " }}}
 
