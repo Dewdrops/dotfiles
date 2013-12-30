@@ -234,7 +234,6 @@
     cmap w!! w !sudo tee % >/dev/null
 
     " Some helpers to edit mode
-    " http://vimcasts.org/e/14
     cnoremap %% <C-R>=expand('%:p:h').'/'<cr>
     map <leader>ew :e %%
     map <leader>es :sp %%
@@ -451,12 +450,12 @@
                 nnoremap <leader>ov :OverCommandLine<cr>:%s/
 
                 NeoBundleLazy 'tommcdo/vim-exchange',
-                            \ {'autoload': {'mappings': ['<Plug>Exchange', '<Plug>ExchangeLine']}}
+                            \ {'autoload': {'mappings': ['<Plug>(Exchange)', '<Plug>(ExchangeLine)']}}
                 let g:exchange_no_mappings = 1
-                nmap gx <Plug>Exchange
-                vmap gx <Plug>Exchange
-                nmap gxc <Plug>ExchangeClear
-                nmap gxx <Plug>ExchangeLine
+                nmap gx <Plug>(Exchange)
+                vmap gx <Plug>(Exchange)
+                nmap gxc <Plug>(ExchangeClear)
+                nmap gxx <Plug>(ExchangeLine)
 
                 NeoBundleLazy 'bilalq/lite-dfm',
                             \ {'autoload': {'commands': 'LiteDFMToggle'}}
@@ -572,7 +571,7 @@
 
             NeoBundleLazy 'a.vim',
                         \ {'autoload': {'commands': ['A']}}
-            nnoremap <leader>ac :A<cr>
+            nnoremap <leader>aa :A<cr>
 
             NeoBundleLazy 'thinca/vim-quickrun',
                         \ {'autoload': {'commands': ['QuickRun']}}
