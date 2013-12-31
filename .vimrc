@@ -217,6 +217,12 @@
                 nmap g. <Plug>DWMRotateClockwise
                 nmap g/ <Plug>DWMRotateCounterclockwise
 
+                NeoBundle 'Dewdrops/vim-tomorrow-theme'
+                nmap <leader>cor :colo ron<cr>
+                nmap <leader>cod :colo desert<cr>
+                nmap <leader>cot :colo Tomorrow-Night-Eighties<cr>
+                " colo Tomorrow-Night-Eighties
+
                 NeoBundleLazy 'bilalq/lite-dfm',
                             \ {'autoload': {'commands': 'LiteDFMToggle'}}
                 nnoremap <silent><leader>ld :LiteDFMToggle<cr>
