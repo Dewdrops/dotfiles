@@ -327,6 +327,7 @@ alias vvr='vim ~/.vimrc'
 alias vmk='vim Makefile'
 alias vrk='vim Rakefile'
 alias vit='vim -u .vimrc_tiny'
+alias gvit='gvim -u .vimrc_tiny'
 
 # allows square brackts for rake task invocation
 alias rake="nocorrect noglob rake"

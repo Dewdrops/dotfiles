@@ -17,7 +17,7 @@
     " }}}
 
 " }}}
-"
+
 " Bundles {{{
 
     " Bundle group configuration {{{
@@ -175,10 +175,6 @@
                 vmap gx <Plug>(Exchange)
                 nmap gxc <Plug>(ExchangeClear)
                 nmap gxx <Plug>(ExchangeLine)
-
-                NeoBundleLazy 'bilalq/lite-dfm',
-                            \ {'autoload': {'commands': 'LiteDFMToggle'}}
-                nnoremap <silent><leader>ld :LiteDFMToggle<cr>
             " }}}
 
             " Motion {{{
@@ -220,10 +216,9 @@
                 nmap g. <Plug>DWMRotateClockwise
                 nmap g/ <Plug>DWMRotateCounterclockwise
 
-                if count(g:dewdrops_bundle_groups, 'extra')
-                    NeoBundle 'Dewdrops/vim-tomorrow-theme'
-                    colo Tomorrow-Night-Eighties
-                endif
+                NeoBundleLazy 'bilalq/lite-dfm',
+                            \ {'autoload': {'commands': 'LiteDFMToggle'}}
+                nnoremap <silent><leader>ld :LiteDFMToggle<cr>
             " }}}
 
             " Misc {{{
