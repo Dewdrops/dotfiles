@@ -8,12 +8,12 @@
 " Environment {{{
 
     " Load basic configuration
-    source .vimrc_tiny
+    source ~/.vimrc_tiny
 
     " Setup NeoBundle Support {{{
-            set rtp+=~/.vim/bundle/neobundle.vim
-            call neobundle#rc(expand('~/.vim/bundle/'))
-            NeoBundleFetch 'Shougo/neobundle.vim'
+        set rtp+=~/.vim/bundle/neobundle.vim
+        call neobundle#rc(expand('~/.vim/bundle/'))
+        NeoBundleFetch 'Shougo/neobundle.vim'
     " }}}
 
 " }}}
@@ -212,7 +212,8 @@
                 let g:airline#extensions#hunks#non_zero_only = 1
 
                 NeoBundle 'spolu/dwm.vim'
-                nmap <leader>/ <Plug>DWMFocus
+                nmap <leader>. <Plug>DWMFocus
+                nmap <leader>dn <Plug>DWMNew
                 nmap g. <Plug>DWMRotateClockwise
                 nmap g/ <Plug>DWMRotateCounterclockwise
 
