@@ -10,7 +10,7 @@
     " Load basic configuration
     source ~/.vimrc_tiny
 
-    " Setup NeoBundle Support {{{
+    " Set up NeoBundle Support {{{
         set rtp+=~/.vim/bundle/neobundle.vim
         call neobundle#rc(expand('~/.vim/bundle/'))
         NeoBundleFetch 'Shougo/neobundle.vim'
@@ -101,17 +101,17 @@
 
             " Seek {{{
                 NeoBundle 'goldfeld/vim-seek'
-                let g:SeekKey = 'S'
-                let g:SeekBackKey = '<leader>S'
-                let g:seekJumpPresentialInnerKey = 'gz'
-                let g:seekBackJumpPresentialInnerKey = 'gZ'
-                let g:seekJumpRemoteInnerKey = 'gu'
-                let g:seekBackJumpRemoteInnerKey = 'gU'
-                let g:seekJumpPresentialAroundKey = 'z'
+                let g:SeekKey                         = 'S'
+                let g:SeekBackKey                     = '<leader>S'
+                let g:seekJumpPresentialInnerKey      = 'gz'
+                let g:seekBackJumpPresentialInnerKey  = 'gZ'
+                let g:seekJumpRemoteInnerKey          = 'gu'
+                let g:seekBackJumpRemoteInnerKey      = 'gU'
+                let g:seekJumpPresentialAroundKey     = 'z'
                 let g:seekBackJumpPresentialAroundKey = 'Z'
-                let g:seekJumpRemoteAroundKey = 'u'
-                let g:seekBackJumpRemoteAroundKey = 'U'
-                let g:seek_enable_jumps = 1
+                let g:seekJumpRemoteAroundKey         = 'u'
+                let g:seekBackJumpRemoteAroundKey     = 'U'
+                let g:seek_enable_jumps               = 1
             " }}}
 
             " vim-lion {{{
