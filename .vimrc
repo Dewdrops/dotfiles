@@ -348,18 +348,14 @@
 
             " Ack {{{
                 if executable('ack-grep')
-                    let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-                    NeoBundleLazy 'mileszs/ack.vim',
-                        \ {'autoload': {'commands': 'Ack'}}
-                elseif executable('ack')
-                    NeoBundleLazy 'mileszs/ack.vim',
-                        \ {'autoload': {'commands': 'Ack'}}
-                elseif executable('ag')
-                    let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
-                    NeoBundleLazy 'mileszs/ack.vim',
-                        \ {'autoload': {'commands': 'Ack'}}
+                    let g:ctrlsf_ackprg = 'ack-grep'
+                    NeoBundleLazy 'dyng/ctrlsf.vim',
+                        \ {'autoload': {'commands': 'CtrlSF'}}
+                elseif executable('ack') || executable('ag')
+                    NeoBundleLazy 'dyng/ctrlsf.vim',
+                        \ {'autoload': {'commands': 'CtrlSF'}}
                 endif
-                nnoremap <leader>ak :Ack<space>
+                nnoremap <leader>ak :CtrlSF<space>
             " }}}
 
             " ctags {{{
