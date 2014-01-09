@@ -231,18 +231,19 @@
             " Misc {{{
                 NeoBundle 'goldfeld/ctrlr.vim'
                 NeoBundle 'justinmk/vim-gtfo'
+                NeoBundle 'vim-scripts/EasyGrep'
 
                 NeoBundle 'bling/vim-bufferline'
                 let g:bufferline_echo = 0
+
+                NeoBundle 'kshenoy/vim-signature'
+                nnoremap <leader>sg :SignatureToggle<cr>
 
                 NeoBundleLazy 'vim-scripts/sessionman.vim',
                             \ {'autoload': {'commands': ['SessionList', 'SessionSave']}}
                 let sessionman_save_on_exit = 0
                 nmap <leader>sl :SessionList<cr>
                 nmap <leader>ss :SessionSave<cr>
-
-                NeoBundleLazy 'vim-scripts/EasyGrep',
-                            \ {'autoload': {'commands': 'GrepOptions'}}
 
                 NeoBundleLazy 'mattn/calendar-vim',
                             \ {'autoload': {'commands': ['Calendar', 'CalendarH']}}
