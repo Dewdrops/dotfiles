@@ -146,6 +146,31 @@
                             \ ]
             " }}}
 
+            " EasyGrep {{{
+                NeoBundleLazy 'vim-scripts/EasyGrep',
+                            \ {'autoload': {'mappings': ['<plug>EgMapGrepOptions',
+                            \ '<plug>EgMapGrepCurrentWord_v', '<plug>EgMapGrepSelection_v',
+                            \ '<plug>EgMapGrepCurrentWord_V', '<plug>EgMapGrepSelection_V',
+                            \ '<plug>EgMapGrepCurrentWord_a', '<plug>EgMapGrepSelection_a',
+                            \ '<plug>EgMapGrepCurrentWord_A', '<plug>EgMapGrepSelection_A',
+                            \ '<plug>EgMapGrepCurrentWord_r', '<plug>EgMapGrepSelection_r',
+                            \ '<plug>EgMapGrepCurrentWord_R', '<plug>EgMapGrepSelection_R',
+                            \ ]}}
+                map <Leader>vo <plug>EgMapGrepOptions
+                map <Leader>vv <plug>EgMapGrepCurrentWord_v
+                vmap <Leader>vv <plug>EgMapGrepSelection_v
+                map <Leader>vV <plug>EgMapGrepCurrentWord_V
+                vmap <Leader>vV <plug>EgMapGrepSelection_V
+                map <Leader>va <plug>EgMapGrepCurrentWord_a
+                vmap <Leader>va <plug>EgMapGrepSelection_a
+                map <Leader>vA <plug>EgMapGrepCurrentWord_A
+                vmap <Leader>vA <plug>EgMapGrepSelection_A
+                map <Leader>vr <plug>EgMapReplaceCurrentWord_r
+                vmap <Leader>vr <plug>EgMapReplaceSelection_r
+                map <Leader>vR <plug>EgMapReplaceCurrentWord_R
+                vmap <Leader>vR <plug>EgMapReplaceSelection_R
+            " }}}
+
             " Edit {{{
                 NeoBundle 'DrawIt'
                 NeoBundle 'jiangmiao/auto-pairs'
@@ -231,7 +256,6 @@
             " Misc {{{
                 NeoBundle 'goldfeld/ctrlr.vim'
                 NeoBundle 'justinmk/vim-gtfo'
-                NeoBundle 'vim-scripts/EasyGrep'
 
                 NeoBundle 'bling/vim-bufferline'
                 let g:bufferline_echo = 0
