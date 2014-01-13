@@ -189,6 +189,10 @@
                 vmap <c-up> [e
                 vmap <c-down> ]e
 
+                NeoBundleLazy 'sketch.vim',
+                            \ {'autoload': {'functions': 'ToggleSketch'}}
+                nmap <leader>sk :call ToggleSketch()<cr>
+
                 NeoBundleLazy 'osyo-manga/vim-over',
                             \ {'autoload': {'commands': 'OverCommandLine'}}
                 nnoremap <leader>ov :OverCommandLine<cr>:%s/
