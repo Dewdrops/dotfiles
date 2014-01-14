@@ -474,21 +474,17 @@
             NeoBundle 'garbas/vim-snipmate'
             let g:snips_author = 'Dewdrops <v_v_4474@126.com>'
         elseif count(g:dewdrops_bundle_groups, 'neocomplete')
-            if has('lua') && (v:version > 703 || v:version == 703 && has('patch885'))
-                NeoBundle 'Shougo/unite.vim'
-                NeoBundle 'Shougo/neocomplete'
-            else
-                NeoBundle 'Shougo/neocomplcache'
-            endif
-            NeoBundle 'Shougo/neosnippet'
-            NeoBundle 'honza/vim-snippets'
-        elseif count(g:dewdrops_bundle_groups, 'ycm')
-            NeoBundle 'Valloric/YouCompleteMe'
-            " NeoBundle 'SirVer/ultisnips'
-        endif
 
-        " neocomplcache and neocomplete {{{
-            if count(g:dewdrops_bundle_groups, 'neocomplete')
+            " neocomplcache and neocomplete {{{
+                if has('lua') && (v:version > 703 || v:version == 703 && has('patch885'))
+                    NeoBundle 'Shougo/unite.vim'
+                    NeoBundle 'Shougo/neocomplete'
+                else
+                    NeoBundle 'Shougo/neocomplcache'
+                endif
+                NeoBundle 'Shougo/neosnippet'
+                NeoBundle 'honza/vim-snippets'
+
                 let g:acp_enableAtStartup = 0
 
                 if !( has('lua') && (v:version > 703 || v:version == 703 && has('patch885')) )
@@ -579,14 +575,6 @@
                             \ neosnippet#expandable_or_jumpable() ?
                             \ "\<Plug>(neosnippet_expand_or_jump)" : "\<s-tab>"
 
-                " Enable omni completion.
-                au FileType css setlocal omnifunc=csscomplete#CompleteCSS
-                au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-                au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-                au FileType python setlocal omnifunc=pythoncomplete#Complete
-                au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-                au FileType ruby,eruby setlocal omnifunc=rubycomplete#Complete
-
                 " Use honza's snippets.
                 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
@@ -602,26 +590,32 @@
                 " when enabled, or there can be too much visual noise
                 " especially when splits are used
                 set completeopt-=preview
-            endif
-        " }}}
+            " }}}
 
-        " YouCompleteMe {{{
-            let g:ycm_complete_in_comments_and_strings = 1
-            let g:ycm_key_list_select_completion       = ['<tab>', '<C-n>', '<Down>']
-            let g:ycm_key_list_previous_completion     = ['<s-tab>', '<C-p>', '<Up>']
-            let g:ycm_filetype_blacklist               = {'unite': 1}
-            let g:ycm_register_as_syntastic_checker    = 0
-            let g:ycm_global_ycm_extra_conf            = '~/.ycm_extra_conf.py'
-            let g:ycm_confirm_extra_conf               = 0
+        elseif count(g:dewdrops_bundle_groups, 'ycm')
 
-            " configuration of UltiSnips
-            let g:UltiSnipsExpandTrigger               = "<c-k>"
-            let g:UltiSnipsJumpForwardTrigger          = "<c-k>"
-            let g:UltiSnipsJumpBackwardTrigger         = "<c-j>"
-            let g:UltiSnipsSnippetsDir                 = '~/.vim/snippets'
+            " YouCompleteMe {{{
+                NeoBundle 'Valloric/YouCompleteMe'
+                " NeoBundle 'SirVer/ultisnips'
 
-            nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<cr>
-        "}}}
+                let g:ycm_complete_in_comments_and_strings = 1
+                let g:ycm_key_list_select_completion       = ['<tab>', '<C-n>', '<Down>']
+                let g:ycm_key_list_previous_completion     = ['<s-tab>', '<C-p>', '<Up>']
+                let g:ycm_filetype_blacklist               = {'unite': 1}
+                let g:ycm_register_as_syntastic_checker    = 0
+                let g:ycm_global_ycm_extra_conf            = '~/.ycm_extra_conf.py'
+                let g:ycm_confirm_extra_conf               = 0
+
+                " configuration of UltiSnips
+                let g:UltiSnipsExpandTrigger               = "<c-k>"
+                let g:UltiSnipsJumpForwardTrigger          = "<c-k>"
+                let g:UltiSnipsJumpBackwardTrigger         = "<c-j>"
+                let g:UltiSnipsSnippetsDir                 = '~/.vim/snippets'
+
+                nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<cr>
+            "}}}
+
+        endif
 
     " }}}
 
