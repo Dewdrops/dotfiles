@@ -213,7 +213,11 @@
                 NeoBundle 'dahu/vim-fanfingtastic'
                 map <unique><silent> <leader><leader> <Plug>fanfingtastic_,
 
-                NeoBundle 'Lokaltog/vim-easymotion'
+                NeoBundleLazy 'takac/vim-easymotion',
+                            \ {'autoload': {'mappings': ['<Plug>(easymotion-f)',
+                            \ '<Plug>(easymotion-F)']}}
+                nmap <space> <Plug>(easymotion-f)
+                nmap g<space> <Plug>(easymotion-F)
                 let EasyMotion_leader_key  = '<leader>em'
                 let g:EasyMotion_mapping_f = '<space>'
                 let g:EasyMotion_mapping_F = 'g<space>'
