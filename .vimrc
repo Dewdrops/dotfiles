@@ -324,7 +324,16 @@
             nnoremap <leader>kr :QuickRun -outputter/buffer/into 1<cr>
 
             " tcomment {{{
-                NeoBundle 'tomtom/tcomment_vim'
+                NeoBundleLazy 'tomtom/tcomment_vim',
+                        \ {'autoload': {'commands': ['TCommentMaybeInline'],
+                        \ 'functions': ['tcomment#SetOption', 'tcomment#Operator', 'tcomment#OperatorLine',
+                        \ 'TCommentMaybeInline', 'tcomment#OperatorAnyway', 'tcomment#OperatorLineAnyway']}}
+                nnoremap <silent> gc :<c-u>if v:count > 0 \| call tcomment#SetOption("count", v:count) \| endif \| let w:tcommentPos = getpos(".") \| set opfunc=tcomment#Operator<cr>g@
+                nnoremap <silent> gcc :let w:tcommentPos = getpos(".") \| set opfunc=tcomment#OperatorLine<cr>g@$
+                xnoremap <silent> gc :TCommentMaybeInline<cr>
+                nnoremap <silent> gC :let w:tcommentPos = getpos(".") \| set opfunc=tcomment#OperatorAnyway<cr>g@
+                nnoremap <silent> gCc :let w:tcommentPos = getpos(".") \| set opfunc=tcomment#OperatorLineAnyway<cr>g@$
+                xnoremap <silent> gC :TCommentMaybeInline!<cr>
                 nmap <silent><leader>ci gcc
                 vmap <silent><leader>ci gc
                 nmap <silent><leader>cc yygccP
