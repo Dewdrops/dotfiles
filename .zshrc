@@ -2,6 +2,12 @@
 # Zsh configuration of Dewdrops (v_v_4474@126.com)
 # vim: sw=4 ts=4 sts=4 et tw=80 foldmarker={{{,}}} foldlevel=0 foldmethod=marker
 
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+#load general exports, functions, and aliases
+source .common.sh
+
 # history {{{
 
 HISTFILE=~/.histfile
@@ -22,10 +28,6 @@ setopt hist_verify
 # share command history data
 setopt share_history
 
-function zsh_stats() {
-    history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a; }' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl | head -n20
-}
-
 # }}}
 
 # directory settings {{{
@@ -36,30 +38,6 @@ setopt cdable_vars
 setopt auto_pushd
 setopt pushd_ignore_dups
 setopt pushdminus
-
-alias ..='cd ..'
-alias cd..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias cd/='cd /'
-
-alias 1='cd -'
-alias 2='cd -2'
-alias 3='cd -3'
-alias 4='cd -4'
-alias 5='cd -5'
-alias 6='cd -6'
-alias 7='cd -7'
-alias 8='cd -8'
-alias 9='cd -9'
-
-alias md='mkdir -p'
-alias rd='rmdir'
-
-function take() {
-    mkdir -p $1
-    cd $1
-}
 
 # }}}
 
@@ -276,8 +254,6 @@ zle -N backward-delete-char check-cmd-backward-delete-char
 
 # spectrum_ls {{{
 
-export TERM=xterm-256color
-
 typeset -Ag FX FG BG
 
 FX=(
@@ -303,76 +279,32 @@ function spectrum_ls() {
 
 # }}}
 
-# aliases and exports for applications {{{
+# zsh specific aliases {{{
 
-export CCL_DEFAULT_DIRECTORY='/home/dewdrops/site/ccl'
+alias cd/='cd /'
 
-export JAVA_HOME="$HOME/site/jdk1.7.0_45"
-export CLASS_PATH=".:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:"
-export PATH="$JAVA_HOME/bin:$PATH"
-
-export GOROOT="$HOME/site/go"
-export GOPATH="$HOME/site/go-path"
-export PATH="$PATH:$GOROOT/bin"
-
-export PATH="$HOME/.cabal/bin:$PATH"
-
-export LESS=-R
-
-export GREP_OPTIONS='--color=auto'
-export GREP_COLOR='1;32'
-
-alias vzr='vim ~/.zshrc'
-alias vvr='vim ~/.vimrc'
-alias vmk='vim Makefile'
-alias vrk='vim Rakefile'
-alias vit='vim -u ~/.vimrc_tiny'
-alias vt='vim -u ~/.vimrc_tiny'
-alias gvi='gvim'
-alias gvit='gvim -u ~/.vimrc_tiny'
-alias gvt='gvim -u ~/.vimrc_tiny'
+alias 2='cd -2'
+alias 3='cd -3'
+alias 4='cd -4'
+alias 5='cd -5'
+alias 6='cd -6'
+alias 7='cd -7'
+alias 8='cd -8'
+alias 9='cd -9'
 
 # allows square brackts for rake task invocation
 alias rake="nocorrect noglob rake"
 alias srake='nocorrect noglob sudo rake'
 
-alias ls='ls --color=auto'
-alias ll='ls -AlF --color=auto'
-alias la='ls -A --color=auto'
-
-alias rr='rm -rf'
-
-alias sdn='sudo shutdown -h now'
-
-alias sgem='sudo gem install'
-alias spip='sudo pip install'
-alias scpm='sudo cpanm'
-alias sapt='sudo apt-get install'
-
-alias rb='R CMD BATCH'
-
-alias dstat='dstat -cdlmnpsy'
-
-alias e='emacs'
-alias ec='emacsclient'
-
 # }}}
 
 # misc {{{
-
-export EDITOR=vim
-
-export PAGER=less
 
 setopt multios
 
 setopt long_list_jobs
 
 # setopt extended_glob
-
-function bu {
-    mv $@ ~/.recycle
-}
 
 # load customized configuration
 [ -f .zshrc.customized ] && source .zshrc.customized
