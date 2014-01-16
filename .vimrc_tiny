@@ -184,7 +184,7 @@
     " Remove trailing whitespaces and ^M chars
     au FileType c,cpp,java,go,php,javascript,python,xml,yml au BufWritePre <buffer> call StripTrailingWhitespace()
     au FileType python setlocal fdm=indent
-    au FileType ruby setlocal softtabstop=2 shiftwidth=2 ts=2
+    au FileType ruby,html,xhtml setlocal softtabstop=2 shiftwidth=2 ts=2
 
 " }}}
 
