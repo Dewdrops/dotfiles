@@ -31,6 +31,7 @@ alias 1='cd -'
 alias md='mkdir -p'
 alias rd='rmdir'
 
+alias vbr='vim ~/.bashrc'
 alias vzr='vim ~/.zshrc'
 alias vvr='vim ~/.vimrc'
 alias vmk='vim Makefile'
