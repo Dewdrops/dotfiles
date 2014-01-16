@@ -26,6 +26,7 @@
                         \     'general',
                         \     'programming',
                         \     'git',
+                        \     'ycm',
                         \     'misc'
                         \ ]
         endif
