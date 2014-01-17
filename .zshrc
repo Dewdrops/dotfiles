@@ -6,7 +6,7 @@
 [ -z "$PS1" ] && return
 
 #load general exports, functions, and aliases
-source .common.sh
+source $HOME/.common.sh
 
 # history {{{
 
@@ -307,6 +307,6 @@ setopt long_list_jobs
 # setopt extended_glob
 
 # load customized configuration
-[ -f .zshrc.customized ] && source .zshrc.customized
+[ -f $HOME/.zshrc.customized ] && source $HOME/.zshrc.customized
 
 # }}}

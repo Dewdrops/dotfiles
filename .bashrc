@@ -5,7 +5,7 @@
 [ -z "$PS1" ] && return
 
 #load general exports, functions, and aliases
-source .common.sh
+source $HOME/.common.sh
 
 # history {{{
 
@@ -78,4 +78,4 @@ fi
 # }}}
 
 # load customized configuration
-[ -f .bashrc.customized ] && source .bashrc.customized
+[ -f $HOME/.bashrc.customized ] && source $HOME/.bashrc.customized
