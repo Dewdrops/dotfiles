@@ -266,6 +266,9 @@
                 NeoBundle 'goldfeld/ctrlr.vim'
                 NeoBundle 'justinmk/vim-gtfo'
 
+                NeoBundle 'thinca/vim-ref'
+                let g:ref_perldoc_auto_append_f = 1
+
                 NeoBundle 'bling/vim-bufferline'
                 let g:bufferline_echo = 0
 
