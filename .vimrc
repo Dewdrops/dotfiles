@@ -272,6 +272,15 @@
                 NeoBundle 'kshenoy/vim-signature'
                 nnoremap <leader>sg :SignatureToggle<cr>
 
+                NeoBundleLazy 'Dewdrops/vim-highlight-pattern',
+                            \ {'autoload': {'mappings':
+                            \ ['<Plug>(VHP_HighlightWordToggle)', '<Plug>(VHP_HighlightRegionToggle)',
+                            \ '<Plug>(VHP_HighlightPattern)', '<Plug>(VHP_HighlightClear)']}}
+                nmap <leader>hl <Plug>(VHP_HighlightWordToggle)
+                vmap <leader>hl <Plug>(VHP_HighlightRegionToggle)
+                nmap <leader>hp <Plug>(VHP_HighlightPattern)
+                nmap <leader>/ <Plug>(VHP_HighlightClear)
+
                 NeoBundleLazy 'vim-scripts/sessionman.vim',
                             \ {'autoload': {'commands': ['SessionList', 'SessionSave']}}
                 let sessionman_save_on_exit = 0
