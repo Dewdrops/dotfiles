@@ -248,6 +248,7 @@
     nmap <leader>ts :r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<cr>
 
     " Toggle search highlighting
+    nmap <silent> <leader>nh :nohlsearch<cr>
     nmap <silent> <leader>/ :nohlsearch<cr>
 
     "Remove the Windows ^M
