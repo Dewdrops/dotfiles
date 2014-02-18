@@ -102,8 +102,8 @@
 
             " Seek {{{
                 NeoBundle 'goldfeld/vim-seek'
-                let g:SeekKey                         = 's'
-                let g:SeekBackKey                     = 'S'
+                let g:SeekKey                         = 'S'
+                let g:SeekBackKey                     = '<leader>S'
                 let g:seekJumpPresentialInnerKey      = 'gz'
                 let g:seekBackJumpPresentialInnerKey  = 'gZ'
                 let g:seekJumpRemoteInnerKey          = 'gu'
