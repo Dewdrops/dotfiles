@@ -189,6 +189,9 @@ if [ -f ~/.auto-fu.zsh/auto-fu.zsh ]; then
     zstyle ':completion:*' completer _oldlist _complete
     zstyle ':auto-fu:var' autoable-function/skipwords \
                 "('|$'|\")*"
+    zstyle ':auto-fu:var' autoable-function/skiplines \
+                '[![:blank:]]# apt-get [![:blank:]]# *' \
+                'sapt *'
     zstyle ':auto-fu:highlight' input bold
     zstyle ':auto-fu:highlight' completion fg=black,bold
     zstyle ':auto-fu:highlight' completion/one fg=white,bold,underline
