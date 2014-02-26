@@ -232,6 +232,7 @@
                 vmap X <Plug>(expand_region_shrink)
 
                 if count(g:dewdrops_bundle_groups, 'extra')
+                    NeoBundle 'wellle/targets.vim'
                     NeoBundle 'kana/vim-textobj-user'
                     NeoBundle 'kana/vim-textobj-indent'
                     NeoBundle 'thinca/vim-textobj-between'
