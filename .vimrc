@@ -697,6 +697,15 @@
         endif
     " }}}
 
+    " Clojure {{{
+        if count(g:dewdrops_bundle_groups, 'clojure')
+            NeoBundle 'guns/vim-clojure-static'
+            NeoBundle 'tpope/vim-fireplace'
+            NeoBundle 'guns/vim-clojure-highlight'
+            NeoBundle 'tpope/vim-classpath'
+        endif
+    " }}}
+
     " Haskell {{{
         if count(g:dewdrops_bundle_groups, 'haskell')
             NeoBundle 'travitch/hasksyn'
