@@ -64,6 +64,8 @@ alias dstat='dstat -cdlmnpsy'
 alias e='emacs'
 alias ec='emacsclient'
 
+[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh &>null
+
 function take() {
     mkdir -p $1
     cd $1
