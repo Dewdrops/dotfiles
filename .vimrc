@@ -489,7 +489,7 @@
 
             NeoBundleLazy 'rhysd/git-messenger.vim',
                         \ {'autoload': {'commands': 'GitMessengerToggle'}}
-            nnoremap <leader>gm :Gstatus<cr>
+            nnoremap <leader>gm :GitMessengerToggle<cr>
         endif
     " }}}
 
