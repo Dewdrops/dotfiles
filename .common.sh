@@ -37,6 +37,7 @@ alias vvr='vim ~/.vimrc'
 alias vmk='vim Makefile'
 alias vrk='vim Rakefile'
 alias vit='vim -u ~/.vimrc_tiny'
+alias vi='vim'
 alias vt='vim -u ~/.vimrc_tiny'
 alias gvi='gvim'
 alias gvit='gvim -u ~/.vimrc_tiny'
@@ -59,10 +60,25 @@ alias sapt='sudo apt-get install'
 
 alias rb='R CMD BATCH'
 
+alias javac="javac -J-Dfile.encoding=utf8"
+
 alias dstat='dstat -cdlmnpsy'
 
 alias e='emacs'
 alias ec='emacsclient'
+
+alias -s rb=vi
+alias -s html=firefox
+alias -s py=vi
+alias -s js=vi
+alias -s c=vi
+alias -s cpp=vi
+alias -s java=vi
+alias -s txt=vi
+alias -s gz='tar -xzvf'
+alias -s tgz='tar -xzvf'
+alias -s zip='unzip'
+alias -s bz2='tar -xjvf'
 
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh &>null
 
