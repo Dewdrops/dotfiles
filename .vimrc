@@ -231,7 +231,7 @@
                 vmap _ <Plug>(expand_region_shrink)
                 vmap X <Plug>(expand_region_shrink)
 
-                if count(g:dewdrops_bundle_groups, 'extra')
+                if count(g:dewdrops_bundle_groups, 'textobj')
                     NeoBundle 'wellle/targets.vim'
                     NeoBundle 'kana/vim-textobj-user'
                     NeoBundle 'kana/vim-textobj-indent'
@@ -322,6 +322,7 @@
             NeoBundle 'tpope/vim-dispatch'
             NeoBundle 'mutewinter/swap-parameters'
             NeoBundle 'amdt/vim-niji'
+            " NeoBundle 'scrooloose/syntastic'
 
             NeoBundle 'AndrewRadev/splitjoin.vim'
             let g:splitjoin_split_mapping = 'cS'
@@ -444,26 +445,19 @@
                 endif
             " }}}
 
-            " Extra {{{
-                if count(g:dewdrops_bundle_groups, 'extra')
-                    NeoBundle 'scrooloose/syntastic'
+            if count(g:dewdrops_bundle_groups, 'indent')
+                NeoBundle 'nathanaelkane/vim-indent-guides'
+                let g:indent_guides_start_level           = 2
+                let g:indent_guides_guide_size            = 1
+                let g:indent_guides_enable_on_vim_startup = 1
+                let g:indent_guides_exclude_filetypes     = ['help', 'nerdtree', 'startify', 'vundle']
 
-                    " indent guides {{{
-                        NeoBundle 'nathanaelkane/vim-indent-guides'
-                        let g:indent_guides_start_level           = 2
-                        let g:indent_guides_guide_size            = 1
-                        let g:indent_guides_enable_on_vim_startup = 1
-                        let g:indent_guides_exclude_filetypes     = ['help', 'nerdtree', 'startify', 'vundle']
-
-                        if !has('gui_running')
-                            let g:indent_guides_auto_colors = 0
-                            hi IndentGuidesOdd  ctermbg=black
-                            hi IndentGuidesEven ctermbg=darkgrey
-                        endif
-                    " }}}
+                if !has('gui_running')
+                    let g:indent_guides_auto_colors = 0
+                    hi IndentGuidesOdd  ctermbg=black
+                    hi IndentGuidesEven ctermbg=darkgrey
                 endif
-            " }}}
-
+            endif
         endif
     " }}}
 
