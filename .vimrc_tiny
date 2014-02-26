@@ -309,6 +309,8 @@
     nnoremap <leader>bd :Bclose<cr>
     nnoremap <leader>q :q<cr>
     nnoremap <leader>wq :wq<cr>
+    nnoremap <leader>wn :wn<cr>
+    nnoremap <leader>wp :wp<cr>
     nnoremap <leader>wr :w<cr>
     nnoremap <leader>xa :xa<cr>
     nnoremap <leader>bp :bp<cr>
