@@ -319,9 +319,9 @@
     " General Programming {{{
         if count(g:dewdrops_bundle_groups, 'programming')
             NeoBundle 'tpope/vim-endwise'
-            NeoBundle 'tpope/vim-dispatch'
             NeoBundle 'mutewinter/swap-parameters'
             NeoBundle 'amdt/vim-niji'
+            " NeoBundle 'tpope/vim-dispatch'
             " NeoBundle 'scrooloose/syntastic'
 
             NeoBundle 'AndrewRadev/splitjoin.vim'
