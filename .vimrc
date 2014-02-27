@@ -624,7 +624,6 @@
                 let g:ycm_key_list_select_completion       = ['<tab>', '<C-n>', '<Down>']
                 let g:ycm_key_list_previous_completion     = ['<s-tab>', '<C-p>', '<Up>']
                 let g:ycm_filetype_blacklist               = {'unite': 1}
-                let g:ycm_register_as_syntastic_checker    = 0
                 let g:ycm_global_ycm_extra_conf            = '~/.ycm_extra_conf.py'
                 let g:ycm_confirm_extra_conf               = 0
 
