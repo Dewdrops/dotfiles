@@ -673,17 +673,6 @@
         endif
     " }}}
 
-    " Javascript {{{
-        if count(g:dewdrops_bundle_groups, 'javascript')
-            NeoBundle 'pangloss/vim-javascript'
-            NeoBundle 'briancollins/vim-jst'
-            NeoBundle 'kchmck/vim-coffee-script'
-
-            NeoBundle 'elzr/vim-json'
-            nmap <leader>jt <Esc>:%!python -m json.tool<cr><Esc>:set filetype=json<cr>
-        endif
-    " }}}
-
     " Scala {{{
         if count(g:dewdrops_bundle_groups, 'scala')
             NeoBundle 'derekwyatt/vim-scala'
@@ -712,10 +701,8 @@
 
     " HTML {{{
         if count(g:dewdrops_bundle_groups, 'html')
-            NeoBundle 'hail2u/vim-css3-syntax'
-            NeoBundle 'cakebaker/scss-syntax.vim'
-            NeoBundle 'groenewege/vim-less'
             NeoBundle 'tpope/vim-haml'
+            NeoBundle 'Valloric/MatchTagAlways'
 
             NeoBundle 'amirh/HTML-AutoCloseTag'
             " Make it so AutoCloseTag works for xhtml files as well
@@ -724,6 +711,25 @@
             NeoBundle 'mattn/emmet-vim'
             let g:user_emmet_leader_key = '<c-g>'            " use C-g instead
             let g:user_emmet_mode       = 'i'
+        endif
+    " }}}
+
+    " CSS {{{
+        if count(g:dewdrops_bundle_groups, 'css')
+            NeoBundle 'hail2u/vim-css3-syntax'
+            NeoBundle 'cakebaker/scss-syntax.vim'
+            NeoBundle 'groenewege/vim-less'
+        endif
+    " }}}
+
+    " Javascript {{{
+        if count(g:dewdrops_bundle_groups, 'javascript')
+            NeoBundle 'pangloss/vim-javascript'
+            NeoBundle 'briancollins/vim-jst'
+            NeoBundle 'kchmck/vim-coffee-script'
+
+            NeoBundle 'elzr/vim-json'
+            nmap <leader>jt <Esc>:%!python -m json.tool<cr><Esc>:set filetype=json<cr>
         endif
     " }}}
 
