@@ -626,6 +626,7 @@
                 let g:ycm_filetype_blacklist               = {'unite': 1}
                 let g:ycm_global_ycm_extra_conf            = '~/.ycm_extra_conf.py'
                 let g:ycm_confirm_extra_conf               = 0
+                let g:ycm_enable_diagnostic_signs          = 0
 
                 " configuration of UltiSnips
                 let g:UltiSnipsExpandTrigger               = "<c-k>"
