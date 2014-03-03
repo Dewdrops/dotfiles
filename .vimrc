@@ -87,18 +87,6 @@
                 let g:nerdtree_tabs_open_on_gui_startup = 0
             " }}}
 
-            " Bufexplorer {{{
-                NeoBundle 'bufexplorer.zip'
-                let g:bufExplorerDefaultHelp      = 0            " Do not show default help.
-                let g:bufExplorerShowRelativePath = 1            " Show relative paths.
-                let g:bufExplorerSortBy           = 'mru'        " Sort by most recently used.
-                let g:bufExplorerSplitRight       = 0            " Split left.
-                let g:bufExplorerSplitVertical    = 1            " Split vertically.
-                let g:bufExplorerSplitVertSize    = 30           " Split width
-                let g:bufExplorerUseCurrentWindow = 1            " Open in new window
-                au BufWinEnter \[Buf\ List\] setlocal nonumber
-            " }}}
-
             " Seek {{{
                 NeoBundle 'goldfeld/vim-seek'
                 let g:SeekKey                         = 'S'
@@ -171,9 +159,29 @@
                 vmap <Leader>vR <plug>EgMapReplaceSelection_R
             " }}}
 
-            " Bufferline {{{
-                NeoBundle 'bling/vim-bufferline'
+            " Window and buffer {{{
+                NeoBundle 'techlivezheng/vim-plugin-minibufexpl'
+                NeoBundle 'kien/tabman.vim'
+
+                NeoBundle 'bufexplorer.zip'
+                let g:bufExplorerDefaultHelp      = 0            " Do not show default help.
+                let g:bufExplorerShowRelativePath = 1            " Show relative paths.
+                let g:bufExplorerSortBy           = 'mru'        " Sort by most recently used.
+                let g:bufExplorerSplitRight       = 0            " Split left.
+                let g:bufExplorerSplitVertical    = 1            " Split vertically.
+                let g:bufExplorerSplitVertSize    = 30           " Split width
+                let g:bufExplorerUseCurrentWindow = 1            " Open in new window
+                au BufWinEnter \[Buf\ List\] setlocal nonumber
+
+                " NeoBundle 'spolu/dwm.vim'
+                " nmap <leader>. <Plug>DWMFocus
+                " nmap <leader>dn <Plug>DWMNew
+                " nmap g. <Plug>DWMRotateClockwise
+                " nmap g/ <Plug>DWMRotateCounterclockwise
+
+                " NeoBundle 'bling/vim-bufferline'
                 let g:bufferline_echo = 0
+
                 nnoremap <leader>1 :e#1<cr>
                 nnoremap <leader>2 :e#2<cr>
                 nnoremap <leader>3 :e#3<cr>
@@ -229,6 +237,10 @@
                 vmap gx <Plug>(Exchange)
                 nmap gxc <Plug>(ExchangeClear)
                 nmap gxx <Plug>(ExchangeLine)
+
+                NeoBundleLazy 'sjl/gundo.vim',
+                            \ {'autoload': {'commands': 'GundoToggle'}}
+                nnoremap <Leader>ut :GundoToggle<cr>
             " }}}
 
             " Motion {{{
@@ -265,16 +277,9 @@
 
             " UI {{{
                 NeoBundle 'szw/vim-maximizer'
-                NeoBundle 'kien/tabman.vim'
 
                 NeoBundle 'bling/vim-airline'
                 let g:airline#extensions#hunks#non_zero_only = 1
-
-                NeoBundle 'spolu/dwm.vim'
-                nmap <leader>. <Plug>DWMFocus
-                nmap <leader>dn <Plug>DWMNew
-                nmap g. <Plug>DWMRotateClockwise
-                nmap g/ <Plug>DWMRotateCounterclockwise
 
                 NeoBundle 'Dewdrops/vim-tomorrow-theme'
                 nmap <leader>cor :colo ron<cr>
@@ -328,10 +333,6 @@
                 nmap <Leader>fu <Plug>(openbrowser-open)
                 vmap <Leader>fu <Plug>(openbrowser-open)
                 nnoremap <Leader>fs :<C-u>OpenBrowserSearch<Space><C-r><C-w><Enter>
-
-                NeoBundleLazy 'sjl/gundo.vim',
-                            \ {'autoload': {'commands': 'GundoToggle'}}
-                nnoremap <Leader>ut :GundoToggle<cr>
             " }}}
 
         endif
