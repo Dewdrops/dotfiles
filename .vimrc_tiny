@@ -62,7 +62,9 @@
     set history=1000                        " Store a ton of history (default is 20)
     set hidden                              " Allow buffer switching without saving
     set ttimeoutlen=50                      " dimish the pause when leaving insert mode
-    set cryptmethod=blowfish                " for more security (zip is too weak)
+    if v:version >= 703
+        set cryptmethod=blowfish            " for more security (zip is too weak)
+    endif
 
     " Omnicomplete
     au Filetype *
