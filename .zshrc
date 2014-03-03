@@ -318,6 +318,11 @@ setopt long_list_jobs
 
 # setopt extended_glob
 
+# Ubuntu's "command not found"
+if [[ -f /etc/zsh_command_not_found  ]]; then
+    source /etc/zsh_command_not_found
+fi
+
 # load customized configuration
 [ -f $HOME/.zshrc.customized ] && source $HOME/.zshrc.customized
 
