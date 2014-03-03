@@ -343,7 +343,7 @@
             NeoBundle 'tpope/vim-endwise'
             NeoBundle 'mutewinter/swap-parameters'
             NeoBundle 'amdt/vim-niji'
-            " NeoBundle 'tpope/vim-dispatch'
+            NeoBundle 'tpope/vim-dispatch'
             " NeoBundle 'scrooloose/syntastic'
 
             NeoBundle 'AndrewRadev/splitjoin.vim'
