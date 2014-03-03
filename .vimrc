@@ -60,13 +60,12 @@
                 let g:ctrlp_reuse_window        = 'startify'
                 let g:ctrlp_extensions          = ['funky']
 
-                nmap \ [ctrlp]
-                nnoremap [ctrlp] <nop>
-                nnoremap [ctrlp]t :CtrlPBufTag<cr>
-                nnoremap [ctrlp]T :CtrlPTag<cr>
-                nnoremap [ctrlp]l :CtrlPLine<cr>
-                nnoremap [ctrlp]o :CtrlPFunky<cr>
-                nnoremap [ctrlp]b :CtrlPBuffer<cr>
+                nnoremap \ <nop>
+                nnoremap \t :CtrlPBufTag<cr>
+                nnoremap \T :CtrlPTag<cr>
+                nnoremap \l :CtrlPLine<cr>
+                nnoremap \o :CtrlPFunky<cr>
+                nnoremap \b :CtrlPBuffer<cr>
 
                 NeoBundleLazy 'tacahiroy/ctrlp-funky',
                             \ {'autoload': {'commands': ['CtrlPFunky']}}
@@ -172,6 +171,31 @@
                 vmap <Leader>vR <plug>EgMapReplaceSelection_R
             " }}}
 
+            " Bufferline {{{
+                NeoBundle 'bling/vim-bufferline'
+                let g:bufferline_echo = 0
+                nnoremap <leader>1 :e#1<cr>
+                nnoremap <leader>2 :e#2<cr>
+                nnoremap <leader>3 :e#3<cr>
+                nnoremap <leader>4 :e#4<cr>
+                nnoremap <leader>5 :e#5<cr>
+                nnoremap <leader>6 :e#6<cr>
+                nnoremap <leader>7 :e#7<cr>
+                nnoremap <leader>8 :e#8<cr>
+                nnoremap <leader>9 :e#9<cr>
+                nnoremap <leader>0 :e#10<cr>
+                nnoremap \1 :e#11<cr>
+                nnoremap \2 :e#12<cr>
+                nnoremap \3 :e#13<cr>
+                nnoremap \4 :e#14<cr>
+                nnoremap \5 :e#15<cr>
+                nnoremap \6 :e#16<cr>
+                nnoremap \7 :e#17<cr>
+                nnoremap \8 :e#18<cr>
+                nnoremap \9 :e#19<cr>
+                nnoremap \0 :e#20<cr>
+            " }}}
+
             " Edit {{{
                 NeoBundle 'DrawIt'
                 NeoBundle 'jiangmiao/auto-pairs'
@@ -270,9 +294,6 @@
 
                 NeoBundle 'thinca/vim-ref'
                 let g:ref_perldoc_auto_append_f = 1
-
-                NeoBundle 'bling/vim-bufferline'
-                let g:bufferline_echo = 0
 
                 NeoBundle 'kshenoy/vim-signature'
                 nnoremap <leader>sg :SignatureToggle<cr>
