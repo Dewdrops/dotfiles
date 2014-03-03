@@ -179,6 +179,7 @@
 
     set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 
+    set foldmethod=syntax
     set foldlevel=99
 
     " Remove trailing whitespaces and ^M chars
