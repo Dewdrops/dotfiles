@@ -504,12 +504,7 @@
 
     " Snippets & AutoComplete {{{
 
-        if count(g:dewdrops_bundle_groups, 'snipmate')
-            NeoBundle 'honza/vim-snippets'
-
-            NeoBundle 'garbas/vim-snipmate'
-            let g:snips_author = 'Dewdrops <v_v_4474@126.com>'
-        elseif count(g:dewdrops_bundle_groups, 'neocomplete')
+        if count(g:dewdrops_bundle_groups, 'neocomplete')
 
             " neocomplcache and neocomplete {{{
                 if has('lua') && (v:version > 703 || v:version == 703 && has('patch885'))
