@@ -259,14 +259,6 @@
                 let g:EasyMotion_mapping_f = '<space>'
                 let g:EasyMotion_mapping_F = 'g<space>'
 
-                NeoBundleLazy 'terryma/vim-expand-region',
-                            \ {'autoload': {'mappings': ['<Plug>(expand_region_expand)']}}
-                nmap + <Plug>(expand_region_expand)
-                vmap + <Plug>(expand_region_expand)
-                vmap x <Plug>(expand_region_expand)
-                vmap _ <Plug>(expand_region_shrink)
-                vmap X <Plug>(expand_region_shrink)
-
                 if count(g:dewdrops_bundle_groups, 'textobj')
                     NeoBundle 'wellle/targets.vim'
                     NeoBundle 'kana/vim-textobj-user'
