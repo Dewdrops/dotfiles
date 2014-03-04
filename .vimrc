@@ -718,7 +718,7 @@
         if count(g:dewdrops_bundle_groups, 'html')
             NeoBundle 'othree/xml.vim'
             NeoBundle 'tpope/vim-haml'
-            NeoBundle 'Valloric/MatchTagAlways'
+            NeoBundle 'gcmt/breeze.vim'
 
             NeoBundle 'mattn/emmet-vim'
             let g:user_emmet_leader_key = '<c-g>'            " use C-g instead
