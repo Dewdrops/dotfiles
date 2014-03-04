@@ -26,6 +26,7 @@
                         \     'general',
                         \     'programming',
                         \     'git',
+                        \     'html',
                         \     'markup',
                         \     'ycm',
                         \     'misc'
@@ -712,12 +713,9 @@
 
     " HTML {{{
         if count(g:dewdrops_bundle_groups, 'html')
+            NeoBundle 'othree/xml.vim'
             NeoBundle 'tpope/vim-haml'
             NeoBundle 'Valloric/MatchTagAlways'
-
-            NeoBundle 'amirh/HTML-AutoCloseTag'
-            " Make it so AutoCloseTag works for xhtml files as well
-            au FileType xhtml ru ftplugin/html/autoclosetag.vim
 
             NeoBundle 'mattn/emmet-vim'
             let g:user_emmet_leader_key = '<c-g>'            " use C-g instead
@@ -794,7 +792,6 @@
         if count(g:dewdrops_bundle_groups, 'misc')
             " NeoBundle 'chrisbra/csv.vim'
             " NeoBundle 'Puppet-Syntax-Highlighting'
-            " NeoBundle 'xml.vim'
             " NeoBundle 'kchmck/vim-coffee-script'
             NeoBundle 'petRUShka/vim-opencl'
 
