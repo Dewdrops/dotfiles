@@ -760,12 +760,6 @@
         endif
     " }}}
 
-    " CSharp {{{
-        if count(g:dewdrops_bundle_groups, 'csharp')
-            NeoBundle 'nosami/Omnisharp'
-        endif
-    " }}}
-
     " Lua {{{
         if count(g:dewdrops_bundle_groups, 'lua')
             NeoBundle 'xolox/vim-misc'
