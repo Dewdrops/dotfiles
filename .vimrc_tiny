@@ -336,10 +336,10 @@
         nnoremap ]<space> mMo<esc>0d$`M
 
         " move text
-        nmap [e mz:m-2<cr>`z
-        nmap ]e mz:m+<cr>`z
-        vmap [e :m'<-2<cr>`>my`<mzgv`yo`z
-        vmap ]e :m'>+<cr>`<my`>mzgv`yo`z
+        nmap [e mM:m-2<cr>`M
+        nmap ]e mM:m+<cr>`M
+        vmap [e :m'<-2<cr>`>mZ`<mMgv`Zo`M
+        vmap ]e :m'>+<cr>`<mZ`>mMgv`Zo`M
     endif
 
 " }}}
