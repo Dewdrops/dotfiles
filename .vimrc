@@ -26,6 +26,7 @@
                         \     'general',
                         \     'programming',
                         \     'git',
+                        \     'markup',
                         \     'ycm',
                         \     'misc'
                         \ ]
@@ -732,6 +733,13 @@
         endif
     " }}}
 
+    " Mark up languages {{{
+        if count(g:dewdrops_bundle_groups, 'markup')
+            NeoBundle 'tpope/vim-markdown',
+            NeoBundle 'greyblake/vim-preview'
+        endif
+    " }}}
+
     " Javascript {{{
         if count(g:dewdrops_bundle_groups, 'javascript')
             NeoBundle 'pangloss/vim-javascript'
@@ -783,23 +791,16 @@
         endif
     " }}}
 
-    " Puppet {{{
-        if count(g:dewdrops_bundle_groups, 'puppet')
-            NeoBundle 'Puppet-Syntax-Highlighting'
-        endif
-    " }}}
-
     " Misc {{{
         if count(g:dewdrops_bundle_groups, 'misc')
-            NeoBundle 'tpope/vim-markdown',
-            NeoBundle 'chrisbra/csv.vim'
-            NeoBundle 'xml.vim'
-            NeoBundle 'greyblake/vim-preview'
+            " NeoBundle 'chrisbra/csv.vim'
+            " NeoBundle 'Puppet-Syntax-Highlighting'
+            " NeoBundle 'xml.vim'
 
             NeoBundle 'jceb/vim-orgmode'
             au FileType org setlocal fdm=expr
 
-            NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
+            " NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
             let g:LatexBox_Folding = 1
         endif
     " }}}
