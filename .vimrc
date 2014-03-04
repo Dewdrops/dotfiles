@@ -800,6 +800,7 @@
             NeoBundle 'tpope/vim-markdown',
             NeoBundle 'chrisbra/csv.vim'
             NeoBundle 'xml.vim'
+            NeoBundle 'greyblake/vim-preview'
 
             NeoBundle 'jceb/vim-orgmode'
             au FileType org setlocal fdm=expr
