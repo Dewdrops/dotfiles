@@ -744,7 +744,6 @@
         if count(g:dewdrops_bundle_groups, 'javascript')
             NeoBundle 'pangloss/vim-javascript'
             NeoBundle 'briancollins/vim-jst'
-            NeoBundle 'kchmck/vim-coffee-script'
 
             NeoBundle 'elzr/vim-json'
             nmap <leader>jt <Esc>:%!python -m json.tool<cr><Esc>:set filetype=json<cr>
@@ -796,13 +795,14 @@
             " NeoBundle 'chrisbra/csv.vim'
             " NeoBundle 'Puppet-Syntax-Highlighting'
             " NeoBundle 'xml.vim'
+            " NeoBundle 'kchmck/vim-coffee-script'
             NeoBundle 'petRUShka/vim-opencl'
 
             NeoBundle 'jceb/vim-orgmode'
             au FileType org setlocal fdm=expr
 
             " NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
-            let g:LatexBox_Folding = 1
+            " let g:LatexBox_Folding = 1
         endif
     " }}}
 
