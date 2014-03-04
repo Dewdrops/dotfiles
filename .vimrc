@@ -796,6 +796,7 @@
             " NeoBundle 'chrisbra/csv.vim'
             " NeoBundle 'Puppet-Syntax-Highlighting'
             " NeoBundle 'xml.vim'
+            NeoBundle 'petRUShka/vim-opencl'
 
             NeoBundle 'jceb/vim-orgmode'
             au FileType org setlocal fdm=expr
