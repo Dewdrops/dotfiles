@@ -54,7 +54,7 @@
                 let g:ctrlp_clear_cache_on_exit = 1
                 let g:ctrlp_max_height          = 40
                 let g:ctrlp_follow_symlinks     = 1
-                let g:ctrlp_max_files           = 20000
+                let g:ctrlp_max_files           = 10000
                 let g:ctrlp_mruf_max            = 20
                 let g:ctrlp_cache_dir           = '~/.vim/.cache/ctrlp'
                 let g:ctrlp_reuse_window        = 'startify'
@@ -419,11 +419,11 @@
             " }}}
 
             " Ack {{{
-                if executable('ack-grep')
-                    let g:ctrlsf_ackprg = 'ack-grep'
+                if executable('ack') || executable('ag')
                     NeoBundleLazy 'dyng/ctrlsf.vim',
                         \ {'autoload': {'commands': 'CtrlSF'}}
-                elseif executable('ack') || executable('ag')
+                elseif executable('ack-grep')
+                    let g:ctrlsf_ackprg = 'ack-grep'
                     NeoBundleLazy 'dyng/ctrlsf.vim',
                         \ {'autoload': {'commands': 'CtrlSF'}}
                 endif
