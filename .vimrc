@@ -717,6 +717,7 @@
     " HTML {{{
         if count(g:dewdrops_bundle_groups, 'html')
             NeoBundle 'othree/xml.vim'
+            NeoBundle 'othree/html5.vim'
 
             NeoBundle 'gcmt/breeze.vim'
             au Filetype html,xhtml,xml nnoremap <buffer> <cr> :BreezeJumpF<cr>
