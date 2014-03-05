@@ -27,7 +27,6 @@
                         \     'programming',
                         \     'git',
                         \     'html',
-                        \     'markup',
                         \     'ycm',
                         \     'misc'
                         \ ]

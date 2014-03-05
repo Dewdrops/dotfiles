@@ -146,7 +146,8 @@
     set linespace=0                    " No extra spaces between rows
     set nu                             " Line numbers on
     if v:version >= 703
-        au BufEnter * set relativenumber   " relative line number for fast motion
+        " relative line number for fast motion
+        au BufEnter * if &nu | set relativenumber | endif
     endif
     set showmatch                      " Show matching brackets/parenthesis
     set incsearch                      " Find as you type search
