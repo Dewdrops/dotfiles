@@ -700,12 +700,12 @@
 
             NeoBundle 'guns/vim-sexp'
             au FileType lisp,scheme,clojure let maplocalleader = '-'
-            au FileType lisp,scheme,clojure map <leader>jb <Plug>(sexp_move_to_prev_element_head)
-            au FileType lisp,scheme,clojure map <leader>jw <Plug>(sexp_move_to_next_element_head)
-            au FileType lisp,scheme,clojure map <leader>jge <Plug>(sexp_move_to_prev_element_tail)
-            au FileType lisp,scheme,clojure map <leader>je <Plug>(sexp_move_to_next_element_tail)
-            au FileType lisp,scheme,clojure nmap <leader>jk <Plug>(sexp_swap_element_backward)
-            au FileType lisp,scheme,clojure nmap <leader>jj <Plug>(sexp_swap_element_forward)
+            au FileType lisp,scheme,clojure map <buffer> <leader>jb <Plug>(sexp_move_to_prev_element_head)
+            au FileType lisp,scheme,clojure map <buffer> <leader>jw <Plug>(sexp_move_to_next_element_head)
+            au FileType lisp,scheme,clojure map <buffer> <leader>jge <Plug>(sexp_move_to_prev_element_tail)
+            au FileType lisp,scheme,clojure map <buffer> <leader>je <Plug>(sexp_move_to_next_element_tail)
+            au FileType lisp,scheme,clojure nmap <buffer> <leader>jk <Plug>(sexp_swap_element_backward)
+            au FileType lisp,scheme,clojure nmap <buffer> <leader>jj <Plug>(sexp_swap_element_forward)
             let g:sexp_enable_insert_mode_mappings = 0
             let g:sexp_insert_after_wrap           = 0
             let g:sexp_mappings = {
