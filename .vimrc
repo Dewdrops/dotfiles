@@ -648,7 +648,7 @@
                 let g:UltiSnipsJumpBackwardTrigger         = "<c-j>"
                 let g:UltiSnipsSnippetsDir                 = '~/.vim/snippets'
 
-                nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<cr>
+                au FileType c,cpp,objc,python nnoremap <buffer> <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<cr>
             "}}}
 
         endif
@@ -747,7 +747,7 @@
             NeoBundle 'briancollins/vim-jst'
 
             NeoBundle 'elzr/vim-json'
-            nmap <leader>jt <Esc>:%!python -m json.tool<cr><Esc>:set filetype=json<cr>
+            nmap <leader>tj <Esc>:%!python -m json.tool<cr><Esc>:set filetype=json<cr>
         endif
     " }}}
 
