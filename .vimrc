@@ -717,8 +717,15 @@
     " HTML {{{
         if count(g:dewdrops_bundle_groups, 'html')
             NeoBundle 'othree/xml.vim'
-            NeoBundle 'tpope/vim-haml'
+
             NeoBundle 'gcmt/breeze.vim'
+            au Filetype html,xhtml,xml nnoremap <buffer> <cr> :BreezeJumpF<cr>
+            au Filetype html,xhtml,xml nnoremap <buffer> <leader><cr> :BreezeJumpB<cr>
+            au Filetype html,xhtml,xml nnoremap <buffer> <leader>jn :BreezeNextSibling<cr>
+            au Filetype html,xhtml,xml nnoremap <buffer> <leader>jp :BreezePrevSibling<cr>
+            au Filetype html,xhtml,xml nnoremap <buffer> <leader>jf :BreezeFirstSibling<cr>
+            au Filetype html,xhtml,xml nnoremap <buffer> <leader>jl :BreezeLastSibling<cr>
+            au Filetype html,xhtml,xml nnoremap <buffer> <leader>ju :BreezeParent<cr>
 
             NeoBundle 'mattn/emmet-vim'
             let g:user_emmet_leader_key = '<c-g>'            " use C-g instead
@@ -796,6 +803,7 @@
             " NeoBundle 'chrisbra/csv.vim'
             " NeoBundle 'Puppet-Syntax-Highlighting'
             " NeoBundle 'kchmck/vim-coffee-script'
+            " NeoBundle 'tpope/vim-haml'
             NeoBundle 'petRUShka/vim-opencl'
 
             NeoBundle 'jceb/vim-orgmode'
