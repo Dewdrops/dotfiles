@@ -336,7 +336,6 @@
         if count(g:dewdrops_bundle_groups, 'programming')
             NeoBundle 'tpope/vim-endwise'
             NeoBundle 'Dewdrops/swap-parameters'
-            NeoBundle 'amdt/vim-niji'
             NeoBundle 'tpope/vim-dispatch'
             " NeoBundle 'scrooloose/syntastic'
 
@@ -692,6 +691,29 @@
         if count(g:dewdrops_bundle_groups, 'scala')
             NeoBundle 'derekwyatt/vim-scala'
             NeoBundle 'derekwyatt/vim-sbt'
+        endif
+    " }}}
+
+    " Lisp {{{
+        if count(g:dewdrops_bundle_groups, 'lisp')
+            NeoBundle 'amdt/vim-niji'
+
+            NeoBundle 'guns/vim-sexp'
+            au FileType lisp,scheme,clojure let maplocalleader = '-'
+            au FileType lisp,scheme,clojure map <leader>jb <Plug>(sexp_move_to_prev_element_head)
+            au FileType lisp,scheme,clojure map <leader>jw <Plug>(sexp_move_to_next_element_head)
+            au FileType lisp,scheme,clojure map <leader>jge <Plug>(sexp_move_to_prev_element_tail)
+            au FileType lisp,scheme,clojure map <leader>je <Plug>(sexp_move_to_next_element_tail)
+            au FileType lisp,scheme,clojure map <leader>jk <Plug>(sexp_swap_element_backward)
+            au FileType lisp,scheme,clojure map <leader>jj <Plug>(sexp_swap_element_forward)
+            let g:sexp_enable_insert_mode_mappings = 0
+            let g:sexp_insert_after_wrap           = 0
+            let g:sexp_mappings = {
+                        \ 'sexp_select_prev_element': '[j',
+                        \ 'sexp_select_next_element': ']j',
+                        \ 'sexp_emit_tail_element': '<c-left>',
+                        \ 'sexp_capture_next_element': '<c-right>'
+                        \ }
         endif
     " }}}
 
