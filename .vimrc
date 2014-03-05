@@ -123,7 +123,7 @@
             " }}}
 
             " Startify {{{
-                NeoBundle 'mhinz/vim-startify'
+                " NeoBundle 'mhinz/vim-startify'
                 let g:startify_custom_header = [
                             \ '         ____                   _                     ',
                             \ '        |  _ \  _____      ____| |_ __ ___  _ __  ___ ',
@@ -163,7 +163,7 @@
 
             " Window and buffer {{{
                 NeoBundle 'techlivezheng/vim-plugin-minibufexpl'
-                NeoBundle 'kien/tabman.vim'
+                " NeoBundle 'kien/tabman.vim'
 
                 NeoBundle 'bufexplorer.zip'
                 let g:bufExplorerDefaultHelp      = 0            " Do not show default help.
@@ -207,11 +207,11 @@
             " }}}
 
             " Edit {{{
-                NeoBundle 'DrawIt'
+                " NeoBundle 'vim-scripts/DrawIt'
+                NeoBundle 'tpope/vim-speeddating'
                 NeoBundle 'jiangmiao/auto-pairs'
                 NeoBundle 'tpope/vim-surround'
                 NeoBundle 'terryma/vim-multiple-cursors'
-                NeoBundle 'tpope/vim-speeddating'
                 NeoBundle 'tpope/vim-repeat'
                 NeoBundle 'chrisbra/NrrwRgn'
 
@@ -294,8 +294,8 @@
                 NeoBundle 'thinca/vim-ref'
                 let g:ref_perldoc_auto_append_f = 1
 
-                NeoBundle 'kshenoy/vim-signature'
-                nnoremap <leader>sg :SignatureToggle<cr>
+                " NeoBundle 'kshenoy/vim-signature'
+                " nnoremap <leader>sg :SignatureToggle<cr>
 
                 NeoBundleLazy 'Dewdrops/vim-highlight-pattern',
                             \ {'autoload': {'mappings':
@@ -336,7 +336,7 @@
         if count(g:dewdrops_bundle_groups, 'programming')
             NeoBundle 'tpope/vim-endwise'
             NeoBundle 'Dewdrops/swap-parameters'
-            NeoBundle 'tpope/vim-dispatch'
+            " NeoBundle 'tpope/vim-dispatch'
             " NeoBundle 'scrooloose/syntastic'
 
             NeoBundle 'AndrewRadev/splitjoin.vim'
@@ -704,8 +704,8 @@
             au FileType lisp,scheme,clojure map <leader>jw <Plug>(sexp_move_to_next_element_head)
             au FileType lisp,scheme,clojure map <leader>jge <Plug>(sexp_move_to_prev_element_tail)
             au FileType lisp,scheme,clojure map <leader>je <Plug>(sexp_move_to_next_element_tail)
-            au FileType lisp,scheme,clojure map <leader>jk <Plug>(sexp_swap_element_backward)
-            au FileType lisp,scheme,clojure map <leader>jj <Plug>(sexp_swap_element_forward)
+            au FileType lisp,scheme,clojure nmap <leader>jk <Plug>(sexp_swap_element_backward)
+            au FileType lisp,scheme,clojure nmap <leader>jj <Plug>(sexp_swap_element_forward)
             let g:sexp_enable_insert_mode_mappings = 0
             let g:sexp_insert_after_wrap           = 0
             let g:sexp_mappings = {
