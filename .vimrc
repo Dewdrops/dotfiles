@@ -26,6 +26,7 @@
                         \     'general',
                         \     'programming',
                         \     'git',
+                        \     'lisp',
                         \     'html',
                         \     'markup',
                         \     'ycm',
@@ -703,7 +704,8 @@
         if count(g:dewdrops_bundle_groups, 'lisp')
             NeoBundle 'amdt/vim-niji'
 
-            NeoBundle 'guns/vim-sexp'
+            NeoBundleLazy 'guns/vim-sexp',
+                        \ {'autoload': {'filetypes': ['lisp', 'scheme', 'clojure']}}
             au FileType lisp,scheme,clojure let maplocalleader = '-'
             au FileType lisp,scheme,clojure map <buffer> <leader>jb <Plug>(sexp_move_to_prev_element_head)
             au FileType lisp,scheme,clojure map <buffer> <leader>jw <Plug>(sexp_move_to_next_element_head)
