@@ -340,7 +340,9 @@
             NeoBundle 'tpope/vim-endwise'
             NeoBundle 'Dewdrops/swap-parameters'
             " NeoBundle 'tpope/vim-dispatch'
+
             " NeoBundle 'scrooloose/syntastic'
+            " let g:syntastic_enable_perl_checker = 1
 
             NeoBundle 'AndrewRadev/splitjoin.vim'
             let g:splitjoin_split_mapping = 'cS'
