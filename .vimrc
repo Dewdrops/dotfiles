@@ -27,6 +27,7 @@
                         \     'programming',
                         \     'git',
                         \     'html',
+                        \     'markup',
                         \     'ycm',
                         \     'misc'
                         \ ]
@@ -206,7 +207,6 @@
             " }}}
 
             " Edit {{{
-                " NeoBundle 'vim-scripts/DrawIt'
                 NeoBundle 'tpope/vim-speeddating'
                 NeoBundle 'jiangmiao/auto-pairs'
                 NeoBundle 'tpope/vim-surround'
@@ -222,6 +222,10 @@
                 nmap <c-down> ]e
                 vmap <c-up> [e
                 vmap <c-down> ]e
+
+                NeoBundleLazy 'vim-scripts/DrawIt',
+                            \ {'autoload': {'mappings': '<Plug>DrawItStart'}}
+                nmap <unique> <Leader>di <Plug>DrawItStart
 
                 NeoBundleLazy 'sketch.vim',
                             \ {'autoload': {'functions': 'ToggleSketch'}}
