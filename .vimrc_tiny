@@ -333,6 +333,7 @@
         nnoremap ]b :bn<cr>
         nnoremap [s i<space><esc>l
         nnoremap ]s a<space><esc>h
+        nnoremap [w i<space><right><space><esc>h
         nnoremap [<space> mMO<esc>0d$`M
         nnoremap ]<space> mMo<esc>0d$`M
 
