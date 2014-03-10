@@ -782,6 +782,7 @@
         if count(g:dewdrops_bundle_groups, 'javascript')
             NeoBundle 'pangloss/vim-javascript'
             NeoBundle 'briancollins/vim-jst'
+            NeoBundle 'tpope/vim-jdaddy'
 
             NeoBundle 'elzr/vim-json'
             nmap <leader>tj <Esc>:%!python -m json.tool<cr><Esc>:set filetype=json<cr>
