@@ -334,14 +334,14 @@
         nnoremap [s i<space><esc>l
         nnoremap ]s a<space><esc>h
         nnoremap [w i<space><right><space><esc>h
-        nnoremap [<space> mMO<esc>0d$`M
-        nnoremap ]<space> mMo<esc>0d$`M
+        nnoremap [<space> mzO<esc>0d$`z
+        nnoremap ]<space> mzo<esc>0d$`z
 
         " move text
-        nmap [e mM:m-2<cr>`M
-        nmap ]e mM:m+<cr>`M
-        vmap [e :m'<-2<cr>`>mZ`<mMgv`Zo`M
-        vmap ]e :m'>+<cr>`<mZ`>mMgv`Zo`M
+        nmap [e mz:m-2<cr>`z
+        nmap ]e mz:m+<cr>`z
+        vmap [e :m'<-2<cr>`>my`<mzgv`yo`z
+        vmap ]e :m'>+<cr>`<my`>mzgv`yo`z
     endif
 
 " }}}
