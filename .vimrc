@@ -376,8 +376,6 @@
                 nnoremap <silent> gC :let w:tcommentPos = getpos(".") \| set opfunc=tcomment#OperatorAnyway<cr>g@
                 nnoremap <silent> gCc :let w:tcommentPos = getpos(".") \| set opfunc=tcomment#OperatorLineAnyway<cr>g@$
                 xnoremap <silent> gC :TCommentMaybeInline!<cr>
-                nmap <silent><leader>ci gcc
-                vmap <silent><leader>ci gc
                 nmap <silent><leader>cc yygccP
                 vmap <silent><leader>cc ygvgcP
                 nmap <silent><leader>cy yygcc

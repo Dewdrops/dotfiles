@@ -234,7 +234,7 @@
     noremap 0 ^
     noremap ^ 0
 
-    " Code folding options
+    " folding
     nmap <leader>f0 :set foldlevel=0<cr>
     nmap <leader>f1 :set foldlevel=1<cr>
     nmap <leader>f2 :set foldlevel=2<cr>
@@ -245,6 +245,12 @@
     nmap <leader>f7 :set foldlevel=7<cr>
     nmap <leader>f8 :set foldlevel=8<cr>
     nmap <leader>f9 :set foldlevel=9<cr>
+    nnoremap <leader>zd :set fdm=diff<cr>
+    nnoremap <leader>za :set fdm=manual<cr>
+    nnoremap <leader>zs :set fdm=syntax<cr>
+    nnoremap <leader>zm :set fdm=marker<cr>
+    nnoremap <leader>zi :set fdm=indent<cr>
+    nnoremap <leader>ze :set fdm=expr<cr>
 
     nmap <leader>sw :call StripTrailingWhitespace()<cr>
 
@@ -304,6 +310,14 @@
     inoremap <c-b> <left>
     inoremap <c-d> <del>
 
+    " quickfix commands
+    nnoremap <leader>co :cc<cr>
+    nnoremap <leader>cp :cp<cr>
+    nnoremap <leader>cn :cn<cr>
+    nnoremap <leader>cl :cl<cr>
+    nnoremap <leader>cw :cw<cr>
+
+    " misc
     nnoremap <leader>bd :Bclose<cr>
     nnoremap <leader>q :q<cr>
     nnoremap <leader>wq :wq<cr>
@@ -313,12 +327,6 @@
     nnoremap <leader>xa :xa<cr>
     nnoremap <leader>bp :bp<cr>
     nnoremap <leader>bn :bn<cr>
-    nnoremap <leader>zd :set fdm=diff<cr>
-    nnoremap <leader>za :set fdm=manual<cr>
-    nnoremap <leader>zs :set fdm=syntax<cr>
-    nnoremap <leader>zm :set fdm=marker<cr>
-    nnoremap <leader>zi :set fdm=indent<cr>
-    nnoremap <leader>ze :set fdm=expr<cr>
     nnoremap <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
     nnoremap <leader>mk :make<cr>
     nnoremap <leader>sp :sp<cr>
