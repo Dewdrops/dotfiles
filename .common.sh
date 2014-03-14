@@ -15,6 +15,7 @@ export GOPATH="$HOME/site/go-path"
 export PATH="$PATH:$GOROOT/bin"
 
 export PATH="$HOME/.cabal/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 export LESS=-R
 

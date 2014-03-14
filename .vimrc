@@ -28,7 +28,6 @@
                         \     'git',
                         \     'lisp',
                         \     'html',
-                        \     'markup',
                         \     'ycm',
                         \     'misc'
                         \ ]
