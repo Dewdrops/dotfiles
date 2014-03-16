@@ -341,6 +341,7 @@
             NeoBundle 'tpope/vim-endwise'
             NeoBundle 'Dewdrops/swap-parameters'
             " NeoBundle 'tpope/vim-dispatch'
+            NeoBundle 'sheerun/vim-polyglot'
 
             " NeoBundle 'scrooloose/syntastic'
             " let g:syntastic_enable_perl_checker = 1
@@ -664,10 +665,6 @@
             let g:DisableAutoPHPFolding = 0
             "let g:PIVAutoClose = 0
 
-            NeoBundle 'beyondwords/vim-twig'
-            au FileType twig au BufWritePre <buffer> call StripTrailingWhitespace()
-            au BufNewFile,BufRead *.html.twig set filetype=html.twig
-
             NeoBundle 'arnaud-lb/vim-php-namespace'
             NeoBundle 'shawncplus/phpcomplete.vim'
         endif
@@ -688,13 +685,6 @@
             let g:pymode_lint_checker      = "pyflakes"
             let g:pymode_utils_whitespaces = 0
             let g:pymode_options           = 0
-        endif
-    " }}}
-
-    " Scala {{{
-        if count(g:dewdrops_bundle_groups, 'scala')
-            NeoBundle 'derekwyatt/vim-scala'
-            NeoBundle 'derekwyatt/vim-sbt'
         endif
     " }}}
 
@@ -724,7 +714,6 @@
 
     " Clojure {{{
         if count(g:dewdrops_bundle_groups, 'clojure')
-            NeoBundle 'guns/vim-clojure-static'
             NeoBundle 'tpope/vim-fireplace'
             NeoBundle 'guns/vim-clojure-highlight'
             NeoBundle 'tpope/vim-classpath'
@@ -733,9 +722,7 @@
 
     " Haskell {{{
         if count(g:dewdrops_bundle_groups, 'haskell')
-            NeoBundle 'travitch/hasksyn'
             NeoBundle 'dag/vim2hs'
-
             NeoBundle 'lukerandall/haskellmode-vim'
             let g:haddock_browser = "/usr/bin/opera"
         endif
@@ -744,7 +731,8 @@
     " HTML {{{
         if count(g:dewdrops_bundle_groups, 'html')
             NeoBundle 'othree/xml.vim'
-            NeoBundle 'othree/html5.vim'
+            NeoBundle 'greyblake/vim-preview'
+            NeoBundle 'hail2u/vim-css3-syntax'
 
             NeoBundle 'gcmt/breeze.vim'
             au Filetype html,xhtml,xml nnoremap <buffer> <cr> :BreezeJumpF<cr>
@@ -756,87 +744,25 @@
             au Filetype html,xhtml,xml nnoremap <buffer> <leader>ju :BreezeParent<cr>
 
             NeoBundle 'mattn/emmet-vim'
-            let g:user_emmet_leader_key = '<c-g>'            " use C-g instead
+            let g:user_emmet_leader_key = '<c-g>'            " use C-g as trigger key
             let g:user_emmet_mode       = 'i'
         endif
     " }}}
 
-    " CSS {{{
-        if count(g:dewdrops_bundle_groups, 'css')
-            NeoBundle 'hail2u/vim-css3-syntax'
-            NeoBundle 'cakebaker/scss-syntax.vim'
-            NeoBundle 'groenewege/vim-less'
-        endif
-    " }}}
-
-    " Mark up languages {{{
-        if count(g:dewdrops_bundle_groups, 'markup')
-            NeoBundle 'tpope/vim-markdown',
-            NeoBundle 'greyblake/vim-preview'
-        endif
-    " }}}
-
-    " Javascript {{{
-        if count(g:dewdrops_bundle_groups, 'javascript')
-            NeoBundle 'pangloss/vim-javascript'
-            NeoBundle 'briancollins/vim-jst'
-            NeoBundle 'tpope/vim-jdaddy'
-
-            NeoBundle 'elzr/vim-json'
-            nmap <leader>tj <Esc>:%!python -m json.tool<cr><Esc>:set filetype=json<cr>
-        endif
-    " }}}
-
-    " Ruby {{{
-        if count(g:dewdrops_bundle_groups, 'ruby')
-            NeoBundle 'vim-ruby/vim-ruby'
-            NeoBundle 'tpope/vim-rails'
-
-            autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading    = 1
-            autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-            autocmd FileType ruby,eruby let g:rubycomplete_rails             = 1
-        endif
-    " }}}
-
-    " Perl {{{
-        if count(g:dewdrops_bundle_groups, 'perl')
-            NeoBundle 'vim-perl/vim-perl'
-        endif
-    " }}}
-
-    " Lua {{{
-        if count(g:dewdrops_bundle_groups, 'lua')
-            NeoBundle 'xolox/vim-misc'
-            NeoBundle 'xolox/vim-lua-ftplugin'
-        endif
-    " }}}
-
-    " Go Lang {{{
-        if count(g:dewdrops_bundle_groups, 'go')
-            NeoBundle 'jnwhiteh/vim-golang'
-            NeoBundle 'spf13/vim-gocode'
-
-            au FileType go au BufWritePre <buffer> Fmt
-        endif
-    " }}}
-
-    " Cucumber {{{
-        if count(g:dewdrops_bundle_groups, 'cucumber')
-            NeoBundle 'tpope/vim-cucumber'
-            NeoBundle 'quentindecock/vim-cucumber-align-pipes'
-        endif
-    " }}}
-
-    " Misc {{{
+    " Other languages {{{
         if count(g:dewdrops_bundle_groups, 'misc')
-            " NeoBundle 'chrisbra/csv.vim'
-            " NeoBundle 'Puppet-Syntax-Highlighting'
-            " NeoBundle 'kchmck/vim-coffee-script'
-            " NeoBundle 'tpope/vim-haml'
             NeoBundle 'petRUShka/vim-opencl'
+            " NeoBundle 'tpope/vim-jdaddy'
+            " NeoBundle 'tpope/vim-rails'
+            " NeoBundle 'derekwyatt/vim-sbt'
+            " NeoBundle 'spf13/vim-gocode'
+            " NeoBundle 'quentindecock/vim-cucumber-align-pipes'
 
-            NeoBundle 'jceb/vim-orgmode'
-            au FileType org setlocal fdm=expr
+            " NeoBundle 'xolox/vim-misc'
+            " NeoBundle 'xolox/vim-lua-ftplugin'
+
+            " NeoBundle 'jceb/vim-orgmode'
+            " au FileType org setlocal fdm=expr
 
             " NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
             " let g:LatexBox_Folding = 1
