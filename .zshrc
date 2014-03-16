@@ -189,7 +189,7 @@ if [ -f ~/.auto-fu.zsh/auto-fu.zsh ]; then
                 "('|$'|\")*"
     zstyle ':auto-fu:var' autoable-function/skiplines \
                 '[![:blank:]]# apt-get [![:blank:]]# *' \
-                'sapt *' 'j[co] *' 'j *' 'jco *'
+                'sapt *' 'j[co] *' 'j *' 'jco *' 'scp *'
     zstyle ':auto-fu:highlight' input bold
     zstyle ':auto-fu:highlight' completion fg=black,bold
     zstyle ':auto-fu:highlight' completion/one fg=white,bold,underline
