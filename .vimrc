@@ -751,7 +751,6 @@
 
     " Other languages {{{
         if count(g:dewdrops_bundle_groups, 'misc')
-            NeoBundle 'petRUShka/vim-opencl'
             " NeoBundle 'tpope/vim-jdaddy'
             " NeoBundle 'tpope/vim-rails'
             " NeoBundle 'derekwyatt/vim-sbt'
