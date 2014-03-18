@@ -282,7 +282,7 @@
                 nmap <leader>cor :colo ron<cr>
                 nmap <leader>cod :colo desert<cr>
                 nmap <leader>cot :colo Tomorrow-Night-Eighties<cr>
-                " colo Tomorrow-Night-Eighties
+                colo Tomorrow-Night-Eighties
 
                 NeoBundleLazy 'bilalq/lite-dfm',
                             \ {'autoload': {'commands': 'LiteDFMToggle'}}
@@ -519,11 +519,12 @@
                 if has('lua') && (v:version > 703 || v:version == 703 && has('patch885'))
                     NeoBundle 'Shougo/unite.vim'
                     NeoBundle 'Shougo/neocomplete'
+                    NeoBundle 'SirVer/ultisnips'
                 else
                     NeoBundle 'Shougo/neocomplcache'
+                    NeoBundle 'Shougo/neosnippet'
                 endif
-                NeoBundle 'Shougo/neosnippet'
-                NeoBundle 'honza/vim-snippets'
+                NeoBundle 'Dewdrops/vim-snippets'
 
                 let g:acp_enableAtStartup = 0
 
@@ -636,8 +637,7 @@
 
             " YouCompleteMe {{{
                 NeoBundle 'Valloric/YouCompleteMe'
-                " NeoBundle 'SirVer/ultisnips'
-
+                au FileType c,cpp,objc,python nnoremap <buffer> <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<cr>
                 let g:ycm_complete_in_comments_and_strings = 1
                 let g:ycm_key_list_select_completion       = ['<tab>', '<C-n>', '<Down>']
                 let g:ycm_key_list_previous_completion     = ['<s-tab>', '<C-p>', '<Up>']
@@ -649,13 +649,11 @@
                 let g:ycm_semantic_triggers.html           = [' ']
                 let g:ycm_semantic_triggers.xhtml          = [' ']
 
-                " configuration of UltiSnips
+                NeoBundle 'SirVer/ultisnips'
+                NeoBundle 'Dewdrops/vim-snippets'
                 let g:UltiSnipsExpandTrigger               = "<c-k>"
                 let g:UltiSnipsJumpForwardTrigger          = "<c-k>"
                 let g:UltiSnipsJumpBackwardTrigger         = "<c-j>"
-                let g:UltiSnipsSnippetsDir                 = '~/.vim/snippets'
-
-                au FileType c,cpp,objc,python nnoremap <buffer> <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<cr>
             "}}}
 
         endif
