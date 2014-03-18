@@ -301,6 +301,9 @@
                 " NeoBundle 'kshenoy/vim-signature'
                 " nnoremap <leader>sg :SignatureToggle<cr>
 
+                NeoBundleLazy 'AndrewRadev/linediff.vim',
+                            \ {'autoload': {'commands': 'Linediff'}}
+
                 NeoBundleLazy 'Dewdrops/vim-highlight-pattern',
                             \ {'autoload': {'mappings':
                             \ ['<Plug>(VHP_HighlightWordToggle)', '<Plug>(VHP_HighlightRegionToggle)',
