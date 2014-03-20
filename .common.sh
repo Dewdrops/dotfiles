@@ -1,4 +1,4 @@
-export EDITOR=vim
+export EDITOR='vim -u ~/.vimrc_tiny'
 
 export PAGER=less
 
