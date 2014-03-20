@@ -282,7 +282,7 @@
                 nmap <leader>cor :colo ron<cr>
                 nmap <leader>cod :colo desert<cr>
                 nmap <leader>cot :colo Tomorrow-Night-Eighties<cr>
-                colo Tomorrow-Night-Eighties
+                " colo Tomorrow-Night-Eighties
 
                 NeoBundleLazy 'bilalq/lite-dfm',
                             \ {'autoload': {'commands': 'LiteDFMToggle'}}
@@ -294,15 +294,13 @@
                 NeoBundle 'justinmk/vim-gtfo'
                 NeoBundle 'thinca/vim-prettyprint'
                 NeoBundle 'tpope/vim-eunuch'
+                NeoBundle 'AndrewRadev/linediff.vim'
 
                 NeoBundle 'thinca/vim-ref'
                 let g:ref_perldoc_auto_append_f = 1
 
                 " NeoBundle 'kshenoy/vim-signature'
                 " nnoremap <leader>sg :SignatureToggle<cr>
-
-                NeoBundleLazy 'AndrewRadev/linediff.vim',
-                            \ {'autoload': {'commands': 'Linediff'}}
 
                 NeoBundleLazy 'Dewdrops/vim-highlight-pattern',
                             \ {'autoload': {'mappings':
