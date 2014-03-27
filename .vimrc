@@ -732,6 +732,25 @@
 
     " }}}
 
+    " vimproc {{{
+        if count(g:dewdrops_bundle_groups, 'vimproc')
+            NeoBundle 'Shougo/vimproc', {
+                        \ 'build' : {
+                        \     'windows' : 'make -f make_mingw32.mak',
+                        \     'cygwin' : 'make -f make_cygwin.mak',
+                        \     'mac' : 'make -f make_mac.mak',
+                        \     'unix' : 'make -f make_unix.mak',
+                        \    },
+                        \ }
+
+            NeoBundle 'Shougo/vimshell.vim'
+            let g:vimshell_prompt = ""
+            let g:vimshell_prompt_expr =
+                        \ 'escape(fnamemodify(getcwd(), ":~").">", "\\[]()?! ")." "'
+            let g:vimshell_prompt_pattern = '^\%(\f\|\\.\)\+> '
+        endif
+    " }}}
+
     " PHP {{{
         if count(g:dewdrops_bundle_groups, 'php')
             NeoBundle 'spf13/PIV'
