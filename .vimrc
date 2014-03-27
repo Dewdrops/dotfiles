@@ -559,6 +559,7 @@
     " Git {{{
         if count(g:dewdrops_bundle_groups, 'git')
             NeoBundle 'mhinz/vim-signify'
+            NeoBundle 'jaxbot/github-issues.vim'
 
             NeoBundle 'tpope/vim-fugitive'
             nnoremap <leader>gs :Gstatus<cr>
