@@ -187,6 +187,10 @@
                 vmap <c-up> [e
                 vmap <c-down> ]e
 
+                NeoBundleLazy 'Shougo/vinarise.vim',
+                            \ {'autoload': {'commands': 'Vinarise'}}
+                nmap <leader>xx :Vinarise<cr>
+
                 NeoBundleLazy 'vim-scripts/DrawIt',
                             \ {'autoload': {'mappings': '<Plug>DrawItStart'}}
                 nmap <unique> <Leader>di <Plug>DrawItStart
