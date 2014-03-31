@@ -450,7 +450,7 @@
         endif
     " }}}
 
-    " Unite and CtrlP {{{
+    " Unite & CtrlP {{{
         if count(g:dewdrops_bundle_groups, 'unite')
             NeoBundle 'Shougo/unite.vim'
             NeoBundle 'Shougo/neomru.vim'
@@ -847,7 +847,7 @@
             " NeoBundle 'tpope/vim-jdaddy'
             " NeoBundle 'tpope/vim-rails'
             " NeoBundle 'derekwyatt/vim-sbt'
-            " NeoBundle 'spf13/vim-gocode'
+            " NeoBundle 'fatih/vim-go'
             " NeoBundle 'quentindecock/vim-cucumber-align-pipes'
 
             " NeoBundle 'xolox/vim-misc'
