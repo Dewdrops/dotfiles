@@ -12,7 +12,7 @@ export PATH="$JAVA_HOME/bin:$PATH"
 
 export GOROOT="$HOME/site/go"
 export GOPATH="$HOME/site/go-path"
-export PATH="$PATH:$GOROOT/bin"
+export PATH="$PATH:$GOROOT/bin:$GOPATH/bin"
 
 export PATH="$HOME/.cabal/bin:$PATH"
 export PATH="$HOME/bin:$PATH"

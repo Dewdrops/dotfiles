@@ -309,8 +309,8 @@
         if count(g:dewdrops_bundle_groups, 'programming')
             NeoBundle 'tpope/vim-endwise'
             NeoBundle 'Dewdrops/swap-parameters'
+            NeoBundle 'vim-jp/cpp-vim'
             " NeoBundle 'tpope/vim-dispatch'
-            NeoBundle 'sheerun/vim-polyglot'
 
             " NeoBundle 'scrooloose/syntastic'
             " let g:syntastic_enable_perl_checker = 1
@@ -560,6 +560,7 @@
         if count(g:dewdrops_bundle_groups, 'git')
             NeoBundle 'mhinz/vim-signify'
             NeoBundle 'jaxbot/github-issues.vim'
+            NeoBundle 'tpope/vim-git'
 
             NeoBundle 'tpope/vim-fugitive'
             nnoremap <leader>gs :Gstatus<cr>
@@ -754,12 +755,13 @@
 
     " PHP {{{
         if count(g:dewdrops_bundle_groups, 'php')
+            NeoBundle 'StanAngeloff/php.vim'
+            NeoBundle 'arnaud-lb/vim-php-namespace'
+            NeoBundle 'shawncplus/phpcomplete.vim'
+
             NeoBundle 'spf13/PIV'
             let g:DisableAutoPHPFolding = 0
             "let g:PIVAutoClose = 0
-
-            NeoBundle 'arnaud-lb/vim-php-namespace'
-            NeoBundle 'shawncplus/phpcomplete.vim'
         endif
     " }}}
 
@@ -807,6 +809,7 @@
 
     " Clojure {{{
         if count(g:dewdrops_bundle_groups, 'clojure')
+            NeoBundle 'guns/vim-clojure-static'
             NeoBundle 'tpope/vim-fireplace'
             NeoBundle 'guns/vim-clojure-highlight'
             NeoBundle 'tpope/vim-classpath'
@@ -815,7 +818,9 @@
 
     " Haskell {{{
         if count(g:dewdrops_bundle_groups, 'haskell')
+            NeoBundle 'travitch/hasksyn'
             NeoBundle 'dag/vim2hs'
+
             NeoBundle 'lukerandall/haskellmode-vim'
             let g:haddock_browser = "/usr/bin/opera"
         endif
@@ -823,9 +828,11 @@
 
     " HTML {{{
         if count(g:dewdrops_bundle_groups, 'html')
+            NeoBundle 'othree/html5.vim'
             NeoBundle 'othree/xml.vim'
             NeoBundle 'greyblake/vim-preview'
             NeoBundle 'hail2u/vim-css3-syntax'
+            NeoBundle 'gorodinskiy/vim-coloresque'
 
             NeoBundle 'gcmt/breeze.vim'
             au Filetype html,xhtml,xml nnoremap <buffer> <cr> :BreezeJumpF<cr>
@@ -844,11 +851,28 @@
 
     " Other languages {{{
         if count(g:dewdrops_bundle_groups, 'misc')
-            " NeoBundle 'tpope/vim-jdaddy'
+            " NeoBundle 'kchmck/vim-coffee-script'
+            " NeoBundle 'chrisbra/csv.vim'
+            " NeoBundle 'tpope/vim-haml'
+            " NeoBundle 'oscarh/vimerl'
+            " NeoBundle 'jrk/vim-ocaml'
+            " NeoBundle 'vim-perl/vim-perl'
+            NeoBundle 'fatih/vim-go'
+            NeoBundle 'petRUShka/vim-opencl'
+
+            " NeoBundle 'vim-ruby/vim-ruby'
+            " NeoBundle 'sheerun/rspec.vim'
             " NeoBundle 'tpope/vim-rails'
-            " NeoBundle 'derekwyatt/vim-sbt'
-            " NeoBundle 'fatih/vim-go'
+
+            " NeoBundle 'pangloss/vim-javascript'
+            " NeoBundle 'leshill/vim-json'
+            " NeoBundle 'tpope/vim-jdaddy'
+
+            " NeoBundle 'tpope/vim-cucumber'
             " NeoBundle 'quentindecock/vim-cucumber-align-pipes'
+
+            " NeoBundle 'derekwyatt/vim-sbt'
+            " NeoBundle 'derekwyatt/vim-scala'
 
             " NeoBundle 'xolox/vim-misc'
             " NeoBundle 'xolox/vim-lua-ftplugin'
