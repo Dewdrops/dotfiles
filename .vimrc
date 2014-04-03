@@ -26,7 +26,6 @@
                         \     'general',
                         \     'programming',
                         \     'git',
-                        \     'lisp',
                         \     'html',
                         \     'ycm',
                         \     'misc'
@@ -859,6 +858,7 @@
             " NeoBundle 'vim-perl/vim-perl'
             NeoBundle 'fatih/vim-go'
             NeoBundle 'petRUShka/vim-opencl'
+            " NeoBundle 'tpope/timl'
 
             " NeoBundle 'vim-ruby/vim-ruby'
             " NeoBundle 'sheerun/rspec.vim'
