@@ -323,4 +323,7 @@ fi
 # load customized configuration
 [ -f $HOME/.zshrc.customized ] && source $HOME/.zshrc.customized
 
+# k
+[ -f $HOME/.k.sh ] && source $HOME/.k.sh
+
 # }}}
