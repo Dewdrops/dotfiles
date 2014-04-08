@@ -213,6 +213,9 @@
     nnoremap gj j
     nnoremap gk k
 
+    " use <f7> to insert digraph
+    inoremap <f7> <c-k>
+
     "map <S-H> gT
     "map <S-L> gt
 
