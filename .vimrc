@@ -859,6 +859,7 @@
             NeoBundle 'fatih/vim-go'
             NeoBundle 'petRUShka/vim-opencl'
             " NeoBundle 'tpope/timl'
+            " NeoBundle 'JuliaLang/julia-vim'
 
             " NeoBundle 'vim-ruby/vim-ruby'
             " NeoBundle 'sheerun/rspec.vim'

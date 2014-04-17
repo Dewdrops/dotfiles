@@ -79,7 +79,7 @@
     if has("ruby")
         au FileType ruby,eruby setlocal omnifunc=rubycomplete#Complete
     endif
-    set completeopt=menu,longest
+    set completeopt=menu
 
     " language specific settings
     autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading    = 1
