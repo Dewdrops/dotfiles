@@ -45,8 +45,8 @@ alias gvit='gvim -u ~/.vimrc_tiny'
 alias gvt='gvim -u ~/.vimrc_tiny'
 
 alias ls='ls --color=auto'
-alias ll='ls -AlF --color=auto'
-alias la='ls -A --color=auto'
+alias ll='ls -AtlF --color=auto'
+alias la='ls -At --color=auto'
 
 alias rr='rm -rf'
 
