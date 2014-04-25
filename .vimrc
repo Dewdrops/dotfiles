@@ -27,7 +27,7 @@
                         \     'programming',
                         \     'git',
                         \     'html',
-                        \     'neocomplete',
+                        \     'ycm',
                         \     'misc'
                         \ ]
         endif
@@ -591,7 +591,6 @@
     " }}}
 
     " AutoComplete {{{
-
         if count(g:dewdrops_bundle_groups, 'neocomplete')
 
             " neocomplcache and neocomplete {{{
@@ -679,8 +678,6 @@
                     let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
                     let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
                 endif
-
-                inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<tab>"
             " }}}
 
         elseif count(g:dewdrops_bundle_groups, 'ycm')

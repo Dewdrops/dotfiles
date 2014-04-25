@@ -216,6 +216,9 @@
     " use <f7> to insert digraph
     inoremap <f7> <c-k>
 
+    " use <tab> to circle in pop up menu
+    inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<tab>"
+
     "map <S-H> gT
     "map <S-L> gt
 
