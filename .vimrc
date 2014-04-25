@@ -594,16 +594,12 @@
         if count(g:dewdrops_bundle_groups, 'neocomplete')
 
             " neocomplcache and neocomplete {{{
-                if has('lua') && (v:version > 703 || v:version == 703 && has('patch885'))
-                    NeoBundle 'Shougo/unite.vim'
-                    NeoBundle 'Shougo/neocomplete'
-                else
-                    NeoBundle 'Shougo/neocomplcache'
-                endif
 
                 let g:acp_enableAtStartup = 0
 
                 if !( has('lua') && (v:version > 703 || v:version == 703 && has('patch885')) )
+                    NeoBundle 'Shougo/neocomplcache'
+
                     let g:neocomplcache_enable_at_startup            = 1
                     let g:neocomplcache_enable_camel_case_completion = 1
                     let g:neocomplcache_enable_smart_case            = 1
@@ -641,6 +637,9 @@
                     let g:neocomplcache_omni_patterns.cpp  = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
                     let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
                 else
+                    NeoBundle 'Shougo/unite.vim'
+                    NeoBundle 'Shougo/neocomplete'
+
                     let g:neocomplete#enable_at_startup            = 1
                     let g:neocomplete#enable_camel_case_completion = 1
                     let g:neocomplete#enable_smart_case            = 1
