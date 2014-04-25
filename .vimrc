@@ -27,7 +27,7 @@
                         \     'programming',
                         \     'git',
                         \     'html',
-                        \     'ycm',
+                        \     'neocomplete',
                         \     'misc'
                         \ ]
         endif
@@ -321,6 +321,12 @@
             NeoBundle 'matchit.zip'
             let b:match_ignorecase = 1
 
+            NeoBundle 'SirVer/ultisnips'
+            NeoBundle 'Dewdrops/vim-snippets'
+            let g:UltiSnipsExpandTrigger               = "<c-k>"
+            let g:UltiSnipsJumpForwardTrigger          = "<c-k>"
+            let g:UltiSnipsJumpBackwardTrigger         = "<c-j>"
+
             NeoBundleLazy 'Chiel92/vim-autoformat',
                         \ {'autoload': {'commands': 'Autoformat'}}
             nnoremap <leader>gq :Autoformat<cr>
@@ -584,7 +590,7 @@
         endif
     " }}}
 
-    " Snippets & AutoComplete {{{
+    " AutoComplete {{{
 
         if count(g:dewdrops_bundle_groups, 'neocomplete')
 
@@ -592,12 +598,9 @@
                 if has('lua') && (v:version > 703 || v:version == 703 && has('patch885'))
                     NeoBundle 'Shougo/unite.vim'
                     NeoBundle 'Shougo/neocomplete'
-                    NeoBundle 'SirVer/ultisnips'
                 else
                     NeoBundle 'Shougo/neocomplcache'
-                    NeoBundle 'Shougo/neosnippet'
                 endif
-                NeoBundle 'Dewdrops/vim-snippets'
 
                 let g:acp_enableAtStartup = 0
 
@@ -677,33 +680,7 @@
                     let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
                 endif
 
-                imap <C-k> <Plug>(neosnippet_expand_or_jump)
-                smap <C-k> <Plug>(neosnippet_expand_or_jump)
-                xmap <C-k> <Plug>(neosnippet_expand_target)
-
-                " <TAB>: expand snippets or navigate in list
-                imap <expr><tab> pumvisible() ? "\<C-n>" :
-                            \ neosnippet#expandable_or_jumpable() ?
-                            \ "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
-                imap <expr><s-tab> pumvisible() ? "\<C-p>" :
-                            \ neosnippet#expandable_or_jumpable() ?
-                            \ "\<Plug>(neosnippet_expand_or_jump)" : "\<s-tab>"
-
-                " Use honza's snippets.
-                let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-
-                " Enable neosnippet snipmate compatibility mode
-                let g:neosnippet#enable_snipmate_compatibility = 1
-
-                " For snippet_complete marker.
-                if has('conceal')
-                    set conceallevel=2 concealcursor=i
-                endif
-
-                " Disable the neosnippet preview candidate window
-                " when enabled, or there can be too much visual noise
-                " especially when splits are used
-                set completeopt-=preview
+                inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<tab>"
             " }}}
 
         elseif count(g:dewdrops_bundle_groups, 'ycm')
@@ -721,12 +698,6 @@
                 let g:ycm_semantic_triggers                = {}
                 let g:ycm_semantic_triggers.html           = [' ']
                 let g:ycm_semantic_triggers.xhtml          = [' ']
-
-                NeoBundle 'SirVer/ultisnips'
-                NeoBundle 'Dewdrops/vim-snippets'
-                let g:UltiSnipsExpandTrigger               = "<c-k>"
-                let g:UltiSnipsJumpForwardTrigger          = "<c-k>"
-                let g:UltiSnipsJumpBackwardTrigger         = "<c-j>"
             "}}}
 
         endif
