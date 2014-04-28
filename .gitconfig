@@ -13,3 +13,5 @@
 	co = checkout
 [http]
 	postBuffer = 524288000
+[color]
+	ui = 1
