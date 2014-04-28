@@ -824,6 +824,7 @@
             " NeoBundle 'jrk/vim-ocaml'
             " NeoBundle 'vim-perl/vim-perl'
             NeoBundle 'fatih/vim-go'
+            NeoBundle 'wting/rust.vim'
             NeoBundle 'petRUShka/vim-opencl'
             " NeoBundle 'tpope/timl'
             " NeoBundle 'JuliaLang/julia-vim'
