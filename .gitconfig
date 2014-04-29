@@ -10,6 +10,7 @@
 	ca = commit --amend
 	ci = commit -a -m
 	cs = commit -a -m s
+	ac = !git add -A && git commit -m
 	co = checkout
     lg = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 [http]
