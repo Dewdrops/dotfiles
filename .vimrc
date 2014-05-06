@@ -26,7 +26,6 @@
                         \     'general',
                         \     'programming',
                         \     'git',
-                        \     'html',
                         \     'ycm',
                         \     'misc'
                         \ ]
@@ -833,9 +832,10 @@
             " NeoBundle 'sheerun/rspec.vim'
             " NeoBundle 'tpope/vim-rails'
 
-            " NeoBundle 'pangloss/vim-javascript'
+            NeoBundle 'pangloss/vim-javascript'
             " NeoBundle 'leshill/vim-json'
             " NeoBundle 'tpope/vim-jdaddy'
+            NeoBundle 'marijnh/tern_for_vim'
 
             " NeoBundle 'tpope/vim-cucumber'
             " NeoBundle 'quentindecock/vim-cucumber-align-pipes'
