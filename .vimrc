@@ -127,21 +127,15 @@
                 NeoBundle 'techlivezheng/vim-plugin-minibufexpl'
                 " NeoBundle 'kien/tabman.vim'
 
-                NeoBundle 'bufexplorer.zip'
-                let g:bufExplorerDefaultHelp      = 0            " Do not show default help.
-                let g:bufExplorerShowRelativePath = 1            " Show relative paths.
-                let g:bufExplorerSortBy           = 'mru'        " Sort by most recently used.
-                let g:bufExplorerSplitRight       = 0            " Split left.
-                let g:bufExplorerSplitVertical    = 1            " Split vertically.
-                let g:bufExplorerSplitVertSize    = 30           " Split width
-                let g:bufExplorerUseCurrentWindow = 1            " Open in new window
-                au BufWinEnter \[Buf\ List\] setlocal nonumber
-
-                " NeoBundle 'spolu/dwm.vim'
-                " nmap <leader>. <Plug>DWMFocus
-                " nmap <leader>dn <Plug>DWMNew
-                " nmap g. <Plug>DWMRotateClockwise
-                " nmap g/ <Plug>DWMRotateCounterclockwise
+                " NeoBundle 'bufexplorer.zip'
+                " let g:bufExplorerDefaultHelp      = 0            " Do not show default help.
+                " let g:bufExplorerShowRelativePath = 1            " Show relative paths.
+                " let g:bufExplorerSortBy           = 'mru'        " Sort by most recently used.
+                " let g:bufExplorerSplitRight       = 0            " Split left.
+                " let g:bufExplorerSplitVertical    = 1            " Split vertically.
+                " let g:bufExplorerSplitVertSize    = 30           " Split width
+                " let g:bufExplorerUseCurrentWindow = 1            " Open in new window
+                " au BufWinEnter \[Buf\ List\] setlocal nonumber
 
                 " NeoBundle 'bling/vim-bufferline'
                 let g:bufferline_echo = 0
@@ -814,7 +808,7 @@
         endif
     " }}}
 
-    " Other languages {{{
+    " Misc {{{
         if count(g:dewdrops_bundle_groups, 'misc')
             " NeoBundle 'kchmck/vim-coffee-script'
             " NeoBundle 'chrisbra/csv.vim'
@@ -833,9 +827,10 @@
             " NeoBundle 'tpope/vim-rails'
 
             NeoBundle 'pangloss/vim-javascript'
+            NeoBundle 'marijnh/tern_for_vim'
+
             " NeoBundle 'leshill/vim-json'
             " NeoBundle 'tpope/vim-jdaddy'
-            NeoBundle 'marijnh/tern_for_vim'
 
             " NeoBundle 'tpope/vim-cucumber'
             " NeoBundle 'quentindecock/vim-cucumber-align-pipes'
