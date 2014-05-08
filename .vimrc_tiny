@@ -321,12 +321,17 @@
     inoremap <c-b> <left>
     inoremap <c-d> <del>
 
-    " quickfix commands
-    nnoremap <leader>co :cc<cr>
+    " quickfix / location list
+    nnoremap <leader>cc :cc<cr>
     nnoremap <leader>cp :cp<cr>
     nnoremap <leader>cn :cn<cr>
     nnoremap <leader>cl :cl<cr>
     nnoremap <leader>cw :cw<cr>
+    nnoremap <leader>ll :ll<cr>
+    nnoremap <leader>lp :lp<cr>
+    nnoremap <leader>ln :lne<cr>
+    nnoremap <leader>li :lli<cr>
+    nnoremap <leader>lw :lw<cr>
 
     " misc
     nnoremap <leader>bd :Bclose<cr>
