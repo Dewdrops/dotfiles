@@ -290,6 +290,10 @@
     map <leader>ev :vsp %%
     map <leader>et :tabe %%
 
+    " Fast edit .vimrc
+    map <leader>V :e ~/.vimrc<cr>
+    map <leader>T :e ~/.vimrc_tiny<cr>
+
     " Adjust viewports to the same size
     map <Leader>= <C-w>=
     map <Leader>x0 <C-w>c
