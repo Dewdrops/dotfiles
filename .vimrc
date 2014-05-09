@@ -222,7 +222,7 @@
                 nmap g<space> <Plug>(easymotion-F)
                 let EasyMotion_leader_key  = '<leader>em'
                 let g:EasyMotion_mapping_f = '<space>'
-                let g:EasyMotion_mapping_F = 'g<space>'
+                let g:EasyMotion_mapping_F = '<space><space>'
 
                 if count(g:dewdrops_bundle_groups, 'textobj')
                     NeoBundle 'wellle/targets.vim'
