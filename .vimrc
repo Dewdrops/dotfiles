@@ -255,6 +255,7 @@
                 NeoBundle 'thinca/vim-prettyprint'
                 NeoBundle 'tpope/vim-eunuch'
                 NeoBundle 'AndrewRadev/linediff.vim'
+                NeoBundle 'tpope/vim-characterize'
 
                 NeoBundle 'thinca/vim-ref'
                 let g:ref_perldoc_auto_append_f = 1
@@ -836,8 +837,7 @@
             " NeoBundle 'tpope/vim-haml'
             " NeoBundle 'oscarh/vimerl'
             " NeoBundle 'jrk/vim-ocaml'
-            " NeoBundle 'vim-perl/vim-perl'
-            NeoBundle 'fatih/vim-go'
+            " NeoBundle 'fatih/vim-go'
             NeoBundle 'wting/rust.vim'
             NeoBundle 'petRUShka/vim-opencl'
             " NeoBundle 'tpope/timl'
@@ -847,8 +847,11 @@
             " NeoBundle 'sheerun/rspec.vim'
             " NeoBundle 'tpope/vim-rails'
 
-            NeoBundle 'pangloss/vim-javascript'
-            NeoBundle 'marijnh/tern_for_vim'
+            " NeoBundle 'vim-perl/vim-perl'
+            " NeoBundle 'c9s/perlomni.vim'
+
+            " NeoBundle 'pangloss/vim-javascript'
+            " NeoBundle 'marijnh/tern_for_vim'
 
             " NeoBundle 'leshill/vim-json'
             " NeoBundle 'tpope/vim-jdaddy'
