@@ -317,9 +317,9 @@
 
             NeoBundle 'SirVer/ultisnips'
             NeoBundle 'Dewdrops/vim-snippets'
-            let g:UltiSnipsExpandTrigger               = "<c-k>"
-            let g:UltiSnipsJumpForwardTrigger          = "<c-k>"
-            let g:UltiSnipsJumpBackwardTrigger         = "<c-j>"
+            let g:UltiSnipsExpandTrigger       = "<c-k>"
+            let g:UltiSnipsJumpForwardTrigger  = "<c-k>"
+            let g:UltiSnipsJumpBackwardTrigger = "<c-j>"
 
             NeoBundleLazy 'Chiel92/vim-autoformat',
                         \ {'autoload': {'commands': 'Autoformat'}}
@@ -574,6 +574,9 @@
             autocmd FileType gitcommit nmap <buffer> U :Git checkout -- <C-r><C-g><CR>
             autocmd BufReadPost fugitive://* set bufhidden=delete
 
+            NeoBundle 'idanarye/vim-merginal'
+            nnoremap <leader>gM :Merginal<cr>
+
             NeoBundleLazy 'gregsexton/gitv',
                         \ {'depends': ['tpope/vim-fugitive'], 'autoload': {'commands': 'Gitv'}}
             nnoremap <leader>gv :Gitv<cr>
@@ -739,7 +742,6 @@
                 let g:pymode = 1
             endif
             let g:pymode_lint_checker      = "pyflakes"
-            let g:pymode_utils_whitespaces = 0
             let g:pymode_options           = 0
         endif
     " }}}
