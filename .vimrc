@@ -301,7 +301,7 @@
     " General Programming {{{
         if count(g:dewdrops_bundle_groups, 'programming')
             NeoBundle 'tpope/vim-endwise'
-            NeoBundle 'Dewdrops/swap-parameters'
+            NeoBundle 'PeterRincker/vim-argumentative'
             NeoBundle 'vim-jp/cpp-vim'
             " NeoBundle 'tpope/vim-dispatch'
 
