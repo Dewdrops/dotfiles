@@ -288,7 +288,6 @@
     map <leader>ew :e %%
     map <leader>es :sp %%
     map <leader>ev :vsp %%
-    map <leader>et :tabe %%
 
     " Fast edit .vimrc
     map <leader>V :e ~/.vimrc<cr>

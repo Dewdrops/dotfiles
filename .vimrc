@@ -35,12 +35,11 @@
     " General {{{
         if count(g:dewdrops_bundle_groups, 'general')
 
-            " NerdTree {{{
+            " Tree File Manager {{{
                 NeoBundleLazy 'scrooloose/nerdtree',
                             \ {'autoload': {'commands': ['NERDTreeToggle', 'NERDTreeFind']}}
                 map <Leader>nt :NERDTreeToggle<cr>
                 map <Leader>nf :NERDTreeFind<cr>
-
                 let NERDTreeShowBookmarks               = 1
                 let NERDTreeIgnore                      = ['\.pyc', '\.elc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
                 let NERDTreeChDirMode                   = 0
@@ -49,6 +48,10 @@
                 let NERDTreeShowHidden                  = 1
                 let NERDTreeKeepTreeInNewTab            = 1
                 let g:nerdtree_tabs_open_on_gui_startup = 0
+
+                NeoBundleLazy 'troydm/easytree.vim',
+                            \ {'autoload': {'commands': ['EasyTree', 'EasyTreeToggle']}}
+                map <Leader>et :EasyTreeToggle<cr>
             " }}}
 
             " Seek {{{
@@ -125,7 +128,6 @@
 
             " Window and buffer {{{
                 NeoBundle 'techlivezheng/vim-plugin-minibufexpl'
-                " NeoBundle 'kien/tabman.vim'
 
                 " NeoBundle 'bufexplorer.zip'
                 " let g:bufExplorerDefaultHelp      = 0            " Do not show default help.
@@ -139,6 +141,10 @@
 
                 " NeoBundle 'bling/vim-bufferline'
                 let g:bufferline_echo = 0
+
+                NeoBundleLazy 'troydm/easybuffer.vim',
+                            \ {'autoload': {'commands': 'EasyBuffer'}}
+                nmap <leader>eb :EasyBuffer<cr>
 
                 nnoremap <leader>1 :e#1<cr>
                 nnoremap <leader>2 :e#2<cr>
@@ -303,7 +309,7 @@
             NeoBundle 'tpope/vim-endwise'
             NeoBundle 'PeterRincker/vim-argumentative'
             NeoBundle 'vim-jp/cpp-vim'
-            " NeoBundle 'tpope/vim-dispatch'
+            NeoBundle 'tpope/vim-dispatch'
 
             " NeoBundle 'scrooloose/syntastic'
             " let g:syntastic_enable_perl_checker = 1
@@ -324,6 +330,10 @@
             NeoBundleLazy 'Chiel92/vim-autoformat',
                         \ {'autoload': {'commands': 'Autoformat'}}
             nnoremap <leader>gq :Autoformat<cr>
+
+            NeoBundleLazy 'AndrewRadev/switch.vim',
+                        \ {'autoload': {'commands': 'Switch'}}
+            nnoremap - :Switch<cr>
 
             NeoBundleLazy 'a.vim',
                         \ {'autoload': {'commands': ['A']}}
