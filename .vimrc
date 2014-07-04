@@ -127,25 +127,10 @@
             " }}}
 
             " Window and buffer {{{
-                NeoBundle 'techlivezheng/vim-plugin-minibufexpl'
-
-                " NeoBundle 'bufexplorer.zip'
-                " let g:bufExplorerDefaultHelp      = 0            " Do not show default help.
-                " let g:bufExplorerShowRelativePath = 1            " Show relative paths.
-                " let g:bufExplorerSortBy           = 'mru'        " Sort by most recently used.
-                " let g:bufExplorerSplitRight       = 0            " Split left.
-                " let g:bufExplorerSplitVertical    = 1            " Split vertically.
-                " let g:bufExplorerSplitVertSize    = 30           " Split width
-                " let g:bufExplorerUseCurrentWindow = 1            " Open in new window
-                " au BufWinEnter \[Buf\ List\] setlocal nonumber
-
                 " NeoBundle 'bling/vim-bufferline'
-                let g:bufferline_echo = 0
+                " let g:bufferline_echo = 0
 
-                NeoBundleLazy 'troydm/easybuffer.vim',
-                            \ {'autoload': {'commands': 'EasyBuffer'}}
-                nmap <leader>eb :EasyBuffer<cr>
-
+                NeoBundle 'techlivezheng/vim-plugin-minibufexpl'
                 nnoremap <leader>1 :e#1<cr>
                 nnoremap <leader>2 :e#2<cr>
                 nnoremap <leader>3 :e#3<cr>
@@ -166,6 +151,10 @@
                 nnoremap \8 :e#18<cr>
                 nnoremap \9 :e#19<cr>
                 nnoremap \0 :e#20<cr>
+
+                NeoBundleLazy 'troydm/easybuffer.vim',
+                            \ {'autoload': {'commands': 'EasyBuffer'}}
+                nmap <leader>eb :EasyBuffer<cr>
             " }}}
 
             " Edit {{{
@@ -850,7 +839,7 @@
             " NeoBundle 'oscarh/vimerl'
             " NeoBundle 'jrk/vim-ocaml'
             " NeoBundle 'fatih/vim-go'
-            NeoBundle 'wting/rust.vim'
+            " NeoBundle 'wting/rust.vim'
             NeoBundle 'petRUShka/vim-opencl'
             " NeoBundle 'tpope/timl'
             " NeoBundle 'JuliaLang/julia-vim'
