@@ -267,6 +267,7 @@
                 NeoBundle 'tpope/vim-eunuch'
                 NeoBundle 'AndrewRadev/linediff.vim'
                 NeoBundle 'tpope/vim-characterize'
+                NeoBundle 'vim-scripts/SearchComplete'
 
                 NeoBundle 'thinca/vim-ref'
                 let g:ref_perldoc_auto_append_f = 1
