@@ -315,6 +315,7 @@
             NeoBundle 'PeterRincker/vim-argumentative'
             NeoBundle 'vim-jp/cpp-vim'
             NeoBundle 'tpope/vim-dispatch'
+            NeoBundle 'Dewdrops/vim-template'
 
             " NeoBundle 'scrooloose/syntastic'
             " let g:syntastic_enable_perl_checker = 1
@@ -869,6 +870,7 @@
 
             " NeoBundle 'pangloss/vim-javascript'
             " NeoBundle 'marijnh/tern_for_vim'
+            " NeoBundle 'othree/javascript-libraries-syntax.vim'
 
             " NeoBundle 'leshill/vim-json'
             " NeoBundle 'tpope/vim-jdaddy'
