@@ -19,3 +19,5 @@
 	ui = 1
 [help]
 	autocorrect = 1
+[github]
+	user = Dewdrops

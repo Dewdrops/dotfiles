@@ -579,6 +579,9 @@
             NeoBundle 'jaxbot/github-issues.vim'
             NeoBundle 'tpope/vim-git'
 
+            NeoBundle 'mattn/webapi-vim'
+            NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
+
             NeoBundle 'tpope/vim-fugitive'
             nnoremap <leader>gs :Gstatus<cr>
             nnoremap <leader>gd :Gdiff<cr>
