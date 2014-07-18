@@ -339,6 +339,10 @@
                         \ {'autoload': {'commands': 'Autoformat'}}
             nnoremap <leader>gq :Autoformat<cr>
 
+            NeoBundleLazy 'jaxbot/semantic-highlight.vim',
+                        \ {'autoload': {'commands': 'SemanticHighlight'}}
+            nnoremap <leader>sh :SemanticHighlight<cr>
+
             NeoBundleLazy 'AndrewRadev/switch.vim',
                         \ {'autoload': {'commands': 'Switch'}}
             nnoremap - :Switch<cr>
@@ -862,7 +866,7 @@
             " NeoBundle 'jrk/vim-ocaml'
             " NeoBundle 'fatih/vim-go'
             " NeoBundle 'wting/rust.vim'
-            NeoBundle 'petRUShka/vim-opencl'
+            " NeoBundle 'petRUShka/vim-opencl'
             " NeoBundle 'tpope/timl'
             " NeoBundle 'JuliaLang/julia-vim'
 
