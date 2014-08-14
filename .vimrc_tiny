@@ -237,6 +237,10 @@
     command! -bang Qa qa<bang>
 
     cmap Tabe tabe
+    nnoremap <leader>te :tabedit<cr>
+    nnoremap <leader>tc :tabclose<cr>
+    nnoremap <leader>tf :tabfirst<cr>
+    nnoremap <leader>tl :tablast<cr>
 
     " Yank from the cursor to the end of the line, to be consistent with C and D.
     nnoremap Y y$
