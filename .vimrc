@@ -898,8 +898,9 @@
             " NeoBundle 'xolox/vim-misc'
             " NeoBundle 'xolox/vim-lua-ftplugin'
 
-            " NeoBundle 'jceb/vim-orgmode'
-            " au FileType org setlocal fdm=expr
+            NeoBundle 'jceb/vim-orgmode'
+            au FileType org setlocal fdm=expr
+            " NeoBundle 'dhruvasagar/vim-dotoo'
 
             " NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
             " let g:LatexBox_Folding = 1
