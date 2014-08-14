@@ -277,7 +277,7 @@
     nmap <silent> <leader>/ :nohlsearch<cr>
 
     "Remove the Windows ^M
-    noremap <leader>tr :%s//r//g<CR>
+    noremap <leader>tr :%s/\r//g<CR>
 
     " Shortcuts in command line
     " Change Working Directory to that of the current file
