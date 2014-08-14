@@ -232,6 +232,7 @@
 
                 NeoBundle 'bling/vim-airline'
                 let g:airline#extensions#hunks#non_zero_only = 1
+                let g:airline_exclude_preview                = 1
 
                 NeoBundle 'Dewdrops/vim-tomorrow-theme'
                 nmap <leader>cor :colo ron<cr>
@@ -316,8 +317,8 @@
             NeoBundle 'tpope/vim-endwise'
             NeoBundle 'PeterRincker/vim-argumentative'
             NeoBundle 'vim-jp/cpp-vim'
-            NeoBundle 'tpope/vim-dispatch'
             NeoBundle 'Dewdrops/vim-template'
+            NeoBundle 'tpope/vim-dispatch'
 
             " NeoBundle 'scrooloose/syntastic'
             " let g:syntastic_enable_perl_checker = 1
@@ -334,6 +335,10 @@
             let g:UltiSnipsExpandTrigger       = "<c-k>"
             let g:UltiSnipsJumpForwardTrigger  = "<c-k>"
             let g:UltiSnipsJumpBackwardTrigger = "<c-j>"
+
+            NeoBundleLazy 'szw/vim-ctrlspace',
+                        \ {'autoload': {'commands': 'CtrlSpace'}}
+            map <enter> :CtrlSpace<cr>
 
             NeoBundleLazy 'Chiel92/vim-autoformat',
                         \ {'autoload': {'commands': 'Autoformat'}}
@@ -399,7 +404,7 @@
                             \   }
                             \ }
 
-                vnoremap <silent> <Enter> :EasyAlign<cr>
+                vnoremap <silent> <space> :EasyAlign<cr>
                 nmap <Leader>a, :EasyAlign <space><cr>
                 vmap <Leader>a, :EasyAlign <space><cr>
                 nmap <Leader>a= :EasyAlign =<cr>
