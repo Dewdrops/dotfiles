@@ -268,7 +268,7 @@
                 NeoBundle 'tpope/vim-eunuch'
                 NeoBundle 'AndrewRadev/linediff.vim'
                 NeoBundle 'tpope/vim-characterize'
-                NeoBundle 'vim-scripts/SearchComplete'
+                NeoBundle 'Dewdrops/SearchComplete'
                 NeoBundle 'ConradIrwin/vim-bracketed-paste'
                 NeoBundle 'vim-scripts/LargeFile'
 
