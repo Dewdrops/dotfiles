@@ -12,7 +12,7 @@
 
     " Set up NeoBundle Support {{{
         set rtp+=~/.vim/bundle/neobundle.vim
-        call neobundle#rc(expand('~/.vim/bundle/'))
+        call neobundle#begin(expand('~/.vim/bundle/'))
         NeoBundleFetch 'Shougo/neobundle.vim'
     " }}}
 
@@ -224,6 +224,8 @@
                     NeoBundle 'kana/vim-textobj-user'
                     NeoBundle 'kana/vim-textobj-indent'
                     NeoBundle 'thinca/vim-textobj-between'
+                else
+                    NeoBundle 'PeterRincker/vim-argumentative'
                 endif
             " }}}
 
@@ -316,8 +318,8 @@
     " General Programming {{{
         if count(g:dewdrops_bundle_groups, 'programming')
             NeoBundle 'tpope/vim-endwise'
-            NeoBundle 'PeterRincker/vim-argumentative'
-            NeoBundle 'vim-jp/cpp-vim'
+            " NeoBundle 'vim-jp/cpp-vim'
+            NeoBundle 'octol/vim-cpp-enhanced-highlight'
             NeoBundle 'Dewdrops/vim-template'
             NeoBundle 'tpope/vim-dispatch'
 
@@ -911,6 +913,7 @@
 " }}}
 
 " Finish initializations {{{
+    call neobundle#end()
     filetype plugin indent on
     syntax enable
     NeoBundleCheck
