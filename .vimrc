@@ -591,6 +591,9 @@
             NeoBundle 'mattn/webapi-vim'
             NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
 
+            NeoBundle 'esneider/YUNOcommit.vim'
+            let g:YUNOcommit_after = 10
+
             NeoBundle 'tpope/vim-fugitive'
             nnoremap <leader>gs :Gstatus<cr>
             nnoremap <leader>gd :Gdiff<cr>
