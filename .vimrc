@@ -280,14 +280,11 @@
                 " NeoBundle 'kshenoy/vim-signature'
                 " nnoremap <leader>sg :SignatureToggle<cr>
 
-                NeoBundleLazy 'Dewdrops/vim-highlight-pattern',
-                            \ {'autoload': {'mappings':
-                            \ ['<Plug>(VHP_HighlightWordToggle)', '<Plug>(VHP_HighlightRegionToggle)',
-                            \ '<Plug>(VHP_HighlightPattern)', '<Plug>(VHP_HighlightClear)']}}
-                nmap <leader>hl <Plug>(VHP_HighlightWordToggle)
-                vmap <leader>hl <Plug>(VHP_HighlightRegionToggle)
-                nmap <leader>hp <Plug>(VHP_HighlightPattern)
-                nmap <leader>/ <Plug>(VHP_HighlightClear)
+                NeoBundleLazy 'vasconcelloslf/vim-interestingwords',
+                            \ {'autoload': {'functions':
+                            \ ['InterestingWords', 'UncolorAllWords']}}
+                nnoremap <silent> <leader>hl :<C-u>call InterestingWords() \| nohls<cr>
+                nnoremap <silent> <leader>/ :<C-u>call UncolorAllWords() \| nohls<cr>
 
                 NeoBundleLazy 'vim-scripts/sessionman.vim',
                             \ {'autoload': {'commands': ['SessionList', 'SessionSave']}}
