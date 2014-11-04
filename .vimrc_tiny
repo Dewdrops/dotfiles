@@ -213,16 +213,16 @@
     nnoremap gj j
     nnoremap gk k
 
-    " use <f7> to insert digraph
+    " Use <f7> to insert digraph
     inoremap <f7> <c-k>
 
-    " use <tab> to circle in pop up menu
+    " Use <tab> to circle in pop up menu
     inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<tab>"
 
     "map <S-H> gT
     "map <S-L> gt
 
-    "use q as an unified way to exit various visual mode
+    " Use q as an unified way to exit various visual mode
     vnoremap q <esc>
 
     " Stupid shift key fixes
@@ -245,11 +245,11 @@
     " Yank from the cursor to the end of the line, to be consistent with C and D.
     nnoremap Y y$
 
-    " swap 0 and ^ in normal mode
+    " Swap 0 and ^ in normal mode
     noremap 0 ^
     noremap ^ 0
 
-    " folding
+    " Folding
     nmap <leader>f0 :set foldlevel=0<cr>
     nmap <leader>f1 :set foldlevel=1<cr>
     nmap <leader>f2 :set foldlevel=2<cr>
@@ -267,16 +267,25 @@
     nnoremap <leader>zi :set fdm=indent<cr>
     nnoremap <leader>ze :set fdm=expr<cr>
 
+    " Strip trailing whitespace
     nmap <leader>sw :call StripTrailingWhitespace()<cr>
 
-    " insert timestamp
+    " Keep search pattern at center of the screen
+    nnoremap <silent> n nzz
+    nnoremap <silent> N Nzz
+    nnoremap <silent> * *zz
+    nnoremap <silent> # #zz
+    nnoremap <silent> g* g*zz
+    nnoremap <silent> g# g#zz
+
+    " Insert timestamp
     nmap <leader>ts :r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<cr>
 
     " Toggle search highlighting
     nmap <silent> <leader>nh :nohlsearch<cr>
     nmap <silent> <leader>/ :nohlsearch<cr>
 
-    "Remove the Windows ^M
+    " Remove the Windows ^M
     noremap <leader>tr :%s/\r//g<CR>
 
     " Shortcuts in command line
@@ -302,33 +311,32 @@
     map <Leader>x0 <C-w>c
     map <Leader>x1 <C-w>o
 
-    " Map <Leader>ff to display all lines with keyword under cursor
-    " and ask which one to jump to
+    " Display all lines with keyword under cursor and ask which one to jump to
     nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<cr>
 
     " Easier horizontal scrolling
     map zl zL
     map zh zH
 
-    " show foldlevel in fold commands
+    " Show foldlevel in fold commands
     nnoremap zr zr:echo &foldlevel<cr>
     nnoremap zm zm:echo &foldlevel<cr>
     nnoremap zR zR:echo &foldlevel<cr>
     nnoremap zM zM:echo &foldlevel<cr>
     nnoremap za za:echo &foldlevel<cr>
 
-    " use gy and gp to work with system's clipboard
+    " Use gy and gp to work with system's clipboard
     nnoremap gy "+y
     nnoremap gp "+p
     vnoremap gy "+y
     vnoremap gp "+p
 
-    " emacs-like motion command in insert mode
+    " Emacs-like motion command in insert mode
     inoremap <c-f> <right>
     inoremap <c-b> <left>
     inoremap <c-d> <del>
 
-    " quickfix / location list
+    " Quickfix/location list
     nnoremap <leader>cc :cc<cr>
     nnoremap <leader>cp :cp<cr>
     nnoremap <leader>cn :cn<cr>
@@ -340,7 +348,7 @@
     nnoremap <leader>li :lli<cr>
     nnoremap <leader>lw :lw<cr>
 
-    " misc
+    " Misc
     nnoremap <leader>bd :Bclose<cr>
     nnoremap <leader>q :q<cr>
     nnoremap <leader>wq :wq<cr>
