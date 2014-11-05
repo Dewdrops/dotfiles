@@ -104,8 +104,8 @@
     endif
 
     " Autosave & Load Views.
-    autocmd BufWritePost,WinLeave,BufWinLeave ?* if MakeViewCheck() | mkview | endif
-    autocmd BufWinEnter ?* if MakeViewCheck() | silent! loadview | endif
+    autocmd BufWritePost,WinLeave,BufWinLeave ?* if <SID>MakeViewCheck() | mkview | endif
+    autocmd BufWinEnter ?* if <SID>MakeViewCheck() | silent! loadview | endif
 
     " Setting up the directories
     set backup
@@ -191,7 +191,8 @@
     set foldlevel=99
 
     " Remove trailing whitespaces and ^M chars
-    au FileType c,cpp,java,go,php,javascript,python,xml,yml au BufWritePre <buffer> call StripTrailingWhitespace()
+    au FileType c,cpp,java,go,php,javascript,python,xml,yml au BufWritePre
+                \ <buffer> <script> call <SID>StripTrailingWhitespace()
     au FileType python,haskell,coffee,html,xhtml setlocal fdm=indent
     au FileType ruby,html,xhtml setlocal softtabstop=2 shiftwidth=2 ts=2
 
@@ -268,15 +269,22 @@
     nnoremap <leader>ze :set fdm=expr<cr>
 
     " Strip trailing whitespace
-    nmap <leader>sw :call StripTrailingWhitespace()<cr>
+    nmap <script> <leader>sw :call <SID>StripTrailingWhitespace()<cr>
 
     " Keep search pattern at center of the screen
-    nnoremap <silent> n nzz
-    nnoremap <silent> N Nzz
-    nnoremap <silent> * *zz
-    nnoremap <silent> # #zz
-    nnoremap <silent> g* g*zz
-    nnoremap <silent> g# g#zz
+    nnoremap n nzz
+    nnoremap N Nzz
+    nnoremap * *zz
+    nnoremap # #zz
+    nnoremap g* g*zz
+    nnoremap g# g#zz
+
+    " Visualstar
+    nnoremap <expr> <SID>(count) <SID>count()
+    vnoremap <script> * :<C-u>call <SID>search('/', 0)<CR><SID>(count)zz
+    vnoremap <script> # :<C-u>call <SID>search('?', 0)<CR><SID>(count)zz
+    vnoremap <script> g* :<C-u>call <SID>search('/', 1)<CR><SID>(count)zz
+    vnoremap <script> g# :<C-u>call <SID>search('?', 1)<CR><SID>(count)zz
 
     " Insert timestamp
     nmap <leader>ts :r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<cr>
@@ -449,8 +457,51 @@
     endfunction
     " }}}
 
+    " Star in visual mode {{{
+    function! <SID>search(type, g)
+      let s:count = v:count1 . a:type
+      let reg = '"'
+      let [save_reg, save_type] = [getreg(reg), getregtype(reg)]
+      normal! gv""y
+      let text = @"
+      call setreg(reg, save_reg, save_type)
+
+      let [pre, post] = ['', '']
+      if !a:g
+        let head = matchstr(text, '^.')
+        let is_head_multibyte = 1 < len(head)
+        let [l, col] = getpos("'<")[1 : 2]
+        let line = getline(l)
+        let before = line[: col - 2]
+        let outer = matchstr(before, '.$')
+        if text =~# '^\k' && ((!empty(outer) && len(outer) != len(head)) ||
+        \   (!is_head_multibyte && (col == 1 || before !~# '\k$')))
+          let pre = '\<'
+        endif
+        let tail = matchstr(text, '.$')
+        let is_tail_multibyte = 1 < len(tail)
+        let [l, col] = getpos("'>")[1 : 2]
+        let col += len(tail) - 1
+        let line = getline(l)
+        let after = line[col :]
+        let outer = matchstr(after, '^.')
+        if text =~# '\k$' && ((!empty(outer) && len(outer) != len(tail)) ||
+        \   (!is_tail_multibyte && (col == len(line) || after !~# '^\k')))
+          let post = '\>'
+        endif
+      endif
+      let text = substitute(escape(text, '\' . a:type), "\n", '\\n', 'g')
+
+      let @/ = '\V' . pre . text . post
+      call histadd('/', @/)
+    endfunction
+    function! <SID>count()
+      return s:count . "\<CR>"
+    endfunction
+    " }}}
+
     " Strip whitespace {{{
-    function! StripTrailingWhitespace()
+    function! <SID>StripTrailingWhitespace()
         " Preparation: save last search, and cursor position.
         let _s = @/
         let l  = line(".")
@@ -483,7 +534,7 @@
     " }}}
 
     " Check whether to load/restore view {{{
-    function! MakeViewCheck()
+    function! <SID>MakeViewCheck()
         if has('quickfix') && &buftype =~ 'nofile' | return 0 | endif
         if expand('%') =~ '\[.*\]' | return 0 | endif
         if empty(glob(expand('%:p'))) | return 0 | endif

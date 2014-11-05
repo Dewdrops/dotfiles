@@ -204,7 +204,6 @@
             " }}}
 
             " Motion {{{
-                NeoBundle 'thinca/vim-visualstar'
                 NeoBundle 'bruno-/vim-vertical-move'
 
                 NeoBundle 'dahu/vim-fanfingtastic'
@@ -280,11 +279,14 @@
                 " NeoBundle 'kshenoy/vim-signature'
                 " nnoremap <leader>sg :SignatureToggle<cr>
 
-                NeoBundleLazy 'vasconcelloslf/vim-interestingwords',
+                NeoBundleLazy 'Dewdrops/vim-interestingwords',
                             \ {'autoload': {'functions':
-                            \ ['InterestingWords', 'UncolorAllWords']}}
-                nnoremap <silent> <leader>hl :<C-u>call InterestingWords() \| nohls<cr>
-                nnoremap <silent> <leader>/ :<C-u>call UncolorAllWords() \| nohls<cr>
+                            \ ['InterestingWords', 'UncolorAllWords', 'WordNavigation']}}
+                let g:interestingWordsDefaultMappings = 0
+                nnoremap <silent> <leader>hl :call InterestingWords() \| nohls<cr>
+                nnoremap <silent> <leader>/ :call UncolorAllWords() \| nohls<cr>
+                nnoremap <silent> n :call WordNavigation(1)<cr>zz
+                nnoremap <silent> N :call WordNavigation(0)<cr>zz
 
                 NeoBundleLazy 'vim-scripts/sessionman.vim',
                             \ {'autoload': {'commands': ['SessionList', 'SessionSave']}}
