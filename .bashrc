@@ -86,3 +86,4 @@ fi
 
 # load customized configuration
 [ -f $HOME/.bashrc.customized ] && source $HOME/.bashrc.customized
+

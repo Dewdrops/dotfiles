@@ -916,8 +916,14 @@
 " }}}
 
 " Finish initializations {{{
+
     call neobundle#end()
+
     filetype plugin indent on
+
     syntax enable
+
     NeoBundleCheck
+
 " }}}
+

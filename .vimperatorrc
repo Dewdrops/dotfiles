@@ -6,3 +6,4 @@ source! /home/para/.vimperatorrc.local
 let g:smooziee_scroll_amount="150"
 
 " vim: set ft=vimperator:
+
