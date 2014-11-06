@@ -190,8 +190,9 @@
     set foldmethod=syntax
     set foldlevel=99
 
-    " Remove trailing whitespaces or ^M chars, and add newline in the end of file
-    au BufWritePre * call <SID>StripTrailingWhitespace()
+    " Remove trailing whitespaces or ^M chars
+    au FileType c,cpp,python,ruby,perl,html,xml,java,haskell
+                \ au BufWritePre * call <SID>StripTrailingWhitespace()
     au FileType python,haskell,coffee,html,xhtml setlocal fdm=indent
     au FileType ruby,html,xhtml setlocal softtabstop=2 shiftwidth=2 ts=2
 
@@ -507,8 +508,6 @@
         let c  = col(".")
         " do the business:
         silent %s/\s\+$//e
-        " add newline in the end
-        silent $s/.$/&\r/e
         " clean up: restore previous search history, and cursor position
         let @/ = _s
         call cursor(l, c)
