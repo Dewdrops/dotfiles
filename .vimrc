@@ -340,7 +340,7 @@
 
             NeoBundleLazy 'szw/vim-ctrlspace',
                         \ {'autoload': {'commands': 'CtrlSpace'}}
-            map <enter> :CtrlSpace<cr>
+            map <leader><space> :CtrlSpace<cr>
 
             NeoBundleLazy 'Chiel92/vim-autoformat',
                         \ {'autoload': {'commands': 'Autoformat'}}
