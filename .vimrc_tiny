@@ -289,6 +289,9 @@
     " Insert timestamp
     nmap <leader>ts :r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<cr>
 
+    " Toggle readonly
+    nnoremap <leader>ro :set readonly!<cr>
+
     " Toggle search highlighting
     nmap <silent> <leader>nh :nohlsearch<cr>
     nmap <silent> <leader>/ :nohlsearch<cr>
