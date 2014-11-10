@@ -164,6 +164,7 @@
                 NeoBundle 'terryma/vim-multiple-cursors'
                 NeoBundle 'tpope/vim-repeat'
                 NeoBundle 'chrisbra/NrrwRgn'
+                NeoBundle 'vim-scripts/ReplaceWithRegister'
 
                 NeoBundle 'tpope/vim-abolish.git'
                 nnoremap <leader>sv :%Subvert/
