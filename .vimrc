@@ -273,6 +273,7 @@
                 NeoBundle 'Dewdrops/SearchComplete'
                 NeoBundle 'ConradIrwin/vim-bracketed-paste'
                 NeoBundle 'vim-scripts/LargeFile'
+                " NeoBundle 'MattesGroeger/vim-bookmarks'
 
                 NeoBundle 'thinca/vim-ref'
                 let g:ref_perldoc_auto_append_f = 1

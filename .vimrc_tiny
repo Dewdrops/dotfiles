@@ -375,8 +375,11 @@
     nnoremap <leader>sp :sp<cr>
     nnoremap <leader>vs :vs<cr>
     nnoremap <leader>st :setlocal spell!<cr>
-    nnoremap <leader>; mMA;<esc>`M
     nnoremap <f5> :%TOhtml<cr>
+
+    nnoremap <leader>; mMA;<esc>`M
+    inoremap ;q <esc>mMA;<esc>`M
+    inoremap ;; <esc>mMA;<return>
 
     " unimpaired-like binding
     if g:dewdrops_invoked_as_dotvimrc
