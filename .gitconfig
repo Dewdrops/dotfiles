@@ -1,24 +1,119 @@
 [user]
+
 	name = Dewdrops
 	email = v_v_4474@126.com
+
 [core]
+
 	editor = vim -u ~/.vimrc_tiny
+
+    # Use custom `.gitignore` and `.gitattributes`
+    excludesfile = ~/.gitexcludes
+    attributesfile = ~/.gitattributes
+
+    # Treat spaces before tabs and all kinds of trailing whitespace as an error
+    # [default] trailing-space: looks for spaces at the end of a line
+    # [default] space-before-tab: looks for spaces before tabs at the beginning of a line
+    whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+
 [merge]
+
 	conflictstyle = diff3
+
+    # Include summaries of merged commits in newly created merge commit messages
+    log = true
+
+[diff]
+
+    # Detect copies as well as renames
+    renames = copies
+
+[apply]
+
+    # Detect whitespace errors when applying a patch
+    whitespace = fix
+
 [alias]
+
+    amend = commit --amend --reuse-message=HEAD
+
+    # Credit an author on the latest commit
+    credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
+
+    # Show verbose output about tags, branches or remotes
+    branches = branch -a
+    remotes  = remote -v
+    tags     = tag -l
+
+    # Switch to a branch, creating it if necessary
+    go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
+
+    # Show the diff between the latest commit and the current state
+    df = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+
+    # `git di $number` shows the diff between the state `$number` revisions ago and the current state
+    di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+
+    # Pull in remote changes for the current repository and all its submodules
+    pu = !"git pull; git submodule foreach git pull origin master"
+
+    # Interactive rebase with the given number of latest commits
+    rb = "!r() { git rebase -i HEAD~$1; }; r"
+
+    # Find branches containing commit
+    fb = "!f() { git branch -a --contains $1; }; f"
+
+    # Find tags containing commit
+    ft = "!f() { git describe --always --contains $1; }; f"
+
+    # Find commits by source code
+    fc = "!f() { git log --pretty=format:'%C(yellow)%h %Cblue%ad %Creset%s%Cgreen [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+
+    # Find commits by commit message
+    fm = "!f() { git log --pretty=format:'%C(yellow)%h %Cblue%ad %Creset%s%Cgreen [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+
+    # Remove branches that have already been merged with master. a.k.a. ‘delete merged’
+    dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+
 	st = status -sb
-	ca = commit --amend
 	ci = commit -a -m
-	cs = commit -a -m s
+    cl = clone --recursive
 	ac = !git add -A && git commit -m
 	co = checkout
     lg = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+
 [http]
+
 	postBuffer = 524288000
+
 [color]
-	ui = 1
+
+	ui = auto
+
+[color "branch"]
+
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "diff"]
+
+    meta = yellow bold
+    frag = magenta bold # line info
+    old = red # deletions
+    new = green # additions
+
+[color "status"]
+
+    added = yellow
+    changed = green
+    untracked = cyan
+
 [help]
+
 	autocorrect = 1
+
 [github]
+
 	user = Dewdrops
 
