@@ -264,15 +264,16 @@
             " }}}
 
             " Misc {{{
-                NeoBundle 'goldfeld/ctrlr.vim'
-                NeoBundle 'justinmk/vim-gtfo'
-                NeoBundle 'thinca/vim-prettyprint'
-                NeoBundle 'tpope/vim-eunuch'
-                NeoBundle 'AndrewRadev/linediff.vim'
-                NeoBundle 'tpope/vim-characterize'
                 NeoBundle 'Dewdrops/SearchComplete'
                 NeoBundle 'ConradIrwin/vim-bracketed-paste'
                 NeoBundle 'vim-scripts/LargeFile'
+                NeoBundle 'mtth/scratch.vim'
+                NeoBundle 'goldfeld/ctrlr.vim'
+                NeoBundle 'justinmk/vim-gtfo'
+                NeoBundle 'tpope/vim-eunuch'
+                NeoBundle 'AndrewRadev/linediff.vim'
+                NeoBundle 'tpope/vim-characterize'
+                " NeoBundle 'thinca/vim-prettyprint'
                 " NeoBundle 'MattesGroeger/vim-bookmarks'
 
                 NeoBundle 'thinca/vim-ref'
