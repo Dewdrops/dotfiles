@@ -86,32 +86,59 @@ let self = liberator.plugins.smooziee = (function(){
     ["j"],
     "Smooth scroll down",
     function(count){
-      self.smoothScrollBy(getScrollAmount() * (count || 1));
+      self.smoothScrollBy("y", getScrollAmount() * (count || 1));
     },
     {
       count: true
     }
-  );
+    );
   mappings.addUserMap(
     [modes.NORMAL],
     ["k"],
     "Smooth scroll up",
     function(count){
-      self.smoothScrollBy(getScrollAmount() * -(count || 1));
+      self.smoothScrollBy("y", getScrollAmount() * -(count || 1));
     },
     {
       count: true
     }
-  );
+    );
+  mappings.addUserMap(
+        [modes.NORMAL],
+        ["h"],
+        "Smooth scroll left",
+        function(count){
+          self.smoothScrollBy("x", getScrollAmountH() * -(count || 1));
+        },
+        {
+          count: true
+        }
+        );
+  mappings.addUserMap(
+        [modes.NORMAL],
+        ["l"],
+        "Smooth scroll right",
+        function(count){
+          self.smoothScrollBy("x", getScrollAmountH() * (count || 1));
+        },
+        {
+          count: true
+        }
+        );
   // }}}
   // PUBLIC {{{
   var PUBLICS = {
-    smoothScrollBy: function(moment) {
+    smoothScrollBy: function(dir, moment) {
       win = Buffer.findScrollableWindow();
       interval = window.eval(liberator.globalVariables.smooziee_scroll_interval || '20');
-      destY = win.scrollY + moment;
+      if (dir == "x") {
+        destX = win.scrollX + moment;
+      }
+      else {
+        destY = win.scrollY + moment;
+      }
       clearTimeout(next);
-      smoothScroll(moment);
+      smoothScroll(dir, moment);
     }
   }
 
@@ -119,25 +146,37 @@ let self = liberator.plugins.smooziee = (function(){
   // PRIVATE {{{
   var next;
   var destY;
+  var destX;
   var win;
   var interval;
 
   function getScrollAmount() window.eval(liberator.globalVariables.smooziee_scroll_amount || '400');
+  function getScrollAmountH() window.eval(liberator.globalVariables.smooziee_scroll_amountH || '200');
 
-  function smoothScroll(moment) {
+  function smoothScroll(dir, moment) {
     if (moment > 0)
       moment = Math.floor(moment / 2);
     else
       moment = Math.ceil(moment / 2);
 
-    win.scrollBy(0, moment);
-
-    if (Math.abs(moment) < 1) {
-      setTimeout(makeScrollTo(win.scrollX, destY), interval);
-      destY = null;
-      return;
+    if (dir == "x") {
+      win.scrollBy(moment, 0);
+      if (Math.abs(moment) < 1) {
+        setTimeout(makeScrollTo(destX, win.scrollY), interval);
+        destY = null;
+        return;
+      }
     }
-    next = setTimeout(function() smoothScroll(moment), interval);
+    else {
+      win.scrollBy(0, moment);
+      if (Math.abs(moment) < 1) {
+        setTimeout(makeScrollTo(win.scrollX, destY), interval);
+        destY = null;
+        return;
+      }
+    }
+
+    next = setTimeout(function() smoothScroll(dir, moment), interval);
   }
 
   function makeScrollTo(x, y) function() win.scrollTo(x, y);

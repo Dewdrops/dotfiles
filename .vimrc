@@ -900,8 +900,8 @@
             " NeoBundle 'tpope/vim-cucumber'
             " NeoBundle 'quentindecock/vim-cucumber-align-pipes'
 
-            " NeoBundle 'derekwyatt/vim-sbt'
-            " NeoBundle 'derekwyatt/vim-scala'
+            NeoBundle 'derekwyatt/vim-sbt'
+            NeoBundle 'derekwyatt/vim-scala'
 
             " NeoBundle 'xolox/vim-misc'
             " NeoBundle 'xolox/vim-lua-ftplugin'
