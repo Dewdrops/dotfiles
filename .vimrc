@@ -27,6 +27,8 @@
                         \     'programming',
                         \     'git',
                         \     'ycm',
+                        \     'lisp',
+                        \     'clojure',
                         \     'misc'
                         \ ]
         endif
@@ -273,11 +275,12 @@
                 NeoBundle 'tpope/vim-eunuch'
                 NeoBundle 'AndrewRadev/linediff.vim'
                 NeoBundle 'tpope/vim-characterize'
+                " NeoBundle 'nicwest/QQ.vim'
                 " NeoBundle 'thinca/vim-prettyprint'
                 " NeoBundle 'MattesGroeger/vim-bookmarks'
 
-                NeoBundle 'thinca/vim-ref'
-                let g:ref_perldoc_auto_append_f = 1
+                " NeoBundle 'thinca/vim-ref'
+                " let g:ref_perldoc_auto_append_f = 1
 
                 " NeoBundle 'kshenoy/vim-signature'
                 " nnoremap <leader>sg :SignatureToggle<cr>
@@ -814,6 +817,7 @@
             NeoBundle 'tpope/vim-fireplace'
             NeoBundle 'guns/vim-clojure-highlight'
             NeoBundle 'tpope/vim-classpath'
+            NeoBundle 'typedclojure/vim-typedclojure'
         endif
     " }}}
 
@@ -878,13 +882,16 @@
             " NeoBundle 'oscarh/vimerl'
             " NeoBundle 'jrk/vim-ocaml'
             " NeoBundle 'fatih/vim-go'
-            " NeoBundle 'wting/rust.vim'
             " NeoBundle 'petRUShka/vim-opencl'
             " NeoBundle 'tpope/timl'
             " NeoBundle 'JuliaLang/julia-vim'
             " NeoBundle 'Rykka/riv.vim'
 
+            NeoBundle 'wting/rust.vim'
+            NeoBundle 'cespare/vim-toml'
+
             " NeoBundle 'vim-ruby/vim-ruby'
+            " NeoBundle 'ecomba/vim-ruby-refactoring'
             " NeoBundle 'sheerun/rspec.vim'
             " NeoBundle 'tpope/vim-rails'
 
@@ -901,15 +908,16 @@
             " NeoBundle 'tpope/vim-cucumber'
             " NeoBundle 'quentindecock/vim-cucumber-align-pipes'
 
-            NeoBundle 'derekwyatt/vim-sbt'
-            NeoBundle 'derekwyatt/vim-scala'
+            " NeoBundle 'derekwyatt/vim-sbt'
+            " NeoBundle 'derekwyatt/vim-scala'
 
             " NeoBundle 'xolox/vim-misc'
             " NeoBundle 'xolox/vim-lua-ftplugin'
 
-            NeoBundle 'jceb/vim-orgmode'
-            au FileType org setlocal fdm=expr
             " NeoBundle 'dhruvasagar/vim-dotoo'
+
+            " NeoBundle 'jceb/vim-orgmode'
+            " au FileType org setlocal fdm=expr
 
             " NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
             " let g:LatexBox_Folding = 1
