@@ -379,7 +379,7 @@
 
     nnoremap <leader>; mMA;<esc>`M
     inoremap ;q <esc>mMA;<esc>`M
-    inoremap ;; <esc>mMA;<return>
+    inoremap ;a <esc>mMA;<return>
 
     " unimpaired-like binding
     if g:dewdrops_invoked_as_dotvimrc
