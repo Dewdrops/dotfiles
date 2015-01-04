@@ -119,7 +119,9 @@
 
 " Vim UI {{{
 
-    colo ron
+    if g:dewdrops_invoked_as_dotvimrc
+        colo ron
+    endif
 
     set tabpagemax=15               " Only show 15 tabs
     set showmode                    " Display the current mode
