@@ -56,20 +56,20 @@
                 map <Leader>et :EasyTreeToggle<cr>
             " }}}
 
-            " Seek {{{
-                NeoBundle 'goldfeld/vim-seek'
-                let g:SeekKey                         = 'S'
-                let g:SeekBackKey                     = '<leader>S'
-                let g:seekJumpPresentialInnerKey      = 'gz'
-                let g:seekBackJumpPresentialInnerKey  = 'gZ'
-                let g:seekJumpRemoteInnerKey          = 'gu'
-                let g:seekBackJumpRemoteInnerKey      = 'gU'
-                let g:seekJumpPresentialAroundKey     = 'z'
-                let g:seekBackJumpPresentialAroundKey = 'Z'
-                let g:seekJumpRemoteAroundKey         = 'u'
-                let g:seekBackJumpRemoteAroundKey     = 'U'
-                let g:seek_enable_jumps               = 1
-            " }}}
+            " " Seek {{{
+            "     " NeoBundle 'goldfeld/vim-seek'
+            "     let g:SeekKey                         = 'S'
+            "     let g:SeekBackKey                     = '<leader>S'
+            "     let g:seekJumpPresentialInnerKey      = 'gz'
+            "     let g:seekBackJumpPresentialInnerKey  = 'gZ'
+            "     let g:seekJumpRemoteInnerKey          = 'gu'
+            "     let g:seekBackJumpRemoteInnerKey      = 'gU'
+            "     let g:seekJumpPresentialAroundKey     = 'z'
+            "     let g:seekBackJumpPresentialAroundKey = 'Z'
+            "     let g:seekJumpRemoteAroundKey         = 'u'
+            "     let g:seekBackJumpRemoteAroundKey     = 'U'
+            "     let g:seek_enable_jumps               = 1
+            " " }}}
 
             " vim-lion {{{
                 NeoBundleLazy 'tommcdo/vim-lion',
@@ -89,19 +89,19 @@
                 vmap <silent> g: <Plug>VLionColon
             " }}}
 
-            " Startify {{{
-                " NeoBundle 'mhinz/vim-startify'
-                let g:startify_custom_header = [
-                            \ '         ____                   _                     ',
-                            \ '        |  _ \  _____      ____| |_ __ ___  _ __  ___ ',
-                            \ '        | | | |/ _ \ \ /\ / / _` | ''__/ _ \| ''_ \/ __|',
-                            \ '        | |_| |  __/\ V  V / (_| | | | (_) | |_) \__ \',
-                            \ '        |____/ \___| \_/\_/ \__,_|_|  \___/| .__/|___/',
-                            \ '                                           |_|        ',
-                            \ '                                                      ',
-                            \ '                                                      '
-                            \ ]
-            " }}}
+            " " Startify {{{
+            "     NeoBundle 'mhinz/vim-startify'
+            "     let g:startify_custom_header = [
+            "                 \ '         ____                   _                     ',
+            "                 \ '        |  _ \  _____      ____| |_ __ ___  _ __  ___ ',
+            "                 \ '        | | | |/ _ \ \ /\ / / _` | ''__/ _ \| ''_ \/ __|',
+            "                 \ '        | |_| |  __/\ V  V / (_| | | | (_) | |_) \__ \',
+            "                 \ '        |____/ \___| \_/\_/ \__,_|_|  \___/| .__/|___/',
+            "                 \ '                                           |_|        ',
+            "                 \ '                                                      ',
+            "                 \ '                                                      '
+            "                 \ ]
+            " " }}}
 
             " EasyGrep {{{
                 NeoBundleLazy 'vim-scripts/EasyGrep',
@@ -160,15 +160,15 @@
             " }}}
 
             " Edit {{{
-                NeoBundle 'tpope/vim-speeddating'
+                " NeoBundle 'tpope/vim-speeddating'
                 NeoBundle 'jiangmiao/auto-pairs'
                 NeoBundle 'tpope/vim-surround'
                 NeoBundle 'terryma/vim-multiple-cursors'
                 NeoBundle 'tpope/vim-repeat'
-                NeoBundle 'chrisbra/NrrwRgn'
+                " NeoBundle 'chrisbra/NrrwRgn'
                 NeoBundle 'vim-scripts/ReplaceWithRegister'
 
-                NeoBundle 'tpope/vim-abolish.git'
+                " NeoBundle 'tpope/vim-abolish.git'
                 nnoremap <leader>sv :%Subvert/
 
                 NeoBundle 'Dewdrops/vim-unimpaired'
@@ -177,17 +177,17 @@
                 vmap <c-up> [e
                 vmap <c-down> ]e
 
-                NeoBundleLazy 'Shougo/vinarise.vim',
-                            \ {'autoload': {'commands': 'Vinarise'}}
-                nmap <leader>xx :Vinarise<cr>
-
-                NeoBundleLazy 'vim-scripts/DrawIt',
-                            \ {'autoload': {'mappings': '<Plug>DrawItStart'}}
-                nmap <unique> <Leader>di <Plug>DrawItStart
-
-                NeoBundleLazy 'sketch.vim',
-                            \ {'autoload': {'functions': 'ToggleSketch'}}
-                nmap <leader>sk :call ToggleSketch()<cr>
+                " NeoBundleLazy 'Shougo/vinarise.vim',
+                "             \ {'autoload': {'commands': 'Vinarise'}}
+                " nmap <leader>xx :Vinarise<cr>
+                "
+                " NeoBundleLazy 'vim-scripts/DrawIt',
+                "             \ {'autoload': {'mappings': '<Plug>DrawItStart'}}
+                " nmap <unique> <Leader>di <Plug>DrawItStart
+                "
+                " NeoBundleLazy 'sketch.vim',
+                "             \ {'autoload': {'functions': 'ToggleSketch'}}
+                " nmap <leader>sk :call ToggleSketch()<cr>
 
                 NeoBundleLazy 'osyo-manga/vim-over',
                             \ {'autoload': {'commands': 'OverCommandLine'}}
@@ -242,11 +242,10 @@
                 nmap <leader>cor :colo ron<cr>
                 nmap <leader>cod :colo desert<cr>
                 nmap <leader>cot :colo Tomorrow-Night-Eighties<cr>
-                " colo Tomorrow-Night-Eighties
 
-                NeoBundleLazy 'bilalq/lite-dfm',
-                            \ {'autoload': {'commands': 'LiteDFMToggle'}}
-                nnoremap <silent><leader>ld :LiteDFMToggle<cr>
+                " NeoBundleLazy 'bilalq/lite-dfm',
+                "             \ {'autoload': {'commands': 'LiteDFMToggle'}}
+                " nnoremap <silent><leader>ld :LiteDFMToggle<cr>
 
                 NeoBundleLazy 'junegunn/goyo.vim',
                             \ {'autoload': {'commands': 'Goyo'}}
@@ -269,12 +268,12 @@
                 NeoBundle 'Dewdrops/SearchComplete'
                 NeoBundle 'ConradIrwin/vim-bracketed-paste'
                 NeoBundle 'vim-scripts/LargeFile'
-                NeoBundle 'mtth/scratch.vim'
+                " NeoBundle 'mtth/scratch.vim'
                 NeoBundle 'goldfeld/ctrlr.vim'
                 NeoBundle 'justinmk/vim-gtfo'
                 NeoBundle 'tpope/vim-eunuch'
-                NeoBundle 'AndrewRadev/linediff.vim'
-                NeoBundle 'tpope/vim-characterize'
+                " NeoBundle 'AndrewRadev/linediff.vim'
+                " NeoBundle 'tpope/vim-characterize'
                 " NeoBundle 'nicwest/QQ.vim'
                 " NeoBundle 'thinca/vim-prettyprint'
                 " NeoBundle 'MattesGroeger/vim-bookmarks'
@@ -327,13 +326,14 @@
             NeoBundle 'octol/vim-cpp-enhanced-highlight'
             NeoBundle 'Dewdrops/vim-template'
             NeoBundle 'tpope/vim-dispatch'
+            NeoBundle 'Z1MM32M4N/vim-superman'
 
             " NeoBundle 'scrooloose/syntastic'
             " let g:syntastic_enable_perl_checker = 1
 
-            NeoBundle 'AndrewRadev/splitjoin.vim'
-            let g:splitjoin_split_mapping = 'cS'
-            let g:splitjoin_join_mapping  = 'cJ'
+            " NeoBundle 'AndrewRadev/splitjoin.vim'
+            " let g:splitjoin_split_mapping = 'cS'
+            " let g:splitjoin_join_mapping  = 'cJ'
 
             NeoBundle 'matchit.zip'
             let b:match_ignorecase = 1
@@ -344,17 +344,17 @@
             let g:UltiSnipsJumpForwardTrigger  = "<c-k>"
             let g:UltiSnipsJumpBackwardTrigger = "<c-j>"
 
-            NeoBundleLazy 'szw/vim-ctrlspace',
-                        \ {'autoload': {'commands': 'CtrlSpace'}}
-            map <leader><space> :CtrlSpace<cr>
+            " NeoBundleLazy 'szw/vim-ctrlspace',
+            "             \ {'autoload': {'commands': 'CtrlSpace'}}
+            " map <leader><space> :CtrlSpace<cr>
 
-            NeoBundleLazy 'Chiel92/vim-autoformat',
-                        \ {'autoload': {'commands': 'Autoformat'}}
-            nnoremap <leader>gq :Autoformat<cr>
+            " NeoBundleLazy 'Chiel92/vim-autoformat',
+            "             \ {'autoload': {'commands': 'Autoformat'}}
+            " nnoremap <leader>gq :Autoformat<cr>
 
-            NeoBundleLazy 'jaxbot/semantic-highlight.vim',
-                        \ {'autoload': {'commands': 'SemanticHighlight'}}
-            nnoremap <leader>sh :SemanticHighlight<cr>
+            " NeoBundleLazy 'jaxbot/semantic-highlight.vim',
+            "             \ {'autoload': {'commands': 'SemanticHighlight'}}
+            " nnoremap <leader>sh :SemanticHighlight<cr>
 
             NeoBundleLazy 'AndrewRadev/switch.vim',
                         \ {'autoload': {'commands': 'Switch'}}
@@ -364,9 +364,9 @@
                         \ {'autoload': {'commands': ['A']}}
             nnoremap <leader>aa :A<cr>
 
-            NeoBundleLazy 'thinca/vim-quickrun',
-                        \ {'autoload': {'commands': ['QuickRun']}}
-            nnoremap <leader>kr :QuickRun -outputter/buffer/into 1<cr>
+            " NeoBundleLazy 'thinca/vim-quickrun',
+            "             \ {'autoload': {'commands': ['QuickRun']}}
+            " nnoremap <leader>kr :QuickRun -outputter/buffer/into 1<cr>
 
             " tcomment {{{
                 NeoBundleLazy 'tomtom/tcomment_vim',
@@ -879,13 +879,15 @@
             " NeoBundle 'kchmck/vim-coffee-script'
             " NeoBundle 'chrisbra/csv.vim'
             " NeoBundle 'tpope/vim-haml'
-            " NeoBundle 'oscarh/vimerl'
             " NeoBundle 'jrk/vim-ocaml'
             " NeoBundle 'fatih/vim-go'
             " NeoBundle 'petRUShka/vim-opencl'
             " NeoBundle 'tpope/timl'
             " NeoBundle 'JuliaLang/julia-vim'
             " NeoBundle 'Rykka/riv.vim'
+
+            NeoBundle 'oscarh/vimerl'
+            NeoBundle 'elixir-lang/vim-elixir'
 
             NeoBundle 'wting/rust.vim'
             NeoBundle 'cespare/vim-toml'
@@ -908,8 +910,8 @@
             " NeoBundle 'tpope/vim-cucumber'
             " NeoBundle 'quentindecock/vim-cucumber-align-pipes'
 
-            " NeoBundle 'derekwyatt/vim-sbt'
-            " NeoBundle 'derekwyatt/vim-scala'
+            NeoBundle 'derekwyatt/vim-sbt'
+            NeoBundle 'derekwyatt/vim-scala'
 
             " NeoBundle 'xolox/vim-misc'
             " NeoBundle 'xolox/vim-lua-ftplugin'
@@ -935,6 +937,9 @@
     syntax enable
 
     NeoBundleCheck
+
+    " enable customized themes at the end
+    colo Tomorrow-Night-Eighties
 
 " }}}
 
