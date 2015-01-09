@@ -196,7 +196,7 @@
     au FileType c,cpp,python,ruby,perl,html,xml,java,haskell
                 \ au BufWritePre * call <SID>StripTrailingWhitespace()
     au FileType python,haskell,coffee,html,xhtml setlocal fdm=indent
-    au FileType ruby,html,xhtml setlocal softtabstop=2 shiftwidth=2 ts=2
+    au FileType ruby,lua,html,xhtml setlocal softtabstop=2 shiftwidth=2 ts=2
 
 " }}}
 

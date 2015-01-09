@@ -201,9 +201,9 @@
                 nmap gxc <Plug>(ExchangeClear)
                 nmap gxx <Plug>(ExchangeLine)
 
-                NeoBundleLazy 'sjl/gundo.vim',
-                            \ {'autoload': {'commands': 'GundoToggle'}}
-                nnoremap <Leader>ut :GundoToggle<cr>
+                NeoBundleLazy 'mbbill/undotree',
+                            \ {'autoload': {'commands': 'UndotreeToggle'}}
+                nnoremap <Leader>ut :UndotreeToggle<cr>
             " }}}
 
             " Motion {{{
@@ -272,6 +272,7 @@
                 NeoBundle 'goldfeld/ctrlr.vim'
                 NeoBundle 'justinmk/vim-gtfo'
                 NeoBundle 'tpope/vim-eunuch'
+                NeoBundle 'exvim/ex-visincr'
                 " NeoBundle 'AndrewRadev/linediff.vim'
                 " NeoBundle 'tpope/vim-characterize'
                 " NeoBundle 'nicwest/QQ.vim'
@@ -298,6 +299,9 @@
                 let sessionman_save_on_exit = 0
                 nmap <leader>sl :SessionList<cr>
                 nmap <leader>ss :SessionSave<cr>
+
+                NeoBundleLazy 'mbbill/fencview',
+                            \ {'autoload': {'commands': 'FencAutoDetect'}}
 
                 NeoBundleLazy 'mattn/calendar-vim',
                             \ {'autoload': {'commands': ['Calendar', 'CalendarH']}}
@@ -913,8 +917,9 @@
             NeoBundle 'derekwyatt/vim-sbt'
             NeoBundle 'derekwyatt/vim-scala'
 
-            " NeoBundle 'xolox/vim-misc'
-            " NeoBundle 'xolox/vim-lua-ftplugin'
+            NeoBundle 'xolox/vim-misc'
+            NeoBundle 'xolox/vim-lua-ftplugin'
+            NeoBundle 'xolox/vim-lua-inspect'
 
             " NeoBundle 'dhruvasagar/vim-dotoo'
 
