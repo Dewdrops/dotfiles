@@ -28,6 +28,8 @@
                         \     'git',
                         \     'ycm',
                         \     'lisp',
+                        \     'vimproc',
+                        \     'haskell',
                         \     'clojure',
                         \     'misc'
                         \ ]
@@ -745,14 +747,15 @@
 
     " vimproc {{{
         if count(g:dewdrops_bundle_groups, 'vimproc')
-            NeoBundle 'Shougo/vimproc', {
-                        \ 'build' : {
-                        \     'windows' : 'make -f make_mingw32.mak',
-                        \     'cygwin' : 'make -f make_cygwin.mak',
-                        \     'mac' : 'make -f make_mac.mak',
-                        \     'unix' : 'make -f make_unix.mak',
-                        \    },
-                        \ }
+            NeoBundle 'Shougo/vimproc.vim', {
+            \ 'build' : {
+            \     'windows' : 'tools\\update-dll-mingw',
+            \     'cygwin' : 'make -f make_cygwin.mak',
+            \     'mac' : 'make -f make_mac.mak',
+            \     'linux' : 'make',
+            \     'unix' : 'gmake',
+            \    },
+            \ }
 
             NeoBundle 'Shougo/vimshell.vim'
             let g:vimshell_prompt = ""
@@ -832,21 +835,14 @@
             NeoBundleLazy 'vim-scripts/Superior-Haskell-Interaction-Mode-SHIM',
                         \ {'autoload': {'commands': ['GhciFile', 'GhciRange', 'GhciReload']}}
 
-            NeoBundleLazy 'dag/vim2hs', {'autoload': {'filetypes': 'haskell'}}
-            let g:haskell_conceal = 0
-
-            NeoBundleLazy 'lukerandall/haskellmode-vim',
-                        \ {'autoload': {'filetypes': 'haskell'}}
-            let g:haddock_browser = "/usr/bin/firefox"
-
             if count(g:dewdrops_bundle_groups, 'vimproc')
                 NeoBundleLazy 'eagletmt/ghcmod-vim',
                             \ {'autoload': {'filetypes': 'haskell'}}
-                au Filetype haskell nnoremap <buffer> <leader>jt ::GhcModType<cr>
-                au Filetype haskell nnoremap <buffer> <leader>jj ::GhcModTypeClear<cr>
-                au Filetype haskell nnoremap <buffer> <leader>jc ::GhcModCheck<cr>
-                au Filetype haskell nnoremap <buffer> <leader>jl ::GhcModLint<cr>
-                au Filetype haskell nnoremap <buffer> <leader>je ::GhcModExpand<cr>
+                au Filetype haskell nnoremap <buffer> <leader>jt :GhcModType<cr>
+                au Filetype haskell nnoremap <buffer> <leader>jj :GhcModTypeClear<cr>
+                au Filetype haskell nnoremap <buffer> <leader>jc :GhcModCheck<cr>
+                au Filetype haskell nnoremap <buffer> <leader>jl :GhcModLint<cr>
+                au Filetype haskell nnoremap <buffer> <leader>je :GhcModExpand<cr>
 
                 NeoBundleLazy 'eagletmt/neco-ghc',
                             \ {'autoload': {'filetypes': 'haskell'}}
