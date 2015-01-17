@@ -27,6 +27,7 @@
                         \     'programming',
                         \     'git',
                         \     'ycm',
+                        \     'unite',
                         \     'lisp',
                         \     'vimproc',
                         \     'haskell',
@@ -287,6 +288,10 @@
                 " NeoBundle 'kshenoy/vim-signature'
                 " nnoremap <leader>sg :SignatureToggle<cr>
 
+                NeoBundleLazy 'Shougo/junkfile.vim',
+                            \ {'autoload':{'commands':'JunkfileOpen',
+                            \ 'unite_sources':['junkfile','junkfile/new']}}
+
                 NeoBundleLazy 'Dewdrops/vim-interestingwords',
                             \ {'autoload': {'functions':
                             \ ['InterestingWords', 'UncolorAllWords', 'WordNavigation']}}
@@ -330,7 +335,7 @@
             NeoBundle 'tpope/vim-endwise'
             " NeoBundle 'vim-jp/cpp-vim'
             NeoBundle 'octol/vim-cpp-enhanced-highlight'
-            NeoBundle 'Dewdrops/vim-template'
+            " NeoBundle 'Dewdrops/vim-template'
             NeoBundle 'tpope/vim-dispatch'
             NeoBundle 'Z1MM32M4N/vim-superman'
 
@@ -493,21 +498,29 @@
     " Unite & CtrlP {{{
         if count(g:dewdrops_bundle_groups, 'unite')
             NeoBundle 'Shougo/unite.vim'
-            NeoBundle 'Shougo/neomru.vim'
-            NeoBundle 'Shougo/unite-outline'
 
-            NeoBundle 'Shougo/vimfiler.vim'
-            let g:vimfiler_as_default_explorer = 1
+            NeoBundleLazy 'Shougo/neomru.vim', {'autoload':{'unite_sources':'file_mru'}}
+            NeoBundleLazy 'ujihisa/unite-colorscheme', {'autoload':{'unite_sources':'colorscheme'}}
+            NeoBundleLazy 'tsukkee/unite-tag', {'autoload':{'unite_sources':['tag','tag/file']}}
+            NeoBundleLazy 'Shougo/unite-outline', {'autoload':{'unite_sources':'outline'}}
+            NeoBundleLazy 'Shougo/unite-help', {'autoload':{'unite_sources':'help'}}
 
-            call unite#filters#matcher_default#use(['matcher_fuzzy'])
-            call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
-                  \ 'ignore_pattern', join([
-                  \ '\.git/',
-                  \ 'node_modules/',
-                  \ 'dist/',
-                  \ '.elc',
-                  \ '.pyc'
-                  \ ], '\|'))
+            let bundle_unite = neobundle#get('unite.vim')
+            function! bundle_unite.hooks.on_source(_)
+                call unite#filters#matcher_default#use(['matcher_fuzzy'])
+                call unite#filters#sorter_default#use(['sorter_rank'])
+                call unite#custom_source(
+                            \ 'file_rec,file_rec/async,file_mru,file,buffer,grep',
+                            \ 'ignore_pattern', join([
+                            \ '\.git/', 'node_modules/', 'dist/', '.elc', '.pyc'],
+                            \ '\|'))
+            endfunction
+
+            if count(g:dewdrops_bundle_groups, 'vimproc')
+                nnoremap <C-p> :<C-u>Unite -start-insert file_rec/async:!<cr>
+            else
+                nnoremap <C-p> :<C-u>Unite -start-insert file_rec<cr>
+            endif
 
             let g:unite_enable_start_insert             = 1
             let g:unite_data_directory                  = "~/.unite"
@@ -515,6 +528,7 @@
             let g:unite_split_rule                      = "botright"
             let g:unite_update_time                     = 200
             let g:unite_source_file_mru_limit           = 1000
+            let g:unite_source_rec_max_cache_files      = 5000
             let g:unite_cursor_line_highlight           = 'TabLineSel'
             let g:unite_source_file_mru_filename_format = ':~:.'
             let g:unite_source_file_mru_time_format     = ''
@@ -527,29 +541,27 @@
             nnoremap <silent> \f :<C-u>Unite -buffer-name=files file file/new<CR>
             nnoremap <silent> \F :<C-u>Unite -buffer-name=files_rec file_rec file/new<CR>
             nnoremap <silent> \g :<C-u>Unite -buffer-name=grep grep:.<CR>
-            nnoremap <silent> \h :<C-u>Unite -buffer-name=help help<CR>
+            nnoremap <silent> \h :<C-u>Unite -auto-resize -buffer-name=help help<CR>
             nnoremap <silent> \l :<C-u>UniteWithCursorWord -buffer-name=search_file line<CR>
             nnoremap <silent> \m :<C-u>Unite -buffer-name=mru buffer file_mru<CR>
             nnoremap <silent> \M :<C-u>Unite -buffer-name=mappings mapping<CR>
             nnoremap <silent> \n :<C-u>Unite -buffer-name=find find:.<CR>
             nnoremap <silent> \c :<C-u>Unite -buffer-name=commands command<CR>
+            nnoremap <silent> \C :<C-u>Unite -auto-preview -buffer-name=colorschemes colorscheme<cr>
             nnoremap <silent> \; :<C-u>Unite -buffer-name=history -default-action=edit history/command command<CR>
+            nnoremap <silent> \t :<C-u>Unite -auto-resize -buffer-name=tag tag tag/file<cr>
+            nnoremap <silent> \j :<C-u>Unite -auto-resize -buffer-name=junk junkfile junkfile/new<cr>
 
             " Custom Unite settings
             autocmd FileType unite call s:unite_settings()
             function! s:unite_settings()
-                imap <buffer> <ESC> <Plug>(unite_exit)
+                nmap <buffer> Q <Plug>(unite_exit)
                 nmap <buffer> <ESC> <Plug>(unite_exit)
-                imap <buffer> <c-g> <Plug>(unite_insert_leave)
-                imap <buffer> <c-c> <Plug>(unite_insert_leave)
-                imap <buffer> <c-n> <Plug>(unite_loop_cursor_down)
-                imap <buffer> <c-p> <Plug>(unite_loop_cursor_up)
-                imap <buffer> <c-j> <Plug>(unite_select_next_line)
-                imap <buffer> <c-k> <Plug>(unite_select_previous_lin)
-                imap <buffer> <c-l> <Plug>(unite_redraw)
-                imap <buffer> <c-a> <Plug>(unite_choose_action)
-                imap <buffer> <C-w> <Plug>(unite_delete_backward_word)
-                imap <buffer> <C-u> <Plug>(unite_delete_backward_path)
+                imap <buffer> <ESC> <Plug>(unite_exit)
+                imap <buffer> <C-g> <Plug>(unite_insert_leave)
+                imap <buffer> <C-c> <Plug>(unite_insert_leave)
+                imap <buffer> <C-j> <Plug>(unite_select_next_line)
+                imap <buffer> <C-k> <Plug>(unite_select_previous_line)
                 imap <buffer> ' <Plug>(unite_quick_match_default_action)
 
                 let unite = unite#get_current_unite()
@@ -559,6 +571,9 @@
                     inoremap <silent><buffer><expr> <c-r> unite#do_action('rename')
                 endif
             endfunction
+
+            NeoBundle 'Shougo/vimfiler.vim'
+            let g:vimfiler_as_default_explorer = 1
         else
             NeoBundle 'kien/ctrlp.vim'
             let g:ctrlp_custom_ignore = {
@@ -728,10 +743,10 @@
             " YouCompleteMe {{{
                 NeoBundle 'Valloric/YouCompleteMe'
                 au FileType c,cpp,objc,python nnoremap <buffer> <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<cr>
+                au FileType c,cpp,objc,python nnoremap <buffer> <leader>ja :YcmDiags<cr>
                 let g:ycm_complete_in_comments_and_strings = 1
                 let g:ycm_key_list_select_completion       = ['<tab>', '<C-n>', '<Down>']
                 let g:ycm_key_list_previous_completion     = ['<s-tab>', '<C-p>', '<Up>']
-                let g:ycm_filetype_blacklist               = {'unite': 1}
                 let g:ycm_global_ycm_extra_conf            = '~/.ycm_extra_conf.py'
                 let g:ycm_confirm_extra_conf               = 0
                 let g:ycm_enable_diagnostic_signs          = 0
@@ -939,7 +954,7 @@
 
     NeoBundleCheck
 
-    " enable customized themes at the end
+    " this should be placed after neobundle#end()
     colo Tomorrow-Night-Eighties
 
 " }}}
