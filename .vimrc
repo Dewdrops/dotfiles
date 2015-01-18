@@ -25,8 +25,8 @@
             let g:dewdrops_bundle_groups = [
                         \     'general',
                         \     'programming',
-                        \     'git',
                         \     'ycm',
+                        \     'git',
                         \     'unite',
                         \     'lisp',
                         \     'vimproc',
@@ -272,7 +272,6 @@
                 NeoBundle 'ConradIrwin/vim-bracketed-paste'
                 NeoBundle 'vim-scripts/LargeFile'
                 " NeoBundle 'mtth/scratch.vim'
-                NeoBundle 'goldfeld/ctrlr.vim'
                 NeoBundle 'justinmk/vim-gtfo'
                 NeoBundle 'tpope/vim-eunuch'
                 NeoBundle 'exvim/ex-visincr'
@@ -651,7 +650,6 @@
 
     " AutoComplete {{{
         if count(g:dewdrops_bundle_groups, 'neocomplete')
-
             " neocomplcache and neocomplete {{{
 
                 let g:acp_enableAtStartup = 0
@@ -737,9 +735,7 @@
                     let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
                 endif
             " }}}
-
         elseif count(g:dewdrops_bundle_groups, 'ycm')
-
             " YouCompleteMe {{{
                 NeoBundle 'Valloric/YouCompleteMe'
                 au FileType c,cpp,objc,python nnoremap <buffer> <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<cr>
@@ -755,7 +751,8 @@
                 let g:ycm_semantic_triggers.xhtml          = [' ']
                 let g:ycm_semantic_triggers.haskell        = ['.']
             "}}}
-
+        else
+            NeoBundle "jh17/VimCompletesMe"
         endif
 
     " }}}
