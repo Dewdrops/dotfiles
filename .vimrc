@@ -637,6 +637,10 @@
             NeoBundle 'idanarye/vim-merginal'
             nnoremap <leader>gM :Merginal<cr>
 
+            NeoBundleLazy 'int3/vim-extradite',
+                        \ {'depends': ['tpope/vim-fugitive'], 'autoload': {'commands': 'Extradite'}}
+            nnoremap <leader>ge :Extradite<cr>
+
             NeoBundleLazy 'gregsexton/gitv',
                         \ {'depends': ['tpope/vim-fugitive'], 'autoload': {'commands': 'Gitv'}}
             nnoremap <leader>gv :Gitv<cr>
