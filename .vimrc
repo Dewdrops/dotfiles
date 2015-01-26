@@ -613,6 +613,7 @@
         if count(g:dewdrops_bundle_groups, 'git')
             NeoBundle 'mhinz/vim-signify'
             NeoBundle 'jaxbot/github-issues.vim'
+            NeoBundle 'junegunn/vim-github-dashboard'
             NeoBundle 'tpope/vim-git'
 
             NeoBundle 'mattn/webapi-vim'
