@@ -25,7 +25,7 @@
             let g:dewdrops_bundle_groups = [
                         \     'general',
                         \     'programming',
-                        \     'ycm',
+                        \     'neocomplete',
                         \     'git',
                         \     'unite',
                         \     'lisp',
@@ -697,9 +697,12 @@
                     let g:neocomplcache_omni_patterns.c    = '[^.[:digit:] *\t]\%(\.\|->\)'
                     let g:neocomplcache_omni_patterns.cpp  = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
                     let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-                else
-                    NeoBundle 'Shougo/unite.vim'
+                elseif count(g:dewdrops_bundle_groups, 'unite')
                     NeoBundle 'Shougo/neocomplete'
+
+                    if count(g:dewdrops_bundle_groups, 'vimproc')
+                        NeoBundle 'osyo-manga/vim-marching'
+                    endif
 
                     let g:neocomplete#enable_at_startup            = 1
                     let g:neocomplete#enable_camel_case_completion = 1
@@ -916,7 +919,7 @@
             " NeoBundle 'vim-perl/vim-perl'
             " NeoBundle 'c9s/perlomni.vim'
 
-            " NeoBundle 'pangloss/vim-javascript'
+            " NeoBundle 'othree/yajs.vim'
             " NeoBundle 'marijnh/tern_for_vim'
             " NeoBundle 'othree/javascript-libraries-syntax.vim'
 
