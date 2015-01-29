@@ -25,7 +25,7 @@
             let g:dewdrops_bundle_groups = [
                         \     'general',
                         \     'programming',
-                        \     'neocomplete',
+                        \     'ycm',
                         \     'git',
                         \     'unite',
                         \     'lisp',
@@ -131,6 +131,29 @@
                 vmap <Leader>vR <plug>EgMapReplaceSelection_R
             " }}}
 
+            " vim-swoop {{{
+                NeoBundleLazy 'pelodelfuego/vim-swoop',
+                            \ {'autoload': {'functions': ['Swoop', 'SwoopSelection',
+                            \ 'SwoopMulti', 'SwoopMultiSelection']}}
+
+                let g:swoopUseDefaultKeyMap = 0
+                nmap <leader>ms :call Swoop()<cr>
+                vmap <leader>ms :call SwoopSelection()<cr>
+                nmap <leader>ml :call SwoopMulti()<cr>
+                vmap <leader>ml :call SwoopMultiSelection()<cr>
+
+                function! Multiple_cursors_before()
+                    if exists('*SwoopFreezeContext') != 0
+                        call SwoopFreezeContext()
+                    endif
+                endfunction
+                function! Multiple_cursors_after()
+                    if exists('*SwoopUnFreezeContext') != 0
+                        call SwoopUnFreezeContext()
+                    endif
+                endfunction
+            " }}}
+
             " Window and buffer {{{
                 " NeoBundle 'bling/vim-bufferline'
                 " let g:bufferline_echo = 0
@@ -171,7 +194,7 @@
                 " NeoBundle 'chrisbra/NrrwRgn'
                 NeoBundle 'vim-scripts/ReplaceWithRegister'
 
-                " NeoBundle 'tpope/vim-abolish.git'
+                NeoBundle 'tpope/vim-abolish.git'
                 nnoremap <leader>sv :%Subvert/
 
                 NeoBundle 'Dewdrops/vim-unimpaired'
@@ -180,17 +203,17 @@
                 vmap <c-up> [e
                 vmap <c-down> ]e
 
-                " NeoBundleLazy 'Shougo/vinarise.vim',
-                "             \ {'autoload': {'commands': 'Vinarise'}}
-                " nmap <leader>xx :Vinarise<cr>
-                "
-                " NeoBundleLazy 'vim-scripts/DrawIt',
-                "             \ {'autoload': {'mappings': '<Plug>DrawItStart'}}
-                " nmap <unique> <Leader>di <Plug>DrawItStart
-                "
-                " NeoBundleLazy 'sketch.vim',
-                "             \ {'autoload': {'functions': 'ToggleSketch'}}
-                " nmap <leader>sk :call ToggleSketch()<cr>
+                NeoBundleLazy 'Shougo/vinarise.vim',
+                            \ {'autoload': {'commands': 'Vinarise'}}
+                nmap <leader>xx :Vinarise<cr>
+
+                NeoBundleLazy 'vim-scripts/DrawIt',
+                            \ {'autoload': {'mappings': '<Plug>DrawItStart'}}
+                nmap <unique> <Leader>di <Plug>DrawItStart
+
+                NeoBundleLazy 'sketch.vim',
+                            \ {'autoload': {'functions': 'ToggleSketch'}}
+                nmap <leader>sk :call ToggleSketch()<cr>
 
                 NeoBundleLazy 'osyo-manga/vim-over',
                             \ {'autoload': {'commands': 'OverCommandLine'}}
