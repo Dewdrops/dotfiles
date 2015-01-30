@@ -140,7 +140,8 @@
             " vim-swoop {{{
                 NeoBundleLazy 'pelodelfuego/vim-swoop',
                             \ {'autoload': {'functions': ['Swoop', 'SwoopSelection',
-                            \ 'SwoopMulti', 'SwoopMultiSelection']}}
+                            \ 'SwoopMulti', 'SwoopMultiSelection'],
+                            \ 'commands': ['Swoop']}}
 
                 let g:swoopUseDefaultKeyMap = 0
                 nmap <leader>ms :call Swoop()<cr>
@@ -188,7 +189,7 @@
 
                 NeoBundleLazy 'troydm/easybuffer.vim',
                             \ {'autoload': {'commands': 'EasyBuffer'}}
-                nmap <leader>eb :EasyBuffer<cr>
+                nmap <leader>bs :EasyBuffer<cr>
             " }}}
 
             " Edit {{{
@@ -365,9 +366,9 @@
             " NeoBundle 'scrooloose/syntastic'
             " let g:syntastic_enable_perl_checker = 1
 
-            " NeoBundle 'AndrewRadev/splitjoin.vim'
-            " let g:splitjoin_split_mapping = 'cS'
-            " let g:splitjoin_join_mapping  = 'cJ'
+            NeoBundle 'AndrewRadev/splitjoin.vim'
+            let g:splitjoin_split_mapping = 'cS'
+            let g:splitjoin_join_mapping  = 'cJ'
 
             NeoBundle 'matchit.zip'
             let b:match_ignorecase = 1
@@ -378,17 +379,17 @@
             let g:UltiSnipsJumpForwardTrigger  = "<c-k>"
             let g:UltiSnipsJumpBackwardTrigger = "<c-j>"
 
-            " NeoBundleLazy 'szw/vim-ctrlspace',
-            "             \ {'autoload': {'commands': 'CtrlSpace'}}
-            " map <leader><space> :CtrlSpace<cr>
+            NeoBundleLazy 'szw/vim-ctrlspace',
+                        \ {'autoload': {'commands': 'CtrlSpace'}}
+            map <leader><space> :CtrlSpace<cr>
 
-            " NeoBundleLazy 'Chiel92/vim-autoformat',
-            "             \ {'autoload': {'commands': 'Autoformat'}}
-            " nnoremap <leader>gq :Autoformat<cr>
+            NeoBundleLazy 'Chiel92/vim-autoformat',
+                        \ {'autoload': {'commands': 'Autoformat'}}
+            nnoremap <leader>gq :Autoformat<cr>
 
-            " NeoBundleLazy 'jaxbot/semantic-highlight.vim',
-            "             \ {'autoload': {'commands': 'SemanticHighlight'}}
-            " nnoremap <leader>sh :SemanticHighlight<cr>
+            NeoBundleLazy 'jaxbot/semantic-highlight.vim',
+                        \ {'autoload': {'commands': 'SemanticHighlight'}}
+            nnoremap <leader>sh :SemanticHighlight<cr>
 
             NeoBundleLazy 'AndrewRadev/switch.vim',
                         \ {'autoload': {'commands': 'Switch'}}
@@ -398,9 +399,9 @@
                         \ {'autoload': {'commands': ['A']}}
             nnoremap <leader>aa :A<cr>
 
-            " NeoBundleLazy 'thinca/vim-quickrun',
-            "             \ {'autoload': {'commands': ['QuickRun']}}
-            " nnoremap <leader>kr :QuickRun -outputter/buffer/into 1<cr>
+            NeoBundleLazy 'thinca/vim-quickrun',
+                        \ {'autoload': {'commands': ['QuickRun']}}
+            nnoremap <leader>kr :QuickRun -outputter/buffer/into 1<cr>
 
             " tcomment {{{
                 NeoBundleLazy 'tomtom/tcomment_vim',
