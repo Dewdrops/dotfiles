@@ -94,16 +94,22 @@
 
             " Startify {{{
                 NeoBundle 'mhinz/vim-startify'
-                let g:startify_custom_header = [
-                            \ '         ____                   _                     ',
-                            \ '        |  _ \  _____      ____| |_ __ ___  _ __  ___ ',
-                            \ '        | | | |/ _ \ \ /\ / / _` | ''__/ _ \| ''_ \/ __|',
-                            \ '        | |_| |  __/\ V  V / (_| | | | (_) | |_) \__ \',
-                            \ '        |____/ \___| \_/\_/ \__,_|_|  \___/| .__/|___/',
-                            \ '                                           |_|        ',
-                            \ '                                                      ',
-                            \ '                                                      '
-                            \ ]
+
+                if executable('fortune') && executable('cowsay')
+                    let g:startify_custom_header =
+                                \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
+                else
+                    let g:startify_custom_header = [
+                                \ '         ____                   _                     ',
+                                \ '        |  _ \  _____      ____| |_ __ ___  _ __  ___ ',
+                                \ '        | | | |/ _ \ \ /\ / / _` | ''__/ _ \| ''_ \/ __|',
+                                \ '        | |_| |  __/\ V  V / (_| | | | (_) | |_) \__ \',
+                                \ '        |____/ \___| \_/\_/ \__,_|_|  \___/| .__/|___/',
+                                \ '                                           |_|        ',
+                                \ '                                                      ',
+                                \ '                                                      '
+                                \ ]
+                endif
             " }}}
 
             " EasyGrep {{{
