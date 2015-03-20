@@ -25,13 +25,13 @@
             let g:dewdrops_bundle_groups = [
                         \     'general',
                         \     'programming',
+                        \     'textobj',
                         \     'ycm',
                         \     'git',
                         \     'unite',
                         \     'lisp',
                         \     'vimproc',
                         \     'haskell',
-                        \     'clojure',
                         \     'misc'
                         \ ]
         endif
@@ -59,20 +59,20 @@
                 map <Leader>et :EasyTreeToggle<cr>
             " }}}
 
-            " " Seek {{{
-            "     " NeoBundle 'goldfeld/vim-seek'
-            "     let g:SeekKey                         = 'S'
-            "     let g:SeekBackKey                     = '<leader>S'
-            "     let g:seekJumpPresentialInnerKey      = 'gz'
-            "     let g:seekBackJumpPresentialInnerKey  = 'gZ'
-            "     let g:seekJumpRemoteInnerKey          = 'gu'
-            "     let g:seekBackJumpRemoteInnerKey      = 'gU'
-            "     let g:seekJumpPresentialAroundKey     = 'z'
-            "     let g:seekBackJumpPresentialAroundKey = 'Z'
-            "     let g:seekJumpRemoteAroundKey         = 'u'
-            "     let g:seekBackJumpRemoteAroundKey     = 'U'
-            "     let g:seek_enable_jumps               = 1
-            " " }}}
+            " Seek {{{
+                NeoBundle 'goldfeld/vim-seek'
+                " let g:SeekKey                         = 'S'
+                " let g:SeekBackKey                     = '<leader>S'
+                " let g:seekJumpPresentialInnerKey      = 'gz'
+                " let g:seekBackJumpPresentialInnerKey  = 'gZ'
+                " let g:seekJumpRemoteInnerKey          = 'gu'
+                " let g:seekBackJumpRemoteInnerKey      = 'gU'
+                " let g:seekJumpPresentialAroundKey     = 'z'
+                " let g:seekBackJumpPresentialAroundKey = 'Z'
+                " let g:seekJumpRemoteAroundKey         = 'u'
+                " let g:seekBackJumpRemoteAroundKey     = 'U'
+                let g:seek_enable_jumps               = 1
+            " }}}
 
             " vim-lion {{{
                 NeoBundleLazy 'tommcdo/vim-lion',
@@ -193,13 +193,14 @@
             " }}}
 
             " Edit {{{
-                " NeoBundle 'tpope/vim-speeddating'
+                NeoBundle 'tpope/vim-speeddating'
                 NeoBundle 'jiangmiao/auto-pairs'
                 NeoBundle 'tpope/vim-surround'
                 NeoBundle 'terryma/vim-multiple-cursors'
                 NeoBundle 'tpope/vim-repeat'
-                " NeoBundle 'chrisbra/NrrwRgn'
+                NeoBundle 'chrisbra/NrrwRgn'
                 NeoBundle 'vim-scripts/ReplaceWithRegister'
+                NeoBundle 'junegunn/vim-peekaboo'
 
                 NeoBundle 'tpope/vim-abolish.git'
                 nnoremap <leader>sv :%Subvert/
@@ -256,6 +257,7 @@
 
                 if count(g:dewdrops_bundle_groups, 'textobj')
                     NeoBundle 'wellle/targets.vim'
+                    NeoBundle 'jeetsukumaran/vim-indentwise'
                     NeoBundle 'kana/vim-textobj-user'
                     NeoBundle 'kana/vim-textobj-indent'
                     NeoBundle 'thinca/vim-textobj-between'
@@ -303,9 +305,9 @@
                 NeoBundle 'exvim/ex-visincr'
                 NeoBundle 'chrisbra/Recover.vim'
                 NeoBundle 'AndrewRadev/linediff.vim'
-                " NeoBundle 'tpope/vim-characterize'
+                NeoBundle 'tpope/vim-characterize'
                 " NeoBundle 'nicwest/QQ.vim'
-                " NeoBundle 'thinca/vim-prettyprint'
+                NeoBundle 'thinca/vim-prettyprint'
                 " NeoBundle 'MattesGroeger/vim-bookmarks'
 
                 " NeoBundle 'thinca/vim-ref'
@@ -313,6 +315,13 @@
 
                 " NeoBundle 'kshenoy/vim-signature'
                 " nnoremap <leader>sg :SignatureToggle<cr>
+
+                NeoBundleLazy 'dahu/vim-lotr',
+                            \ {'autoload': {'mappings': '<plug>LOTRToggle'}}
+                nmap <leader>lr <plug>LOTRToggle
+
+                NeoBundleLazy 'ryanss/vim-hackernews',
+                            \ {'autoload': {'commands': 'HackerNews'}}
 
                 NeoBundleLazy 'Shougo/junkfile.vim',
                             \ {'autoload':{'commands':'JunkfileOpen',
@@ -476,7 +485,7 @@
 
             " ctags {{{
                 if executable('ctags')
-                    " NeoBundle 'xolox/vim-easytags'
+                    NeoBundle 'ludovicchabant/vim-gutentags'
                     NeoBundleLazy 'majutsushi/tagbar',
                                 \ {'autoload': {'commands': 'TagbarToggle'}}
 
@@ -927,7 +936,7 @@
     " Misc {{{
         if count(g:dewdrops_bundle_groups, 'misc')
             " NeoBundle 'kchmck/vim-coffee-script'
-            " NeoBundle 'chrisbra/csv.vim'
+            NeoBundle 'chrisbra/csv.vim'
             " NeoBundle 'tpope/vim-haml'
             " NeoBundle 'jrk/vim-ocaml'
             " NeoBundle 'fatih/vim-go'
@@ -936,11 +945,11 @@
             " NeoBundle 'JuliaLang/julia-vim'
             " NeoBundle 'Rykka/riv.vim'
 
-            NeoBundle 'oscarh/vimerl'
-            NeoBundle 'elixir-lang/vim-elixir'
+            " NeoBundle 'oscarh/vimerl'
+            " NeoBundle 'elixir-lang/vim-elixir'
 
-            NeoBundle 'wting/rust.vim'
-            NeoBundle 'cespare/vim-toml'
+            " NeoBundle 'wting/rust.vim'
+            " NeoBundle 'cespare/vim-toml'
 
             " NeoBundle 'vim-ruby/vim-ruby'
             " NeoBundle 'ecomba/vim-ruby-refactoring'
@@ -960,17 +969,17 @@
             " NeoBundle 'tpope/vim-cucumber'
             " NeoBundle 'quentindecock/vim-cucumber-align-pipes'
 
-            NeoBundle 'derekwyatt/vim-sbt'
-            NeoBundle 'derekwyatt/vim-scala'
+            " NeoBundle 'derekwyatt/vim-sbt'
+            " NeoBundle 'derekwyatt/vim-scala'
 
-            NeoBundle 'xolox/vim-misc'
-            NeoBundle 'xolox/vim-lua-ftplugin'
-            NeoBundle 'xolox/vim-lua-inspect'
+            " NeoBundle 'xolox/vim-misc'
+            " NeoBundle 'xolox/vim-lua-ftplugin'
+            " NeoBundle 'xolox/vim-lua-inspect'
 
-            " NeoBundle 'dhruvasagar/vim-dotoo'
+            NeoBundle 'dhruvasagar/vim-dotoo'
 
-            " NeoBundle 'jceb/vim-orgmode'
-            " au FileType org setlocal fdm=expr
+            NeoBundle 'jceb/vim-orgmode'
+            au FileType org setlocal fdm=expr
 
             " NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
             " let g:LatexBox_Folding = 1
