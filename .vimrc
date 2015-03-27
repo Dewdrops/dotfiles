@@ -10,11 +10,16 @@
     " Load basic configuration
     source ~/.vimrc_tiny
 
-    " Set up NeoBundle Support {{{
-        set rtp+=~/.vim/bundle/neobundle.vim
-        call neobundle#begin(expand('~/.vim/bundle/'))
-        NeoBundleFetch 'Shougo/neobundle.vim'
-    " }}}
+    " Set up NeoBundle Support
+    if has('vim_starting')
+        if &compatible | set nocompatible | endif
+
+        set runtimepath+=~/.vim/bundle/neobundle.vim/
+    endif
+
+    call neobundle#begin(expand('~/.vim/bundle/'))
+
+    NeoBundleFetch 'Shougo/neobundle.vim'
 
 " }}}
 
@@ -41,10 +46,10 @@
         if count(g:dewdrops_bundle_groups, 'general')
 
             " Tree File Manager {{{
-                NeoBundleLazy 'scrooloose/nerdtree',
+                NeoBundle 'scrooloose/nerdtree',
                             \ {'autoload': {'commands': ['NERDTreeToggle', 'NERDTreeFind']}}
-                map <Leader>nt :NERDTreeToggle<cr>
-                map <Leader>nf :NERDTreeFind<cr>
+                " map <Leader>nt :NERDTreeToggle<cr>
+                " map <Leader>nf :NERDTreeFind<cr>
                 let NERDTreeShowBookmarks               = 1
                 let NERDTreeIgnore                      = ['\.pyc', '\.elc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
                 let NERDTreeChDirMode                   = 0
@@ -53,6 +58,10 @@
                 let NERDTreeShowHidden                  = 1
                 let NERDTreeKeepTreeInNewTab            = 1
                 let g:nerdtree_tabs_open_on_gui_startup = 0
+
+                NeoBundle 'jistr/vim-nerdtree-tabs'
+                map <Leader>nt <plug>NERDTreeTabsToggle<cr>
+                map <Leader>nf <plug>NERDTreeTabsFind<cr>
 
                 NeoBundleLazy 'troydm/easytree.vim',
                             \ {'autoload': {'commands': ['EasyTree', 'EasyTreeToggle']}}
@@ -883,6 +892,7 @@
             NeoBundle 'tpope/vim-fireplace'
             NeoBundle 'guns/vim-clojure-highlight'
             NeoBundle 'tpope/vim-classpath'
+            NeoBundle 'tpope/vim-leiningen'
             NeoBundle 'typedclojure/vim-typedclojure'
         endif
     " }}}
@@ -938,12 +948,13 @@
             " NeoBundle 'kchmck/vim-coffee-script'
             NeoBundle 'chrisbra/csv.vim'
             " NeoBundle 'tpope/vim-haml'
-            " NeoBundle 'jrk/vim-ocaml'
             " NeoBundle 'fatih/vim-go'
             NeoBundle 'petRUShka/vim-opencl'
+            NeoBundle 'andreimaxim/vim-io'
             " NeoBundle 'tpope/timl'
             " NeoBundle 'JuliaLang/julia-vim'
             " NeoBundle 'Rykka/riv.vim'
+            NeoBundle 'rgrinberg/vim-ocaml'
 
             " NeoBundle 'oscarh/vimerl'
             " NeoBundle 'elixir-lang/vim-elixir'

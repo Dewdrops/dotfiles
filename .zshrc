@@ -326,6 +326,9 @@ fi
 # load customized configuration
 [ -f $HOME/.zshrc.customized ] && source $HOME/.zshrc.customized
 
+# opam
+[ -f $HOME/.opam/opam-init/init.zsh ] && source $HOME/.opam/opam-init/init.zsh && eval `opam config env`
+
 # k
 [ -f $HOME/.k.sh ] && source $HOME/.k.sh
 
