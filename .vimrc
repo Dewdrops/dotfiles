@@ -310,6 +310,7 @@
                 NeoBundle 'vim-scripts/LargeFile'
                 " NeoBundle 'mtth/scratch.vim'
                 NeoBundle 'justinmk/vim-gtfo'
+                NeoBundle 'chrisbra/vim-diff-enhanced'
                 NeoBundle 'tpope/vim-eunuch'
                 NeoBundle 'exvim/ex-visincr'
                 NeoBundle 'chrisbra/Recover.vim'
@@ -379,7 +380,7 @@
             NeoBundle 'tpope/vim-endwise'
             NeoBundle 'octol/vim-cpp-enhanced-highlight'
             NeoBundle 'tpope/vim-dispatch'
-            NeoBundle 'Z1MM32M4N/vim-superman'
+            NeoBundle 'bruno-/vim-man'
 
             " NeoBundle 'scrooloose/syntastic'
             " let g:syntastic_enable_perl_checker = 1
@@ -864,7 +865,7 @@
 
     " Lisp {{{
         if count(g:dewdrops_bundle_groups, 'lisp')
-            NeoBundle 'amdt/vim-niji'
+            NeoBundle 'losingkeys/vim-niji'
 
             NeoBundleLazy 'guns/vim-sexp',
                         \ {'autoload': {'filetypes': ['lisp', 'scheme', 'clojure']}}
@@ -954,7 +955,12 @@
             " NeoBundle 'tpope/timl'
             " NeoBundle 'JuliaLang/julia-vim'
             " NeoBundle 'Rykka/riv.vim'
+
+            " NeoBundle 'chilicuil/vim-sml-coursera'
             NeoBundle 'rgrinberg/vim-ocaml'
+            NeoBundle 'def-lkb/vimbufsync'
+            NeoBundle 'the-lambda-church/merlin', {'rtp': 'vim/merlin/'}
+            let g:syntastic_ocaml_checkers = ['merlin']
 
             " NeoBundle 'oscarh/vimerl'
             " NeoBundle 'elixir-lang/vim-elixir'
