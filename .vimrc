@@ -561,9 +561,9 @@
                 endfunction
 
                 if count(g:dewdrops_bundle_groups, 'vimproc')
-                    nnoremap <C-p> :<C-u>Unite -start-insert file_rec/async:!<cr>
+                    nnoremap <C-p> :<C-u>Unite -start-insert file_mru file_rec/async:!<cr>
                 else
-                    nnoremap <C-p> :<C-u>Unite -start-insert file_rec<cr>
+                    nnoremap <C-p> :<C-u>Unite -start-insert file_mru file_rec<cr>
                 endif
 
                 let g:unite_enable_start_insert             = 1
