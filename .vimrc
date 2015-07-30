@@ -33,10 +33,10 @@
                         \     'textobj',
                         \     'ycm',
                         \     'git',
-                        \     'unite',
+                        \     'html',
                         \     'lisp',
-                        \     'vimproc',
                         \     'haskell',
+                        \     'vimproc',
                         \     'misc'
                         \ ]
         endif
@@ -70,16 +70,16 @@
 
             " Seek {{{
                 NeoBundle 'goldfeld/vim-seek'
-                " let g:SeekKey                         = 'S'
-                " let g:SeekBackKey                     = '<leader>S'
-                " let g:seekJumpPresentialInnerKey      = 'gz'
-                " let g:seekBackJumpPresentialInnerKey  = 'gZ'
-                " let g:seekJumpRemoteInnerKey          = 'gu'
-                " let g:seekBackJumpRemoteInnerKey      = 'gU'
-                " let g:seekJumpPresentialAroundKey     = 'z'
-                " let g:seekBackJumpPresentialAroundKey = 'Z'
-                " let g:seekJumpRemoteAroundKey         = 'u'
-                " let g:seekBackJumpRemoteAroundKey     = 'U'
+                let g:SeekKey                         = 'S'
+                let g:SeekBackKey                     = '<leader>S'
+                let g:seekJumpPresentialInnerKey      = 'gz'
+                let g:seekBackJumpPresentialInnerKey  = 'gZ'
+                let g:seekJumpRemoteInnerKey          = 'gu'
+                let g:seekBackJumpRemoteInnerKey      = 'gU'
+                let g:seekJumpPresentialAroundKey     = 'z'
+                let g:seekBackJumpPresentialAroundKey = 'Z'
+                let g:seekJumpRemoteAroundKey         = 'u'
+                let g:seekBackJumpRemoteAroundKey     = 'U'
                 let g:seek_enable_jumps               = 1
             " }}}
 
@@ -251,6 +251,17 @@
 
             " Motion {{{
                 NeoBundle 'bruno-/vim-vertical-move'
+                " NeoBundle 'Dewdrops/SearchComplete'
+
+                NeoBundle 'haya14busa/incsearch.vim'
+                map /  <Plug>(incsearch-forward)
+                map ?  <Plug>(incsearch-backward)
+                map g/ <Plug>(incsearch-stay)
+
+                NeoBundle 'haya14busa/incsearch-fuzzy.vim'
+                map z/ <Plug>(incsearch-fuzzy-/)
+                map z? <Plug>(incsearch-fuzzy-?)
+                map zg/ <Plug>(incsearch-fuzzy-stay)
 
                 NeoBundle 'dahu/vim-fanfingtastic'
                 map <unique><silent> <leader><leader> <Plug>fanfingtastic_,
@@ -305,7 +316,6 @@
             " }}}
 
             " Misc {{{
-                NeoBundle 'Dewdrops/SearchComplete'
                 NeoBundle 'ConradIrwin/vim-bracketed-paste'
                 NeoBundle 'vim-scripts/LargeFile'
                 " NeoBundle 'mtth/scratch.vim'
@@ -950,17 +960,21 @@
             NeoBundle 'chrisbra/csv.vim'
             " NeoBundle 'tpope/vim-haml'
             " NeoBundle 'fatih/vim-go'
-            NeoBundle 'petRUShka/vim-opencl'
-            NeoBundle 'andreimaxim/vim-io'
+            " NeoBundle 'petRUShka/vim-opencl'
+            " NeoBundle 'andreimaxim/vim-io'
             " NeoBundle 'tpope/timl'
             " NeoBundle 'JuliaLang/julia-vim'
             " NeoBundle 'Rykka/riv.vim'
 
+            NeoBundle 'artur-shaik/vim-javacomplete2'
+            autocmd FileType java set omnifunc=javacomplete#Complete
+            NeoBundle 'rdolgushin/groovy.vim'
+
             " NeoBundle 'chilicuil/vim-sml-coursera'
-            NeoBundle 'rgrinberg/vim-ocaml'
-            NeoBundle 'def-lkb/vimbufsync'
-            NeoBundle 'the-lambda-church/merlin', {'rtp': 'vim/merlin/'}
-            let g:syntastic_ocaml_checkers = ['merlin']
+            " NeoBundle 'rgrinberg/vim-ocaml'
+            " NeoBundle 'def-lkb/vimbufsync'
+            " NeoBundle 'the-lambda-church/merlin', {'rtp': 'vim/merlin/'}
+            " let g:syntastic_ocaml_checkers = ['merlin']
 
             " NeoBundle 'oscarh/vimerl'
             " NeoBundle 'elixir-lang/vim-elixir'
@@ -976,12 +990,13 @@
             " NeoBundle 'vim-perl/vim-perl'
             " NeoBundle 'c9s/perlomni.vim'
 
-            " NeoBundle 'othree/yajs.vim'
-            " NeoBundle 'marijnh/tern_for_vim'
-            " NeoBundle 'othree/javascript-libraries-syntax.vim'
+            NeoBundle 'othree/yajs.vim'
+            NeoBundle 'marijnh/tern_for_vim'
+            NeoBundle 'othree/javascript-libraries-syntax.vim'
+            NeoBundle 'burnettk/vim-angular'
 
-            " NeoBundle 'leshill/vim-json'
-            " NeoBundle 'tpope/vim-jdaddy'
+            NeoBundle 'leshill/vim-json'
+            NeoBundle 'tpope/vim-jdaddy'
 
             " NeoBundle 'tpope/vim-cucumber'
             " NeoBundle 'quentindecock/vim-cucumber-align-pipes'

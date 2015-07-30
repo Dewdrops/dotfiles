@@ -6,9 +6,10 @@ export TERM=xterm-256color
 
 export CCL_DEFAULT_DIRECTORY='/home/dewdrops/site/ccl'
 
-export JAVA_HOME="$HOME/site/jdk1.7.0_45"
-export CLASS_PATH=".:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:"
-export PATH="$JAVA_HOME/bin:$PATH"
+# export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk"
+# export CLASS_PATH=".:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:"
+# export PATH="$JAVA_HOME/bin:$PATH"
+export PATH="$HOME/Library/Haskell/bin:$PATH"
 
 export GOROOT="$HOME/site/go"
 export GOPATH="$HOME/site/go-path"
@@ -27,6 +28,12 @@ alias ..='cd ..'
 alias cd..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+alias .......='cd ../../../../../..'
+alias ........='cd ../../../../../../..'
+alias .........='cd ../../../../../../../..'
+alias ..........='cd ../../../../../../../../..'
 
 alias 1='cd -'
 
@@ -45,9 +52,9 @@ alias gvi='gvim'
 alias gvit='gvim -u ~/.vimrc_tiny'
 alias gvt='gvim -u ~/.vimrc_tiny'
 
-alias ls='ls --color=auto'
-alias ll='ls -AtlF --color=auto'
-alias la='ls -At --color=auto'
+alias ls='ls'
+alias ll='ls -AtlF'
+alias la='ls -At'
 
 alias rr='rm -rf'
 

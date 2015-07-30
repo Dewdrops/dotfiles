@@ -84,6 +84,11 @@ fi
 
 # }}}
 
+alias emacs="open -a /Applications/Emacs.app $@"
+
 # load customized configuration
 [ -f $HOME/.bashrc.customized ] && source $HOME/.bashrc.customized
 
+
+#THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
+[[ -s "/Users/zhouchenggang/.gvm/bin/gvm-init.sh" ]] && source "/Users/zhouchenggang/.gvm/bin/gvm-init.sh"

@@ -2,7 +2,7 @@
 
 set +e
 
-scriptdir=$(dirname $(readlink -e $0))
+scriptdir=$(pwd)
 
 for f in .vimrc .vimrc_tiny .vimperator .vimperatorrc .bashrc .zshrc .common.sh .gitconfig .gitexcludes .wgetrc .inputrc .ycm_extra_conf.py .irbrc
 do

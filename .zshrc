@@ -172,81 +172,57 @@ _rake () {
 }
 compdef _rake rake
 
-if [ -f ~/.auto-fu.zsh/auto-fu.zsh ]; then
-    if [ -f ~/.auto-fu.zsh/auto-fu ]; then
-        source ~/.auto-fu.zsh/auto-fu
-        auto-fu-install;
-    else
-        source ~/.auto-fu.zsh/auto-fu.zsh
-    fi
+unsetopt menu_complete   # do not autoselect the first completion entry
+unsetopt flowcontrol
+setopt auto_menu         # show completion menu on succesive tab press
+setopt complete_in_word
+setopt always_to_end
 
-    zle-line-init () { auto-fu-init }
-    zle -N zle-line-init
-    zle -N zle-keymap-select auto-fu-zle-keymap-select
-    zstyle ':completion:*' completer _oldlist _complete
-    zstyle ':auto-fu:var' autoable-function/skipwords \
-                "('|$'|\")*"
-    zstyle ':auto-fu:var' autoable-function/skiplines \
-                '[![:blank:]]# apt-get [![:blank:]]# *' \
-                'sapt *' 'j[co] *' 'j *' 'jco *' 'scp *'
-    zstyle ':auto-fu:highlight' input bold
-    zstyle ':auto-fu:highlight' completion fg=black,bold
-    zstyle ':auto-fu:highlight' completion/one fg=white,bold,underline
-    zstyle ':auto-fu:var' postdisplay $''
-    zstyle ':auto-fu:var' track-keymap-skip opp
-else
-    unsetopt menu_complete   # do not autoselect the first completion entry
-    unsetopt flowcontrol
-    setopt auto_menu         # show completion menu on succesive tab press
-    setopt complete_in_word
-    setopt always_to_end
+# should this be in keybindings?
+bindkey -M menuselect '^o' accept-and-infer-next-history
 
-    # should this be in keybindings?
-    bindkey -M menuselect '^o' accept-and-infer-next-history
-
-    if [ "x$COMPLETION_WAITING_DOTS" = "xtrue" ]; then
-      expand-or-complete-with-dots() {
+if [ "x$COMPLETION_WAITING_DOTS" = "xtrue" ]; then
+    expand-or-complete-with-dots() {
         echo -n "\e[31m......\e[0m"
         zle expand-or-complete
         zle redisplay
-      }
-      zle -N expand-or-complete-with-dots
-      bindkey "^I" expand-or-complete-with-dots
-    fi
-
-    TOKENS_FOLLOWED_BY_COMMANDS=('|' '||' ';' '&' '&&' 'sudo' 'do' 'time' 'strace')
-    recolor-cmd() {
-        region_highlight=()
-        colorize=true
-        start_pos=0
-        for arg in ${(z)BUFFER}; do
-            ((start_pos+=${#BUFFER[$start_pos+1,-1]}-${#${BUFFER[$start_pos+1,-1]## #}}))
-            ((end_pos=$start_pos+${#arg}))
-            if $colorize; then
-                colorize=false
-                res=$(LC_ALL=C builtin type $arg 2>/dev/null)
-                case $res in
-                    *'sudo'*)           style="fg=red,bold";;
-                    *'reserved word'*)  style="fg=magenta,bold";;
-                    *'alias for'*)      style="fg=cyan,bold";;
-                    *'shell builtin'*)  style="fg=yellow,bold";;
-                    *'shell function'*) style='fg=green,bold';;
-                    *"$arg is"*)        style="fg=blue,bold";;
-                    *)                  style='none,bold';;
-                esac
-                region_highlight+=("$start_pos $end_pos $style")
-            fi
-            [[ ${${TOKENS_FOLLOWED_BY_COMMANDS[(r)${arg//|/\|}]}:+yes} = 'yes' ]] && colorize=true
-            start_pos=$end_pos
-        done
     }
-
-    check-cmd-self-insert() { zle .self-insert && recolor-cmd }
-    check-cmd-backward-delete-char() { zle .backward-delete-char && recolor-cmd }
-
-    zle -N self-insert check-cmd-self-insert
-    zle -N backward-delete-char check-cmd-backward-delete-char
+    zle -N expand-or-complete-with-dots
+    bindkey "^I" expand-or-complete-with-dots
 fi
+
+TOKENS_FOLLOWED_BY_COMMANDS=('|' '||' ';' '&' '&&' 'sudo' 'do' 'time' 'strace')
+recolor-cmd() {
+    region_highlight=()
+    colorize=true
+    start_pos=0
+    for arg in ${(z)BUFFER}; do
+        ((start_pos+=${#BUFFER[$start_pos+1,-1]}-${#${BUFFER[$start_pos+1,-1]## #}}))
+        ((end_pos=$start_pos+${#arg}))
+        if $colorize; then
+            colorize=false
+            res=$(LC_ALL=C builtin type $arg 2>/dev/null)
+            case $res in
+                *'sudo'*)           style="fg=red,bold";;
+                *'reserved word'*)  style="fg=magenta,bold";;
+                *'alias for'*)      style="fg=cyan,bold";;
+                *'shell builtin'*)  style="fg=yellow,bold";;
+                *'shell function'*) style='fg=green,bold';;
+                *"$arg is"*)        style="fg=blue,bold";;
+                *)                  style='none,bold';;
+            esac
+            region_highlight+=("$start_pos $end_pos $style")
+        fi
+        [[ ${${TOKENS_FOLLOWED_BY_COMMANDS[(r)${arg//|/\|}]}:+yes} = 'yes' ]] && colorize=true
+        start_pos=$end_pos
+    done
+}
+
+check-cmd-self-insert() { zle .self-insert && recolor-cmd }
+check-cmd-backward-delete-char() { zle .backward-delete-char && recolor-cmd }
+
+zle -N self-insert check-cmd-self-insert
+zle -N backward-delete-char check-cmd-backward-delete-char
 
 # }}}
 
@@ -334,3 +310,6 @@ fi
 
 # }}}
 
+
+#THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
+[[ -s "/Users/zhouchenggang/.gvm/bin/gvm-init.sh" ]] && source "/Users/zhouchenggang/.gvm/bin/gvm-init.sh"
