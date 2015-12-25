@@ -382,6 +382,12 @@
     nnoremap <leader>; mMA;<esc>`M
     inoremap ;q <esc>mMA;<esc>`M
     inoremap ;a <esc>mMA;<return>
+    inoremap ;. ->
+
+    au FileType perl inoremap <buffer> ;s $
+    au FileType perl inoremap <buffer> ;h %
+    au FileType perl inoremap <buffer> ;l @
+    au FileType perl inoremap <buffer> ;f => 
 
     " unimpaired-like binding
     if g:dewdrops_invoked_as_dotvimrc

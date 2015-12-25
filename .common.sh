@@ -10,6 +10,8 @@ export CCL_DEFAULT_DIRECTORY='/home/dewdrops/site/ccl'
 # export CLASS_PATH=".:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:"
 # export PATH="$JAVA_HOME/bin:$PATH"
 export PATH="$HOME/Library/Haskell/bin:$PATH"
+export PATH="/usr/games/bin:$PATH"
+export PATH="/Library/PostgreSQL/9.4/bin:/usr/local/mysql/bin:$PATH"
 
 export GOROOT="$HOME/site/go"
 export GOPATH="$HOME/site/go-path"
@@ -77,6 +79,10 @@ alias e='emacs'
 alias ec='emacsclient'
 
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh &>null
+
+eval "$(pyenv init -)"
+
+source ~/perl5/perlbrew/etc/bashrc
 
 function take() {
     mkdir -p $1

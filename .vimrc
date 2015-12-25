@@ -36,6 +36,7 @@
                         \     'html',
                         \     'lisp',
                         \     'haskell',
+                        \     'clojure',
                         \     'vimproc',
                         \     'misc'
                         \ ]
@@ -174,27 +175,7 @@
                 " NeoBundle 'bling/vim-bufferline'
                 " let g:bufferline_echo = 0
 
-                NeoBundle 'techlivezheng/vim-plugin-minibufexpl'
-                nnoremap <leader>1 :e#1<cr>
-                nnoremap <leader>2 :e#2<cr>
-                nnoremap <leader>3 :e#3<cr>
-                nnoremap <leader>4 :e#4<cr>
-                nnoremap <leader>5 :e#5<cr>
-                nnoremap <leader>6 :e#6<cr>
-                nnoremap <leader>7 :e#7<cr>
-                nnoremap <leader>8 :e#8<cr>
-                nnoremap <leader>9 :e#9<cr>
-                nnoremap <leader>0 :e#10<cr>
-                nnoremap \1 :e#11<cr>
-                nnoremap \2 :e#12<cr>
-                nnoremap \3 :e#13<cr>
-                nnoremap \4 :e#14<cr>
-                nnoremap \5 :e#15<cr>
-                nnoremap \6 :e#16<cr>
-                nnoremap \7 :e#17<cr>
-                nnoremap \8 :e#18<cr>
-                nnoremap \9 :e#19<cr>
-                nnoremap \0 :e#20<cr>
+                NeoBundle 'wellle/visual-split.vim'
 
                 NeoBundleLazy 'troydm/easybuffer.vim',
                             \ {'autoload': {'commands': 'EasyBuffer'}}
@@ -266,6 +247,8 @@
                 NeoBundle 'dahu/vim-fanfingtastic'
                 map <unique><silent> <leader><leader> <Plug>fanfingtastic_,
 
+                NeoBundle 'unblevable/quick-scope'
+
                 NeoBundleLazy 'takac/vim-easymotion',
                             \ {'autoload': {'mappings': ['<Plug>(easymotion-f)',
                             \ '<Plug>(easymotion-F)']}}
@@ -290,8 +273,19 @@
                 NeoBundle 'szw/vim-maximizer'
 
                 NeoBundle 'bling/vim-airline'
-                let g:airline#extensions#hunks#non_zero_only = 1
-                let g:airline_exclude_preview                = 1
+                let g:airline#extensions#hunks#non_zero_only     = 1
+                let g:airline_exclude_preview                    = 1
+                let g:airline#extensions#tabline#enabled         = 1
+                let g:airline#extensions#tabline#buffer_idx_mode = 1
+                nmap <leader>1 <Plug>AirlineSelectTab1
+                nmap <leader>2 <Plug>AirlineSelectTab2
+                nmap <leader>3 <Plug>AirlineSelectTab3
+                nmap <leader>4 <Plug>AirlineSelectTab4
+                nmap <leader>5 <Plug>AirlineSelectTab5
+                nmap <leader>6 <Plug>AirlineSelectTab6
+                nmap <leader>7 <Plug>AirlineSelectTab7
+                nmap <leader>8 <Plug>AirlineSelectTab8
+                nmap <leader>9 <Plug>AirlineSelectTab9
 
                 NeoBundle 'Dewdrops/vim-tomorrow-theme'
                 nmap <leader>cor :colo ron<cr>
@@ -317,6 +311,7 @@
 
             " Misc {{{
                 NeoBundle 'ConradIrwin/vim-bracketed-paste'
+                NeoBundle 'bogado/file-line'
                 NeoBundle 'vim-scripts/LargeFile'
                 " NeoBundle 'mtth/scratch.vim'
                 NeoBundle 'justinmk/vim-gtfo'
@@ -393,7 +388,12 @@
             NeoBundle 'bruno-/vim-man'
 
             " NeoBundle 'scrooloose/syntastic'
-            " let g:syntastic_enable_perl_checker = 1
+            let g:syntastic_ignore_files = ['rc$', '.pl', '.pm', '.java']
+            let g:syntastic_always_populate_loc_list = 1
+            let g:syntastic_auto_loc_list = 1
+            let g:syntastic_check_on_open = 1
+            let g:syntastic_check_on_wq = 0
+            let g:syntastic_enable_perl_checker = 1
 
             NeoBundle 'AndrewRadev/splitjoin.vim'
             let g:splitjoin_split_mapping = 'cS'
@@ -408,9 +408,14 @@
             let g:UltiSnipsJumpForwardTrigger  = "<c-k>"
             let g:UltiSnipsJumpBackwardTrigger = "<c-j>"
 
-            NeoBundleLazy 'szw/vim-ctrlspace',
-                        \ {'autoload': {'commands': 'CtrlSpace'}}
-            map <leader><space> :CtrlSpace<cr>
+            " NeoBundleLazy 'szw/vim-ctrlspace',
+            "             \ {'autoload': {'commands': 'CtrlSpace'}}
+            " map <leader><space> :CtrlSpace<cr>
+            " let g:CtrlSpaceFileEngine = "file_engine_darwin_amd64"
+            " let g:CtrlSpaceUseTabline = 1
+            " if executable("ag")
+            "     let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
+            " endif
 
             NeoBundleLazy 'Chiel92/vim-autoformat',
                         \ {'autoload': {'commands': 'Autoformat'}}
@@ -476,7 +481,7 @@
                             \   }
                             \ }
 
-                vnoremap <silent> <space> :EasyAlign<cr>
+                vnoremap <silent> <enter> :EasyAlign<cr>
                 nmap <Leader>a, :EasyAlign <space><cr>
                 vmap <Leader>a, :EasyAlign <space><cr>
                 nmap <Leader>a= :EasyAlign =<cr>
@@ -807,6 +812,7 @@
                 NeoBundle 'Valloric/YouCompleteMe'
                 au FileType c,cpp,objc,python nnoremap <buffer> <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<cr>
                 au FileType c,cpp,objc,python nnoremap <buffer> <leader>ja :YcmDiags<cr>
+                let g:ycm_path_to_python_interpreter       = '/usr/bin/python'
                 let g:ycm_complete_in_comments_and_strings = 1
                 let g:ycm_key_list_select_completion       = ['<tab>', '<C-n>', '<Down>']
                 let g:ycm_key_list_previous_completion     = ['<s-tab>', '<C-p>', '<Up>']
@@ -817,6 +823,7 @@
                 let g:ycm_semantic_triggers.html           = [' ']
                 let g:ycm_semantic_triggers.xhtml          = [' ']
                 let g:ycm_semantic_triggers.haskell        = ['.']
+                let g:ycm_semantic_triggers.rs             = ['::', '.']
             "}}}
         else
             NeoBundle "ajh17/VimCompletesMe"
@@ -853,6 +860,22 @@
             NeoBundle 'spf13/PIV'
             let g:DisableAutoPHPFolding = 0
             "let g:PIVAutoClose = 0
+        endif
+    " }}}
+
+    " Rust {{{
+        if count(g:dewdrops_bundle_groups, 'rust')
+            NeoBundle 'wting/rust.vim'
+            NeoBundle 'cespare/vim-toml'
+
+            NeoBundle 'phildawes/racer', {
+                        \   'build' : {
+                        \     'mac': 'cargo build --release',
+                        \     'unix': 'cargo build --release',
+                        \   }
+                        \ }
+             let g:racer_cmd = "/Users/zhouchenggang/.vim/bundle/racer/target/release/racer"
+             let $RUST_SRC_PATH ="/Users/zhouchenggang/site/rust/src"
         endif
     " }}}
 
@@ -965,9 +988,10 @@
             " NeoBundle 'tpope/timl'
             " NeoBundle 'JuliaLang/julia-vim'
             " NeoBundle 'Rykka/riv.vim'
+            NeoBundle 'vim-highlight/sql'
 
-            NeoBundle 'artur-shaik/vim-javacomplete2'
-            autocmd FileType java set omnifunc=javacomplete#Complete
+            " NeoBundle 'artur-shaik/vim-javacomplete2'
+            " autocmd FileType java set omnifunc=javacomplete#Complete
             NeoBundle 'rdolgushin/groovy.vim'
 
             " NeoBundle 'chilicuil/vim-sml-coursera'
@@ -978,9 +1002,6 @@
 
             " NeoBundle 'oscarh/vimerl'
             " NeoBundle 'elixir-lang/vim-elixir'
-
-            " NeoBundle 'wting/rust.vim'
-            " NeoBundle 'cespare/vim-toml'
 
             " NeoBundle 'vim-ruby/vim-ruby'
             " NeoBundle 'ecomba/vim-ruby-refactoring'

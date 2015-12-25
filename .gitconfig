@@ -1,7 +1,7 @@
 [user]
 
-	name = 周成钢
-	email = zhouchenggang@meituan.com
+	name = Dewdrops
+	email = v_v_4474@126.com
 
 [core]
 
@@ -74,6 +74,7 @@
     # Remove branches that have already been merged with master. a.k.a. ‘delete merged’
     dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
+    root = rev-parse --show-toplevel
 	st = status -sb
 	ci = commit -a -m
     cl = clone --recursive

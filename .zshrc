@@ -85,8 +85,13 @@ parse_git_dirty() {
     fi
 }
 
-# MUST use single quote here. so interpolation can be eval each time RET is pressed
-PROMPT='$CYAN\$ $GREEN%~$_MAGENTA $(prompt_vc)$FINISH '
+path_radar=$(which git-radar)
+if [ -x "$path_radar" ]; then
+    PROMPT='$CYAN\$ $GREEN%~$_MAGENTA >$(git-radar --zsh --no-remote-status)$FINISH '
+else
+    # MUST use single quote here. so interpolation can be eval each time RET is pressed
+    PROMPT='$CYAN\$ $GREEN%~$_MAGENTA $(prompt_vc)$FINISH '
+fi
 RPROMPT="$RED%D %T$FINISH"
 
 # }}}
