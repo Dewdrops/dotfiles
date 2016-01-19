@@ -69,6 +69,47 @@
                 map <Leader>et :EasyTreeToggle<cr>
             " }}}
 
+            " Grep {{{
+                NeoBundleLazy 'vim-scripts/EasyGrep',
+                            \ {'autoload': {'mappings': ['<plug>EgMapGrepOptions',
+                            \ '<plug>EgMapGrepCurrentWord_v', '<plug>EgMapGrepSelection_v',
+                            \ '<plug>EgMapGrepCurrentWord_V', '<plug>EgMapGrepSelection_V',
+                            \ '<plug>EgMapGrepCurrentWord_a', '<plug>EgMapGrepSelection_a',
+                            \ '<plug>EgMapGrepCurrentWord_A', '<plug>EgMapGrepSelection_A',
+                            \ '<plug>EgMapGrepCurrentWord_r', '<plug>EgMapGrepSelection_r',
+                            \ '<plug>EgMapGrepCurrentWord_R', '<plug>EgMapGrepSelection_R',
+                            \ ]}}
+                map <Leader>vo <plug>EgMapGrepOptions
+                map <Leader>vv <plug>EgMapGrepCurrentWord_v
+                vmap <Leader>vv <plug>EgMapGrepSelection_v
+                map <Leader>vV <plug>EgMapGrepCurrentWord_V
+                vmap <Leader>vV <plug>EgMapGrepSelection_V
+                map <Leader>va <plug>EgMapGrepCurrentWord_a
+                vmap <Leader>va <plug>EgMapGrepSelection_a
+                map <Leader>vA <plug>EgMapGrepCurrentWord_A
+                vmap <Leader>vA <plug>EgMapGrepSelection_A
+                map <Leader>vr <plug>EgMapReplaceCurrentWord_r
+                vmap <Leader>vr <plug>EgMapReplaceSelection_r
+                map <Leader>vR <plug>EgMapReplaceCurrentWord_R
+                vmap <Leader>vR <plug>EgMapReplaceSelection_R
+
+                NeoBundle 'mhinz/vim-grepper'
+                let g:grepper = {
+                            \ 'tools': ['ag', 'ack', 'git', 'grep'],
+                            \ 'open':  1,
+                            \ 'jump':  1,
+                            \ }
+                nnoremap <leader>ag :Grepper<cr>
+                nmap gs <plug>(GrepperOperator)
+                xmap gs <plug>(GrepperOperator)
+
+                if executable('ack') || executable('ag')
+                    NeoBundleLazy 'dyng/ctrlsf.vim',
+                        \ {'autoload': {'commands': 'CtrlSF'}}
+                endif
+                nnoremap <leader>ak :CtrlSF<space>
+            " }}}
+
             " Seek {{{
                 NeoBundle 'goldfeld/vim-seek'
                 let g:SeekKey                         = 'S'
@@ -120,31 +161,6 @@
                                 \ '                                                      '
                                 \ ]
                 endif
-            " }}}
-
-            " EasyGrep {{{
-                NeoBundleLazy 'vim-scripts/EasyGrep',
-                            \ {'autoload': {'mappings': ['<plug>EgMapGrepOptions',
-                            \ '<plug>EgMapGrepCurrentWord_v', '<plug>EgMapGrepSelection_v',
-                            \ '<plug>EgMapGrepCurrentWord_V', '<plug>EgMapGrepSelection_V',
-                            \ '<plug>EgMapGrepCurrentWord_a', '<plug>EgMapGrepSelection_a',
-                            \ '<plug>EgMapGrepCurrentWord_A', '<plug>EgMapGrepSelection_A',
-                            \ '<plug>EgMapGrepCurrentWord_r', '<plug>EgMapGrepSelection_r',
-                            \ '<plug>EgMapGrepCurrentWord_R', '<plug>EgMapGrepSelection_R',
-                            \ ]}}
-                map <Leader>vo <plug>EgMapGrepOptions
-                map <Leader>vv <plug>EgMapGrepCurrentWord_v
-                vmap <Leader>vv <plug>EgMapGrepSelection_v
-                map <Leader>vV <plug>EgMapGrepCurrentWord_V
-                vmap <Leader>vV <plug>EgMapGrepSelection_V
-                map <Leader>va <plug>EgMapGrepCurrentWord_a
-                vmap <Leader>va <plug>EgMapGrepSelection_a
-                map <Leader>vA <plug>EgMapGrepCurrentWord_A
-                vmap <Leader>vA <plug>EgMapGrepSelection_A
-                map <Leader>vr <plug>EgMapReplaceCurrentWord_r
-                vmap <Leader>vr <plug>EgMapReplaceSelection_r
-                map <Leader>vR <plug>EgMapReplaceCurrentWord_R
-                vmap <Leader>vR <plug>EgMapReplaceSelection_R
             " }}}
 
             " vim-swoop {{{
@@ -493,18 +509,6 @@
                 vmap <Leader>a, :EasyAlign .<cr>
                 nmap <Leader>a<Bar> :EasyAlign <Bar><cr>
                 vmap <Leader>a<Bar> :EasyAlign <Bar><cr>
-            " }}}
-
-            " Ack {{{
-                if executable('ack') || executable('ag')
-                    NeoBundleLazy 'dyng/ctrlsf.vim',
-                        \ {'autoload': {'commands': 'CtrlSF'}}
-                elseif executable('ack-grep')
-                    let g:ctrlsf_ackprg = 'ack-grep'
-                    NeoBundleLazy 'dyng/ctrlsf.vim',
-                        \ {'autoload': {'commands': 'CtrlSF'}}
-                endif
-                nnoremap <leader>ak :CtrlSF<space>
             " }}}
 
             " ctags {{{
