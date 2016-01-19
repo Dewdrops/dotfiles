@@ -184,7 +184,7 @@
 
             " Edit {{{
                 NeoBundle 'tpope/vim-speeddating'
-                NeoBundle 'jiangmiao/auto-pairs'
+                NeoBundle 'msarfati/auto-pairs'
                 NeoBundle 'tpope/vim-surround'
                 NeoBundle 'terryma/vim-multiple-cursors'
                 NeoBundle 'tpope/vim-repeat'
@@ -311,7 +311,6 @@
 
             " Misc {{{
                 NeoBundle 'ConradIrwin/vim-bracketed-paste'
-                NeoBundle 'bogado/file-line'
                 NeoBundle 'vim-scripts/LargeFile'
                 " NeoBundle 'mtth/scratch.vim'
                 NeoBundle 'justinmk/vim-gtfo'
@@ -698,6 +697,8 @@
             nnoremap <leader>gr :Gwrite<cr>:w<cr>
             autocmd FileType gitcommit nmap <buffer> U :Git checkout -- <C-r><C-g><CR>
             autocmd BufReadPost fugitive://* set bufhidden=delete
+            NeoBundle 'tpope/vim-rhubarb'
+            NeoBundle 'junegunn/gv.vim'
 
             NeoBundle 'idanarye/vim-merginal'
             nnoremap <leader>gM :Merginal<cr>
@@ -848,6 +849,8 @@
             let g:vimshell_prompt_expr =
                         \ 'escape(fnamemodify(getcwd(), ":~").">", "\\[]()?! ")." "'
             let g:vimshell_prompt_pattern = '^\%(\f\|\\.\)\+> '
+
+            NeoBundle 'ujihisa/repl.vim'
         endif
     " }}}
 
@@ -927,6 +930,7 @@
             NeoBundle 'guns/vim-clojure-highlight'
             NeoBundle 'tpope/vim-classpath'
             NeoBundle 'tpope/vim-leiningen'
+            NeoBundle 'tpope/vim-salve'
             NeoBundle 'typedclojure/vim-typedclojure'
         endif
     " }}}
@@ -989,6 +993,7 @@
             " NeoBundle 'JuliaLang/julia-vim'
             " NeoBundle 'Rykka/riv.vim'
             NeoBundle 'vim-highlight/sql'
+            NeoBundle 'darfink/vim-plist'
 
             " NeoBundle 'artur-shaik/vim-javacomplete2'
             " autocmd FileType java set omnifunc=javacomplete#Complete
