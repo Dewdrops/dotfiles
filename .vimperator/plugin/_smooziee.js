@@ -129,7 +129,7 @@ let self = liberator.plugins.smooziee = (function(){
   // PUBLIC {{{
   var PUBLICS = {
     smoothScrollBy: function(dir, moment) {
-      win = Buffer.findScrollableWindow();
+      win = findScrollableWindow();
       interval = window.eval(liberator.globalVariables.smooziee_scroll_interval || '20');
       if (dir == "x") {
         destX = win.scrollX + moment;
@@ -180,6 +180,19 @@ let self = liberator.plugins.smooziee = (function(){
   }
 
   function makeScrollTo(x, y) function() win.scrollTo(x, y);
+
+  function findScrollableWindow() {
+    var win = this.focusedWindow;
+    if (win && (win.scrollMaxX > 0 || win.scrollMaxY > 0)) return win;
+
+    win = config.browser.contentWindow;
+    if (win.scrollMaxX > 0 || win.scrollMaxY > 0) return win;
+
+    for (let frame in util.Array.itervalues(win.frames)) {
+      if (frame.scrollMaxX > 0 || frame.scrollMaxY > 0) return frame;
+    }
+    return win;
+  }
   // }}}
   return PUBLICS;
 })();
