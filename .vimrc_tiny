@@ -384,10 +384,12 @@
     inoremap ;a <esc>mMA;<return>
     inoremap ;. ->
 
-    au FileType perl inoremap <buffer> ;s $
+    au FileType php,perl inoremap <buffer> ;s $
     au FileType perl inoremap <buffer> ;h %
-    au FileType perl inoremap <buffer> ;l @
-    au FileType perl inoremap <buffer> ;f => 
+    au FileType php,perl inoremap <buffer> ;l @
+    au FileType php,perl inoremap <buffer> ;f => 
+
+    au FileType php,perl inoremap <buffer> .. ->
 
     " unimpaired-like binding
     if g:dewdrops_invoked_as_dotvimrc

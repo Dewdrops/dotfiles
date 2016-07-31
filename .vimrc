@@ -34,9 +34,10 @@
                         \     'ycm',
                         \     'git',
                         \     'html',
+                        \     'js',
+                        \     'php',
                         \     'lisp',
                         \     'haskell',
-                        \     'clojure',
                         \     'vimproc',
                         \     'misc'
                         \ ]
@@ -385,6 +386,9 @@
             NeoBundle 'tpope/vim-dispatch'
             NeoBundle 'bruno-/vim-man'
 
+            NeoBundle 'rizzatti/dash.vim'
+            nmap <leader>D <Plug>DashSearch
+
             " NeoBundle 'scrooloose/syntastic'
             let g:syntastic_ignore_files = ['rc$', '.pl', '.pm', '.java']
             let g:syntastic_always_populate_loc_list = 1
@@ -401,7 +405,7 @@
             let b:match_ignorecase = 1
 
             NeoBundle 'SirVer/ultisnips'
-            NeoBundle 'Dewdrops/vim-snippets'
+            NeoBundle 'honza/vim-snippets'
             let g:UltiSnipsExpandTrigger       = "<c-k>"
             let g:UltiSnipsJumpForwardTrigger  = "<c-k>"
             let g:UltiSnipsJumpBackwardTrigger = "<c-j>"
@@ -806,6 +810,7 @@
                 let g:ycm_key_list_select_completion       = ['<tab>', '<C-n>', '<Down>']
                 let g:ycm_key_list_previous_completion     = ['<s-tab>', '<C-p>', '<Up>']
                 let g:ycm_global_ycm_extra_conf            = '~/.ycm_extra_conf.py'
+                let g:ycm_python_binary_path               = '~/.pyenv/shims/python'
                 let g:ycm_confirm_extra_conf               = 0
                 let g:ycm_enable_diagnostic_signs          = 0
                 let g:ycm_semantic_triggers                = {}
@@ -845,12 +850,9 @@
     " PHP {{{
         if count(g:dewdrops_bundle_groups, 'php')
             NeoBundle 'StanAngeloff/php.vim'
+            NeoBundle 'jwalton512/vim-blade'
             NeoBundle 'arnaud-lb/vim-php-namespace'
             NeoBundle 'shawncplus/phpcomplete.vim'
-
-            NeoBundle 'spf13/PIV'
-            let g:DisableAutoPHPFolding = 0
-            "let g:PIVAutoClose = 0
         endif
     " }}}
 
@@ -950,9 +952,9 @@
         if count(g:dewdrops_bundle_groups, 'html')
             NeoBundle 'othree/html5.vim'
             NeoBundle 'othree/xml.vim'
-            NeoBundle 'greyblake/vim-preview'
             NeoBundle 'hail2u/vim-css3-syntax'
             NeoBundle 'gorodinskiy/vim-coloresque'
+            NeoBundle 'greyblake/vim-preview'
 
             NeoBundle 'gcmt/breeze.vim'
             au Filetype html,xhtml,xml nnoremap <buffer> <cr> :BreezeJumpF<cr>
@@ -964,8 +966,20 @@
             au Filetype html,xhtml,xml nnoremap <buffer> <leader>ju :BreezeParent<cr>
 
             NeoBundle 'mattn/emmet-vim'
-            let g:user_emmet_leader_key = '<c-g>'            " use C-g as trigger key
-            let g:user_emmet_mode       = 'i'
+            let g:user_emmet_mode = 'i'
+        endif
+    " }}}
+
+    " Javascript {{{
+        if count(g:dewdrops_bundle_groups, 'js')
+            NeoBundle 'othree/yajs.vim'
+            NeoBundle 'marijnh/tern_for_vim'
+            NeoBundle 'othree/javascript-libraries-syntax.vim'
+            NeoBundle 'burnettk/vim-angular'
+            NeoBundle 'mxw/vim-jsx'
+
+            NeoBundle 'tpope/vim-jdaddy'
+            NeoBundle 'leshill/vim-json'
         endif
     " }}}
 
@@ -974,14 +988,14 @@
             " NeoBundle 'kchmck/vim-coffee-script'
             NeoBundle 'chrisbra/csv.vim'
             " NeoBundle 'tpope/vim-haml'
-            " NeoBundle 'fatih/vim-go'
+            NeoBundle 'fatih/vim-go'
             " NeoBundle 'petRUShka/vim-opencl'
             " NeoBundle 'andreimaxim/vim-io'
             " NeoBundle 'tpope/timl'
             " NeoBundle 'JuliaLang/julia-vim'
             " NeoBundle 'Rykka/riv.vim'
-            NeoBundle 'vim-highlight/sql'
             NeoBundle 'darfink/vim-plist'
+            NeoBundle 'hiqsol/pgsql.vim'
 
             " NeoBundle 'artur-shaik/vim-javacomplete2'
             " autocmd FileType java set omnifunc=javacomplete#Complete
@@ -996,21 +1010,16 @@
             " NeoBundle 'oscarh/vimerl'
             " NeoBundle 'elixir-lang/vim-elixir'
 
-            " NeoBundle 'vim-ruby/vim-ruby'
-            " NeoBundle 'ecomba/vim-ruby-refactoring'
-            " NeoBundle 'sheerun/rspec.vim'
-            " NeoBundle 'tpope/vim-rails'
+            NeoBundle 'vim-ruby/vim-ruby'
+            NeoBundle 'ecomba/vim-ruby-refactoring'
+            NeoBundle 'sheerun/rspec.vim'
+            NeoBundle 'tpope/vim-rails'
 
-            " NeoBundle 'vim-perl/vim-perl'
-            " NeoBundle 'c9s/perlomni.vim'
+            NeoBundle 'vim-perl/vim-perl'
+            NeoBundle 'c9s/perlomni.vim'
 
-            NeoBundle 'othree/yajs.vim'
-            NeoBundle 'marijnh/tern_for_vim'
-            NeoBundle 'othree/javascript-libraries-syntax.vim'
-            NeoBundle 'burnettk/vim-angular'
-
-            NeoBundle 'leshill/vim-json'
-            NeoBundle 'tpope/vim-jdaddy'
+            NeoBundle 'yko/mojo.vim'
+            let mojo_highlight_data = 1
 
             " NeoBundle 'tpope/vim-cucumber'
             " NeoBundle 'quentindecock/vim-cucumber-align-pipes'
