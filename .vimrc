@@ -10,16 +10,8 @@
     " Load basic configuration
     source ~/.vimrc_tiny
 
-    " Set up NeoBundle Support
-    if has('vim_starting')
-        if &compatible | set nocompatible | endif
-
-        set runtimepath+=~/.vim/bundle/neobundle.vim/
-    endif
-
-    call neobundle#begin(expand('~/.vim/bundle/'))
-
-    NeoBundleFetch 'Shougo/neobundle.vim'
+    " Set up plugin manager
+    call plug#begin('~/.vim/plugged')
 
 " }}}
 
@@ -30,16 +22,8 @@
             let g:dewdrops_bundle_groups = [
                         \     'general',
                         \     'programming',
-                        \     'textobj',
-                        \     'ycm',
                         \     'git',
-                        \     'html',
-                        \     'js',
-                        \     'php',
-                        \     'lisp',
-                        \     'haskell',
-                        \     'vimproc',
-                        \     'misc'
+                        \     'ycm',
                         \ ]
         endif
     " }}}
@@ -48,10 +32,7 @@
         if count(g:dewdrops_bundle_groups, 'general')
 
             " Tree File Manager {{{
-                NeoBundle 'scrooloose/nerdtree',
-                            \ {'autoload': {'commands': ['NERDTreeToggle', 'NERDTreeFind']}}
-                " map <Leader>nt :NERDTreeToggle<cr>
-                " map <Leader>nf :NERDTreeFind<cr>
+                Plug 'scrooloose/nerdtree'
                 let NERDTreeShowBookmarks               = 1
                 let NERDTreeIgnore                      = ['\.pyc', '\.elc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
                 let NERDTreeChDirMode                   = 0
@@ -61,72 +42,69 @@
                 let NERDTreeKeepTreeInNewTab            = 1
                 let g:nerdtree_tabs_open_on_gui_startup = 0
 
-                NeoBundle 'jistr/vim-nerdtree-tabs'
+                Plug 'jistr/vim-nerdtree-tabs'
                 map <Leader>nt <plug>NERDTreeTabsToggle<cr>
                 map <Leader>nf <plug>NERDTreeTabsFind<cr>
 
-                NeoBundleLazy 'troydm/easytree.vim',
-                            \ {'autoload': {'commands': ['EasyTree', 'EasyTreeToggle']}}
+                Plug 'troydm/easytree.vim', {'on': 'EasyTreeToggle'}
                 map <Leader>et :EasyTreeToggle<cr>
 
-                NeoBundleLazy 'justinmk/vim-dirvish',
-                            \ {'autoload': {'commands': ['Dirvish']}}
-                map <Leader>dv :Dirvish<cr>
+                Plug 'justinmk/vim-dirvish', {'on': 'Dirvish'}
             " }}}
 
             " Grep {{{
-                NeoBundle 'mhinz/vim-grepper'
+                Plug 'mhinz/vim-grepper'
                 let g:grepper = {
                             \ 'tools': ['ag', 'ack', 'git', 'grep'],
                             \ 'open':  1,
                             \ 'jump':  1,
                             \ }
-                nnoremap <leader>ag :Grepper<cr>
                 nmap gs <plug>(GrepperOperator)
                 xmap gs <plug>(GrepperOperator)
 
                 if executable('ack') || executable('ag')
-                    NeoBundleLazy 'dyng/ctrlsf.vim',
-                        \ {'autoload': {'commands': 'CtrlSF'}}
+                    Plug 'dyng/ctrlsf.vim', {'on': 'CtrlSF'}
                 endif
                 nnoremap <leader>ak :CtrlSF<space>
             " }}}
 
-            " Seek {{{
-                NeoBundle 'goldfeld/vim-seek'
-                let g:SeekKey                         = 'S'
-                let g:SeekBackKey                     = '<leader>S'
-                let g:seekJumpPresentialInnerKey      = 'gz'
-                let g:seekBackJumpPresentialInnerKey  = 'gZ'
-                let g:seekJumpRemoteInnerKey          = 'gu'
-                let g:seekBackJumpRemoteInnerKey      = 'gU'
-                let g:seekJumpPresentialAroundKey     = 'z'
-                let g:seekBackJumpPresentialAroundKey = 'Z'
-                let g:seekJumpRemoteAroundKey         = 'u'
-                let g:seekBackJumpRemoteAroundKey     = 'U'
-                let g:seek_enable_jumps               = 1
-            " }}}
+            " CtrlP {{{
+                Plug 'kien/ctrlp.vim'
+                let g:ctrlp_custom_ignore = {
+                            \ 'dir': '\.git$\|\.hg$\|\.svn$',
+                            \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc|\.elc$'
+                            \ }
+                let g:ctrlp_user_command = {
+                            \ 'types': {
+                            \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
+                            \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+                            \ },
+                            \ 'fallback': 'find %s -type f'
+                            \ }
 
-            " vim-lion {{{
-                NeoBundleLazy 'tommcdo/vim-lion',
-                            \ {'autoload': {'mappings':
-                            \ ['<Plug>LionRight', '<Plug>VLionRight',
-                            \ '<Plug>LionLeft', '<Plug>VLionLeft',
-                            \ '<Plug>LionEqual', '<Plug>VLionEqual',
-                            \ '<Plug>LionColon', '<Plug>VLionColon']}}
-                let g:lion_create_maps = 0
-                nmap <silent> gl <Plug>LionRight
-                vmap <silent> gl <Plug>VLionRight
-                nmap <silent> gL <Plug>LionLeft
-                vmap <silent> gL <Plug>VLionLeft
-                nmap <silent> g= <Plug>LionEqual
-                vmap <silent> g= <Plug>VLionEqual
-                nmap <silent> g: <Plug>LionColon
-                vmap <silent> g: <Plug>VLionColon
+                let g:ctrlp_cmd = 'CtrlPMixed'
+                let g:ctrlp_working_path_mode = 'rc'
+                let g:ctrlp_clear_cache_on_exit = 1
+                let g:ctrlp_max_height = 40
+                let g:ctrlp_follow_symlinks = 1
+                let g:ctrlp_max_files = 10000
+                let g:ctrlp_mruf_max = 20
+                let g:ctrlp_cache_dir = '~/.vim/.cache/ctrlp'
+                let g:ctrlp_reuse_window = 'startify'
+                let g:ctrlp_extensions = ['funky']
+
+                nnoremap \ <nop>
+                nnoremap \t :CtrlPBufTag<cr>
+                nnoremap \T :CtrlPTag<cr>
+                nnoremap \l :CtrlPLine<cr>
+                nnoremap \o :CtrlPFunky<cr>
+                nnoremap \b :CtrlPBuffer<cr>
+
+                Plug 'tacahiroy/ctrlp-funky'
             " }}}
 
             " Startify {{{
-                NeoBundle 'mhinz/vim-startify'
+                Plug 'mhinz/vim-startify'
 
                 if executable('fortune') && executable('cowsay')
                     let g:startify_custom_header =
@@ -146,10 +124,7 @@
             " }}}
 
             " vim-swoop {{{
-                NeoBundleLazy 'pelodelfuego/vim-swoop',
-                            \ {'autoload': {'functions': ['Swoop', 'SwoopSelection',
-                            \ 'SwoopMulti', 'SwoopMultiSelection'],
-                            \ 'commands': ['Swoop']}}
+                Plug 'pelodelfuego/vim-swoop'
 
                 let g:swoopUseDefaultKeyMap = 0
                 nmap <leader>ms :call Swoop()<cr>
@@ -169,108 +144,92 @@
                 endfunction
             " }}}
 
-            " Window and buffer {{{
-                " NeoBundle 'bling/vim-bufferline'
-                " let g:bufferline_echo = 0
-
-                NeoBundle 'wellle/visual-split.vim'
-
-                NeoBundleLazy 'troydm/easybuffer.vim',
-                            \ {'autoload': {'commands': 'EasyBuffer'}}
-                nmap <leader>bs :EasyBuffer<cr>
-            " }}}
-
             " Edit {{{
-                NeoBundle 'tpope/vim-speeddating'
-                NeoBundle 'msarfati/auto-pairs'
-                NeoBundle 'tpope/vim-surround'
-                NeoBundle 'terryma/vim-multiple-cursors'
-                NeoBundle 'tpope/vim-repeat'
-                NeoBundle 'chrisbra/NrrwRgn'
-                NeoBundle 'vim-scripts/ReplaceWithRegister'
-                NeoBundle 'junegunn/vim-peekaboo'
+                Plug 'tpope/vim-speeddating'
+                Plug 'msarfati/auto-pairs'
+                Plug 'tpope/vim-surround'
+                Plug 'terryma/vim-multiple-cursors'
+                Plug 'tpope/vim-repeat'
+                Plug 'chrisbra/NrrwRgn'
+                Plug 'vim-scripts/ReplaceWithRegister'
+                Plug 'junegunn/vim-peekaboo'
+                Plug 'Shougo/vinarise.vim', {'on_cmd': 'Vinarise'}
+                Plug 'tpope/vim-abolish'
 
-                NeoBundle 'tpope/vim-abolish.git'
-                nnoremap <leader>sv :%Subvert/
+                Plug 'tommcdo/vim-lion', {'on':
+                            \['<Plug>LionRight', '<Plug>VLionRight', '<Plug>LionLeft', '<Plug>VLionLeft']}
+                let g:lion_create_maps = 0
+                nmap <silent> gl <Plug>LionRight
+                vmap <silent> gl <Plug>VLionRight
+                nmap <silent> gL <Plug>LionLeft
+                vmap <silent> gL <Plug>VLionLeft
 
-                NeoBundle 'Dewdrops/vim-unimpaired'
+                Plug 'Dewdrops/vim-unimpaired'
                 nmap <c-up> [e
                 nmap <c-down> ]e
                 vmap <c-up> [e
                 vmap <c-down> ]e
 
-                NeoBundleLazy 'Shougo/vinarise.vim',
-                            \ {'autoload': {'commands': 'Vinarise'}}
-                nmap <leader>xx :Vinarise<cr>
-
-                NeoBundleLazy 'vim-scripts/DrawIt',
-                            \ {'autoload': {'mappings': '<Plug>DrawItStart'}}
+                Plug 'vim-scripts/DrawIt'
                 nmap <unique> <Leader>di <Plug>DrawItStart
 
-                NeoBundleLazy 'sketch.vim',
-                            \ {'autoload': {'functions': 'ToggleSketch'}}
+                Plug 'sketch.vim'
                 nmap <leader>sk :call ToggleSketch()<cr>
 
-                NeoBundleLazy 'osyo-manga/vim-over',
-                            \ {'autoload': {'commands': 'OverCommandLine'}}
-                nnoremap <leader>ov :OverCommandLine<cr>:%s/
+                Plug 'osyo-manga/vim-over'
+                noremap <leader>ov :OverCommandLine<cr>:%s/
 
-                NeoBundleLazy 'tommcdo/vim-exchange',
-                            \ {'autoload': {'mappings': ['<Plug>(Exchange)', '<Plug>(ExchangeLine)']}}
+                Plug 'tommcdo/vim-exchange'
                 let g:exchange_no_mappings = 1
                 nmap gx <Plug>(Exchange)
                 vmap gx <Plug>(Exchange)
                 nmap gxc <Plug>(ExchangeClear)
                 nmap gxx <Plug>(ExchangeLine)
 
-                NeoBundleLazy 'mbbill/undotree',
-                            \ {'autoload': {'commands': 'UndotreeToggle'}}
+                Plug 'mbbill/undotree'
                 nnoremap <Leader>ut :UndotreeToggle<cr>
             " }}}
 
             " Motion {{{
-                NeoBundle 'bruno-/vim-vertical-move'
-                NeoBundle 'unblevable/quick-scope'
-                " NeoBundle 'Dewdrops/SearchComplete'
+                Plug 'wellle/targets.vim'
+                Plug 'jeetsukumaran/vim-indentwise'
+                Plug 'kana/vim-textobj-user'
+                Plug 'kana/vim-textobj-indent'
+                Plug 'thinca/vim-textobj-between'
+                Plug 'bruno-/vim-vertical-move'
+                Plug 'unblevable/quick-scope'
 
-                NeoBundle 'haya14busa/incsearch.vim'
+                Plug 'haya14busa/incsearch.vim'
                 map /  <Plug>(incsearch-forward)
                 map ?  <Plug>(incsearch-backward)
                 map g/ <Plug>(incsearch-stay)
 
-                NeoBundle 'haya14busa/incsearch-fuzzy.vim'
+                Plug 'haya14busa/incsearch-fuzzy.vim'
                 map z/ <Plug>(incsearch-fuzzy-/)
                 map z? <Plug>(incsearch-fuzzy-?)
                 map zg/ <Plug>(incsearch-fuzzy-stay)
 
-                NeoBundle 'dahu/vim-fanfingtastic'
+                Plug 'dahu/vim-fanfingtastic'
                 map <unique><silent> <leader><leader> <Plug>fanfingtastic_,
 
-                NeoBundleLazy 'takac/vim-easymotion',
-                            \ {'autoload': {'mappings': ['<Plug>(easymotion-f)',
-                            \ '<Plug>(easymotion-F)']}}
+                Plug 'takac/vim-easymotion'
                 nmap <space> <Plug>(easymotion-f)
                 nmap g<space> <Plug>(easymotion-F)
                 let EasyMotion_leader_key  = '<leader>em'
                 let g:EasyMotion_mapping_f = '<space>'
                 let g:EasyMotion_mapping_F = '<space><space>'
-
-                if count(g:dewdrops_bundle_groups, 'textobj')
-                    NeoBundle 'wellle/targets.vim'
-                    NeoBundle 'jeetsukumaran/vim-indentwise'
-                    NeoBundle 'kana/vim-textobj-user'
-                    NeoBundle 'kana/vim-textobj-indent'
-                    NeoBundle 'thinca/vim-textobj-between'
-                else
-                    NeoBundle 'PeterRincker/vim-argumentative'
-                endif
             " }}}
 
             " UI {{{
-                NeoBundle 'yonchu/accelerated-smooth-scroll'
-                NeoBundle 'szw/vim-maximizer'
+                Plug 'yonchu/accelerated-smooth-scroll'
+                Plug 'szw/vim-maximizer'
+                Plug 'junegunn/goyo.vim'
+                Plug 'Dewdrops/vim-tomorrow-theme'
+                Plug 'w0ng/vim-hybrid'
+                Plug 'jpo/vim-railscasts-theme'
+                Plug 'sickill/vim-monokai'
 
-                NeoBundle 'bling/vim-airline'
+                Plug 'bling/vim-airline'
                 let g:airline#extensions#hunks#non_zero_only     = 1
                 let g:airline_exclude_preview                    = 1
                 let g:airline#extensions#tabline#enabled         = 1
@@ -285,17 +244,7 @@
                 nmap <leader>8 <Plug>AirlineSelectTab8
                 nmap <leader>9 <Plug>AirlineSelectTab9
 
-                NeoBundle 'Dewdrops/vim-tomorrow-theme'
-                nmap <leader>cor :colo ron<cr>
-                nmap <leader>cod :colo desert<cr>
-                nmap <leader>cot :colo Tomorrow-Night-Eighties<cr>
-
-                NeoBundleLazy 'junegunn/goyo.vim',
-                            \ {'autoload': {'commands': 'Goyo'}}
-                nnoremap <silent><leader>gy :Goyo<cr>
-
-                NeoBundleLazy 'junegunn/limelight.vim',
-                            \ {'autoload': {'commands': 'Limelight'}}
+                Plug 'junegunn/limelight.vim'
                 let g:limelight_conceal_ctermfg = 'gray'
                 let g:limelight_conceal_guifg   = 'DarkGray'
                 function! GoyoBefore()
@@ -308,68 +257,48 @@
             " }}}
 
             " Misc {{{
-                NeoBundle 'ConradIrwin/vim-bracketed-paste'
-                NeoBundle 'vim-scripts/LargeFile'
-                " NeoBundle 'mtth/scratch.vim'
-                NeoBundle 'justinmk/vim-gtfo'
-                NeoBundle 'chrisbra/vim-diff-enhanced'
-                NeoBundle 'tpope/vim-eunuch'
-                NeoBundle 'exvim/ex-visincr'
-                NeoBundle 'chrisbra/Recover.vim'
-                NeoBundle 'AndrewRadev/linediff.vim'
-                NeoBundle 'tpope/vim-characterize'
-                " NeoBundle 'nicwest/QQ.vim'
-                NeoBundle 'thinca/vim-prettyprint'
-                NeoBundle 'Konfekt/FastFold'
-                " NeoBundle 'MattesGroeger/vim-bookmarks'
+                Plug 'ConradIrwin/vim-bracketed-paste'
+                Plug 'vim-scripts/LargeFile'
+                " Plug 'mtth/scratch.vim'
+                Plug 'justinmk/vim-gtfo'
+                Plug 'chrisbra/vim-diff-enhanced'
+                Plug 'tpope/vim-eunuch'
+                Plug 'exvim/ex-visincr'
+                Plug 'chrisbra/Recover.vim'
+                Plug 'AndrewRadev/linediff.vim'
+                Plug 'tpope/vim-characterize'
+                Plug 'thinca/vim-prettyprint'
+                Plug 'Konfekt/FastFold'
+                " Plug 'MattesGroeger/vim-bookmarks'
+                Plug 'mbbill/fencview'
+                Plug 'mattn/calendar-vim'
+                Plug 'arecarn/crunch'
+                Plug 'wellle/visual-split.vim'
+                Plug 'ryanss/vim-hackernews'
+                Plug 'Shougo/junkfile.vim'
 
-                " NeoBundle 'thinca/vim-ref'
-                " let g:ref_perldoc_auto_append_f = 1
+                Plug 'troydm/easybuffer.vim'
+                nmap <leader>bs :EasyBuffer<cr>
 
-                " NeoBundle 'kshenoy/vim-signature'
+                " Plug 'kshenoy/vim-signature'
                 " nnoremap <leader>sg :SignatureToggle<cr>
 
-                NeoBundleLazy 'dahu/vim-lotr',
-                            \ {'autoload': {'mappings': '<plug>LOTRToggle'}}
+                Plug 'dahu/vim-lotr'
                 nmap <leader>lr <plug>LOTRToggle
 
-                NeoBundleLazy 'ryanss/vim-hackernews',
-                            \ {'autoload': {'commands': 'HackerNews'}}
-
-                NeoBundleLazy 'Shougo/junkfile.vim',
-                            \ {'autoload':{'commands':'JunkfileOpen',
-                            \ 'unite_sources':['junkfile','junkfile/new']}}
-
-                NeoBundleLazy 'Dewdrops/vim-interestingwords',
-                            \ {'autoload': {'functions':
-                            \ ['InterestingWords', 'UncolorAllWords', 'WordNavigation']}}
+                Plug 'Dewdrops/vim-interestingwords'
                 let g:interestingWordsDefaultMappings = 0
                 nnoremap <silent> <leader>hl :call InterestingWords() \| nohls<cr>
                 nnoremap <silent> <leader>/ :call UncolorAllWords() \| nohls<cr>
                 nnoremap <silent> n :call WordNavigation(1)<cr>zz
                 nnoremap <silent> N :call WordNavigation(0)<cr>zz
 
-                NeoBundleLazy 'vim-scripts/sessionman.vim',
-                            \ {'autoload': {'commands': ['SessionList', 'SessionSave']}}
+                Plug 'vim-scripts/sessionman.vim'
                 let sessionman_save_on_exit = 0
                 nmap <leader>sl :SessionList<cr>
                 nmap <leader>ss :SessionSave<cr>
 
-                NeoBundleLazy 'mbbill/fencview',
-                            \ {'autoload': {'commands': 'FencAutoDetect'}}
-
-                NeoBundleLazy 'mattn/calendar-vim',
-                            \ {'autoload': {'commands': ['Calendar', 'CalendarH']}}
-                nnoremap <leader>cal :Calendar<cr>
-                nnoremap <leader>caL :CalendarH<cr>
-
-                NeoBundleLazy 'arecarn/crunch',
-                            \ {'autoload': {'commands': ['Crunch', 'CrunchBlock', 'CrunchLine']}}
-                nnoremap <leader>cr :Crunch<space>
-
-                NeoBundleLazy 'tyru/open-browser.vim',
-                            \ {'autoload': {'commands': 'OpenBrowserSearch',
-                            \ 'mappings': '<Plug>(openbrowser-open)'}}
+                Plug 'tyru/open-browser.vim'
                 nmap <Leader>fu <Plug>(openbrowser-open)
                 vmap <Leader>fu <Plug>(openbrowser-open)
                 nnoremap <Leader>fs :<C-u>OpenBrowserSearch<Space><C-r><C-w><Enter>
@@ -380,90 +309,65 @@
 
     " General Programming {{{
         if count(g:dewdrops_bundle_groups, 'programming')
-            NeoBundle 'tpope/vim-endwise'
-            NeoBundle 'octol/vim-cpp-enhanced-highlight'
-            NeoBundle 'justinmk/vim-syntax-extra'
-            NeoBundle 'tpope/vim-dispatch'
-            NeoBundle 'bruno-/vim-man'
+            Plug 'tpope/vim-endwise'
+            Plug 'octol/vim-cpp-enhanced-highlight'
+            Plug 'justinmk/vim-syntax-extra'
+            Plug 'tpope/vim-dispatch'
+            Plug 'bruno-/vim-man'
+            Plug 'metakirby5/codi.vim'
+            Plug 'jaxbot/semantic-highlight.vim', {'on': 'SemanticHighlight'}
+            Plug 'AndrewRadev/switch.vim', {'on': 'Switch'}
+            Plug 'a.vim', {'on': 'A'}
 
-            NeoBundle 'rizzatti/dash.vim'
+            Plug 'rizzatti/dash.vim'
             nmap <leader>D <Plug>DashSearch
 
-            " NeoBundle 'scrooloose/syntastic'
-            let g:syntastic_ignore_files = ['rc$', '.pl', '.pm', '.java']
+            " Plug 'scrooloose/syntastic'
+            let g:syntastic_ignore_files             = ['rc$', '.pl', '.pm', '.java']
             let g:syntastic_always_populate_loc_list = 1
-            let g:syntastic_auto_loc_list = 1
-            let g:syntastic_check_on_open = 1
-            let g:syntastic_check_on_wq = 0
-            let g:syntastic_enable_perl_checker = 1
+            let g:syntastic_auto_loc_list            = 1
+            let g:syntastic_check_on_open            = 1
+            let g:syntastic_check_on_wq              = 0
+            let g:syntastic_enable_perl_checker      = 1
 
-            NeoBundle 'AndrewRadev/splitjoin.vim'
+            Plug 'AndrewRadev/splitjoin.vim'
             let g:splitjoin_split_mapping = 'cS'
             let g:splitjoin_join_mapping  = 'cJ'
 
-            NeoBundle 'matchit.zip'
+            Plug 'matchit.zip'
             let b:match_ignorecase = 1
 
-            NeoBundle 'SirVer/ultisnips'
-            NeoBundle 'honza/vim-snippets'
+            Plug 'SirVer/ultisnips'
+            Plug 'honza/vim-snippets'
             let g:UltiSnipsExpandTrigger       = "<c-k>"
             let g:UltiSnipsJumpForwardTrigger  = "<c-k>"
             let g:UltiSnipsJumpBackwardTrigger = "<c-j>"
 
-            " NeoBundleLazy 'szw/vim-ctrlspace',
-            "             \ {'autoload': {'commands': 'CtrlSpace'}}
-            " map <leader><space> :CtrlSpace<cr>
-            " let g:CtrlSpaceFileEngine = "file_engine_darwin_amd64"
-            " let g:CtrlSpaceUseTabline = 1
-            " if executable("ag")
-            "     let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
-            " endif
-
-            NeoBundleLazy 'Chiel92/vim-autoformat',
-                        \ {'autoload': {'commands': 'Autoformat'}}
+            Plug 'Chiel92/vim-autoformat', {'on': 'AutoFormat'}
             nnoremap <leader>gq :Autoformat<cr>
 
-            NeoBundleLazy 'jaxbot/semantic-highlight.vim',
-                        \ {'autoload': {'commands': 'SemanticHighlight'}}
-            nnoremap <leader>sh :SemanticHighlight<cr>
-
-            NeoBundleLazy 'AndrewRadev/switch.vim',
-                        \ {'autoload': {'commands': 'Switch'}}
-            nnoremap - :Switch<cr>
-
-            NeoBundleLazy 'a.vim',
-                        \ {'autoload': {'commands': ['A']}}
-            nnoremap <leader>aa :A<cr>
-
-            NeoBundleLazy 'thinca/vim-quickrun',
-                        \ {'autoload': {'commands': ['QuickRun']}}
+            Plug 'thinca/vim-quickrun', {'on': 'QuickRun'}
             nnoremap <leader>kr :QuickRun -outputter/buffer/into 1<cr>
 
-            " tcomment {{{
-                NeoBundleLazy 'tomtom/tcomment_vim',
-                        \ {'autoload': {'commands': ['TCommentMaybeInline'],
-                        \ 'functions': ['tcomment#SetOption', 'tcomment#Operator', 'tcomment#OperatorLine',
-                        \ 'TCommentMaybeInline', 'tcomment#OperatorAnyway', 'tcomment#OperatorLineAnyway']}}
-                nnoremap <silent> gc :<c-u>if v:count > 0 \| call tcomment#SetOption("count", v:count) \| endif \| let w:tcommentPos = getpos(".") \| set opfunc=tcomment#Operator<cr>g@
-                nnoremap <silent> gcc :let w:tcommentPos = getpos(".") \| set opfunc=tcomment#OperatorLine<cr>g@$
-                xnoremap <silent> gc :TCommentMaybeInline<cr>
-                nnoremap <silent> gC :let w:tcommentPos = getpos(".") \| set opfunc=tcomment#OperatorAnyway<cr>g@
-                nnoremap <silent> gCc :let w:tcommentPos = getpos(".") \| set opfunc=tcomment#OperatorLineAnyway<cr>g@$
-                xnoremap <silent> gC :TCommentMaybeInline!<cr>
-                nmap <silent><leader>C yygccp
-                vmap <silent><leader>C ygvgc'>p
-                nmap <silent><leader>cy yygcc
-                vmap <silent><leader>cy ygvgc
-            " }}}
+            Plug 'tomtom/tcomment_vim'
+            nnoremap <silent> gc :<c-u>if v:count > 0 \| call tcomment#SetOption("count", v:count) \| endif \| let w:tcommentPos = getpos(".") \| set opfunc=tcomment#Operator<cr>g@
+            nnoremap <silent> gcc :let w:tcommentPos = getpos(".") \| set opfunc=tcomment#OperatorLine<cr>g@$
+            xnoremap <silent> gc :TCommentMaybeInline<cr>
+            nnoremap <silent> gC :let w:tcommentPos = getpos(".") \| set opfunc=tcomment#OperatorAnyway<cr>g@
+            nnoremap <silent> gCc :let w:tcommentPos = getpos(".") \| set opfunc=tcomment#OperatorLineAnyway<cr>g@$
+            xnoremap <silent> gC :TCommentMaybeInline!<cr>
+            nmap <silent><leader>C yygccp
+            vmap <silent><leader>C ygvgc'>p
+            nmap <silent><leader>cy yygcc
+            vmap <silent><leader>cy ygvgc
 
             " EasyAlign {{{
-                NeoBundleLazy 'junegunn/vim-easy-align',
-                        \ {'autoload': {'commands': 'EasyAlign'}}
+                Plug 'junegunn/vim-easy-align', {'on_cmd': ['EasyAlign', 'LiveEasyAlign']}
                 let g:easy_align_delimiters = {
                             \ '>': { 'pattern': '>>\|=>\|>' },
                             \ '"': { 'pattern': '"', 'ignore_groups': [] },
-                            \ '/': { 'pattern': '//\+\|/\*\|\*/', 'ignore_groups': ['String'] },
-                            \ '#': { 'pattern': '#\+', 'ignore_groups': ['String'], 'delimiter_align': 'l' },
+                            \ '/': { 'pattern': '//\+\|/\*\|\*/', 'ignore_groups': ['string'] },
+                            \ '#': { 'pattern': '#\+', 'ignore_groups': ['string'], 'delimiter_align': 'l' },
                             \ ']': {
                             \     'pattern':       '[[\]]',
                             \     'left_margin':   0,
@@ -477,7 +381,7 @@
                             \     'stick_to_left': 0
                             \   },
                             \ 'd': {
-                            \     'pattern': ' \(\S\+\s*[;=]\)\@=',
+                            \     'pattern': ' \(\s\+\s*[;=]\)\@=',
                             \     'left_margin': 0,
                             \     'right_margin': 0
                             \   }
@@ -500,9 +404,8 @@
 
             " ctags {{{
                 if executable('ctags')
-                    NeoBundle 'ludovicchabant/vim-gutentags'
-                    NeoBundleLazy 'majutsushi/tagbar',
-                                \ {'autoload': {'commands': 'TagbarToggle'}}
+                    Plug 'ludovicchabant/vim-gutentags'
+                    Plug 'majutsushi/tagbar', {'on_cmd': 'TagbarToggle'}
 
                     set tags=./tags;/,~/.vimtags;../tags;.../tags
 
@@ -526,201 +429,45 @@
                     endif
                 endif
             " }}}
-
-            if count(g:dewdrops_bundle_groups, 'indent')
-                NeoBundle 'nathanaelkane/vim-indent-guides'
-                let g:indent_guides_start_level           = 2
-                let g:indent_guides_guide_size            = 1
-                let g:indent_guides_enable_on_vim_startup = 1
-                let g:indent_guides_exclude_filetypes     = ['help', 'nerdtree', 'startify', 'vundle']
-
-                if !has('gui_running')
-                    let g:indent_guides_auto_colors = 0
-                    hi IndentGuidesOdd  ctermbg=black
-                    hi IndentGuidesEven ctermbg=darkgrey
-                endif
-            endif
-        endif
-    " }}}
-
-    " Unite & CtrlP {{{
-        if count(g:dewdrops_bundle_groups, 'unite')
-            " Unite {{{
-                NeoBundle 'Shougo/unite.vim'
-
-                NeoBundleLazy 'Shougo/neomru.vim', {'autoload': {'unite_sources':'file_mru'}}
-                NeoBundleLazy 'ujihisa/unite-colorscheme', {'autoload': {'unite_sources':'colorscheme'}}
-                NeoBundleLazy 'tsukkee/unite-tag', {'autoload': {'unite_sources':['tag','tag/file']}}
-                NeoBundleLazy 'Shougo/unite-outline', {'autoload': {'unite_sources':'outline'}}
-                NeoBundleLazy 'Shougo/unite-help', {'autoload': {'unite_sources':'help'}}
-
-                let bundle_unite = neobundle#get('unite.vim')
-                function! bundle_unite.hooks.on_source(_)
-                    call unite#filters#matcher_default#use(['matcher_fuzzy'])
-                    call unite#filters#sorter_default#use(['sorter_rank'])
-                    call unite#custom_source(
-                                \ 'file_rec,file_rec/async,file_mru,file,buffer,grep',
-                                \ 'ignore_pattern', join([
-                                \ '\.git/', 'node_modules/', 'dist/', '.elc', '.pyc'],
-                                \ '\|'))
-                endfunction
-
-                if count(g:dewdrops_bundle_groups, 'vimproc')
-                    nnoremap <C-p> :<C-u>Unite -start-insert file_mru file_rec/async:!<cr>
-                else
-                    nnoremap <C-p> :<C-u>Unite -start-insert file_mru file_rec<cr>
-                endif
-
-                let g:unite_enable_start_insert             = 1
-                let g:unite_data_directory                  = "~/.unite"
-                let g:unite_source_history_yank_enable      = 1
-                let g:unite_split_rule                      = "botright"
-                let g:unite_update_time                     = 200
-                let g:unite_source_file_mru_limit           = 1000
-                let g:unite_source_rec_max_cache_files      = 5000
-                let g:unite_cursor_line_highlight           = 'TabLineSel'
-                let g:unite_source_file_mru_filename_format = ':~:.'
-                let g:unite_source_file_mru_time_format     = ''
-
-                nnoremap <silent> \r :<C-u>Unite -buffer-name=register register<CR>
-                nnoremap <silent> \b :<C-u>Unite -quick-match -buffer-name=buffers buffer<CR>
-                nnoremap <silent> \y :<C-u>Unite -buffer-name=yanks history/yank<CR>
-                nnoremap <silent> \o :<C-u>Unite -buffer-name=outline -vertical outline<CR>
-                nnoremap <silent> \a :<C-u>Unite -buffer-name=sources source<CR>
-                nnoremap <silent> \f :<C-u>Unite -buffer-name=files file file/new<CR>
-                nnoremap <silent> \F :<C-u>Unite -buffer-name=files_rec file_rec file/new<CR>
-                nnoremap <silent> \g :<C-u>Unite -buffer-name=grep grep:.<CR>
-                nnoremap <silent> \h :<C-u>Unite -auto-resize -buffer-name=help help<CR>
-                nnoremap <silent> \l :<C-u>UniteWithCursorWord -buffer-name=search_file line<CR>
-                nnoremap <silent> \m :<C-u>Unite -buffer-name=mru buffer file_mru<CR>
-                nnoremap <silent> \M :<C-u>Unite -buffer-name=mappings mapping<CR>
-                nnoremap <silent> \n :<C-u>Unite -buffer-name=find find:.<CR>
-                nnoremap <silent> \c :<C-u>Unite -buffer-name=commands command<CR>
-                nnoremap <silent> \C :<C-u>Unite -auto-preview -buffer-name=colorschemes colorscheme<cr>
-                nnoremap <silent> \; :<C-u>Unite -buffer-name=history -default-action=edit history/command command<CR>
-                nnoremap <silent> \t :<C-u>Unite -auto-resize -buffer-name=tag tag tag/file<cr>
-                nnoremap <silent> \j :<C-u>Unite -auto-resize -buffer-name=junk junkfile junkfile/new<cr>
-
-                " Custom Unite settings
-                autocmd FileType unite call s:unite_settings()
-                function! s:unite_settings()
-                    nmap <buffer> Q <Plug>(unite_exit)
-                    nmap <buffer> <ESC> <Plug>(unite_exit)
-                    imap <buffer> <ESC> <Plug>(unite_exit)
-                    imap <buffer> <C-g> <Plug>(unite_insert_leave)
-                    imap <buffer> <C-c> <Plug>(unite_insert_leave)
-                    imap <buffer> <C-j> <Plug>(unite_select_next_line)
-                    imap <buffer> <C-k> <Plug>(unite_select_previous_line)
-                    imap <buffer> ' <Plug>(unite_quick_match_default_action)
-
-                    let unite = unite#get_current_unite()
-                    if unite.buffer_name =~# '^search'
-                        inoremap <silent><buffer><expr> <c-r> unite#do_action('replace')
-                    else
-                        inoremap <silent><buffer><expr> <c-r> unite#do_action('rename')
-                    endif
-                endfunction
-
-                NeoBundle 'Shougo/vimfiler.vim'
-                let g:vimfiler_as_default_explorer = 1
-            " }}}
-        else
-            " CtrlP {{{
-                NeoBundle 'kien/ctrlp.vim'
-                let g:ctrlp_custom_ignore = {
-                    \ 'dir': '\.git$\|\.hg$\|\.svn$',
-                    \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc|\.elc$'
-                    \ }
-                let g:ctrlp_user_command = {
-                    \ 'types': {
-                        \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
-                        \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-                    \ },
-                    \ 'fallback': 'find %s -type f'
-                \ }
-
-                let g:ctrlp_cmd = 'CtrlPMixed'
-                let g:ctrlp_working_path_mode = 'rc'
-                let g:ctrlp_clear_cache_on_exit = 1
-                let g:ctrlp_max_height = 40
-                let g:ctrlp_follow_symlinks = 1
-                let g:ctrlp_max_files = 10000
-                let g:ctrlp_mruf_max = 20
-                let g:ctrlp_cache_dir = '~/.vim/.cache/ctrlp'
-                let g:ctrlp_reuse_window = 'startify'
-                let g:ctrlp_extensions = ['funky']
-
-                nnoremap \ <nop>
-                nnoremap \t :CtrlPBufTag<cr>
-                nnoremap \T :CtrlPTag<cr>
-                nnoremap \l :CtrlPLine<cr>
-                nnoremap \o :CtrlPFunky<cr>
-                nnoremap \b :CtrlPBuffer<cr>
-
-                NeoBundleLazy 'tacahiroy/ctrlp-funky',
-                            \ {'autoload': {'commands': ['CtrlPFunky']}}
-            " }}}
         endif
     " }}}
 
     " Git {{{
         if count(g:dewdrops_bundle_groups, 'git')
-            NeoBundle 'mhinz/vim-signify'
-            NeoBundle 'jaxbot/github-issues.vim'
-            NeoBundle 'junegunn/vim-github-dashboard'
-            NeoBundle 'tpope/vim-git'
+            Plug 'mhinz/vim-signify'
+            Plug 'jaxbot/github-issues.vim'
+            Plug 'junegunn/vim-github-dashboard'
+            Plug 'tpope/vim-git'
 
-            NeoBundle 'mattn/webapi-vim'
-            NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
+            Plug 'mattn/webapi-vim'
+            Plug 'mattn/gist-vim'
 
-            NeoBundle 'esneider/YUNOcommit.vim'
-            let g:YUNOcommit_after = 10
-
-            NeoBundle 'tpope/vim-fugitive'
-            nnoremap <leader>gs :Gstatus<cr>
-            nnoremap <leader>gd :Gdiff<cr>
-            nnoremap <leader>gc :Gcommit<cr>
-            nnoremap <leader>ga :Gcommit --amend<cr>
-            nnoremap <leader>gb :Gblame<cr>
-            nnoremap <leader>gl :Glog<cr>
+            Plug 'tpope/vim-fugitive'
             nnoremap <leader>gp :Git push https://github.com/Dewdrops/
             " add :w to trigger gitgutter
             nnoremap <leader>gr :Gwrite<cr>:w<cr>
             autocmd FileType gitcommit nmap <buffer> U :Git checkout -- <C-r><C-g><CR>
             autocmd BufReadPost fugitive://* set bufhidden=delete
-            NeoBundle 'tpope/vim-rhubarb'
-            NeoBundle 'junegunn/gv.vim'
+            Plug 'tpope/vim-rhubarb'
+            Plug 'junegunn/gv.vim'
+            Plug 'idanarye/vim-merginal'
+            Plug 'int3/vim-extradite', {'on': 'Extradite'}
+            Plug 'gregsexton/gitv', {'on': 'Gitv'}
 
-            NeoBundle 'idanarye/vim-merginal'
-            nnoremap <leader>gM :Merginal<cr>
-
-            NeoBundleLazy 'int3/vim-extradite',
-                        \ {'depends': ['tpope/vim-fugitive'], 'autoload': {'commands': 'Extradite'}}
-            nnoremap <leader>ge :Extradite<cr>
-
-            NeoBundleLazy 'gregsexton/gitv',
-                        \ {'depends': ['tpope/vim-fugitive'], 'autoload': {'commands': 'Gitv'}}
-            nnoremap <leader>gv :Gitv<cr>
-
-            NeoBundleLazy 'rhysd/git-messenger.vim',
-                        \ {'autoload': {'commands': 'GitMessengerToggle'}}
+            Plug 'rhysd/git-messenger.vim', {'on': 'GitMessengerToggle'}
             nnoremap <leader>gm :GitMessengerToggle<cr>
         endif
     " }}}
 
     " AutoComplete {{{
         if count(g:dewdrops_bundle_groups, 'neocomplete')
-            " neocomplcache and neocomplete {{{
+            " neocomplete {{{
 
                 let g:acp_enableAtStartup = 0
 
-                if ( has('lua') && (v:version > 703 || v:version == 703 && has('patch885')) )
-                            \ && count(g:dewdrops_bundle_groups, 'unite')
-                    NeoBundle 'Shougo/neocomplete'
-
-                    if count(g:dewdrops_bundle_groups, 'vimproc')
-                        NeoBundle 'osyo-manga/vim-marching'
-                    endif
+                if has('lua')
+                    Plug 'Shougo/unite.vim'
+                    Plug 'Shougo/neocomplete'
 
                     let g:neocomplete#enable_at_startup            = 1
                     let g:neocomplete#enable_camel_case_completion = 1
@@ -758,59 +505,19 @@
                     let g:neocomplete#sources#omni#input_patterns.cpp  = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
                     let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
                     let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-                else
-                    NeoBundle 'Shougo/neocomplcache'
-
-                    let g:neocomplcache_enable_at_startup            = 1
-                    let g:neocomplcache_enable_camel_case_completion = 1
-                    let g:neocomplcache_enable_smart_case            = 1
-                    let g:neocomplcache_enable_underbar_completion   = 1
-                    let g:neocomplcache_enable_auto_delimiter        = 1
-                    let g:neocomplcache_max_list                     = 15
-                    let g:neocomplcache_force_overwrite_completefunc = 1
-
-                    " Define dictionary.
-                    let g:neocomplcache_dictionary_filetype_lists = {
-                                \ 'default' : '',
-                                \ }
-
-                    " Define keyword.
-                    if !exists('g:neocomplcache_keyword_patterns')
-                        let g:neocomplcache_keyword_patterns = {}
-                    endif
-                    let g:neocomplcache_keyword_patterns._ = '\h\w*'
-
-                    inoremap <expr><C-g> neocomplcache#undo_completion()
-                    inoremap <expr><C-l> neocomplcache#complete_common_string()
-                    inoremap <expr><cr> neocomplcache#complete_common_string()
-
-                    " <C-h>, <BS>: close popup and delete backword char.
-                    inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-                    inoremap <expr><C-y> neocomplcache#close_popup()
-
-                    " Enable heavy omni completion.
-                    if !exists('g:neocomplcache_omni_patterns')
-                        let g:neocomplcache_omni_patterns = {}
-                    endif
-                    let g:neocomplcache_omni_patterns.php  = '[^. \t]->\h\w*\|\h\w*::'
-                    let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-                    let g:neocomplcache_omni_patterns.c    = '[^.[:digit:] *\t]\%(\.\|->\)'
-                    let g:neocomplcache_omni_patterns.cpp  = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-                    let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
                 endif
             " }}}
         elseif count(g:dewdrops_bundle_groups, 'ycm')
             " YouCompleteMe {{{
-                NeoBundle 'Valloric/YouCompleteMe'
+                Plug 'Valloric/YouCompleteMe'
                 au FileType c,cpp,objc,python nnoremap <buffer> <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<cr>
                 au FileType c,cpp,objc,python nnoremap <buffer> <leader>ja :YcmDiags<cr>
                 let g:ycm_key_detailed_diagnostics         = ''
-                let g:ycm_path_to_python_interpreter       = '/usr/bin/python'
                 let g:ycm_complete_in_comments_and_strings = 1
                 let g:ycm_key_list_select_completion       = ['<tab>', '<C-n>', '<Down>']
                 let g:ycm_key_list_previous_completion     = ['<s-tab>', '<C-p>', '<Up>']
                 let g:ycm_global_ycm_extra_conf            = '~/.ycm_extra_conf.py'
-                let g:ycm_python_binary_path               = '~/.pyenv/shims/python'
+                let g:ycm_python_binary_path               = 'python3'
                 let g:ycm_confirm_extra_conf               = 0
                 let g:ycm_enable_diagnostic_signs          = 0
                 let g:ycm_semantic_triggers                = {}
@@ -820,81 +527,25 @@
                 let g:ycm_semantic_triggers.rs             = ['::', '.']
             "}}}
         else
-            NeoBundle "ajh17/VimCompletesMe"
+            Plug 'ajh17/VimCompletesMe'
         endif
 
-    " }}}
-
-    " vimproc {{{
-        if count(g:dewdrops_bundle_groups, 'vimproc')
-            NeoBundle 'Shougo/vimproc.vim', {
-            \ 'build' : {
-            \     'windows' : 'tools\\update-dll-mingw',
-            \     'cygwin' : 'make -f make_cygwin.mak',
-            \     'mac' : 'make -f make_mac.mak',
-            \     'linux' : 'make',
-            \     'unix' : 'gmake',
-            \    },
-            \ }
-
-            NeoBundle 'Shougo/vimshell.vim'
-            let g:vimshell_prompt = ""
-            let g:vimshell_prompt_expr =
-                        \ 'escape(fnamemodify(getcwd(), ":~").">", "\\[]()?! ")." "'
-            let g:vimshell_prompt_pattern = '^\%(\f\|\\.\)\+> '
-
-            NeoBundle 'ujihisa/repl.vim'
-        endif
     " }}}
 
     " PHP {{{
         if count(g:dewdrops_bundle_groups, 'php')
-            NeoBundle 'StanAngeloff/php.vim'
-            NeoBundle 'jwalton512/vim-blade'
-            NeoBundle 'arnaud-lb/vim-php-namespace'
-            NeoBundle 'shawncplus/phpcomplete.vim'
-        endif
-    " }}}
-
-    " Rust {{{
-        if count(g:dewdrops_bundle_groups, 'rust')
-            NeoBundle 'wting/rust.vim'
-            NeoBundle 'cespare/vim-toml'
-
-            NeoBundle 'phildawes/racer', {
-                        \   'build' : {
-                        \     'mac': 'cargo build --release',
-                        \     'unix': 'cargo build --release',
-                        \   }
-                        \ }
-             let g:racer_cmd = "/Users/zhouchenggang/.vim/bundle/racer/target/release/racer"
-             let $RUST_SRC_PATH ="/Users/zhouchenggang/site/rust/src"
-        endif
-    " }}}
-
-    " Python {{{
-        if count(g:dewdrops_bundle_groups, 'python')
-            NeoBundle 'hdima/python-syntax'
-            NeoBundle 'python_match.vim'
-
-            NeoBundle 'klen/python-mode'
-            let g:pymode_doc      = 1
-            let g:pymode_doc_bind = 'K'
-            " Disable if python support not present
-            if !has('python')
-                let g:pymode = 1
-            endif
-            let g:pymode_lint_checker      = "pyflakes"
-            let g:pymode_options           = 0
+            Plug 'StanAngeloff/php.vim'
+            Plug 'jwalton512/vim-blade'
+            Plug 'arnaud-lb/vim-php-namespace'
+            Plug 'shawncplus/phpcomplete.vim'
         endif
     " }}}
 
     " Lisp {{{
         if count(g:dewdrops_bundle_groups, 'lisp')
-            NeoBundle 'losingkeys/vim-niji'
+            Plug 'losingkeys/vim-niji'
 
-            NeoBundleLazy 'guns/vim-sexp',
-                        \ {'autoload': {'filetypes': ['lisp', 'scheme', 'clojure']}}
+            Plug 'guns/vim-sexp', {'for': ['lisp', 'scheme', 'clojure']}
             au FileType lisp,scheme,clojure let maplocalleader = '-'
             au FileType lisp,scheme,clojure map <buffer> <leader>jb <Plug>(sexp_move_to_prev_element_head)
             au FileType lisp,scheme,clojure map <buffer> <leader>jw <Plug>(sexp_move_to_next_element_head)
@@ -915,48 +566,25 @@
 
     " Clojure {{{
         if count(g:dewdrops_bundle_groups, 'clojure')
-            NeoBundle 'guns/vim-clojure-static'
-            NeoBundle 'tpope/vim-fireplace'
-            NeoBundle 'guns/vim-clojure-highlight'
-            NeoBundle 'tpope/vim-classpath'
-            NeoBundle 'tpope/vim-leiningen'
-            NeoBundle 'tpope/vim-salve'
-            NeoBundle 'typedclojure/vim-typedclojure'
-        endif
-    " }}}
-
-    " Haskell {{{
-        if count(g:dewdrops_bundle_groups, 'haskell')
-            NeoBundleLazy 'travitch/hasksyn',
-                        \ {'autoload': {'filetypes': 'haskell'}}
-            NeoBundleLazy 'vim-scripts/Superior-Haskell-Interaction-Mode-SHIM',
-                        \ {'autoload': {'commands': ['GhciFile', 'GhciRange', 'GhciReload']}}
-
-            if count(g:dewdrops_bundle_groups, 'vimproc')
-                NeoBundleLazy 'eagletmt/ghcmod-vim',
-                            \ {'autoload': {'filetypes': 'haskell'}}
-                au Filetype haskell nnoremap <buffer> <leader>jt :GhcModType<cr>
-                au Filetype haskell nnoremap <buffer> <leader>jj :GhcModTypeClear<cr>
-                au Filetype haskell nnoremap <buffer> <leader>jc :GhcModCheck<cr>
-                au Filetype haskell nnoremap <buffer> <leader>jl :GhcModLint<cr>
-                au Filetype haskell nnoremap <buffer> <leader>je :GhcModExpand<cr>
-
-                NeoBundleLazy 'eagletmt/neco-ghc',
-                            \ {'autoload': {'filetypes': 'haskell'}}
-                au FileType haskell setlocal omnifunc=necoghc#omnifunc
-            endif
+            Plug 'guns/vim-clojure-static'
+            Plug 'tpope/vim-fireplace'
+            Plug 'guns/vim-clojure-highlight'
+            Plug 'tpope/vim-classpath'
+            Plug 'tpope/vim-leiningen'
+            Plug 'tpope/vim-salve'
+            Plug 'typedclojure/vim-typedclojure'
         endif
     " }}}
 
     " HTML {{{
         if count(g:dewdrops_bundle_groups, 'html')
-            NeoBundle 'othree/html5.vim'
-            NeoBundle 'othree/xml.vim'
-            NeoBundle 'hail2u/vim-css3-syntax'
-            NeoBundle 'gorodinskiy/vim-coloresque'
-            NeoBundle 'greyblake/vim-preview'
+            Plug 'othree/html5.vim'
+            Plug 'othree/xml.vim'
+            Plug 'hail2u/vim-css3-syntax'
+            Plug 'gorodinskiy/vim-coloresque'
+            Plug 'greyblake/vim-preview'
 
-            NeoBundle 'gcmt/breeze.vim'
+            Plug 'gcmt/breeze.vim'
             au Filetype html,xhtml,xml nnoremap <buffer> <cr> :BreezeJumpF<cr>
             au Filetype html,xhtml,xml nnoremap <buffer> <leader><cr> :BreezeJumpB<cr>
             au Filetype html,xhtml,xml nnoremap <buffer> <leader>jn :BreezeNextSibling<cr>
@@ -965,96 +593,95 @@
             au Filetype html,xhtml,xml nnoremap <buffer> <leader>jl :BreezeLastSibling<cr>
             au Filetype html,xhtml,xml nnoremap <buffer> <leader>ju :BreezeParent<cr>
 
-            NeoBundle 'mattn/emmet-vim'
+            Plug 'mattn/emmet-vim'
             let g:user_emmet_mode = 'i'
         endif
     " }}}
 
     " Javascript {{{
         if count(g:dewdrops_bundle_groups, 'js')
-            NeoBundle 'othree/yajs.vim'
-            NeoBundle 'marijnh/tern_for_vim'
-            NeoBundle 'othree/javascript-libraries-syntax.vim'
-            NeoBundle 'burnettk/vim-angular'
-            NeoBundle 'mxw/vim-jsx'
-
-            NeoBundle 'tpope/vim-jdaddy'
-            NeoBundle 'leshill/vim-json'
+            Plug 'pangloss/vim-javascript'
+            Plug 'mxw/vim-jsx'
+            Plug 'marijnh/tern_for_vim'
+            Plug 'tpope/vim-jdaddy'
         endif
     " }}}
 
-    " Misc {{{
-        if count(g:dewdrops_bundle_groups, 'misc')
-            " NeoBundle 'kchmck/vim-coffee-script'
-            NeoBundle 'chrisbra/csv.vim'
-            " NeoBundle 'tpope/vim-haml'
-            NeoBundle 'fatih/vim-go'
-            " NeoBundle 'petRUShka/vim-opencl'
-            " NeoBundle 'andreimaxim/vim-io'
-            " NeoBundle 'tpope/timl'
-            " NeoBundle 'JuliaLang/julia-vim'
-            " NeoBundle 'Rykka/riv.vim'
-            NeoBundle 'darfink/vim-plist'
-            NeoBundle 'hiqsol/pgsql.vim'
+    " Misc Languages {{{
+        " Plug 'kchmck/vim-coffee-script'
+        Plug 'chrisbra/csv.vim'
+        " Plug 'tpope/vim-haml'
+        Plug 'fatih/vim-go'
+        " Plug 'petRUShka/vim-opencl'
+        " Plug 'andreimaxim/vim-io'
+        " Plug 'tpope/timl'
+        " Plug 'JuliaLang/julia-vim'
+        " Plug 'Rykka/riv.vim'
+        Plug 'darfink/vim-plist'
+        Plug 'hiqsol/pgsql.vim'
+        Plug 'dag/vim-fish'
+        Plug 'wting/rust.vim'
+        Plug 'cespare/vim-toml'
+        Plug 'tikhomirov/vim-glsl'
+        " Plug 'chilicuil/vim-sml-coursera'
+        Plug 'rgrinberg/vim-ocaml'
+        Plug 'OmniSharp/omnisharp-vim'
 
-            " NeoBundle 'artur-shaik/vim-javacomplete2'
-            " autocmd FileType java set omnifunc=javacomplete#Complete
-            NeoBundle 'rdolgushin/groovy.vim'
+        " Plug 'artur-shaik/vim-javacomplete2'
+        " autocmd FileType java set omnifunc=javacomplete#Complete
+        " Plug 'rdolgushin/groovy.vim'
 
-            " NeoBundle 'chilicuil/vim-sml-coursera'
-            " NeoBundle 'rgrinberg/vim-ocaml'
-            " NeoBundle 'def-lkb/vimbufsync'
-            " NeoBundle 'the-lambda-church/merlin', {'rtp': 'vim/merlin/'}
-            " let g:syntastic_ocaml_checkers = ['merlin']
+        Plug 'travitch/hasksyn', {'on_ft': 'haskell'}
+        Plug 'vim-scripts/Superior-Haskell-Interaction-Mode-SHIM',
+                    \ {'on': ['GhciFile', 'GhciRange', 'GhciReload']}
 
-            " NeoBundle 'oscarh/vimerl'
-            " NeoBundle 'elixir-lang/vim-elixir'
 
-            NeoBundle 'vim-ruby/vim-ruby'
-            NeoBundle 'ecomba/vim-ruby-refactoring'
-            NeoBundle 'sheerun/rspec.vim'
-            NeoBundle 'tpope/vim-rails'
+        Plug 'oscarh/vimerl'
+        Plug 'elixir-lang/vim-elixir'
 
-            NeoBundle 'vim-perl/vim-perl'
-            NeoBundle 'c9s/perlomni.vim'
+        Plug 'vim-ruby/vim-ruby'
+        " Plug 'ecomba/vim-ruby-refactoring'
+        " Plug 'sheerun/rspec.vim'
+        " Plug 'tpope/vim-rails'
 
-            NeoBundle 'yko/mojo.vim'
-            let mojo_highlight_data = 1
+        Plug 'vim-perl/vim-perl'
+        Plug 'vim-perl/vim-perl6'
+        Plug 'c9s/perlomni.vim'
 
-            " NeoBundle 'tpope/vim-cucumber'
-            " NeoBundle 'quentindecock/vim-cucumber-align-pipes'
+        Plug 'yko/mojo.vim'
+        let mojo_highlight_data = 1
 
-            " NeoBundle 'derekwyatt/vim-sbt'
-            " NeoBundle 'derekwyatt/vim-scala'
+        " Plug 'tpope/vim-cucumber'
+        " Plug 'quentindecock/vim-cucumber-align-pipes'
+        "
+        " Plug 'derekwyatt/vim-sbt'
+        " Plug 'derekwyatt/vim-scala'
+        "
+        " Plug 'xolox/vim-misc'
+        " Plug 'xolox/vim-lua-ftplugin'
+        " Plug 'xolox/vim-lua-inspect'
 
-            " NeoBundle 'xolox/vim-misc'
-            " NeoBundle 'xolox/vim-lua-ftplugin'
-            " NeoBundle 'xolox/vim-lua-inspect'
+        " Plug 'dhruvasagar/vim-dotoo'
 
-            NeoBundle 'dhruvasagar/vim-dotoo'
+        Plug 'jceb/vim-orgmode'
+        au FileType org setlocal fdm=expr
 
-            NeoBundle 'jceb/vim-orgmode'
-            au FileType org setlocal fdm=expr
-
-            " NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
-            " let g:LatexBox_Folding = 1
-        endif
+        " Plug 'LaTeX-Box-Team/LaTeX-Box'
+        " let g:LatexBox_Folding = 1
     " }}}
 
 " }}}
 
 " Finish initializations {{{
 
-    call neobundle#end()
-
     filetype plugin indent on
-
     syntax enable
 
-    NeoBundleCheck
+    call plug#end()
 
-    " this should be placed after neobundle#end()
-    colo Tomorrow-Night-Eighties
+    " this should be placed after dein#install()
+    " colo Tomorrow-Night-Eighties
+    colo hybrid
 
 " }}}
 
