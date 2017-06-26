@@ -51,6 +51,8 @@
         set clipboard=unnamed
     endif
 
+    set tags=./tags;,tags
+
     " automatically switch to the current file directory when a new buffer is opened
     au BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 
@@ -62,8 +64,8 @@
     set history=1000                        " Store a ton of history (default is 20)
     set hidden                              " Allow buffer switching without saving
     set ttimeoutlen=50                      " dimish the pause when leaving insert mode
-    if v:version >= 703
-        set cryptmethod=blowfish            " for more security (zip is too weak)
+    if v:version >= 800
+        set cryptmethod=blowfish2            " for more security (zip is too weak)
     endif
 
     " Omnicomplete
@@ -349,29 +351,16 @@
     inoremap <c-b> <left>
     inoremap <c-d> <del>
 
-    " Quickfix/location list
-    nnoremap <leader>cc :cc<cr>
-    nnoremap <leader>cp :cp<cr>
-    nnoremap <leader>cn :cn<cr>
-    nnoremap <leader>cl :cl<cr>
-    nnoremap <leader>cw :cw<cr>
-    nnoremap <leader>ll :ll<cr>
-    nnoremap <leader>lp :lp<cr>
-    nnoremap <leader>ln :lne<cr>
-    nnoremap <leader>li :lli<cr>
-    nnoremap <leader>lw :lw<cr>
-
     " Misc
     nnoremap <leader>bd :Bclose<cr>
+    nnoremap <leader>co :copen<cr>
+    nnoremap <leader>cq :cclose<cr>
+    nnoremap <leader>lq :lcl<cr>
     nnoremap <leader>q :q<cr>
     nnoremap <leader>wq :wq<cr>
     nnoremap <leader>wa :wa<cr>
-    nnoremap <leader>wn :wn<cr>
-    nnoremap <leader>wp :wp<cr>
     nnoremap <leader>wr :w<cr>
     nnoremap <leader>xa :xa<cr>
-    nnoremap <leader>bp :bp<cr>
-    nnoremap <leader>bn :bn<cr>
     nnoremap <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
     nnoremap <leader>mk :make<cr>
     nnoremap <leader>sp :sp<cr>
@@ -387,14 +376,22 @@
     au FileType php,perl inoremap <buffer> ;s $
     au FileType perl inoremap <buffer> ;h %
     au FileType php,perl inoremap <buffer> ;l @
-    au FileType php,perl inoremap <buffer> ;f => 
+    au FileType php,perl inoremap <buffer> ;f <space>=><space>
 
     au FileType php,perl inoremap <buffer> .. ->
+    au FileType perl inoremap <buffer> ... ..
+    au FileType perl inoremap <buffer> .... ...
 
     " unimpaired-like binding
     if g:dewdrops_invoked_as_dotvimrc
         nnoremap [b :bp<cr>
         nnoremap ]b :bn<cr>
+        nnoremap [q :cp<cr>
+        nnoremap ]q :cn<cr>
+        nnoremap [l :lp<cr>
+        nnoremap ]l :lne<cr>
+        nnoremap [f :wp<cr>
+        nnoremap ]f :wn<cr>
         nnoremap [s i<space><esc>l
         nnoremap ]s a<space><esc>h
         nnoremap [w i<space><right><space><esc>h

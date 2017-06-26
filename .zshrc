@@ -313,6 +313,8 @@ fi
 # k
 [ -f $HOME/.k.sh ] && source $HOME/.k.sh
 
+eval "$(thefuck --alias)"
+
 # }}}
 
 
