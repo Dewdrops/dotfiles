@@ -22,8 +22,9 @@
             let g:dewdrops_bundle_groups = [
                         \     'general',
                         \     'programming',
-                        \     'js',
                         \     'git',
+                        \     'ocaml',
+                        \     'erlang',
                         \     'ycm',
                         \ ]
         endif
@@ -32,26 +33,28 @@
     " General {{{
         if count(g:dewdrops_bundle_groups, 'general')
 
-            " Tree File Manager {{{
-                Plug 'scrooloose/nerdtree'
-                let NERDTreeShowBookmarks               = 1
-                let NERDTreeIgnore                      = ['\.pyc', '\.elc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
-                let NERDTreeChDirMode                   = 0
-                let NERDTreeQuitOnOpen                  = 1
-                let NERDTreeMouseMode                   = 2
-                let NERDTreeShowHidden                  = 1
-                let NERDTreeKeepTreeInNewTab            = 1
-                let g:nerdtree_tabs_open_on_gui_startup = 0
+            " File Manager {{{
+                " Plug 'scrooloose/nerdtree'
+                " let NERDTreeShowBookmarks               = 1
+                " let NERDTreeIgnore                      = ['\.pyc', '\.elc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+                " let NERDTreeChDirMode                   = 0
+                " let NERDTreeQuitOnOpen                  = 1
+                " let NERDTreeMouseMode                   = 2
+                " let NERDTreeShowHidden                  = 1
+                " let NERDTreeKeepTreeInNewTab            = 1
+                " let g:nerdtree_tabs_open_on_gui_startup = 0
+                "
+                " Plug 'jistr/vim-nerdtree-tabs'
+                " map <Leader>nt <plug>NERDTreeTabsToggle<cr>
+                " map <Leader>nf <plug>NERDTreeTabsFind<cr>
 
-                Plug 'jistr/vim-nerdtree-tabs'
-                map <Leader>nt <plug>NERDTreeTabsToggle<cr>
-                map <Leader>nf <plug>NERDTreeTabsFind<cr>
+                " Plug 'troydm/easytree.vim', {'on': 'EasyTreeToggle'}
+                " map <Leader>et :EasyTreeToggle<cr>
 
-                Plug 'troydm/easytree.vim', {'on': 'EasyTreeToggle'}
-                map <Leader>et :EasyTreeToggle<cr>
+                " Plug 'justinmk/vim-dirvish'
 
-                Plug 'justinmk/vim-dirvish', {'on': 'Dirvish'}
                 Plug 'francoiscabrol/ranger.vim', {'on': 'Ranger'}
+                let g:ranger_map_keys = 0
             " }}}
 
             " Grep {{{
@@ -64,10 +67,10 @@
                 nmap gs <plug>(GrepperOperator)
                 xmap gs <plug>(GrepperOperator)
 
-                if executable('ack') || executable('ag')
-                    Plug 'dyng/ctrlsf.vim', {'on': 'CtrlSF'}
-                endif
-                nnoremap <leader>ak :CtrlSF<space>
+                " if executable('ack') || executable('ag')
+                "     Plug 'dyng/ctrlsf.vim', {'on': 'CtrlSF'}
+                " endif
+                " nnoremap <leader>ak :CtrlSF<space>
             " }}}
 
             " CtrlP {{{
@@ -99,83 +102,49 @@
                 nnoremap \t :CtrlPBufTag<cr>
                 nnoremap \T :CtrlPTag<cr>
                 nnoremap \l :CtrlPLine<cr>
-                nnoremap \o :CtrlPFunky<cr>
+                nnoremap \f :CtrlPFunky<cr>
                 nnoremap \b :CtrlPBuffer<cr>
 
                 Plug 'tacahiroy/ctrlp-funky'
             " }}}
 
             " Startify {{{
-                Plug 'mhinz/vim-startify'
-
-                if executable('fortune') && executable('cowsay')
-                    let g:startify_custom_header =
-                                \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
-                else
-                    let g:startify_custom_header = [
-                                \ '         ____                   _                     ',
-                                \ '        |  _ \  _____      ____| |_ __ ___  _ __  ___ ',
-                                \ '        | | | |/ _ \ \ /\ / / _` | ''__/ _ \| ''_ \/ __|',
-                                \ '        | |_| |  __/\ V  V / (_| | | | (_) | |_) \__ \',
-                                \ '        |____/ \___| \_/\_/ \__,_|_|  \___/| .__/|___/',
-                                \ '                                           |_|        ',
-                                \ '                                                      ',
-                                \ '                                                      '
-                                \ ]
-                endif
-            " }}}
-
-            " vim-swoop {{{
-                Plug 'pelodelfuego/vim-swoop'
-
-                let g:swoopUseDefaultKeyMap = 0
-                nmap <leader>ms :call Swoop()<cr>
-                vmap <leader>ms :call SwoopSelection()<cr>
-                nmap <leader>ml :call SwoopMulti()<cr>
-                vmap <leader>ml :call SwoopMultiSelection()<cr>
-
-                function! Multiple_cursors_before()
-                    if exists('*SwoopFreezeContext') != 0
-                        call SwoopFreezeContext()
-                    endif
-                endfunction
-                function! Multiple_cursors_after()
-                    if exists('*SwoopUnFreezeContext') != 0
-                        call SwoopUnFreezeContext()
-                    endif
-                endfunction
+                " Plug 'mhinz/vim-startify'
+                "
+                " if executable('fortune') && executable('cowsay')
+                "     let g:startify_custom_header =
+                "                 \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
+                " else
+                "     let g:startify_custom_header = [
+                "                 \ '         ____                   _                     ',
+                "                 \ '        |  _ \  _____      ____| |_ __ ___  _ __  ___ ',
+                "                 \ '        | | | |/ _ \ \ /\ / / _` | ''__/ _ \| ''_ \/ __|',
+                "                 \ '        | |_| |  __/\ V  V / (_| | | | (_) | |_) \__ \',
+                "                 \ '        |____/ \___| \_/\_/ \__,_|_|  \___/| .__/|___/',
+                "                 \ '                                           |_|        ',
+                "                 \ '                                                      ',
+                "                 \ '                                                      '
+                "                 \ ]
+                " endif
             " }}}
 
             " Edit {{{
-                Plug 'tpope/vim-speeddating'
+                " Plug 'tpope/vim-speeddating'
                 Plug 'jiangmiao/auto-pairs'
                 Plug 'tpope/vim-surround'
                 Plug 'terryma/vim-multiple-cursors'
                 Plug 'tpope/vim-repeat'
+                Plug 'ryvnf/readline.vim'
                 Plug 'chrisbra/NrrwRgn'
                 Plug 'vim-scripts/ReplaceWithRegister'
                 Plug 'junegunn/vim-peekaboo'
-                Plug 'Shougo/vinarise.vim', {'on_cmd': 'Vinarise'}
+                " Plug 'Shougo/vinarise.vim', {'on_cmd': 'Vinarise'}
                 Plug 'tpope/vim-abolish'
+                Plug 'arthurxavierx/vim-caser'
                 Plug 'dhruvasagar/vim-table-mode'
-
-                Plug 'tommcdo/vim-lion', {'on':
-                            \['<Plug>LionRight', '<Plug>VLionRight', '<Plug>LionLeft', '<Plug>VLionLeft']}
-                let g:lion_create_maps = 0
-                nmap <silent> gl <Plug>LionRight
-                vmap <silent> gl <Plug>VLionRight
-                nmap <silent> gL <Plug>LionLeft
-                vmap <silent> gL <Plug>VLionLeft
-
                 Plug 'Dewdrops/vim-unimpaired'
-                nmap <c-up> [e
-                nmap <c-down> ]e
-                vmap <c-up> [e
-                vmap <c-down> ]e
 
                 Plug 'vim-scripts/DrawIt'
-                nmap <unique> <Leader>di <Plug>DrawItStart
-
                 Plug 'vim-scripts/sketch.vim'
                 nmap <leader>sk :call ToggleSketch()<cr>
 
@@ -219,7 +188,7 @@
                 Plug 'dahu/vim-fanfingtastic'
                 map <unique><silent> <leader><leader> <Plug>fanfingtastic_,
 
-                Plug 'takac/vim-easymotion'
+                Plug 'easymotion/vim-easymotion'
                 nmap <space> <Plug>(easymotion-f)
                 nmap g<space> <Plug>(easymotion-F)
                 let EasyMotion_leader_key  = '<leader>em'
@@ -228,13 +197,14 @@
             " }}}
 
             " UI {{{
+                " Plug 'Dewdrops/vim-tomorrow-theme'
+                " Plug 'jpo/vim-railscasts-theme'
+                " Plug 'sickill/vim-monokai'
+                "
                 Plug 'yonchu/accelerated-smooth-scroll'
                 Plug 'szw/vim-maximizer'
                 Plug 'junegunn/goyo.vim'
-                Plug 'Dewdrops/vim-tomorrow-theme'
                 Plug 'w0ng/vim-hybrid'
-                Plug 'jpo/vim-railscasts-theme'
-                Plug 'sickill/vim-monokai'
 
                 Plug 'bling/vim-airline'
                 let g:airline#extensions#hunks#non_zero_only     = 1
@@ -276,12 +246,13 @@
                 Plug 'tpope/vim-characterize'
                 Plug 'thinca/vim-prettyprint'
                 Plug 'Konfekt/FastFold'
+                Plug 'tpope/vim-dadbod'
                 " Plug 'MattesGroeger/vim-bookmarks'
                 Plug 'mbbill/fencview'
                 Plug 'mattn/calendar-vim'
                 Plug 'arecarn/crunch'
                 Plug 'wellle/visual-split.vim'
-                Plug 'ryanss/vim-hackernews'
+                Plug 'dansomething/vim-hackernews'
                 Plug 'Shougo/junkfile.vim'
                 Plug 'skywind3000/asyncrun.vim'
                 Plug 'vim-scripts/renamer.vim', {'on': 'Renamer'}
@@ -325,14 +296,19 @@
             Plug 'bruno-/vim-man'
             Plug 'metakirby5/codi.vim'
             Plug 'sbdchd/neoformat'
-            Plug 'jaxbot/semantic-highlight.vim', {'on': 'SemanticHighlight'}
+            " Plug 'jaxbot/semantic-highlight.vim', {'on': 'SemanticHighlight'}
             Plug 'AndrewRadev/switch.vim', {'on': 'Switch'}
             Plug 'vim-scripts/a.vim', {'on': 'A'}
+            Plug 'editorconfig/editorconfig-vim'
+            " Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
             Plug 'rizzatti/dash.vim'
             nmap <leader>D <Plug>DashSearch
 
             Plug 'w0rp/ale'
+            let g:ale_linters = {
+                        \   'python': [],
+                        \}
 
             Plug 'AndrewRadev/splitjoin.vim'
             let g:splitjoin_split_mapping = 'cS'
@@ -357,80 +333,42 @@
             nnoremap <silent> gc :<c-u>if v:count > 0 \| call tcomment#SetOption("count", v:count) \| endif \| let w:tcommentPos = getpos(".") \| set opfunc=tcomment#Operator<cr>g@
             nnoremap <silent> gcc :let w:tcommentPos = getpos(".") \| set opfunc=tcomment#OperatorLine<cr>g@$
             xnoremap <silent> gc :TCommentMaybeInline<cr>
-            nnoremap <silent> gC :let w:tcommentPos = getpos(".") \| set opfunc=tcomment#OperatorAnyway<cr>g@
-            nnoremap <silent> gCc :let w:tcommentPos = getpos(".") \| set opfunc=tcomment#OperatorLineAnyway<cr>g@$
-            xnoremap <silent> C :TCommentMaybeInline!<cr>
-            nmap <silent><leader>C yygccp
-            vmap <silent><leader>C ygvgc'>p
-            nmap <silent><leader>cy yygcc
-            vmap <silent><leader>cy ygvgc
 
-            " EasyAlign {{{
-                Plug 'junegunn/vim-easy-align', {'on_cmd': ['EasyAlign', 'LiveEasyAlign']}
-                let g:easy_align_delimiters = {
-                            \ '>': { 'pattern': '>>\|=>\|>' },
-                            \ '"': { 'pattern': '"', 'ignore_groups': [] },
-                            \ '/': { 'pattern': '//\+\|/\*\|\*/', 'ignore_groups': ['string'] },
-                            \ '#': { 'pattern': '#\+', 'ignore_groups': ['string'], 'delimiter_align': 'l' },
-                            \ ']': {
-                            \     'pattern':       '[[\]]',
-                            \     'left_margin':   0,
-                            \     'right_margin':  0,
-                            \     'stick_to_left': 0
-                            \   },
-                            \ ')': {
-                            \     'pattern':       '[()]',
-                            \     'left_margin':   0,
-                            \     'right_margin':  0,
-                            \     'stick_to_left': 0
-                            \   },
-                            \ 'd': {
-                            \     'pattern': ' \(\s\+\s*[;=]\)\@=',
-                            \     'left_margin': 0,
-                            \     'right_margin': 0
-                            \   }
-                            \ }
+            Plug 'tommcdo/vim-lion', {'on':
+                        \['<Plug>LionRight', '<Plug>VLionRight', '<Plug>LionLeft', '<Plug>VLionLeft']}
+            let g:lion_create_maps = 0
+            nmap <silent> gl <Plug>LionRight
+            vmap <silent> gl <Plug>VLionRight
+            nmap <silent> gL <Plug>LionLeft
+            vmap <silent> gL <Plug>VLionLeft
 
-                vnoremap <silent> <enter> :EasyAlign<cr>
-                nmap <Leader>a, :EasyAlign <space><cr>
-                vmap <Leader>a, :EasyAlign <space><cr>
-                nmap <Leader>a= :EasyAlign =<cr>
-                vmap <Leader>a= :EasyAlign =<cr>
-                nmap <Leader>a: :EasyAlign :<cr>
-                vmap <Leader>a: :EasyAlign :<cr>
-                nmap <Leader>a, :EasyAlign ,<cr>
-                vmap <Leader>a, :EasyAlign ,<cr>
-                nmap <Leader>a, :EasyAlign .<cr>
-                vmap <Leader>a, :EasyAlign .<cr>
-                nmap <Leader>a<Bar> :EasyAlign <Bar><cr>
-                vmap <Leader>a<Bar> :EasyAlign <Bar><cr>
-            " }}}
+            Plug 'junegunn/vim-easy-align'
+            xmap g; <Plug>(EasyAlign)
+            nmap g; <Plug>(EasyAlign)
 
-            " ctags {{{
-                if executable('ctags')
-                    Plug 'ludovicchabant/vim-gutentags'
-                    Plug 'majutsushi/tagbar', {'on_cmd': 'TagbarToggle'}
+            if executable('ctags')
+                " Plug 'ludovicchabant/vim-gutentags'
 
-                    nnoremap <silent><leader>tt :TagbarToggle<cr>
-                    nnoremap <silent><f8> :TagbarToggle<cr>
-                    inoremap <silent><f8> <esc>:TagbarToggle<cr>a
+                Plug 'majutsushi/tagbar', {'on_cmd': 'TagbarToggle'}
+                nnoremap <silent><leader>tb :TagbarToggle<cr>
+                nnoremap <silent><f8> :TagbarToggle<cr>
+                inoremap <silent><f8> <esc>:TagbarToggle<cr>a
 
-                    " And make sure gotags is in your path
-                    if count(g:dewdrops_bundle_groups, 'go')
-                        let g:tagbar_type_go = {
-                                    \ 'ctagstype' : 'go',
-                                    \ 'kinds'     : [  'p:package', 'i:imports:1', 'c:constants', 'v:variables',
-                                    \ 't:types',  'n:interfaces', 'w:fields', 'e:embedded', 'm:methods',
-                                    \ 'r:constructor', 'f:functions' ],
-                                    \ 'sro' : '.',
-                                    \ 'kind2scope' : { 't' : 'ctype', 'n' : 'ntype' },
-                                    \ 'scope2kind' : { 'ctype' : 't', 'ntype' : 'n' },
-                                    \ 'ctagsbin'  : 'gotags',
-                                    \ 'ctagsargs' : '-sort -silent'
-                                    \ }
-                    endif
-                endif
-            " }}}
+                " And make sure gotags is in your path
+                " if count(g:dewdrops_bundle_groups, 'go')
+                "     let g:tagbar_type_go = {
+                "                 \ 'ctagstype' : 'go',
+                "                 \ 'kinds'     : [  'p:package', 'i:imports:1', 'c:constants', 'v:variables',
+                "                 \ 't:types',  'n:interfaces', 'w:fields', 'e:embedded', 'm:methods',
+                "                 \ 'r:constructor', 'f:functions' ],
+                "                 \ 'sro' : '.',
+                "                 \ 'kind2scope' : { 't' : 'ctype', 'n' : 'ntype' },
+                "                 \ 'scope2kind' : { 'ctype' : 't', 'ntype' : 'n' },
+                "                 \ 'ctagsbin'  : 'gotags',
+                "                 \ 'ctagsargs' : '-sort -silent'
+                "                 \ }
+                " endif
+            endif
         endif
     " }}}
 
@@ -438,11 +376,11 @@
         if count(g:dewdrops_bundle_groups, 'git')
             Plug 'mhinz/vim-signify'
             " Plug 'jaxbot/github-issues.vim'
-            Plug 'junegunn/vim-github-dashboard'
+            " Plug 'junegunn/vim-github-dashboard'
             Plug 'tpope/vim-git'
-
-            Plug 'mattn/webapi-vim'
-            Plug 'mattn/gist-vim'
+            " Plug 'mattn/webapi-vim'
+            " Plug 'mattn/gist-vim'
+            " Plug 'tpope/vim-rhubarb'
 
             Plug 'tpope/vim-fugitive'
             nnoremap <leader>gp :Git push https://github.com/Dewdrops/
@@ -450,88 +388,40 @@
             nnoremap <leader>gr :Gwrite<cr>:w<cr>
             autocmd FileType gitcommit nmap <buffer> U :Git checkout -- <C-r><C-g><CR>
             autocmd BufReadPost fugitive://* set bufhidden=delete
-            Plug 'tpope/vim-rhubarb'
-            Plug 'junegunn/gv.vim'
-            Plug 'idanarye/vim-merginal', {'branch': 'develop'}
-            Plug 'int3/vim-extradite', {'on': 'Extradite'}
-            Plug 'gregsexton/gitv', {'on': 'Gitv'}
 
-            Plug 'rhysd/git-messenger.vim', {'on': 'GitMessengerToggle'}
-            nnoremap <leader>gm :GitMessengerToggle<cr>
+            Plug 'gregsexton/gitv', {'on': 'Gitv'}
+            " Plug 'junegunn/gv.vim'
+
+            " Plug 'idanarye/vim-merginal', {'branch': 'develop'}
+            " Plug 'int3/vim-extradite'
+
+            Plug 'rhysd/git-messenger.vim', {'on': 'GitMessenger'}
+            nnoremap <leader>gm :GitMessenger<cr>
         endif
     " }}}
 
     " AutoComplete {{{
-        if count(g:dewdrops_bundle_groups, 'neocomplete')
-            " neocomplete {{{
-
-                let g:acp_enableAtStartup = 0
-
-                if has('lua')
-                    Plug 'Shougo/unite.vim'
-                    Plug 'Shougo/neocomplete'
-
-                    let g:neocomplete#enable_at_startup            = 1
-                    let g:neocomplete#enable_camel_case_completion = 1
-                    let g:neocomplete#enable_smart_case            = 1
-                    let g:neocomplete#enable_underbar_completion   = 1
-                    let g:neocomplete#enable_auto_delimiter        = 1
-                    let g:neocomplete#max_list                     = 15
-                    let g:neocomplete#force_overwrite_completefunc = 1
-
-                    " Define dictionary.
-                    let g:neocomplete#sources#dictionary#dictionaries = {
-                                \ 'default' : '',
-                                \ }
-
-                    " Define keyword.
-                    if !exists('g:neocomplete_keyword_patterns')
-                        let g:neocomplete#keyword_patterns = {}
-                    endif
-                    let g:neocomplete#keyword_patterns._ = '\h\w*'
-
-                    inoremap <expr><c-g> neocomplete#undo_completion()
-                    inoremap <expr><c-l> neocomplete#complete_common_string()
-                    inoremap <expr><cr> neocomplete#complete_common_string()
-
-                    " <C-h>, <BS>: close popup and delete backword char.
-                    inoremap <expr><bs> neocomplete#smart_close_popup()."\<C-h>"
-                    inoremap <expr><c-y> neocomplete#close_popup()
-
-                    " Enable heavy omni completion.
-                    if !exists('g:neocomplete#sources#omni#input_patterns')
-                        let g:neocomplete#sources#omni#input_patterns = {}
-                    endif
-                    let g:neocomplete#sources#omni#input_patterns.php  = '[^. \t]->\h\w*\|\h\w*::'
-                    let g:neocomplete#sources#omni#input_patterns.c    = '[^.[:digit:] *\t]\%(\.\|->\)'
-                    let g:neocomplete#sources#omni#input_patterns.cpp  = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-                    let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-                    let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-                endif
-            " }}}
-        elseif count(g:dewdrops_bundle_groups, 'ycm')
-            " YouCompleteMe {{{
-                Plug 'Valloric/YouCompleteMe'
-                nnoremap <leader>jd :YcmCompleter GoTo<cr>
-                nnoremap <leader>jg :YcmCompleter GetDoc<cr>
-                let g:ycm_key_detailed_diagnostics         = ''
-                let g:ycm_complete_in_comments_and_strings = 1
-                let g:ycm_key_list_select_completion       = ['<tab>', '<C-n>', '<Down>']
-                let g:ycm_key_list_previous_completion     = ['<s-tab>', '<C-p>', '<Up>']
-                let g:ycm_global_ycm_extra_conf            = '~/.ycm_extra_conf.py'
-                let g:ycm_python_binary_path               = 'python3'
-                let g:ycm_confirm_extra_conf               = 0
-                let g:ycm_enable_diagnostic_signs          = 0
-                let g:ycm_semantic_triggers                = {}
-                let g:ycm_semantic_triggers.html           = [' ']
-                let g:ycm_semantic_triggers.xhtml          = [' ']
-                let g:ycm_semantic_triggers.haskell        = ['.']
-                let g:ycm_semantic_triggers.rs             = ['::', '.']
-            "}}}
+        if count(g:dewdrops_bundle_groups, 'ycm')
+            Plug 'Valloric/YouCompleteMe'
+            nnoremap <leader>jd :YcmCompleter GoTo<cr>
+            nnoremap <leader>jg :YcmCompleter GetDoc<cr>
+            let g:ycm_key_detailed_diagnostics         = ''
+            let g:ycm_complete_in_comments_and_strings = 1
+            let g:ycm_key_list_select_completion       = ['<tab>', '<C-n>', '<Down>']
+            let g:ycm_key_list_previous_completion     = ['<s-tab>', '<C-p>', '<Up>']
+            let g:ycm_global_ycm_extra_conf            = '~/.ycm_extra_conf.py'
+            let g:ycm_python_binary_path               = 'python'
+            let g:ycm_confirm_extra_conf               = 0
+            let g:ycm_enable_diagnostic_signs          = 0
+            let g:ycm_semantic_triggers                = {}
+            let g:ycm_semantic_triggers.html           = [' ']
+            let g:ycm_semantic_triggers.xhtml          = [' ']
+            let g:ycm_semantic_triggers.haskell        = ['.']
+            let g:ycm_semantic_triggers.go             = ['.']
+            let g:ycm_semantic_triggers.rs             = ['::', '.']
         else
             Plug 'ajh17/VimCompletesMe'
         endif
-
     " }}}
 
     " PHP {{{
@@ -566,18 +456,6 @@
         endif
     " }}}
 
-    " Clojure {{{
-        if count(g:dewdrops_bundle_groups, 'clojure')
-            Plug 'guns/vim-clojure-static'
-            Plug 'tpope/vim-foreplay'
-            Plug 'guns/vim-clojure-highlight'
-            Plug 'tpope/vim-classpath'
-            Plug 'tpope/vim-leiningen'
-            Plug 'tpope/vim-salve'
-            Plug 'typedclojure/vim-typedclojure'
-        endif
-    " }}}
-
     " HTML {{{
         if count(g:dewdrops_bundle_groups, 'html')
             Plug 'othree/html5.vim'
@@ -605,6 +483,37 @@
             Plug 'pangloss/vim-javascript'
             Plug 'mxw/vim-jsx'
             Plug 'tpope/vim-jdaddy'
+            Plug 'leafgarland/typescript-vim'
+        endif
+    " }}}
+
+    " Erlang {{{
+        if count(g:dewdrops_bundle_groups, 'erlang')
+            Plug 'elixir-editors/vim-elixir'
+            Plug 'vim-erlang/vim-erlang-omnicomplete'
+            Plug 'vim-erlang/vim-erlang-runtime'
+            Plug 'vim-erlang/vim-erlang-compiler'
+        endif
+    " }}}
+
+    " Ocaml {{{
+        if count(g:dewdrops_bundle_groups, 'ocaml')
+            Plug 'avsm/ocaml-annot', {'for': 'ocaml'}
+            Plug 'let-def/ocp-indent-vim'
+            Plug 'ocaml/merlin', {'rtp': 'vim/merlin'}
+            autocmd Filetype ocaml nnoremap <buffer> <leader>jd :MerlinLocate<cr>
+            autocmd Filetype ocaml nnoremap <buffer> <leader>jt :MerlinTypeOf<cr>
+        endif
+    " }}}
+
+    " Perl {{{
+        if count(g:dewdrops_bundle_groups, 'perl')
+            Plug 'vim-perl/vim-perl', {'branch': 'dev'}
+            Plug 'vim-perl/vim-perl6'
+            Plug 'c9s/perlomni.vim'
+
+            Plug 'yko/mojo.vim'
+            let mojo_highlight_data = 1
         endif
     " }}}
 
@@ -612,7 +521,7 @@
         " Plug 'kchmck/vim-coffee-script'
         Plug 'chrisbra/csv.vim'
         " Plug 'tpope/vim-haml'
-        Plug 'fatih/vim-go'
+        " Plug 'fatih/vim-go'
         " Plug 'petRUShka/vim-opencl'
         " Plug 'andreimaxim/vim-io'
         " Plug 'tpope/timl'
@@ -621,42 +530,27 @@
         Plug 'fatih/vim-nginx'
         Plug 'darfink/vim-plist'
         Plug 'hiqsol/pgsql.vim'
-        Plug 'dag/vim-fish'
-        Plug 'wting/rust.vim'
+        " Plug 'dag/vim-fish'
+        Plug 'rust-lang/rust.vim'
         Plug 'cespare/vim-toml'
-        Plug 'tikhomirov/vim-glsl'
+        " Plug 'tikhomirov/vim-glsl'
         " Plug 'chilicuil/vim-sml-coursera'
-        Plug 'rgrinberg/vim-ocaml'
-        Plug 'fsharp/vim-fsharp'
 
-        Plug 'artur-shaik/vim-javacomplete2'
-        autocmd FileType java set omnifunc=javacomplete#Complete
+        Plug 'jceb/vim-orgmode'
+        au FileType org setlocal fdm=expr
 
         " Plug 'rdolgushin/groovy.vim'
 
-        Plug 'OrangeT/vim-csharp'
+        " Plug 'OrangeT/vim-csharp'
         " Plug 'OmniSharp/omnisharp-vim'
         " autocmd Filetype cs nnoremap <buffer> <leader>jr :OmniSharpRename<cr>
 
-        Plug 'travitch/hasksyn', {'on_ft': 'haskell'}
-        Plug 'vim-scripts/Superior-Haskell-Interaction-Mode-SHIM',
-                    \ {'on': ['GhciFile', 'GhciRange', 'GhciReload']}
+        " Plug 'travitch/hasksyn', {'on_ft': 'haskell'}
+        " Plug 'vim-scripts/Superior-Haskell-Interaction-Mode-SHIM',
+        "             \ {'on': ['GhciFile', 'GhciRange', 'GhciReload']}
 
 
-        Plug 'oscarh/vimerl'
-        " Plug 'elixir-lang/vim-elixir'
-
-        Plug 'vim-ruby/vim-ruby'
-        " Plug 'ecomba/vim-ruby-refactoring'
-        " Plug 'sheerun/rspec.vim'
-        " Plug 'tpope/vim-rails'
-
-        Plug 'vim-perl/vim-perl', {'branch': 'dev'}
-        Plug 'vim-perl/vim-perl6'
-        Plug 'c9s/perlomni.vim'
-
-        Plug 'yko/mojo.vim'
-        let mojo_highlight_data = 1
+        " Plug 'vim-ruby/vim-ruby'
 
         " Plug 'tpope/vim-cucumber'
         " Plug 'quentindecock/vim-cucumber-align-pipes'
@@ -669,9 +563,6 @@
         " Plug 'xolox/vim-lua-inspect'
         "
         " Plug 'dhruvasagar/vim-dotoo'
-
-        Plug 'jceb/vim-orgmode'
-        au FileType org setlocal fdm=expr
 
         " Plug 'LaTeX-Box-Team/LaTeX-Box'
         " let g:LatexBox_Folding = 1
@@ -686,7 +577,7 @@
     endif
 
 " }}}
-" 
+"
 " Finish initializations {{{
 
     filetype plugin indent on
@@ -695,8 +586,8 @@
     call plug#end()
 
     " this should be placed after dein#install()
-    colo Tomorrow-Night-Eighties
-    " colo hybrid
+    " colo Tomorrow-Night-Eighties
+    " colo desert
 
 " }}}
 

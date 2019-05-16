@@ -1,5 +1,5 @@
 # Bash configuration of Dewdrops (v_v_4474@126.com)
-# vim: sw=4 ts=4 sts=4 et tw=80 foldmarker={{{,}}} foldlevel=0 foldmethod=marker
+# vim: sw=4 ts=4 sts=4 et tw=80
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -7,7 +7,6 @@
 #load general exports, functions, and aliases
 source $HOME/.common.sh
 
-# history {{{
 
 HISTFILE=~/.histfile
 HISTSIZE=10000
@@ -18,77 +17,19 @@ HISTCONTROL=ignoreboth
 # append to the history file, don't overwrite it
 shopt -s histappend
 
-# }}}
 
-# prompt {{{
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
-if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
-    export TERM=gnome-256color
-elif [[ $TERM != dumb ]] && infocmp xterm-256color >/dev/null 2>&1; then
-    export TERM=xterm-256color
+if [ -f "/usr/local/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+    __GIT_PROMPT_DIR="/usr/local/opt/bash-git-prompt/share"
+    GIT_PROMPT_FETCH_REMOTE_STATUS=0
+    GIT_PROMPT_IGNORE_SUBMODULES=1
+    GIT_PROMPT_THEME=Single_line
+    source "/usr/local/opt/bash-git-prompt/share/gitprompt.sh"
 fi
-
-if tput setaf 1 &> /dev/null; then
-    tput sgr0
-    if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
-      MAGENTA=$(tput setaf 9)
-      ORANGE=$(tput setaf 172)
-      GREEN=$(tput setaf 190)
-      PURPLE=$(tput setaf 141)
-      WHITE=$(tput setaf 0)
-    else
-      MAGENTA=$(tput setaf 5)
-      ORANGE=$(tput setaf 4)
-      GREEN=$(tput setaf 2)
-      PURPLE=$(tput setaf 1)
-      WHITE=$(tput setaf 7)
-    fi
-    BOLD=$(tput bold)
-    RESET=$(tput sgr0)
-else
-    MAGENTA="\033[1;31m"
-    ORANGE="\033[1;33m"
-    GREEN="\033[1;32m"
-    PURPLE="\033[1;35m"
-    WHITE="\033[1;37m"
-    BOLD=""
-    RESET="\033[m"
-fi
-
-parse_git_dirty () {
-  [[ $(git status 2> /dev/null | tail -n1 | cut -c 1-17) != "nothing to commit" ]] && echo "*"
-}
-parse_git_branch () {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
-}
-
-PS1="\[${BOLD}${MAGENTA}\]\u\[$WHITE\] @ \[$ORANGE\]\h\[$WHITE\]: \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\] \$ \[$RESET\]"
-
-# }}}
-
-# commandline edit {{{
-
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-shopt -s globstar
 
 # enable programmable completion features
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-# }}}
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-alias emacs="open -a /Applications/Emacs.app $@"
-
-# load customized configuration
-[ -f $HOME/.bashrc.customized ] && source $HOME/.bashrc.customized
-
-
-#THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
-[[ -s "/Users/zhouchenggang/.gvm/bin/gvm-init.sh" ]] && source "/Users/zhouchenggang/.gvm/bin/gvm-init.sh"
