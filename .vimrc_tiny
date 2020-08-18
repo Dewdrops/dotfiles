@@ -68,6 +68,10 @@
         set cryptmethod=blowfish2           " for more security (zip is too weak)
     endif
 
+    if has("patch-8.1.0360")
+        set diffopt+=internal,algorithm:patience
+    endif
+
     " Omnicomplete
     au Filetype *
                 \ if &omnifunc == "" |

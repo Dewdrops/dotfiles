@@ -17,6 +17,7 @@ export PATH="/Applications/Julia-1.0.app/Contents/Resources/julia/bin:$PATH"
 export PATH="$HOME/site/racket/bin:$PATH"
 
 export PATH="$HOME/.cabal/bin:$PATH"
+export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
 
 export GOPATH=$HOME/myBox/go
 export PATH=$GOPATH/bin:$PATH
@@ -43,7 +44,7 @@ alias md='mkdir -p'
 alias rd='rmdir'
 
 # alias 'cpanm=cpanm --mirror http://mirrors.163.com/cpan/'
-alias 'npm=npm --registry http://registry.cnpmjs.org'
+alias 'cnpm=npm --registry http://registry.cnpmjs.org'
 
 alias aria2rpc='aria2c --conf-path=/Users/dewdrops/Documents/Configurations/aria2.conf -D'
 
@@ -63,11 +64,14 @@ alias dstat='dstat -cdlmnpsy'
 # export PATH="$HOME/.pyenv/bin:$PATH"
 # eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
+# VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
+# source /usr/local/bin/virtualenvwrapper.sh
+source /Users/dewdrops/miniconda3/etc/profile.d/conda.sh
 alias pipi='pip install -i https://pypi.douban.com/simple/'
 
-eval "$(rbenv init -)"
+#eval "$(rbenv init -)"
 
-[[ -s $HOME/perl5/perlbrew/etc/bashrc ]] && source $HOME/perl5/perlbrew/etc/bashrc
+#[[ -s $HOME/perl5/perlbrew/etc/bashrc ]] && source $HOME/perl5/perlbrew/etc/bashrc
 
 function take() {
     mkdir -p $1
@@ -76,15 +80,20 @@ function take() {
 
 fpath=(/usr/local/share/zsh-completions $fpath)
 
-VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
-source /usr/local/bin/virtualenvwrapper.sh
-
 alias hp='all_proxy=localhost:8118'
 
 # export PATH="/usr/local/opt/node@8/bin:$PATH"
 
-alias ec2='python /Users/dewdrops/myBox/agent8/Titan/sandbox/chenggang/ectools.py lcache | grep'
-
 eval `opam config env`
 
-. /Users/dewdrops/miniconda3/etc/profile.d/conda.sh
+export PATH="/usr/local/opt/php@7.2/bin:$PATH"
+export PATH="/usr/local/opt/php@7.2/sbin:$PATH"
+
+export PATH="$HOME/site/optipng-0.7.7/src/optipng:$PATH"
+
+export NODE_PATH="/usr/local/lib/node_modules"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+
+export PATH="$PATH:/Applications/bytedanceide.app/Contents/Resources/app.asar.unpacked"

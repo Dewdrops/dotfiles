@@ -148,6 +148,9 @@
                 Plug 'vim-scripts/sketch.vim'
                 nmap <leader>sk :call ToggleSketch()<cr>
 
+                " Plug 'dahu/vim-lotr'
+                " nmap <leader>lr <plug>LOTRToggle
+
                 Plug 'osyo-manga/vim-over'
                 noremap <leader>ov :OverCommandLine<cr>:%s/
 
@@ -164,7 +167,7 @@
 
             " Motion {{{
                 Plug 'wellle/targets.vim'
-                Plug 'jeetsukumaran/vim-indentwise'
+                " Plug 'jeetsukumaran/vim-indentwise'
                 Plug 'kana/vim-textobj-user'
                 Plug 'kana/vim-textobj-indent'
                 Plug 'thinca/vim-textobj-between'
@@ -173,7 +176,7 @@
                 Plug 'brooth/far.vim'
 
                 Plug 'junegunn/vim-after-object'
-                autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ')
+                autocmd VimEnter * call after_object#enable([']', '['], '=', ':', '-', '#', ' ')
 
                 Plug 'haya14busa/incsearch.vim'
                 map /  <Plug>(incsearch-forward)
@@ -200,13 +203,13 @@
                 " Plug 'Dewdrops/vim-tomorrow-theme'
                 " Plug 'jpo/vim-railscasts-theme'
                 " Plug 'sickill/vim-monokai'
-                "
+                " Plug 'w0ng/vim-hybrid
+
                 Plug 'yonchu/accelerated-smooth-scroll'
                 Plug 'szw/vim-maximizer'
-                Plug 'junegunn/goyo.vim'
-                Plug 'w0ng/vim-hybrid'
 
                 Plug 'bling/vim-airline'
+                " let g:airline_extensions                         = []
                 let g:airline#extensions#hunks#non_zero_only     = 1
                 let g:airline_exclude_preview                    = 1
                 let g:airline#extensions#tabline#enabled         = 1
@@ -221,6 +224,7 @@
                 nmap <leader>8 <Plug>AirlineSelectTab8
                 nmap <leader>9 <Plug>AirlineSelectTab9
 
+                Plug 'junegunn/goyo.vim'
                 Plug 'junegunn/limelight.vim'
                 let g:limelight_conceal_ctermfg = 'gray'
                 let g:limelight_conceal_guifg   = 'DarkGray'
@@ -238,20 +242,20 @@
                 Plug 'vim-scripts/LargeFile'
                 " Plug 'mtth/scratch.vim'
                 Plug 'justinmk/vim-gtfo'
-                Plug 'chrisbra/vim-diff-enhanced'
+                " Plug 'chrisbra/vim-diff-enhanced'
                 Plug 'tpope/vim-eunuch'
                 Plug 'exvim/ex-visincr'
                 Plug 'chrisbra/Recover.vim'
                 Plug 'AndrewRadev/linediff.vim'
                 Plug 'tpope/vim-characterize'
-                Plug 'thinca/vim-prettyprint'
-                Plug 'Konfekt/FastFold'
-                Plug 'tpope/vim-dadbod'
+                " Plug 'thinca/vim-prettyprint'
+                " Plug 'Konfekt/FastFold'
+                " Plug 'tpope/vim-dadbod'
                 " Plug 'MattesGroeger/vim-bookmarks'
-                Plug 'mbbill/fencview'
-                Plug 'mattn/calendar-vim'
+                " Plug 'mbbill/fencview'
+                Plug 'mattn/calendar-vim', {'on': 'CalendarH'}
                 Plug 'arecarn/crunch'
-                Plug 'wellle/visual-split.vim'
+                Plug 'wellle/visual-split.vim', {'on': ['VSSplit', 'VSResize']}
                 Plug 'dansomething/vim-hackernews'
                 Plug 'Shougo/junkfile.vim'
                 Plug 'skywind3000/asyncrun.vim'
@@ -262,9 +266,6 @@
 
                 " Plug 'kshenoy/vim-signature'
                 " nnoremap <leader>sg :SignatureToggle<cr>
-
-                Plug 'dahu/vim-lotr'
-                nmap <leader>lr <plug>LOTRToggle
 
                 Plug 'Dewdrops/vim-interestingwords'
                 let g:interestingWordsDefaultMappings = 0
@@ -294,10 +295,10 @@
             Plug 'justinmk/vim-syntax-extra'
             Plug 'tpope/vim-dispatch'
             Plug 'bruno-/vim-man'
-            Plug 'metakirby5/codi.vim'
+            " Plug 'metakirby5/codi.vim'
             Plug 'sbdchd/neoformat'
             " Plug 'jaxbot/semantic-highlight.vim', {'on': 'SemanticHighlight'}
-            Plug 'AndrewRadev/switch.vim', {'on': 'Switch'}
+            " Plug 'AndrewRadev/switch.vim', {'on': 'Switch'}
             Plug 'vim-scripts/a.vim', {'on': 'A'}
             Plug 'editorconfig/editorconfig-vim'
             " Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
@@ -310,9 +311,9 @@
                         \   'python': [],
                         \}
 
-            Plug 'AndrewRadev/splitjoin.vim'
-            let g:splitjoin_split_mapping = 'cS'
-            let g:splitjoin_join_mapping  = 'cJ'
+            " Plug 'AndrewRadev/splitjoin.vim'
+            " let g:splitjoin_split_mapping = 'cS'
+            " let g:splitjoin_join_mapping  = 'cJ'
 
             Plug 'vim-scripts/matchit.zip'
             let b:match_ignorecase = 1
@@ -490,6 +491,7 @@
     " Erlang {{{
         if count(g:dewdrops_bundle_groups, 'erlang')
             Plug 'elixir-editors/vim-elixir'
+            Plug 'slashmili/alchemist.vim'
             Plug 'vim-erlang/vim-erlang-omnicomplete'
             Plug 'vim-erlang/vim-erlang-runtime'
             Plug 'vim-erlang/vim-erlang-compiler'
