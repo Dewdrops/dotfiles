@@ -144,6 +144,9 @@
                 Plug 'dhruvasagar/vim-table-mode'
                 Plug 'Dewdrops/vim-unimpaired'
 
+                Plug 'machakann/vim-highlightedyank'
+                let g:highlightedyank_highlight_duration = 400
+
                 Plug 'vim-scripts/DrawIt'
                 Plug 'vim-scripts/sketch.vim'
                 nmap <leader>sk :call ToggleSketch()<cr>
@@ -172,8 +175,14 @@
                 Plug 'kana/vim-textobj-indent'
                 Plug 'thinca/vim-textobj-between'
                 Plug 'bruno-/vim-vertical-move'
-                Plug 'unblevable/quick-scope'
                 Plug 'brooth/far.vim'
+
+                Plug 'unblevable/quick-scope'
+                augroup qs_colors
+                    autocmd!
+                    autocmd ColorScheme Tomorrow-Night-Eighties highlight QuickScopePrimary guifg='#0000ff' gui=underline ctermfg=blue cterm=underline
+                    autocmd ColorScheme Tomorrow-Night-Eighties highlight QuickScopeSecondary guifg='#ff0000' gui=underline ctermfg=red cterm=underline
+                augroup END
 
                 Plug 'junegunn/vim-after-object'
                 autocmd VimEnter * call after_object#enable([']', '['], '=', ':', '-', '#', ' ')
@@ -200,7 +209,7 @@
             " }}}
 
             " UI {{{
-                " Plug 'Dewdrops/vim-tomorrow-theme'
+                Plug 'Dewdrops/vim-tomorrow-theme'
                 " Plug 'jpo/vim-railscasts-theme'
                 " Plug 'sickill/vim-monokai'
                 " Plug 'w0ng/vim-hybrid
@@ -588,7 +597,7 @@
     call plug#end()
 
     " this should be placed after dein#install()
-    " colo Tomorrow-Night-Eighties
+    colo Tomorrow-Night-Eighties
     " colo desert
 
 " }}}
