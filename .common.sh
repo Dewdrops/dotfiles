@@ -97,3 +97,5 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 
 export PATH="$PATH:/Applications/bytedanceide.app/Contents/Resources/app.asar.unpacked"
+
+export PATH="$PATH:/usr/local/lib/ruby/gems/2.7.0/bin"

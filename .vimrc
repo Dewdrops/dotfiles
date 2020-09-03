@@ -314,10 +314,10 @@
             Plug 'rizzatti/dash.vim'
             nmap <leader>D <Plug>DashSearch
 
-            Plug 'w0rp/ale'
-            let g:ale_linters = {
-                        \   'python': [],
-                        \}
+            " Plug 'w0rp/ale'
+            " let g:ale_linters = {
+            "             \   'python': [],
+            "             \}
 
             " Plug 'AndrewRadev/splitjoin.vim'
             " let g:splitjoin_split_mapping = 'cS'
@@ -326,11 +326,11 @@
             Plug 'vim-scripts/matchit.zip'
             let b:match_ignorecase = 1
 
-            Plug 'SirVer/ultisnips'
-            Plug 'honza/vim-snippets'
-            let g:UltiSnipsExpandTrigger       = "<c-k>"
-            let g:UltiSnipsJumpForwardTrigger  = "<c-k>"
-            let g:UltiSnipsJumpBackwardTrigger = "<c-j>"
+            " Plug 'SirVer/ultisnips'
+            " Plug 'honza/vim-snippets'
+            " let g:UltiSnipsExpandTrigger       = "<c-k>"
+            " let g:UltiSnipsJumpForwardTrigger  = "<c-k>"
+            " let g:UltiSnipsJumpBackwardTrigger = "<c-j>"
 
             Plug 'Chiel92/vim-autoformat', {'on': 'AutoFormat'}
             nnoremap <leader>gq :Autoformat<cr>
@@ -430,17 +430,13 @@
             let g:ycm_semantic_triggers.rs             = ['::', '.']
         elseif count(g:dewdrops_bundle_groups, 'coc')
             Plug 'neoclide/coc.nvim', {'branch': 'release'}
+            imap <C-l> <Plug>(coc-snippets-expand)
+            vmap <C-j> <Plug>(coc-snippets-select)
+            let g:coc_snippet_next = '<c-j>'
+            let g:coc_snippet_prev = '<c-k>'
+            imap <C-j> <Plug>(coc-snippets-expand-jump)
         else
             Plug 'ajh17/VimCompletesMe'
-        endif
-    " }}}
-
-    " PHP {{{
-        if count(g:dewdrops_bundle_groups, 'php')
-            Plug 'StanAngeloff/php.vim'
-            Plug 'jwalton512/vim-blade'
-            Plug 'arnaud-lb/vim-php-namespace'
-            Plug 'shawncplus/phpcomplete.vim'
         endif
     " }}}
 
