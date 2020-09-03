@@ -25,7 +25,7 @@
                         \     'git',
                         \     'ocaml',
                         \     'erlang',
-                        \     'ycm',
+                        \     'coc',
                         \ ]
         endif
     " }}}
@@ -141,15 +141,15 @@
                 " Plug 'Shougo/vinarise.vim', {'on_cmd': 'Vinarise'}
                 Plug 'tpope/vim-abolish'
                 Plug 'arthurxavierx/vim-caser'
-                Plug 'dhruvasagar/vim-table-mode'
+                " Plug 'dhruvasagar/vim-table-mode'
                 Plug 'Dewdrops/vim-unimpaired'
 
                 Plug 'machakann/vim-highlightedyank'
                 let g:highlightedyank_highlight_duration = 400
 
-                Plug 'vim-scripts/DrawIt'
-                Plug 'vim-scripts/sketch.vim'
-                nmap <leader>sk :call ToggleSketch()<cr>
+                " Plug 'vim-scripts/DrawIt'
+                " Plug 'vim-scripts/sketch.vim'
+                " nmap <leader>sk :call ToggleSketch()<cr>
 
                 " Plug 'dahu/vim-lotr'
                 " nmap <leader>lr <plug>LOTRToggle
@@ -181,7 +181,7 @@
                 augroup qs_colors
                     autocmd!
                     autocmd ColorScheme Tomorrow-Night-Eighties highlight QuickScopePrimary guifg='#0000ff' gui=underline ctermfg=blue cterm=underline
-                    autocmd ColorScheme Tomorrow-Night-Eighties highlight QuickScopeSecondary guifg='#ff0000' gui=underline ctermfg=red cterm=underline
+                    autocmd ColorScheme Tomorrow-Night-Eighties highlight QuickScopeSecondary guifg='#ff0000' gui=underline ctermfg=202 cterm=underline
                 augroup END
 
                 Plug 'junegunn/vim-after-object'
@@ -310,7 +310,6 @@
             " Plug 'AndrewRadev/switch.vim', {'on': 'Switch'}
             Plug 'vim-scripts/a.vim', {'on': 'A'}
             Plug 'editorconfig/editorconfig-vim'
-            " Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
             Plug 'rizzatti/dash.vim'
             nmap <leader>D <Plug>DashSearch
@@ -429,6 +428,8 @@
             let g:ycm_semantic_triggers.haskell        = ['.']
             let g:ycm_semantic_triggers.go             = ['.']
             let g:ycm_semantic_triggers.rs             = ['::', '.']
+        elseif count(g:dewdrops_bundle_groups, 'coc')
+            Plug 'neoclide/coc.nvim', {'branch': 'release'}
         else
             Plug 'ajh17/VimCompletesMe'
         endif
@@ -497,16 +498,6 @@
         endif
     " }}}
 
-    " Erlang {{{
-        if count(g:dewdrops_bundle_groups, 'erlang')
-            Plug 'elixir-editors/vim-elixir'
-            Plug 'slashmili/alchemist.vim'
-            Plug 'vim-erlang/vim-erlang-omnicomplete'
-            Plug 'vim-erlang/vim-erlang-runtime'
-            Plug 'vim-erlang/vim-erlang-compiler'
-        endif
-    " }}}
-
     " Ocaml {{{
         if count(g:dewdrops_bundle_groups, 'ocaml')
             Plug 'avsm/ocaml-annot', {'for': 'ocaml'}
@@ -546,6 +537,7 @@
         Plug 'cespare/vim-toml'
         " Plug 'tikhomirov/vim-glsl'
         " Plug 'chilicuil/vim-sml-coursera'
+        Plug 'elixir-editors/vim-elixir'
 
         Plug 'jceb/vim-orgmode'
         au FileType org setlocal fdm=expr
@@ -556,24 +548,9 @@
         " Plug 'OmniSharp/omnisharp-vim'
         " autocmd Filetype cs nnoremap <buffer> <leader>jr :OmniSharpRename<cr>
 
-        " Plug 'travitch/hasksyn', {'on_ft': 'haskell'}
-        " Plug 'vim-scripts/Superior-Haskell-Interaction-Mode-SHIM',
-        "             \ {'on': ['GhciFile', 'GhciRange', 'GhciReload']}
-
-
-        " Plug 'vim-ruby/vim-ruby'
-
-        " Plug 'tpope/vim-cucumber'
-        " Plug 'quentindecock/vim-cucumber-align-pipes'
-        "
-        " Plug 'derekwyatt/vim-sbt'
-        " Plug 'derekwyatt/vim-scala'
-        "
         " Plug 'xolox/vim-misc'
         " Plug 'xolox/vim-lua-ftplugin'
         " Plug 'xolox/vim-lua-inspect'
-        "
-        " Plug 'dhruvasagar/vim-dotoo'
 
         " Plug 'LaTeX-Box-Team/LaTeX-Box'
         " let g:LatexBox_Folding = 1
