@@ -45,9 +45,9 @@
     set mousehide               " Hide the mouse cursor while typing
     scriptencoding utf-8
 
-    if has ('x') && has ('gui') " On Linux use + register for copy-paste
+    if has('x') && has('gui') " On Linux use + register for copy-paste
         set clipboard=unnamedplus
-    elseif has ('gui')          " On mac and Windows, use * register for copy-paste
+    elseif has('gui')          " On mac and Windows, use * register for copy-paste
         set clipboard=unnamed
     endif
 
@@ -57,7 +57,7 @@
     au BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 
     set autoread                            " reload automatically when file is changed outside
-    set shortmess+=filmnrxoOtT              " Abbrev. of messages (avoids 'hit enter')
+    set shortmess+=filmnrxoOtTc             " Abbrev. of messages (avoids 'hit enter')
     set viewoptions=folds,cursor,unix,slash " Better Unix / Windows compatibility
     set sessionoptions=blank,buffers,curdir,folds,slash,tabpages,winsize,unix
     set virtualedit=onemore                 " Allow for cursor beyond last character
@@ -67,6 +67,7 @@
     if v:version >= 800
         set cryptmethod=blowfish2           " for more security (zip is too weak)
     endif
+    set updatetime=300
 
     if has("patch-8.1.0360")
         set diffopt+=internal,algorithm:patience
@@ -113,8 +114,20 @@
     autocmd BufWritePost,WinLeave,BufWinLeave ?* if <SID>MakeViewCheck() | mkview | endif
     autocmd BufWinEnter ?* if <SID>MakeViewCheck() | silent! loadview | endif
 
-    " Setting up the directories
-    set backup
+    set nobackup
+    set nowritebackup
+
+    " Give more space for displaying messages.
+    set cmdheight=1
+
+    " Always show the signcolumn, otherwise it would shift the text each time diagnostics appear/become resolved.
+    if has("patch-8.1.1564")
+        " Recently vim can merge signcolumn and number column into one
+        set signcolumn=number
+    else
+        set signcolumn=yes
+    endif
+
     if has('persistent_undo')
         set undofile
         set undolevels=1000         " Maximum number of changes that can be undone
@@ -298,7 +311,7 @@
     nmap <leader>ts :r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<cr>
 
     " Toggle readonly
-    nnoremap <leader>ro :set readonly!<cr>
+    nnoremap <leader>R :set readonly!<cr>
 
     " Toggle search highlighting
     nmap <silent> <leader>nh :nohlsearch<cr>
@@ -326,7 +339,6 @@
     map <leader>T :e ~/.vimrc_tiny<cr>
 
     " Adjust viewports to the same size
-    map <Leader>= <C-w>=
     map <Leader>x0 <C-w>c
     map <Leader>x1 <C-w>o
 
@@ -443,17 +455,13 @@
     function! InitializeDirectories()
         let parent = $HOME
         let prefix = 'vim'
-        let dir_list = {
-                    \ 'backup': 'backupdir',
-                    \ 'views': 'viewdir',
-                    \ 'swap': 'directory' }
 
+        let dir_list = { 'views': 'viewdir', 'swap': 'directory' }
         if has('persistent_undo')
             let dir_list['undo'] = 'undodir'
         endif
 
-        " Specify the directory in which to place the vimbackup,
-        " vimviews, vimundo, and vimswap files/directories
+        " Specify the directory in which to place the vimviews, vimundo, and vimswap files/directories
         let common_dir = parent . '/.' . prefix
 
         for [dirname, settingname] in items(dir_list)

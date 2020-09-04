@@ -48,8 +48,8 @@
                 " map <Leader>nt <plug>NERDTreeTabsToggle<cr>
                 " map <Leader>nf <plug>NERDTreeTabsFind<cr>
 
-                " Plug 'troydm/easytree.vim', {'on': 'EasyTreeToggle'}
-                " map <Leader>et :EasyTreeToggle<cr>
+                Plug 'Dewdrops/easytree.vim', {'on': 'EasyTreeToggle'}
+                map <Leader>et :EasyTreeToggle<cr>
 
                 " Plug 'justinmk/vim-dirvish'
 
@@ -130,19 +130,25 @@
 
             " Edit {{{
                 " Plug 'tpope/vim-speeddating'
-                Plug 'jiangmiao/auto-pairs'
                 Plug 'tpope/vim-surround'
                 Plug 'terryma/vim-multiple-cursors'
                 Plug 'tpope/vim-repeat'
                 Plug 'ryvnf/readline.vim'
                 Plug 'chrisbra/NrrwRgn'
-                Plug 'vim-scripts/ReplaceWithRegister'
                 Plug 'junegunn/vim-peekaboo'
                 " Plug 'Shougo/vinarise.vim', {'on_cmd': 'Vinarise'}
                 Plug 'tpope/vim-abolish'
                 Plug 'arthurxavierx/vim-caser'
                 " Plug 'dhruvasagar/vim-table-mode'
                 Plug 'Dewdrops/vim-unimpaired'
+
+                Plug 'vim-scripts/ReplaceWithRegister'
+                nmap <Leader>r  <Plug>ReplaceWithRegisterOperator
+                nmap <Leader>rr <Plug>ReplaceWithRegisterLine
+                xmap <Leader>r  <Plug>ReplaceWithRegisterVisual
+
+                Plug 'jiangmiao/auto-pairs'
+                autocmd Filetype ocaml let b:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '(*':'*)'}
 
                 Plug 'machakann/vim-highlightedyank'
                 let g:highlightedyank_highlight_duration = 400
@@ -300,7 +306,6 @@
     " General Programming {{{
         if count(g:dewdrops_bundle_groups, 'programming')
             Plug 'tpope/vim-endwise'
-            Plug 'octol/vim-cpp-enhanced-highlight'
             Plug 'justinmk/vim-syntax-extra'
             Plug 'tpope/vim-dispatch'
             Plug 'bruno-/vim-man'
@@ -327,10 +332,10 @@
             let b:match_ignorecase = 1
 
             " Plug 'SirVer/ultisnips'
-            " Plug 'honza/vim-snippets'
             " let g:UltiSnipsExpandTrigger       = "<c-k>"
             " let g:UltiSnipsJumpForwardTrigger  = "<c-k>"
             " let g:UltiSnipsJumpBackwardTrigger = "<c-j>"
+            Plug 'honza/vim-snippets'
 
             Plug 'Chiel92/vim-autoformat', {'on': 'AutoFormat'}
             nnoremap <leader>gq :Autoformat<cr>
@@ -430,11 +435,51 @@
             let g:ycm_semantic_triggers.rs             = ['::', '.']
         elseif count(g:dewdrops_bundle_groups, 'coc')
             Plug 'neoclide/coc.nvim', {'branch': 'release'}
-            imap <C-l> <Plug>(coc-snippets-expand)
-            vmap <C-j> <Plug>(coc-snippets-select)
-            let g:coc_snippet_next = '<c-j>'
-            let g:coc_snippet_prev = '<c-k>'
             imap <C-j> <Plug>(coc-snippets-expand-jump)
+            vmap <C-j> <Plug>(coc-snippets-select)
+
+            nmap <silent> [g <Plug>(coc-diagnostic-prev)
+            nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+            nmap <silent> gd <Plug>(coc-definition)
+            nmap <silent> gt <Plug>(coc-type-definition)
+            nmap <silent> gi <Plug>(coc-implementation)
+            nmap <silent> gr <Plug>(coc-references)
+
+            nmap cv <Plug>(coc-rename)
+
+            nmap <silent> <C-s> <Plug>(coc-range-select)
+            xmap <silent> <C-s> <Plug>(coc-range-select)
+
+            xmap <leader>ja  <Plug>(coc-codeaction-selected)
+            nmap <leader>ja  <Plug>(coc-codeaction-selected)
+            nmap <leader>jf  <Plug>(coc-fix-current)
+
+            xmap iF <Plug>(coc-funcobj-i)
+            omap iF <Plug>(coc-funcobj-i)
+            xmap aF <Plug>(coc-funcobj-a)
+            omap aF <Plug>(coc-funcobj-a)
+            xmap iC <Plug>(coc-classobj-i)
+            omap iC <Plug>(coc-classobj-i)
+            xmap aC <Plug>(coc-classobj-a)
+            omap aC <Plug>(coc-classobj-a)
+
+            nnoremap <silent> K :call <SID>show_documentation()<CR>
+            function! s:show_documentation()
+                if (index(['vim','help'], &filetype) >= 0)
+                    execute 'h '.expand('<cword>')
+                else
+                    call CocAction('doHover')
+                endif
+            endfunction
+
+            autocmd CursorHold * silent call CocActionAsync('highlight')
+            autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+            autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+
+            command! -nargs=0 Format :call CocAction('format')
+            command! -nargs=? Fold :call CocAction('fold', <f-args>)
+            command! -nargs=0 Organize :call CocAction('runCommand', 'editor.action.organizeImport')
         else
             Plug 'ajh17/VimCompletesMe'
         endif
@@ -496,39 +541,26 @@
 
     " Ocaml {{{
         if count(g:dewdrops_bundle_groups, 'ocaml')
-            Plug 'avsm/ocaml-annot', {'for': 'ocaml'}
             Plug 'let-def/ocp-indent-vim'
-            Plug 'ocaml/merlin', {'rtp': 'vim/merlin'}
-            autocmd Filetype ocaml nnoremap <buffer> <leader>jd :MerlinLocate<cr>
-            autocmd Filetype ocaml nnoremap <buffer> <leader>jt :MerlinTypeOf<cr>
-        endif
-    " }}}
-
-    " Perl {{{
-        if count(g:dewdrops_bundle_groups, 'perl')
-            Plug 'vim-perl/vim-perl', {'branch': 'dev'}
-            Plug 'vim-perl/vim-perl6'
-            Plug 'c9s/perlomni.vim'
-
-            Plug 'yko/mojo.vim'
-            let mojo_highlight_data = 1
+            " Plug 'ocaml/merlin', {'rtp': 'vim/merlin'}
+            " autocmd Filetype ocaml nnoremap <buffer> <leader>jd :MerlinLocate<cr>
+            " autocmd Filetype ocaml nnoremap <buffer> <leader>jt :MerlinTypeOf<cr>
         endif
     " }}}
 
     " Misc Languages {{{
+        Plug 'octol/vim-cpp-enhanced-highlight'
         " Plug 'kchmck/vim-coffee-script'
         Plug 'chrisbra/csv.vim'
         " Plug 'tpope/vim-haml'
         " Plug 'fatih/vim-go'
         " Plug 'petRUShka/vim-opencl'
-        " Plug 'andreimaxim/vim-io'
         " Plug 'tpope/timl'
         " Plug 'JuliaLang/julia-vim'
         " Plug 'Rykka/riv.vim'
         Plug 'fatih/vim-nginx'
         Plug 'darfink/vim-plist'
         Plug 'hiqsol/pgsql.vim'
-        " Plug 'dag/vim-fish'
         Plug 'rust-lang/rust.vim'
         Plug 'cespare/vim-toml'
         " Plug 'tikhomirov/vim-glsl'
@@ -541,8 +573,6 @@
         " Plug 'rdolgushin/groovy.vim'
 
         " Plug 'OrangeT/vim-csharp'
-        " Plug 'OmniSharp/omnisharp-vim'
-        " autocmd Filetype cs nnoremap <buffer> <leader>jr :OmniSharpRename<cr>
 
         " Plug 'xolox/vim-misc'
         " Plug 'xolox/vim-lua-ftplugin'
@@ -554,14 +584,6 @@
 
 " }}}
 
-" Neovim specific settings {{{
-
-    if has('nvim')
-        " set inccommand=nosplit
-    endif
-
-" }}}
-"
 " Finish initializations {{{
 
     filetype plugin indent on
