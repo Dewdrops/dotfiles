@@ -23,8 +23,6 @@
                         \     'general',
                         \     'programming',
                         \     'git',
-                        \     'ocaml',
-                        \     'erlang',
                         \     'coc',
                         \ ]
         endif
@@ -148,10 +146,10 @@
                 xmap <Leader>r  <Plug>ReplaceWithRegisterVisual
 
                 Plug 'jiangmiao/auto-pairs'
-                autocmd Filetype ocaml let b:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '(*':'*)'}
+                autocmd Filetype ocaml let b:AutoPairs = {'(':')', '[':']', '{':'}', '"':'"', '(*':'*)'}
 
                 Plug 'machakann/vim-highlightedyank'
-                let g:highlightedyank_highlight_duration = 400
+                let g:highlightedyank_highlight_duration = 200
 
                 " Plug 'vim-scripts/DrawIt'
                 " Plug 'vim-scripts/sketch.vim'
@@ -488,6 +486,8 @@
     " Lisp {{{
         if count(g:dewdrops_bundle_groups, 'lisp')
             Plug 'losingkeys/vim-niji'
+            Plug 'wlangstroth/vim-racket'
+            " Plug 'kovisoft/slimv'
 
             Plug 'guns/vim-sexp', {'for': ['lisp', 'scheme', 'clojure']}
             au FileType lisp,scheme,clojure let maplocalleader = '-'
@@ -530,31 +530,17 @@
         endif
     " }}}
 
-    " Javascript {{{
-        if count(g:dewdrops_bundle_groups, 'js')
-            Plug 'pangloss/vim-javascript'
-            Plug 'mxw/vim-jsx'
-            Plug 'tpope/vim-jdaddy'
-            Plug 'leafgarland/typescript-vim'
-        endif
-    " }}}
-
-    " Ocaml {{{
-        if count(g:dewdrops_bundle_groups, 'ocaml')
-            Plug 'let-def/ocp-indent-vim'
-            " Plug 'ocaml/merlin', {'rtp': 'vim/merlin'}
-            " autocmd Filetype ocaml nnoremap <buffer> <leader>jd :MerlinLocate<cr>
-            " autocmd Filetype ocaml nnoremap <buffer> <leader>jt :MerlinTypeOf<cr>
-        endif
-    " }}}
-
     " Misc Languages {{{
         Plug 'octol/vim-cpp-enhanced-highlight'
+        Plug 'pangloss/vim-javascript'
+        Plug 'mxw/vim-jsx'
+        Plug 'tpope/vim-jdaddy'
+        Plug 'vim-scripts/forth.vim'
+        Plug 'leafgarland/typescript-vim'
         " Plug 'kchmck/vim-coffee-script'
         Plug 'chrisbra/csv.vim'
         " Plug 'tpope/vim-haml'
         " Plug 'fatih/vim-go'
-        " Plug 'petRUShka/vim-opencl'
         " Plug 'tpope/timl'
         " Plug 'JuliaLang/julia-vim'
         " Plug 'Rykka/riv.vim'
@@ -566,6 +552,13 @@
         " Plug 'tikhomirov/vim-glsl'
         " Plug 'chilicuil/vim-sml-coursera'
         Plug 'elixir-editors/vim-elixir'
+        Plug 'let-def/ocp-indent-vim'
+        Plug 'cheery/idris-vim'
+        Plug 'zah/nim.vim'
+
+        Plug 'ocaml/merlin', {'rtp': 'vim/merlin', 'on': ['MerlinLocate', 'MerlinTypeOf']}
+        autocmd Filetype ocaml nnoremap <buffer> <leader>jd :MerlinLocate<cr>
+        autocmd Filetype ocaml nnoremap <buffer> <leader>jt :MerlinTypeOf<cr>
 
         Plug 'jceb/vim-orgmode'
         au FileType org setlocal fdm=expr
@@ -592,8 +585,8 @@
     call plug#end()
 
     " this should be placed after dein#install()
-    colo Tomorrow-Night-Eighties
-    " colo desert
+    " colo Tomorrow-Night-Eighties
+    colo desert
 
 " }}}
 

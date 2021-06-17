@@ -105,9 +105,9 @@
     " ignore compiled files
     set wildignore=*.o,*.obj,*.pyc,*.elc,*~
     if has("win16") || has("win32")
-        set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
-    else
         set wildignore+=.git\*,.hg\*,.svn\*
+    else
+        set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
     endif
 
     " Autosave & Load Views.
@@ -254,6 +254,8 @@
     command! -bang -nargs=* -complete=file WQ wq<bang> <args>
     command! -bang Wa wa<bang>
     command! -bang WA wa<bang>
+    command! -bang Xa xa<bang>
+    command! -bang XA xa<bang>
     command! -bang Q q<bang>
     command! -bang QA qa<bang>
     command! -bang Qa qa<bang>
@@ -388,15 +390,6 @@
     inoremap ;q <esc>mMA;<esc>`M
     inoremap ;a <esc>mMA;<return>
     inoremap ;. ->
-
-    au FileType php,perl inoremap <buffer> ;s $
-    au FileType perl inoremap <buffer> ;h %
-    au FileType php,perl inoremap <buffer> ;l @
-    au FileType php,perl inoremap <buffer> ;f <space>=><space>
-
-    au FileType php,perl inoremap <buffer> .. ->
-    au FileType perl inoremap <buffer> ... ..
-    au FileType perl inoremap <buffer> .... ...
 
     " unimpaired-like binding
     if g:dewdrops_invoked_as_dotvimrc
