@@ -1,7 +1,7 @@
 [user]
 
-	name = Dewdrops
-	email = v_v_4474@126.com
+	name = czhou
+	email = czhou@yipitdata.com
 
 [core]
 
@@ -122,6 +122,7 @@
 [github]
 
 	user = Dewdrops
+	token = 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
 
 [pull]
 	rebase = false

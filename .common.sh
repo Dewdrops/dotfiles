@@ -17,13 +17,14 @@ export PATH="/Applications/Julia-1.0.app/Contents/Resources/julia/bin:$PATH"
 export PATH="$HOME/.cabal/bin:$PATH"
 export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
 
-export GOPATH=$HOME/myBox/go
 export PATH=$GOPATH/bin:$PATH
 
 export PATH=$HOME/bin:$PATH
 export PATH=/usr/local/Cellar/opencv3/3.2.0/bin:$PATH
 
 export LESS=-R
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 alias ..='cd ..'
 alias cd..='cd ..'
@@ -62,12 +63,10 @@ alias dstat='dstat -cdlmnpsy'
 # eval "$(pyenv virtualenv-init -)"
 # VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
 # source /usr/local/bin/virtualenvwrapper.sh
-source /Users/dewdrops/miniconda3/etc/profile.d/conda.sh
+# source /Users/dewdrops/miniconda3/etc/profile.d/conda.sh
 alias pipi='pip install -i https://pypi.douban.com/simple/'
 
 #eval "$(rbenv init -)"
-
-#[[ -s $HOME/perl5/perlbrew/etc/bashrc ]] && source $HOME/perl5/perlbrew/etc/bashrc
 
 function take() {
     mkdir -p $1
@@ -85,8 +84,10 @@ export PATH="$HOME/site/optipng-0.7.7/src/optipng:$PATH"
 
 export NODE_PATH="/usr/local/lib/node_modules"
 
+BREW_PREFIX=$(brew --prefix)
+
 export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "$BREW_PREFIX/opt/nvm/nvm.sh" ] && \. "/$BREW_PREFIX/opt/nvm/nvm.sh"  # This loads nvm
 
 export PATH="$PATH:/Applications/bytedanceide.app/Contents/Resources/app.asar.unpacked"
 
@@ -102,10 +103,9 @@ export PATH="$PATH:$HOME/site/flutter/bin"
 
 export PATH=/Applications/factor:"$PATH"
 
-[ -f "/Users/dewdrops/.ghcup/env" ] && source "/Users/dewdrops/.ghcup/env" # ghcup-env
-
-eval `/usr/local/bin/opam config env`
+# eval `/usr/local/bin/opam config env`
 
 export PUB_HOSTED_URL=https://pub.flutter-io.cn
 export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
