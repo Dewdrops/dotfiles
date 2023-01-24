@@ -59,7 +59,7 @@
     set autoread                            " reload automatically when file is changed outside
     set shortmess+=filmnrxoOtTc             " Abbrev. of messages (avoids 'hit enter')
     set viewoptions=folds,cursor,unix,slash " Better Unix / Windows compatibility
-    set sessionoptions=blank,buffers,curdir,folds,slash,tabpages,winsize,unix
+    set sessionoptions=blank,buffers,curdir,folds,slash,tabpages,winsize,unix,help,terminal
     set virtualedit=onemore                 " Allow for cursor beyond last character
     set history=1000                        " Store a ton of history (default is 20)
     set hidden                              " Allow buffer switching without saving
@@ -116,6 +116,12 @@
 
     set nobackup
     set nowritebackup
+
+    set tildeop
+
+    set nrformats=bin,hex,alpha
+
+    set nolangremap
 
     " Give more space for displaying messages.
     set cmdheight=1

@@ -22,8 +22,6 @@ setopt interactivecomments
 
 setopt long_list_jobs
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
 # The next line updates PATH for the Google Cloud SDK.
@@ -52,3 +50,5 @@ unset __conda_setup
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 [[ ! -r /Users/czhou/.opam/opam-init/init.zsh ]] || source /Users/czhou/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

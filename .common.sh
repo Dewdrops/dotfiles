@@ -73,14 +73,7 @@ function take() {
     cd $1
 }
 
-alias hp='all_proxy=localhost:8118'
-
-# export PATH="/usr/local/opt/node@8/bin:$PATH"
-
-export PATH="/usr/local/opt/php@7.4/bin:$PATH"
-export PATH="/usr/local/opt/php@7.4/sbin:$PATH"
-
-export PATH="$HOME/site/optipng-0.7.7/src/optipng:$PATH"
+alias hp='ALL_PROXY=socks5://localhost:18010'
 
 export NODE_PATH="/usr/local/lib/node_modules"
 
@@ -108,4 +101,29 @@ export PATH=/Applications/factor:"$PATH"
 export PUB_HOSTED_URL=https://pub.flutter-io.cn
 export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export PATH="$BREW_PREFIX/opt/ruby/bin:$PATH"
+
+export PATH=$PATH:~/.roswell/bin
+
+export CFLAGS="-I$BREW_PREFIX/include -L$BREW_PREFIX/lib"
+export LDFLAGS="-L$BREW_PREFIX/lib/"
+
+export PATH="/opt/homebrew/opt/texinfo/bin:$PATH"
+export PATH=/Applications/factor:"$PATH"
+
+if [ -d "/Applications/Emacs.app/Contents/MacOS/bin" ]; then
+  export PATH="$PATH:/Applications/Emacs.app/Contents/MacOS/bin"
+fi
+
+vterm_printf(){
+    if [ -n "$TMUX" ] && ([ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ] ); then
+        # Tell tmux to pass the escape sequences through
+        printf "\ePtmux;\e\e]%s\007\e\\" "$1"
+    elif [ "${TERM%%-*}" = "screen" ]; then
+        # GNU screen (screen, screen-256color, screen-256color-bce)
+        printf "\eP\e]%s\007\e\\" "$1"
+    else
+        printf "\e]%s\e\\" "$1"
+    fi
+}
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"

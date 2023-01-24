@@ -23,6 +23,7 @@
                         \     'general',
                         \     'programming',
                         \     'git',
+                        \     'web',
                         \     'coc',
                         \ ]
         endif
@@ -107,23 +108,23 @@
             " }}}
 
             " Startify {{{
-                " Plug 'mhinz/vim-startify'
-                "
-                " if executable('fortune') && executable('cowsay')
-                "     let g:startify_custom_header =
-                "                 \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
-                " else
-                "     let g:startify_custom_header = [
-                "                 \ '         ____                   _                     ',
-                "                 \ '        |  _ \  _____      ____| |_ __ ___  _ __  ___ ',
-                "                 \ '        | | | |/ _ \ \ /\ / / _` | ''__/ _ \| ''_ \/ __|',
-                "                 \ '        | |_| |  __/\ V  V / (_| | | | (_) | |_) \__ \',
-                "                 \ '        |____/ \___| \_/\_/ \__,_|_|  \___/| .__/|___/',
-                "                 \ '                                           |_|        ',
-                "                 \ '                                                      ',
-                "                 \ '                                                      '
-                "                 \ ]
-                " endif
+                Plug 'mhinz/vim-startify'
+
+                if executable('fortune') && executable('cowsay')
+                    let g:startify_custom_header =
+                                \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
+                else
+                    let g:startify_custom_header = [
+                                \ '         ____                   _                     ',
+                                \ '        |  _ \  _____      ____| |_ __ ___  _ __  ___ ',
+                                \ '        | | | |/ _ \ \ /\ / / _` | ''__/ _ \| ''_ \/ __|',
+                                \ '        | |_| |  __/\ V  V / (_| | | | (_) | |_) \__ \',
+                                \ '        |____/ \___| \_/\_/ \__,_|_|  \___/| .__/|___/',
+                                \ '                                           |_|        ',
+                                \ '                                                      ',
+                                \ '                                                      '
+                                \ ]
+                endif
             " }}}
 
             " Edit {{{
@@ -139,6 +140,7 @@
                 Plug 'arthurxavierx/vim-caser'
                 " Plug 'dhruvasagar/vim-table-mode'
                 Plug 'Dewdrops/vim-unimpaired'
+                Plug 'chrisbra/unicode.vim'
 
                 Plug 'vim-scripts/ReplaceWithRegister'
                 nmap <Leader>r  <Plug>ReplaceWithRegisterOperator
@@ -158,8 +160,10 @@
                 " Plug 'dahu/vim-lotr'
                 " nmap <leader>lr <plug>LOTRToggle
 
-                Plug 'osyo-manga/vim-over'
-                noremap <leader>ov :OverCommandLine<cr>:%s/
+                " Plug 'osyo-manga/vim-over'
+                " noremap <leader>ov :OverCommandLine<cr>:%s/
+
+                Plug 'markonm/traces.vim'
 
                 Plug 'tommcdo/vim-exchange'
                 let g:exchange_no_mappings = 1
@@ -215,10 +219,15 @@
             " UI {{{
                 Plug 'Dewdrops/vim-tomorrow-theme'
                 " Plug 'jpo/vim-railscasts-theme'
-                " Plug 'sickill/vim-monokai'
+                Plug 'sickill/vim-monokai'
                 " Plug 'w0ng/vim-hybrid
 
                 Plug 'yonchu/accelerated-smooth-scroll'
+                let g:ac_smooth_scroll_du_sleep_time_msec = 5
+                let g:ac_smooth_scroll_fb_sleep_time_msec = 5
+                let g:ac_smooth_scroll_min_limit_msec     = 30
+                let g:ac_smooth_scroll_max_limit_msec     = 200
+
                 Plug 'szw/vim-maximizer'
 
                 Plug 'bling/vim-airline'
@@ -308,11 +317,19 @@
             Plug 'tpope/vim-dispatch'
             Plug 'bruno-/vim-man'
             " Plug 'metakirby5/codi.vim'
-            Plug 'sbdchd/neoformat'
             " Plug 'jaxbot/semantic-highlight.vim', {'on': 'SemanticHighlight'}
             " Plug 'AndrewRadev/switch.vim', {'on': 'Switch'}
             Plug 'vim-scripts/a.vim', {'on': 'A'}
             Plug 'editorconfig/editorconfig-vim'
+
+            Plug 'sbdchd/neoformat'
+            let g:opambin = substitute(system('opam config var bin'),'\n$','','''')
+            let g:neoformat_ocaml_ocamlformat = {
+                        \ 'exe': g:opambin . '/ocamlformat',
+                        \ 'no_append': 1,
+                        \ 'stdin': 1,
+                        \ 'args': ['--disable-outside-detected-project', '--name', '"%:p"', '-']
+                        \ }
 
             Plug 'rizzatti/dash.vim'
             nmap <leader>D <Plug>DashSearch
@@ -326,8 +343,7 @@
             " let g:splitjoin_split_mapping = 'cS'
             " let g:splitjoin_join_mapping  = 'cJ'
 
-            Plug 'vim-scripts/matchit.zip'
-            let b:match_ignorecase = 1
+            Plug 'chrisbra/matchit'
 
             " Plug 'SirVer/ultisnips'
             " let g:UltiSnipsExpandTrigger       = "<c-k>"
@@ -358,6 +374,8 @@
             xmap g; <Plug>(EasyAlign)
             nmap g; <Plug>(EasyAlign)
 
+            Plug 'puremourning/vimspector'
+
             if executable('ctags')
                 " Plug 'ludovicchabant/vim-gutentags'
 
@@ -365,21 +383,6 @@
                 nnoremap <silent><leader>tb :TagbarToggle<cr>
                 nnoremap <silent><f8> :TagbarToggle<cr>
                 inoremap <silent><f8> <esc>:TagbarToggle<cr>a
-
-                " And make sure gotags is in your path
-                " if count(g:dewdrops_bundle_groups, 'go')
-                "     let g:tagbar_type_go = {
-                "                 \ 'ctagstype' : 'go',
-                "                 \ 'kinds'     : [  'p:package', 'i:imports:1', 'c:constants', 'v:variables',
-                "                 \ 't:types',  'n:interfaces', 'w:fields', 'e:embedded', 'm:methods',
-                "                 \ 'r:constructor', 'f:functions' ],
-                "                 \ 'sro' : '.',
-                "                 \ 'kind2scope' : { 't' : 'ctype', 'n' : 'ntype' },
-                "                 \ 'scope2kind' : { 'ctype' : 't', 'ntype' : 'n' },
-                "                 \ 'ctagsbin'  : 'gotags',
-                "                 \ 'ctagsargs' : '-sort -silent'
-                "                 \ }
-                " endif
             endif
         endif
     " }}}
@@ -433,6 +436,21 @@
             let g:ycm_semantic_triggers.rs             = ['::', '.']
         elseif count(g:dewdrops_bundle_groups, 'coc')
             Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+            inoremap <silent><expr> <TAB>
+              \ coc#pum#visible() ? coc#_select_confirm() :
+              \ coc#expandableOrJumpable() ?
+              \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+              \ <SID>check_back_space() ? "\<TAB>" :
+              \ coc#refresh()
+
+            function! s:check_back_space() abort
+              let col = col('.') - 1
+              return !col || getline('.')[col - 1]  =~# '\s'
+            endfunction
+
+            let g:coc_snippet_next = '<tab>'
+
             imap <C-j> <Plug>(coc-snippets-expand-jump)
             vmap <C-j> <Plug>(coc-snippets-select)
 
@@ -440,9 +458,9 @@
             nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
             nmap <silent> gd <Plug>(coc-definition)
-            nmap <silent> gt <Plug>(coc-type-definition)
-            nmap <silent> gi <Plug>(coc-implementation)
-            nmap <silent> gr <Plug>(coc-references)
+            nmap <silent> gT <Plug>(coc-type-definition)
+            nmap <silent> gI <Plug>(coc-implementation)
+            nmap <silent> gR <Plug>(coc-references)
 
             nmap cv <Plug>(coc-rename)
 
@@ -479,8 +497,9 @@
             command! -nargs=? Fold :call CocAction('fold', <f-args>)
             command! -nargs=0 Organize :call CocAction('runCommand', 'editor.action.organizeImport')
         else
-            Plug 'ajh17/VimCompletesMe'
+            Plug 'ackyshake/VimCompletesMe'
         endif
+        Plug 'github/copilot.vim'
     " }}}
 
     " Lisp {{{
@@ -515,6 +534,9 @@
             Plug 'hail2u/vim-css3-syntax'
             Plug 'gorodinskiy/vim-coloresque'
             Plug 'greyblake/vim-preview'
+            Plug 'mxw/vim-jsx'
+            Plug 'tpope/vim-jdaddy'
+            Plug 'evanleck/vim-svelte', {'branch': 'main'}
 
             Plug 'gcmt/breeze.vim'
             au Filetype html,xhtml,xml nnoremap <buffer> <cr> :BreezeJumpF<cr>
@@ -531,34 +553,41 @@
     " }}}
 
     " Misc Languages {{{
-        Plug 'octol/vim-cpp-enhanced-highlight'
+        Plug 'bfrg/vim-cpp-modern'
         Plug 'pangloss/vim-javascript'
-        Plug 'mxw/vim-jsx'
-        Plug 'tpope/vim-jdaddy'
-        Plug 'vim-scripts/forth.vim'
-        Plug 'leafgarland/typescript-vim'
         " Plug 'kchmck/vim-coffee-script'
         Plug 'chrisbra/csv.vim'
-        " Plug 'tpope/vim-haml'
+        Plug 'marshallward/vim-restructuredtext'
         " Plug 'fatih/vim-go'
         " Plug 'tpope/timl'
         " Plug 'JuliaLang/julia-vim'
         " Plug 'Rykka/riv.vim'
         Plug 'fatih/vim-nginx'
         Plug 'darfink/vim-plist'
-        Plug 'hiqsol/pgsql.vim'
-        Plug 'rust-lang/rust.vim'
-        Plug 'cespare/vim-toml'
+        " Plug 'hiqsol/pgsql.vim'
+        " Plug 'rust-lang/rust.vim'
         " Plug 'tikhomirov/vim-glsl'
         " Plug 'chilicuil/vim-sml-coursera'
         Plug 'elixir-editors/vim-elixir'
-        Plug 'let-def/ocp-indent-vim'
-        Plug 'cheery/idris-vim'
-        Plug 'zah/nim.vim'
+        " Plug 'cheery/idris-vim'
+        " Plug 'uarun/vim-protobuf'
+        " Plug 'zah/nim.vim'
+        Plug 'ziglang/zig.vim'
+        " Plug 'mityu/vim-applescript'
+        " Plug 'vim-crystal/vim-crystal'
+        " Plug 'gleam-lang/gleam.vim'
+        " Plug 'tfnico/vim-gradle'
+        " Plug 'jparise/vim-graphql'
+        " Plug 'GutenYe/json5.vim'
+        " Plug 'udalov/kotlin-vim'
+        " Plug 'voldikss/vim-mma'
+        " Plug 'elubow/cql-vim'
+        " Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 
         Plug 'ocaml/merlin', {'rtp': 'vim/merlin', 'on': ['MerlinLocate', 'MerlinTypeOf']}
         autocmd Filetype ocaml nnoremap <buffer> <leader>jd :MerlinLocate<cr>
         autocmd Filetype ocaml nnoremap <buffer> <leader>jt :MerlinTypeOf<cr>
+        Plug 'let-def/ocp-indent-vim'
 
         Plug 'jceb/vim-orgmode'
         au FileType org setlocal fdm=expr
@@ -585,8 +614,8 @@
     call plug#end()
 
     " this should be placed after dein#install()
-    " colo Tomorrow-Night-Eighties
-    colo desert
+    colo Tomorrow-Night-Eighties
+    " colo monokai
 
 " }}}
 
