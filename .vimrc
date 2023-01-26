@@ -24,6 +24,7 @@
                         \     'programming',
                         \     'git',
                         \     'web',
+                        \     'lisp',
                         \     'coc',
                         \ ]
         endif

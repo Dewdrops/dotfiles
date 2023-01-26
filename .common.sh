@@ -29,11 +29,12 @@ function take() {
     cd $1
 }
 
-alias hp='ALL_PROXY=socks5://localhost:1086'
+alias hp='HTTPS_PROXY=http://localhost:8118 HTTP_PROXY=http://localhost:8118'
+alias sp='HTTPS_PROXY=socks5://localhost:8118 HTTP_PROXY=socks5://localhost:8118 ALL_PROXY=socks5://localhost:8118'
 
 source /usr/share/nvm/init-nvm.sh
 
-export PATH="$HOME/local/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/local/bin:$PATH"
 
 eval $(opam env --switch=5.0.0)
 
