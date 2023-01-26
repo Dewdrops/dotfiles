@@ -4,7 +4,7 @@ set +e
 
 scriptdir=$(pwd)
 
-for f in .ideavimrc .vimrc .vimrc_tiny .bashrc .zshrc .common.sh .gitconfig .gitexcludes .wgetrc .inputrc .irbrc .zpreztorc
+for f in .ideavimrc .vimrc .vimrc_tiny .bashrc .zshrc .common.sh .gitconfig .gitexcludes .wgetrc .inputrc .irbrc .zpreztorc .ocamlinit
 do
     CMD="rm -rf $HOME/$f"
     echo $CMD

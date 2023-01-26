@@ -1,0 +1,11 @@
+Sys.interactive := false;;
+#use "topfind";;
+Sys.interactive := true;;
+#thread;;
+
+Topfind.don't_load ["compiler-libs.toplevel"];;
+#require "core.top";;
+#ppx "ppx-jane -as-ppx";;
+open Core;;
+
+(* #use "down.top";; *)
